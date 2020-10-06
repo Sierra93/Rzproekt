@@ -14,7 +14,7 @@ namespace Rzproekt.Services {
     public class AboutService : AboutBase {
         ApplicationDbContext _db;
 
-        public AboutService(ApplicationDbContext db) => db = _db;
+        public AboutService(ApplicationDbContext db) => _db = db;
 
         /// <summary>
         /// Метод получает все данные о нас.

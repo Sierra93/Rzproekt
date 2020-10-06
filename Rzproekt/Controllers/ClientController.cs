@@ -16,7 +16,7 @@ namespace Rzproekt.Controllers {
     public class ClientController : ControllerBase {
         ApplicationDbContext _db;
 
-        public ClientController(ApplicationDbContext db) => db = _db;
+        public ClientController(ApplicationDbContext db) => _db = db;
 
         /// <summary>
         /// Метод получает список клиентов.

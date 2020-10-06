@@ -16,7 +16,7 @@ namespace Rzproekt.Controllers {
     public class ContactController : ControllerBase {
         ApplicationDbContext _db;
 
-        public ContactController(ApplicationDbContext db) => db = _db;
+        public ContactController(ApplicationDbContext db) => _db = db;
 
         /// <summary>
         /// Метод получает контактную информацию.

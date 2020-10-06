@@ -14,7 +14,7 @@ namespace Rzproekt.Services {
     public class ContactService : ContactBase {
         ApplicationDbContext _db;
 
-        public ContactService(ApplicationDbContext db) => db = _db;
+        public ContactService(ApplicationDbContext db) => _db = db;
 
         /// <summary>
         /// Метод получает контактную информацию.

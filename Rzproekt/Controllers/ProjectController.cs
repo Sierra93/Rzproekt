@@ -16,8 +16,8 @@ namespace Rzproekt.Controllers {
     public class ProjectController : ControllerBase {
         ApplicationDbContext _db;
 
-        public ProjectController(ApplicationDbContext db) => db = _db;
-        
+        public ProjectController(ApplicationDbContext db) => _db = db;
+
         /// <summary>
         /// Метод получает список проектов.
         /// </summary>

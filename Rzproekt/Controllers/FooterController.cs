@@ -16,7 +16,7 @@ namespace Rzproekt.Controllers {
     public class FooterController : ControllerBase {
         ApplicationDbContext _db;
 
-        public FooterController(ApplicationDbContext db) => db = _db;
+        public FooterController(ApplicationDbContext db) => _db = db;
 
         /// <summary>
         /// Метод получает данные футера.

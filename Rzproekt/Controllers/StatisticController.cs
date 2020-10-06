@@ -16,7 +16,7 @@ namespace Rzproekt.Controllers {
     public class StatisticController : ControllerBase {
         ApplicationDbContext _db;
 
-        public StatisticController(ApplicationDbContext db) => db = _db;
+        public StatisticController(ApplicationDbContext db) => _db = db;
 
         /// <summary>
         /// Метод получает данные статистики.

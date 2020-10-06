@@ -14,7 +14,7 @@ namespace Rzproekt.Services {
     public class ClientService : ClientBase {
         ApplicationDbContext _db;
 
-        public ClientService(ApplicationDbContext db) => db = _db;
+        public ClientService(ApplicationDbContext db) => _db = db;
 
         /// <summary>
         /// Метод получает список клиентов.

@@ -11,7 +11,7 @@ namespace Rzproekt.Services {
     public class StatisticService : StatisticBase {
         ApplicationDbContext _db;
 
-        public StatisticService(ApplicationDbContext db) => db = _db;
+        public StatisticService(ApplicationDbContext db) => _db = db;
 
         /// <summary>
         /// Метод получает все данные статистики.

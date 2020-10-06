@@ -16,7 +16,7 @@ namespace Rzproekt.Controllers {
     public class AboutController : ControllerBase {
         ApplicationDbContext _db;
 
-        public AboutController(ApplicationDbContext db) => db = _db;
+        public AboutController(ApplicationDbContext db) => _db = db;
 
         /// <summary>
         /// Метод описывает данные о нас.

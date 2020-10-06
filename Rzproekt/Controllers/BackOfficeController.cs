@@ -14,6 +14,6 @@ namespace Rzproekt.Controllers {
     public class BackOfficeController : ControllerBase {
         ApplicationDbContext _db;
 
-        public BackOfficeController(ApplicationDbContext db) => db = _db;
+        public BackOfficeController(ApplicationDbContext db) => _db = db;
     }
 }

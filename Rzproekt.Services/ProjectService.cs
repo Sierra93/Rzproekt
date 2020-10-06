@@ -14,7 +14,7 @@ namespace Rzproekt.Services {
     public class ProjectService : ProjectBase {
         ApplicationDbContext _db;
 
-        public ProjectService(ApplicationDbContext db) => db = _db;
+        public ProjectService(ApplicationDbContext db) => _db = db;
 
         /// <summary>
         /// Метод получает список проектов.

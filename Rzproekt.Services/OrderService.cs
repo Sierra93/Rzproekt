@@ -11,7 +11,7 @@ namespace Rzproekt.Services {
     public class OrderService : OrderBase {
         ApplicationDbContext _db;
 
-        public OrderService(ApplicationDbContext db) => db = _db;
+        public OrderService(ApplicationDbContext db) => _db = db;
 
         /// <summary>
         /// Метод получает данные хидера.
