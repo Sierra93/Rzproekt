@@ -1,4 +1,25 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿"use strict";
 
-// Write your JavaScript code.
+var appHome = new Vue({
+    el: '#appHome',
+    data: {
+        header: {
+            logo: '~/img/logo.png',
+            nav: {
+                main: 'Главная',
+                service: 'Услуги',
+                project: 'Проекты',
+                about: 'О нас',
+                contacts: 'Контакты'
+            }
+        }
+    },
+    //update: {
+
+    //},
+    created() {
+        console.log('init');
+    },
+    methods: {
+    }
+});
