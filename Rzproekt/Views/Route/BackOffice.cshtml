@@ -1,0 +1,24 @@
+﻿@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="~/css/site.css" />
+	<link href="~/css/StyleSheet.css" rel="stylesheet" />
+</head>
+<body>
+	<div id="back_office">
+		<input type="file" id="files" ref="files" multiple v-on:change="handleFilesUpload()" />
+		<button v-on:click="submitFile()">Submit</button>
+	</div>
+
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="~/lib/vue/vue.min.js"></script>
+	<script src="~/lib/vue/axios/axios.js"></script>
+	<script src="~/js/BackOffice.js"></script>
+</body>
+</html>

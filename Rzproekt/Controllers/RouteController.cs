@@ -22,5 +22,10 @@ namespace Rzproekt.Controllers {
         public IActionResult onMain() {
             return View("Index");
         }
+
+        [Route("admin")]
+        public IActionResult BackOffice() {
+            return View();
+        }
     }
 }
