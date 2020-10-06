@@ -1,0 +1,27 @@
+
+.service-list {
+    display: flex;
+    margin: 3rem;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+
+    article {
+        background: $liteSilver;
+        width: 19rem;
+        margin: 1rem;
+
+        img {
+            width: 100%;
+        }
+
+        h1 {
+            padding: 1rem;
+            color: #3d5975;
+        }
+
+        p {
+            width: 14.5rem;
+            padding: 1rem;
+        }
+    }
+}
