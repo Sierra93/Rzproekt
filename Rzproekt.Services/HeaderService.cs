@@ -14,7 +14,7 @@ namespace Rzproekt.Services {
     public class HeaderService : HeaderBase {
         ApplicationDbContext _db;
 
-        public HeaderService(ApplicationDbContext db) => db = _db;
+        public HeaderService(ApplicationDbContext db) => _db = db;
 
         /// <summary>
         /// Метод получает данные хидера.
