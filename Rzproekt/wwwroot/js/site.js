@@ -3,9 +3,9 @@
 var appHome = new Vue({
     el: '#appHome',
     data: {
-        aHeader: [],
         header: {
             //logo: '~/img/logo.png',
+            logo: "",
             nav: {
                 main: 'Главная',
                 service: 'Услуги',
@@ -31,7 +31,7 @@ var appHome = new Vue({
                 axios.post(sUrl)
                     .then((response) => {
                         console.log("Лого получен", response.data);
-                        this.aHeader = response.data;
+                        this.header.logo = response.data[0].url;
                     })
                     .catch((XMLHttpRequest) => {
                         throw new Error(XMLHttpRequest.response.data);
