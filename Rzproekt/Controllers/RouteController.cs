@@ -8,10 +8,10 @@ using Microsoft.Extensions.Logging;
 using Rzproekt.Models;
 
 namespace Rzproekt.Controllers {
-    public class HomeController : Controller {
-        private readonly ILogger<HomeController> _logger;
+    public class RouteController : Controller {
+        private readonly ILogger<RouteController> _logger;
 
-        public HomeController(ILogger<HomeController> logger) {
+        public RouteController(ILogger<RouteController> logger) {
             _logger = logger;
         }
 
