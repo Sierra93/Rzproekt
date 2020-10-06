@@ -1,37 +1,36 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	@*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />*@
-	<link rel="stylesheet" href="~/css/site.css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="~/css/StyleSheet.css" rel="stylesheet" />
 </head>
 <body>
-	<header>
-		<nav>
-			<div>
-				<div>
-					<ul>
-						<li>
-							test
-						</li>
-						<li>
-							test
-						</li>
-					</ul>
-				</div>
-			</div>
-		</nav>
-	</header>
+    <div id="appHome">
+        <header class="header">
+            <div class="block-logo"><img src="~/img/logo.png" alt="logo" /></div>
+            <nav class="block-nav">
+                <ul>
+                    <li><a href="#">{{ header.nav.main }}</a></li>
+                    <li><a href="#">{{ header.nav.service }}</a></li>
+                    <li><a href="#">{{ header.nav.project }}</a></li>
+                    <li><a href="#">{{ header.nav.about }}</a></li>
+                    <li><a href="#">{{ header.nav.contacts }}</a></li>
+                </ul>
+            </nav>
+        </header>
 
-	<footer>
-	</footer>
+        @RenderBody()
 
-	<script src="~/lib/jquery/dist/jquery.min.js"></script>
-	@*<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>*@
-	<script src="~/js/site.js"></script>
+        <footer>
+            <h1>TEST</h1>
+        </footer>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/vue/vue.min.js"></script>
+    <script src="~/js/site.js"></script>
+    @RenderSection("Scripts", required: false)
 
-	@RenderBody()
-	@RenderSection("Scripts", required: false)
 </body>
 </html>
