@@ -24,6 +24,8 @@ namespace Rzproekt.Core.Data {
 
         public DbSet<FooterDto> Footers { get; set; }   // Таблица футера.
 
+        public DbSet<MessageDto> Messages { get; set; }     // Таблица сообщений.
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
@@ -64,6 +66,10 @@ namespace Rzproekt.Core.Data {
 
                 modelBuilder.Entity<MultepleContextTable>()
                 .HasOne(sc => sc.Footers)
+                .WithMany(s => s.MultepleContextTables);
+
+            modelBuilder.Entity<MultepleContextTable>()
+                .HasOne(sc => sc.Messages)
                 .WithMany(s => s.MultepleContextTables);
         }
     }

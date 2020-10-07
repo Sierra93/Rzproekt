@@ -30,5 +30,8 @@ namespace Rzproekt.Models {
 
         public int FooterId { get; set; }
         public FooterDto Footers { get; set; }
+
+        public int MessageId { get; set; }
+        public MessageDto Messages { get; set; }
     }
 }
