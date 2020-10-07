@@ -3,12 +3,12 @@
 var appHome = new Vue({
     el: '#appHome',
     data: {
+        date: new Date().getFullYear(),
         general: {
             detailse: 'Подробнее'
         },
         header: {
-            //logo: '~/img/logo.png',
-            logo: "",
+            logo: '',
             nav: {
                 main: 'Главная',
                 service: 'Услуги',
@@ -55,8 +55,22 @@ var appHome = new Vue({
                 counter: 16,
                 txt: 'НАПРАВЛЕНИЙ ДЕЯТЕЛЬНОСТИ'
             }
-
-
+        },
+        project: {
+            vimpel: 'ЦОД ОАО "Вымпелком" г.Ярославль',
+            citroen: 'Автосалон "CITROEN"',
+            archive: 'Централизованное архивохранилище ЦФО, г. Калуга',
+            tireFactory: 'Воронежский шинный завод'
+        },
+        contacts: {
+            title: {
+                office: 'Центральный офис'
+            },
+            infoCompany: {
+                address: 'Адрес: Россия, 150003, г.Ярославль, ул.Советская, 69',
+                mail: 'E-mail: mail@rzproekt.ru',
+                number: 'Тел./факс: (4852) 25-18-35, 25-24-74'
+            }
         }
     },
     //update: {
@@ -69,12 +83,12 @@ var appHome = new Vue({
     methods: {
         // Функция получает лого.
         _getLogo() {
-            let sUrl = "https://localhost:44349/api/header/get-header";
+            let sUrl = 'https://localhost:44349/api/header/get-header';
             
             try {
                 axios.post(sUrl)
                     .then((response) => {
-                        console.log("Лого получен", response.data);
+                        console.log('Лого получен', response.data);
                         this.header.logo = response.data[0].url;
                     })
                     .catch((XMLHttpRequest) => {
@@ -84,6 +98,15 @@ var appHome = new Vue({
             catch (ex) {
                 throw new Error(ex);
             }
-		}
+        },
+        smoothScroll() {
+            $('.custom-navbar a, #home a').on('click', function (event) {
+                var $anchor = $(this);
+                $('html, body').stop().animate({
+                    scrollTop: $($anchor.attr('href')).offset().top - 49
+                }, 1000);
+                event.preventDefault();
+            });
+        }  
     }
 });

@@ -113,6 +113,7 @@ $liteSilver: #f7f5f5;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
     background: #b52536;
 
     .block-border-counter {
@@ -142,5 +143,19 @@ $liteSilver: #f7f5f5;
             color: $bgHeader;
             width: 185px;
         }
+    }
+}
+footer {
+    position: absolute;
+    bottom: 0;
+    height: 3rem;
+    width: 100%;
+    background: $liteSilver;
+
+    small {
+        display: flex;
+        justify-content: center;
+        margin-top: 1rem;
+        color: silver;
     }
 }

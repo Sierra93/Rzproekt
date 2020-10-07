@@ -80,8 +80,31 @@
         <h1>{{ block.title.project }}</h1>
     </div>
     <div class="border-bottom-title"></div>
-    <section class="service-list">
+    <section class="project-list">
+        <article>
+            <div class="project-block">
+                <h1>{{ project.vimpel }}</h1>
+            </div>
+        </article>
+        <article>
+            <div class="project-block">
+                <h1>{{ project.citroen }}</h1>
+            </div>
+        </article>
+        <article>
+            <div class="project-block">
+                <h1>{{ project.archive }}</h1>
+            </div>
+        </article>
+        <article>
+            <div class="project-block">
+                <h1>{{ project.tireFactory }}</h1>
+            </div>
+        </article>
     </section>
+    <div class="btn-detail">
+        <a href="#">{{ general.detailse }}</a>
+    </div>
 </div>
 
 <div class="block clients">
@@ -89,14 +112,51 @@
         <h1>{{ block.title.clients }}</h1>
     </div>
     <div class="border-bottom-title"></div>
-    <section class="service-list">
+    <section class="clients-list">
+
+        <article class="clients-block">
+            <img src="~/img/yashz-logo.png" />
+        </article>
+        <article class="clients-block">
+            <img src="~/img/vimpel-logo.png" />
+        </article>
+
+        <article class="clients-block">
+            <img src="~/img/sber-logo.png" />
+        </article>
+
+        <article class="clients-block">
+            <img src="~/img/p-y-o-logo.png" />
+        </article>
+
+        <article class="clients-block">
+            <img src="~/img/otkritie-logo.png" />
+        </article>
+
     </section>
+    <div class="btn-detail">
+        <a href="#">{{ general.detailse }}</a>
+    </div>
 </div>
 <div class="block contacts">
     <div class="title-block">
         <h1>{{ block.title.contacts }}</h1>
     </div>
     <div class="border-bottom-title"></div>
-    <section class="service-list">
+    <div class="map-block">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2135.476580426758!2d39.87244051610277!3d57.64038515230752!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b2916fd18e267d%3A0x65d18492882ca52!2z0KHQvtCy0LXRgtGB0LrQsNGPINGD0LsuLCA2OSwg0K_RgNC-0YHQu9Cw0LLQu9GMLCDQr9GA0L7RgdC70LDQstGB0LrQsNGPINC-0LHQuy4sIDE1MDAwMw!5e0!3m2!1sru!2sru!4v1602061981456!5m2!1sru!2sru" width="800" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+    </div>
+    <section class="contacts-list">
+        <article class="contacts-block">
+            <div class="address">
+                <h1>{{ contacts.title.office }}</h1><br />
+                <p>{{ contacts.infoCompany.address }} <br /><br /> {{ contacts.infoCompany.mail }} <br /><br /> {{ contacts.infoCompany.number }}</p>
+            </div>
+            <div class="detail-contacts">
+                <div class="btn-detail">
+                    <a href="#">{{ general.detailse }}</a>
+                </div>
+            </div>
+        </article>
     </section>
 </div>
