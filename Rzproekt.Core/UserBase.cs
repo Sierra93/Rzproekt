@@ -31,7 +31,7 @@ namespace Rzproekt.Core {
         /// </summary>
         /// <param name="login"></param>
         /// <returns></returns>
-        public abstract Task<bool> GetUserPassword(string password);
+        public abstract Task<bool> GetUserPassword(string login, string password);
 
         /// <summary>
         /// Метод получает email пользователя.

@@ -13,6 +13,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Rzproekt.Core.Data;
 using Rzproekt.Models;
+using Rzproekt.Services;
 
 namespace Rzproekt {
     public class Startup {
@@ -31,6 +32,7 @@ namespace Rzproekt {
               Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("Rzproekt")));
 
             services.AddCors();
+            services.AddSignalR();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options => {
@@ -70,6 +72,10 @@ namespace Rzproekt {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Route}/{action=Index}/{id?}");
+            });
+
+            app.UseEndpoints(endpoints => {
+                endpoints.MapHub<ChatHub>("/chat");
             });
         }
     }

@@ -76,11 +76,11 @@ namespace Rzproekt.Controllers {
             var hashPassword = await HashMD5Service.HashPassword(user.Password);
 
             // Выбирает пароль пользователя из БД.
-            bool getIdentityPassword = await userBase.GetUserPassword(hashPassword);
+            bool getIdentityPassword = await userBase.GetUserPassword(user.Login, hashPassword);
 
             // Если пароль не совпадает с тем что в БД.
             if (!getIdentityPassword) {
-                throw new ArgumentException("Пароль не верен");
+                throw new ArgumentException("Логин или пароль не верен");
             }
 
             var isUser = await userBase.GetIdentity(user.Login);
