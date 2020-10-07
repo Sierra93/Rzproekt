@@ -2,23 +2,48 @@
 	Layout = null;
 }
 
+@*<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="~/css/site.css" />
+		<link href="~/css/StyleSheet.css" rel="stylesheet" />
+	</head>
+	<body>
+		<div id="back_office">
+			<input type="file" id="files" ref="files" multiple v-on:change="handleFilesUpload" />
+			<button v-on:click="submitFile">Submit</button>
+		</div>
+
+		<script src="~/lib/jquery/dist/jquery.min.js"></script>
+		<script src="~/lib/vue/vue.min.js"></script>
+		<script src="~/lib/vue/axios/axios.js"></script>
+		<script src="~/js/BackOffice.js"></script>
+	</body>
+	</html>*@
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link rel="stylesheet" href="~/css/site.css" />
-	<link href="~/css/StyleSheet.css" rel="stylesheet" />
+	<title>SignalR Chat - Metanit.com</title>
 </head>
 <body>
-	<div id="back_office">
-		<input type="file" id="files" ref="files" multiple v-on:change="handleFilesUpload" />
-		<button v-on:click="submitFile">Submit</button>
+	<div id="inputForm">
+		<input type="text" id="message" />
+		<input type="button" id="sendBtn" value="Отправить" />
 	</div>
+	<div id="chatroom"></div>
 
+	<script src="~/js/aspnet-signalr/signalr.min.js"></script>
 	<script src="~/lib/jquery/dist/jquery.min.js"></script>
 	<script src="~/lib/vue/vue.min.js"></script>
 	<script src="~/lib/vue/axios/axios.js"></script>
 	<script src="~/js/BackOffice.js"></script>
+
+	<script>
+
+	</script>
 </body>
 </html>

@@ -15,7 +15,7 @@ namespace Rzproekt.Services {
 
         public MessageService(ApplicationDbContext db) => _db = db;
 
-        /// <summary>
+         /// <summary>
         /// Метод реализует отправку сообщений.
         /// </summary>
         /// <param name="messageDto"></param>
