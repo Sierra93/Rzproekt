@@ -5,17 +5,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link rel="stylesheet" href="~/css/site.css" />
-	<link href="~/css/StyleSheet.css" rel="stylesheet" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="~/css/StyleSheet.css" rel="stylesheet" />
 </head>
 <body>
-	<div id="back_office">
-		<input type="file" id="files" ref="files" multiple v-on:change="handleFilesUpload" />
-		<button v-on:click="submitFile">Submit</button>
-	</div>
+    <div id="back_office" class="wrapper">
+        <div class="tab-container ">
+            <h4 class="tab-title">АО "ЯПИ "Резиноасбопроект"</h4>
+            <div class="tab-wrapper">
+                <input type="radio" name="tab" id="tab1" checked />
+                <label class="tab-label no-select" for="tab1" nth="1">ГЛАВНАЯ</label>
+                <div class="tab-item" id="tab-content1">
+                    <h1>ГЛАВНАЯ</h1>
+                    <form class="form-back_office">
+                        <fieldset>
+                            <legend>Главное меню</legend>
+                            <input type="text" id="name">
+                            <input type="text" id="email">
+                        </fieldset>
+                        <p><input type="submit" value="Отправить"></p>
+                    </form>
+                </div>
 
+                <input type="radio" name="tab" id="tab2" />
+                <label class="tab-label no-select" for="tab2" nth="2">УСЛУГИ</label>
+                <div class="tab-item" id="tab-content2">
+                    <h1>УСЛУГИ</h1>
+                </div>
+
+                <input type="radio" name="tab" id="tab3" />
+                <label class="tab-label no-select" for="tab3" nth="3">О НАС</label>
+                <div class="tab-item" id="tab-content3">
+                    <h1>О НАС</h1>
+                </div>
+
+                <input type="radio" name="tab" id="tab4" />
+                <label class="tab-label no-select" for="tab4" nth="4">СТАТИСТИКА</label>
+                <div class="tab-item" id="tab-content4">
+                    <h1>СТАТИСТИКА</h1>
+                </div>
+
+                <input type="radio" name="tab" id="tab5" />
+                <label class="tab-label no-select" for="tab5" nth="5">ПРОЕКТЫ</label>
+                <div class="tab-item" id="tab-content5">
+                    <h1>ПРОЕКТЫ</h1>
+                </div>
+
+                <input type="radio" name="tab" id="tab6" />
+                <label class="tab-label no-select" for="tab6" nth="6">КЛИЕНТЫ</label>
+                <div class="tab-item" id="tab-content6">
+                    <h1>КЛИЕНТЫ</h1>
+                </div>
+
+                <input type="radio" name="tab" id="tab7" />
+                <label class="tab-label no-select" for="tab7" nth="7">КОНТАКТЫ</label>
+                <div class="tab-item" id="tab-content7">
+                    <h1>КОНТАКТЫ</h1>
+                </div>
+            </div>
+        </div>
+
+        @*<div id="back_office">
+            <input type="file" id="files" ref="files" multiple v-on:change="handleFilesUpload" />
+            <button v-on:click="submitFile">Submit</button>
+        </div>*@
+
+    </div>
 	<script src="~/lib/jquery/dist/jquery.min.js"></script>
 	<script src="~/lib/vue/vue.min.js"></script>
 	<script src="~/lib/vue/axios/axios.js"></script>

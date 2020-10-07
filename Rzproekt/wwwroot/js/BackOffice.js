@@ -1,16 +1,28 @@
 ﻿"use strict";
 
 var back_office = new Vue({
-	el: "#back_office",
+	el: '#back_office',
 	data() {
 		return {
-			files: ""
+			files: '',
 		}
+	},
+	update: {
+
+	},
+	created() {
+		console.log('init');
+	},
+	mounted: function () {
+		this.$nextTick(function () {
+			
+
+		})
 	},
 	methods: {
 		// Функция отправляет изображения.
 		submitFile() {
-			let sUrl = "https://localhost:44349/api/back-office/upload-image";
+			let sUrl = 'https://localhost:44349/api/back-office/upload-image';
 			let formData = new FormData();
 
 			for (var i = 0; i < this.files.length; i++) {
@@ -40,6 +52,32 @@ var back_office = new Vue({
 		// Функция собирает файлы.
 		handleFilesUpload() {
 			this.files = this.$refs.files.files;
-		}
+		},
+		onSelectedMenu() {
+
+        },
+		onSignIn() {
+			let self = this;
+			let Login = document.getElementById('login').value;
+			let Password = document.getElementById('password').value;
+			let sUrl = 'https://localhost:44349/api/auth/signin';
+			let oData = {
+				Login,
+				Password
+			};
+            try {
+				axios.post(sUrl, oData)
+					.then((response) => {
+						if (response.data.access_token) window.location.href = 'https://localhost:44349/back-office'
+
+                    })
+                    .catch((XMLHttpRequest) => {
+                        throw new Error(XMLHttpRequest);
+                    });
+            }
+            catch (ex) {
+                throw new Error(ex);
+            }
+        }
 	}
 });
