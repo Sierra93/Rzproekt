@@ -37,7 +37,7 @@ var back_office = new Vue({
 			}
 		},
 
-		// Функция добавляет файлы.
+		// Функция собирает файлы.
 		handleFilesUpload() {
 			this.files = this.$refs.files.files;
 		}

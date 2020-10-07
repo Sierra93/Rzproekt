@@ -18,7 +18,7 @@ namespace Rzproekt.Services {
         /// </summary>
         /// <returns></returns>
         public async override Task<IEnumerable> GetStatisticInfo() {
-            return await _db.Statistics.ToListAsync();
+            return await _db.Statistic.ToListAsync();
         }
     }
 }

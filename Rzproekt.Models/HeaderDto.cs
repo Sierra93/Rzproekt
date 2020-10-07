@@ -16,6 +16,15 @@ namespace Rzproekt.Models {
         [Column("logo", TypeName = "nvarchar(max)")]
         public string Url { get; set; }     // Путь к логотипу.
 
+        [Column("manu_item", TypeName = "nvarchar(1000)")]
+        public string MainItem { get; set; }
+
+        [Column("main_title", TypeName = "nvarchar(1000)")]
+        public string MainTitle { get; set; }
+
+        [Column("background", TypeName = "nvarchar(1000)")]
+        public string Background { get; set; }
+
         public List<MultepleContextTable> MultepleContextTables { get; set; }
 
         public HeaderDto() {

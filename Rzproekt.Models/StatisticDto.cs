@@ -8,7 +8,7 @@ namespace Rzproekt.Models {
     /// <summary>
     /// Таблица сопоставляется с таблицей статистики.
     /// </summary>
-    [Table("Statistics")]
+    [Table("Statistic")]
     public class StatisticDto {
         [Key, Column("id")]
         public int Id { get; set; }

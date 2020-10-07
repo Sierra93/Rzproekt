@@ -14,7 +14,7 @@ namespace Rzproekt.Core.Data {
 
         public DbSet<AboutDto> Abouts { get; set; }     // Таблица о нас.
 
-        public DbSet<StatisticDto> Statistics { get; set; }    // Таблица статистики.
+        public DbSet<StatisticDto> Statistic { get; set; }    // Таблица статистики.
 
         public DbSet<ProjectDto> Projects { get; set; }     // Таблица проектов.
 
