@@ -10,10 +10,10 @@ namespace Rzproekt.Models {
     /// </summary>
     [Table("Footers")]
     public class FooterDto {
-        [Key, Column("id")]
+        [Key, Column("footer_id")]
         public int Id { get; set; }
 
-        [Column("copy_str", TypeName = "nvarchar(500)")]
+        [Column("copy_str", TypeName = "nvarchar(1000)")]
         public string CopyStr { get; set; }     // Строка копирайта.
 
         [Column("url", TypeName = "nvarchar(max)")]
