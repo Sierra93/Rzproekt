@@ -22,6 +22,9 @@ namespace Rzproekt.Models {
         [Column("block")]
         public string Block { get; set; }   // Тип блока, в который нужно вставлять контент.
 
+        [Column("button_text", TypeName = "nvarchar(500)")]
+        public string ButtonText { get; set; }  // Текст кнопки.
+
         public List<MultepleContextTable> MultepleContextTables { get; set; }
 
         public FooterDto() {
