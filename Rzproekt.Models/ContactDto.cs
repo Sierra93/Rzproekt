@@ -22,6 +22,9 @@ namespace Rzproekt.Models {
         [Column("text", TypeName = "nvarchar(max)")]
         public string Text { get; set; }
 
+        [Column("block")]
+        public string Block { get; set; }   // Тип блока, в который нужно вставлять контент.
+
         public List<MultepleContextTable> MultepleContextTables { get; set; }
 
         public ContactDto() {

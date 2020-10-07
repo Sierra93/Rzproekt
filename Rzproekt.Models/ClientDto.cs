@@ -19,6 +19,9 @@ namespace Rzproekt.Models {
         [Column("url", TypeName = "nvarchar(max)")]
         public string Url { get; set; }     // Путь к изображению.
 
+        [Column("block")]
+        public string Block { get; set; }   // Тип блока, в который нужно вставлять контент.
+
         public List<MultepleContextTable> MultepleContextTables { get; set; }
 
         public ClientDto() {
