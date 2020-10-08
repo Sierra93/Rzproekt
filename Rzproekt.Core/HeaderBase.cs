@@ -21,6 +21,6 @@ namespace Rzproekt.Core {
         /// </summary>
         /// <param name="headerDto"></param>
         /// <returns></returns>
-        public abstract Task<HeaderDto> ChangeHeader(object header);
+        public abstract Task ChangeHeader(object header);
     }
 }
