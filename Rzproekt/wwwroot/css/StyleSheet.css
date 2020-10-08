@@ -390,7 +390,13 @@ body {
   .header .block-logo {
     background: #fff;
     padding: 1rem 4rem;
-    margin-right: 1rem; }
+    margin-right: 1rem;
+    height: 5rem;
+    width: 12.8rem;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center; }
   .header .block-nav {
     margin-right: 2rem; }
     .header .block-nav ul {
