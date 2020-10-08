@@ -21,23 +21,17 @@
                     <div class="tab-content-back_office">
                         <div class="tab-left-back_office">
                             <div class="block-change-menu_back_office">
-                                <h1>ГЛАВНАЯ</h1>
                                 <form class="form-back_office">
                                     <fieldset>
                                         <legend>Главное меню</legend>
-                                        <input type="text" id="main-back_office">
-                                        <input type="text" id="service-back_office">
-                                        <input type="text" id="about-back_office">
-                                        <input type="text" id="project-back_office">
-                                        <input type="text" id="clients-back_office">
-                                        <input type="text" id="contacts-back_office">
+                                        <input type="text" v-bind:id="item.id"  v-for="item in header" v-bind:value="item.mainItem">
                                     </fieldset>
                                     <button v-on:click="submitFile">Сохранить</button>
                                 </form>
                                 <form class="form-back_office">
                                     <fieldset>
                                         <legend>Приветственный текст</legend>
-                                        <input type="text" id="main-back_office">
+                                        <input type="text" id="mainText-back_office" v-bind:value="header[0].mainTitle">
                                     </fieldset>
                                     <button v-on:click="submitFile">Сохранить</button>
                                 </form>
