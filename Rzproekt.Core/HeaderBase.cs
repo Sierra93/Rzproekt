@@ -1,4 +1,5 @@
-﻿using Rzproekt.Models;
+﻿using Microsoft.AspNetCore.Http;
+using Rzproekt.Models;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -21,6 +22,6 @@ namespace Rzproekt.Core {
         /// </summary>
         /// <param name="headerDto"></param>
         /// <returns></returns>
-        public abstract Task ChangeHeader(object header);
+        public abstract Task ChangeHeader(IFormCollection filesLogo, string jsonString);
     }
 }

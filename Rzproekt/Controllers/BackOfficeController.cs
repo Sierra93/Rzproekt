@@ -36,9 +36,9 @@ namespace Rzproekt.Controllers {
         /// Метод изменяет хидер.
         /// </summary>
         [HttpPost, Route("change-header")]
-        public async Task<IActionResult> ChangeHeader([FromForm] IFormFile filesLogo, [FromForm] string jsonString) {
+        public async Task<IActionResult> ChangeHeader([FromForm] IFormCollection filesLogo, [FromForm] string jsonString) {
             HeaderBase backOfficeBase = new HeaderService(_db);
-            //await backOfficeBase.ChangeHeader(header);
+            await backOfficeBase.ChangeHeader(filesLogo, jsonString);
 
             return Ok("Header успешно изменен");
         }

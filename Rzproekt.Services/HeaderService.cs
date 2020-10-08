@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Linq;
 using Rzproekt.Core;
 using Rzproekt.Core.Data;
@@ -35,10 +36,11 @@ namespace Rzproekt.Services {
         /// </summary>
         /// <param name="headerDto"></param>
         /// <returns></returns>
-        public async override Task ChangeHeader(object header) {
+        public async override Task ChangeHeader(IFormCollection filesLogo, string jsonString) {
             try {
-                var objParse = JsonSerializer.Serialize(header);
-                JObject jsonObject = JObject.Parse(objParse);
+                CommonMethodsService common = new CommonMethodsService(_db);
+                //var objParse = JsonSerializer.Serialize(jsonString);
+                JObject jsonObject = JObject.Parse(jsonString);
 
                 // Список элементов меню.
                 var aMainItems = (JArray)jsonObject["MainItem"];
@@ -52,10 +54,17 @@ namespace Rzproekt.Services {
                 int i = 0;
                 foreach (var el in aHeaders) {
                     aHeaders.ToList()[i].MainItem = aMainItemsValues[i].ToString();
+                    if (i < filesLogo.Files.Count) {                        
+                        // Загружает каждый файл в папку.
+                        var path = await common.Upload(filesLogo, i);
+
+                        // ОБрезает лишнюю часть пути для БД.                    
+                        aHeaders.ToList()[i].Url = path.Replace("wwwroot", "");
+                        
+                    }
                     _db.Headers.UpdateRange(aHeaders);
                     i++;
                 }
-
                 await _db.SaveChangesAsync();
             }
 

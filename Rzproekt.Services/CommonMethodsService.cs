@@ -23,7 +23,7 @@ namespace Rzproekt.Services {
         /// <param name="form">Коллекция с файлами.</param>
         /// <returns></returns>
 
-        public async Task<string> Upload(IFormCollection form) {
+        public async Task<string> Upload(IFormCollection form, int i) {
             try {
                 if (form.Files == null || form.Files[0].Length == 0) {
                     throw new ArgumentNullException();
@@ -37,14 +37,14 @@ namespace Rzproekt.Services {
                 // Полный локальный путь к файлу включая папку проекта wwwroot.
                 var path = Path.Combine(
                             Directory.GetCurrentDirectory(), FilePath.STORE_PATH,
-                            form.Files[0].FileName);
+                            form.Files[i].FileName);
 
                 using (var stream = new FileStream(path, FileMode.Create)) {
-                    await form.Files[0].CopyToAsync(stream);
+                    await form.Files[i].CopyToAsync(stream);
                 }
 
                 //StoreInDB(storePath + form.Files[0].FileName);
-                return FilePath.STORE_PATH + form.Files[0].FileName;
+                return FilePath.STORE_PATH + form.Files[i].FileName;
             }
 
             catch (ArgumentNullException ex) {
