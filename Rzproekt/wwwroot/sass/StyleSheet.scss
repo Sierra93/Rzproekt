@@ -45,9 +45,16 @@ body {
     align-items: center;
     background: $bgHeader;
 
+    div {
+        display: flex;
+        align-items: center;
+        color: $WhiteColor;
+    }
+
     .block-logo {
         background: $white;
         padding: 1rem 4rem;
+        margin-right: 1rem;
     }
 
     .block-nav {

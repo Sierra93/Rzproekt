@@ -9,7 +9,10 @@
 <body>
     <div id="appHome">
         <header class="header">
-            <div class="block-logo"><img :src="header[0].url" alt="logo" /></div>
+            <div>
+                <div class="block-logo"><img :src="header[0].url" alt="logo" /></div>
+                <h1>«ЯПИ РЕЗИНОАСБОПРОЕКТ»</h1>
+            </div>
             <nav class="block-nav">
                 <ul class="block-nav">
                     <li v-for="item in header"><a href="#">{{ item.mainItem }}</a></li>

@@ -43,7 +43,7 @@
 .service-list {
   display: flex;
   margin: 3rem;
-  justify-content: space-evenly;
+  justify-content: center;
   flex-wrap: wrap; }
   .service-list article {
     background: #f7f5f5;
@@ -289,7 +289,8 @@
   padding: 2rem; }
 
 .block-change-menu_back_office {
-  display: flex; }
+  display: flex;
+  justify-content: space-around; }
 
 .form-back_office {
   margin: 1rem; }
@@ -327,9 +328,14 @@ body {
   justify-content: space-between;
   align-items: center;
   background: #1e2d3b; }
+  .header div {
+    display: flex;
+    align-items: center;
+    color: #fff; }
   .header .block-logo {
     background: #fff;
-    padding: 1rem 4rem; }
+    padding: 1rem 4rem;
+    margin-right: 1rem; }
   .header .block-nav {
     margin-right: 2rem; }
     .header .block-nav ul {
