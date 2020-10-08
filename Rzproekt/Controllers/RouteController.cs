@@ -29,8 +29,7 @@ namespace Rzproekt.Controllers {
         }
 
         [Route("admin")]
-        public IActionResult LogOn()
-        {
+        public IActionResult LogOn() {
             return View();
         }
     }

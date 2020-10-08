@@ -20,7 +20,7 @@
 //hubConnection.start();
 
 var back_office = new Vue({
-	el: '#back_office',
+	el: "#back_office",
 	data() {
 		return {
 			files: '',

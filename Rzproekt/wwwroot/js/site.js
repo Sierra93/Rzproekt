@@ -1,23 +1,5 @@
 ﻿"use strict";
 
-//window.addEventListener("hashchange", function (e) {
-//    //document.getElementById('o').innerHTML = e.oldURL;
-//    //document.getElementById('n').innerHTML = e.newURL;
-//	console.log("test");
-//}, false);
-
-//$(window).bind('hashchange', function () {
-//    console.log("test");
-//});
-
-//if (location.href.includes("#") || location.href.includes("/")) {
-//    console.log("test");
-//}
-
-//if ("onhashchange" in window) {
-//    alert("The browser supports the hashchange event!");
-//}
-
 var appHome = new Vue({
     el: '#appHome',
     data: {
