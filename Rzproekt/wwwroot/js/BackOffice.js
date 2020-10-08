@@ -108,7 +108,8 @@ var back_office = new Vue({
 			let mainItemArr = [];
 			for (let item of MainItem) {
 				mainItemArr.push(item.value)
-			} 
+			}
+
 			let MainTitle = $('.header-menu-title')[0].value;
 
 			let oData = {
