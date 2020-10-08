@@ -296,6 +296,22 @@
   margin: 1rem; }
   .form-back_office fieldset {
     padding: 1rem; }
+    .form-back_office fieldset label {
+      height: 35px;
+      line-height: 35px;
+      min-width: 50px;
+      padding: 0 0;
+      text-align: center;
+      color: #000;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      align-items: center;
+      justify-content: center;
+      flex-grow: 1;
+      border-top: 3px solid transparent;
+      border-bottom: 3px solid transparent;
+      cursor: pointer; }
     .form-back_office fieldset input {
       display: block;
       border: 1px solid silver;
