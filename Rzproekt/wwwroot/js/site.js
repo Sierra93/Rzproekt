@@ -102,7 +102,7 @@ var appHome = new Vue({
             }
         },
         smoothScroll() {
-            $('.block-nav a, #home a').on('click', function (event) {
+            $('.block-nav a').on('click', function (event) {
                 var $anchor = $(this);
                 $('html, body').stop().animate({
                     scrollTop: $($anchor.attr('href')).offset().top - 49

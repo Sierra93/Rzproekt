@@ -15,7 +15,9 @@
             </div>
             <nav class="block-nav">
                 <ul class="block-nav">
-                    <li v-for="item in header"><a href="#">{{ item.mainItem }}</a></li>
+                    <li v-for="item in header">
+                        <a href="#" v-on:click:="smoothScroll">{{ item.mainItem }}</a>
+                    </li>
                 </ul>
             </nav>
         </header>

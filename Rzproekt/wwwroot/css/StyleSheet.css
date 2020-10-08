@@ -286,7 +286,8 @@
 
 .tab-left-back_office, .tab-right-back_office {
   background: #fff;
-  padding: 2rem; }
+  padding: 2rem;
+  border-radius: 1rem; }
 
 .block-change-menu_back_office {
   display: flex;

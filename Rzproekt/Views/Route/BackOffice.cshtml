@@ -83,6 +83,18 @@
                                         <input type="text" class="service-main-title" v-bind:value="service[0].mainTitle">
                                     </fieldset>
                                     <fieldset>
+                                        <legend>Загрузить фотографию услуги</legend>
+                                        <div id="back_office">
+                                            <label v-for="item in service">
+                                                Услуга {{ item.orderId }}
+                                                <input type="file" id="files" ref="files" multiple v-on:change="handleFilesUpload" />
+                                            </label>
+                                        </div>
+                                    </fieldset>
+                                    <button v-on:click="onChangeService">Сохранить</button>
+                                </form>
+                                <form v-on:submit.prevent class="form-back_office">
+                                    <fieldset>
                                         <legend>Название главных услуг</legend>
                                         <label v-for="item in service">
                                             Услуга {{ item.orderId }}
@@ -98,7 +110,7 @@
                                         </label>
                                     </fieldset>
                                     <button v-on:click="onChangeService">Сохранить</button>
-                                </form>
+                                    </form>
                                 <form v-on:submit.prevent class="form-back_office">
                                     <fieldset>
                                         <legend>Название доп. услуг</legend>
@@ -108,14 +120,17 @@
                                         <legend>Описание доп. услуг</legend>
                                         <input type="text" class="service-menu-title" id="mainText-back_office" v-bind:value="service[0].mainTitle">
                                     </fieldset>
+                                    <button v-on:click="onChangeService">Сохранить</button>
                                 </form>
-                            </div>
+</div>
                             <div class="block-change-menu_back_office">
                                 <form v-on:submit.prevent class="form-back_office">
                                     <fieldset>
                                         <legend>Загрузить доп. услугу на главную стр.</legend>
                                         <div id="back_office">
                                             <input type="file" id="files" ref="files" multiple v-on:change="handleFilesUpload" />
+                                            <input type="text" class="service-name" placeholder="Название услуги">
+                                            <input type="text" class="service-txt" placeholder="Описание услуги">
                                         </div>
                                     </fieldset>
                                     <button v-on:click="submitFile">Принять</button>
@@ -124,24 +139,14 @@
                                     <fieldset>
                                         <legend>Загрузить доп. услугу в общий список</legend>
                                         <div id="back_office">
-                                            <input type="file" id="files" ref="files" multiple v-on:change="handleFilesUpload" />
+                                            <input type="text" class="service-name" placeholder="Название услуги">
+                                            <input type="text" class="service-txt" placeholder="Описание услуги">
                                         </div>
                                     </fieldset>
                                     <button v-on:click="submitFile">Принять</button>
                                 </form>
                             </div>
                         </div>
-                        @*<div class="tab-right-back_office">
-                            <h1>ЧАТ</h1>
-                            <form v-on:submit.prevent class="form-back_office">
-                                <fieldset>
-                                    <legend>Сообщения</legend>
-                                    <input type="text" id="name">
-                                    <input type="text" id="email">
-                                </fieldset>
-                                <button v-on:click="submitFile">Отправить</button>
-                            </form>
-                        </div>*@
                     </div>
                 </div>
 

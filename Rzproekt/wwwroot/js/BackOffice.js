@@ -134,7 +134,7 @@ var back_office = new Vue({
 		onChangeService() {
 			let self = this;
 			let sUrl = self.$data.urlApi + '/api/back-office/change-order';
-			let MainItem = $('.header-menu-txt');
+			let MainItem = $('.service-name');
 			let mainItemArr = [];
 			for (item of MainItem) {
 				mainItemArr.push(item.value)
