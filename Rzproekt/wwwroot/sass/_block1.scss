@@ -1,9 +1,40 @@
 .main-block {
-    background: #1861ac;
     height: 90vh !important;
     display: flex;
     justify-content: center;
-    margin-top: 0!important;
+    margin-top: 0 !important;
+
+    .page-video {
+        position: fixed;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+
+        &:before {
+            content: "";
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            z-index: 1;
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    video {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        min-width: 100%;
+        min-height: 100%;
+    }
 
     .main-block-title {
         width: 600px;

@@ -2,8 +2,12 @@
     Layout = "_Layout";
 }
 <div class="block main-block">
+    <div class="page-video">
+        <video class="video" loop="loop" autoplay="" muted="" poster="img/back.png">
+            <source src="~/img/mainBg.mp4" type="video/mp4" />
+        </video>
+    </div>
     <section class="main-block-title">
-        @*<iframe src="https://www.youtube.com/embed/nUNvF0oooBY?controls=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>*@
         <h1>{{ header[0].mainTitle }}</h1>
         <a href="#"><span class="arrow-down"></span></a>
     </section>
