@@ -103,8 +103,8 @@ var back_office = new Vue({
 			let sUrl = self.$data.urlApi + '/api/back-office/change-header';
 			let MainItem = $('.header-menu-txt');
 			let formData = new FormData();
-			formData.set('filesLogo', this.files);
-			formData = formData.get('filesLogo');
+			
+			//formData = formData.get('filesLogo');
 			let mainItemArr = [];
 			for (let item of MainItem) {
 				mainItemArr.push(item.value)
@@ -115,8 +115,12 @@ var back_office = new Vue({
 				MainItem: mainItemArr,
 				MainTitle
 			};
+
+			formData.set('filesLogo', this.files);
+			formData.set('jsonString', JSON.stringify(oData));
+			
 			try {
-				axios.post(sUrl, oData, formData, { headers: { 'Content-Type': 'multipart/form-data' } })
+				axios.post(sUrl, formData)
 					.then((response) => {
 						console.log('Данные успешно изменены');
 					})
