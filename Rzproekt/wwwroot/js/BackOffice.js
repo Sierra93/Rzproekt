@@ -104,12 +104,12 @@ var back_office = new Vue({
 			let MainItem = $('.header-menu-txt');
 			let formData = new FormData();
 			formData.set('filesLogo', this.files);
+			formData = formData.get('filesLogo');
 			let mainItemArr = [];
 			for (let item of MainItem) {
 				mainItemArr.push(item.value)
 			} 
 			let MainTitle = $('.header-menu-title')[0].value;
-			formData.set('filesLogo', this.files);
 
 			let oData = {
 				MainItem: mainItemArr,
