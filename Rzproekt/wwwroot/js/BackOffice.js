@@ -68,31 +68,6 @@ var back_office = new Vue({
 		})
 	},
 	methods: {
-		// Функция отправляет изображения.
-		submitFile() {
-            let sUrl = 'https://localhost:44349/api/back-office/upload-image';
-            let formData = new FormData();
-
-            //for (var i = 0; i < this.files.length; i++) {
-            //	let file = this.files[i];
-            formData.set('filesLogo', this.files);
-            //}
-
-            try {
-                axios.post(sUrl, formData,
-                    {headers: {'Content-Type': 'multipart/form-data'}})
-					.then(function () {
-						console.log('success');
-					})
-					.catch(function () {
-						console.log('fail');
-					});
-            }
-            catch (ex) {
-                throw new Error(ex);
-            }
-        },
-
 		// Функция собирает файлы.
 		handleFilesUpload() {
 			this.files = document.getElementById('files').files[0];

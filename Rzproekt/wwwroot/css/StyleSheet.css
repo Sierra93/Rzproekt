@@ -88,7 +88,7 @@
 
 .about {
   display: flex;
-  padding: 0;
+  padding: 0 !important;
   flex-direction: row !important;
   background: #f7f5f5; }
   .about .about-left {
@@ -307,7 +307,8 @@
   border-bottom: 3px solid #caeafb; }
 
 .tab-wrapper input:checked + label + .tab-item {
-  display: block; }
+  display: flex;
+  justify-content: center; }
 
 .tab-content-back_office {
   display: flex;

@@ -73,7 +73,8 @@ $blueMenuHvr: #0074a8;
 }
 
 .tab-wrapper input:checked + label + .tab-item {
-    display: block;
+    display: flex;
+    justify-content: center;
 }
 
 
