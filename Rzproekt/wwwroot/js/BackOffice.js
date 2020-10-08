@@ -101,14 +101,48 @@ var back_office = new Vue({
 		handleFilesUpload() {
 			this.files = this.$refs.files.files;
 		},
+		// Отправляет измененные данные первого блока сайта
 		onChangeHeader() {
 			let self = this;
 			let sUrl = self.$data.urlApi + '/api/back-office/change-header';
 			let MainItem = $('.header-menu-txt');
+			let mainItemArr = [];
+			for (let item of MainItem) {
+				mainItemArr.push(item.value)
+			} 
+			let MainTitle = $('.header-menu-title')[0].value;
+
+
+			let oData = {
+				MainItem: mainItemArr,
+				MainTitle
+			};
+			try {
+				axios.post(sUrl, oData)
+					.then((response) => {
+						console.log('Данные успешно изменены');
+					})
+					.catch((XMLHttpRequest) => {
+						throw new Error(XMLHttpRequest);
+					});
+			}
+			catch (ex) {
+				throw new Error(ex);
+			}
+		},
+		// Отправляет измененные данные первого блока сайта (Услуги)
+		onChangeService() {
+			let self = this;
+			let sUrl = self.$data.urlApi + '/api/back-office/change-order';
+			let MainItem = $('.header-menu-txt');
+			let mainItemArr = [];
+			for (item of MainItem) {
+				mainItemArr.push(item.value)
+			} 
 			let MainTitle = $('.header-menu-title')[0].value;
 
 			let oData = {
-				MainItem,
+				MainItem: mainItemArr,
 				MainTitle
 			};
 			try {
@@ -124,7 +158,7 @@ var back_office = new Vue({
 			catch (ex) {
 				throw new Error(ex);
 			}
-        },
+		},
 		//  Функция выгружает все данные
 		_getData(url) {
 			let self = this;
