@@ -101,10 +101,35 @@ var back_office = new Vue({
 		handleFilesUpload() {
 			this.files = this.$refs.files.files;
 		},
+		onChangeHeader() {
+			let self = this;
+			let sUrl = self.$data.urlApi + 'api/back-office/change-header';
+			let MainItem = $('.header-menu-txt');
+			let MainTitle = $('.header-menu-title')[0].value;
+
+			let oData = {
+				MainItem,
+				MainTitle
+			};
+			try {
+				axios.post(sUrl, oData)
+					.then((response) => {
+						console.log('Данные успешно изменены');
+
+					})
+					.catch((XMLHttpRequest) => {
+						throw new Error(XMLHttpRequest);
+					});
+			}
+			catch (ex) {
+				throw new Error(ex);
+			}
+        },
 		//  Функция выгружает все данные
 		_getData(url) {
 			let self = this;
 			let sUrl = self.$data.urlApi + url;
+
 
 			try {
 				axios.post(sUrl)
@@ -142,7 +167,6 @@ var back_office = new Vue({
 								self.$data.footer = response.data;
 								console.log('footer получен', response.data);
 								break;
-
 						}
 
 					})
