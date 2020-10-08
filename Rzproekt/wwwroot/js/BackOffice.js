@@ -54,6 +54,7 @@ var back_office = new Vue({
 	},
 	created() {
 		console.log('init');
+
 	},
 	// После загрузки страницы вызывает функцию _getData для всех блоков сайта
 	mounted: function () {
