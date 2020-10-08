@@ -36,7 +36,7 @@ $blueMenuHvr: #0074a8;
 }
 
 .tab-wrapper .tab-item {
-    background-color: $bg;
+    background-color: $WhiteColor;
     width: calc(100% - 40px);
     max-width: 100%;
     padding: 20px;
@@ -75,6 +75,11 @@ $blueMenuHvr: #0074a8;
 .tab-wrapper input:checked + label + .tab-item {
     display: block;
 }
+
+
+////////
+
+
 .tab-content-back_office {
     display: flex;
     align-items: center;
@@ -95,6 +100,7 @@ $blueMenuHvr: #0074a8;
 }
 .form-back_office {
     margin: 1rem;
+    width: 390px;
 
     fieldset {
         padding: 1rem;

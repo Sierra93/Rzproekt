@@ -242,7 +242,7 @@
   display: none; }
 
 .tab-wrapper .tab-item {
-  background-color: #484848;
+  background-color: #fff;
   width: calc(100% - 40px);
   max-width: 100%;
   padding: 20px;
@@ -294,7 +294,8 @@
   justify-content: space-around; }
 
 .form-back_office {
-  margin: 1rem; }
+  margin: 1rem;
+  width: 390px; }
   .form-back_office fieldset {
     padding: 1rem; }
     .form-back_office fieldset label {

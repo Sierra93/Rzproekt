@@ -73,10 +73,10 @@ var back_office = new Vue({
 			let sUrl = 'https://localhost:44349/api/back-office/upload-image';
 			let formData = new FormData();
 
-			for (var i = 0; i < this.files.length; i++) {
-				let file = this.files[i];
-				formData.set('files[' + i + ']', file);
-			}
+			//for (var i = 0; i < this.files.length; i++) {
+			//	let file = this.files[i];
+			formData.set('filesLogo', this.files);
+			//}
 
 			try {
 				axios.post(sUrl, formData,
@@ -99,7 +99,7 @@ var back_office = new Vue({
 
 		// Функция собирает файлы.
 		handleFilesUpload() {
-			this.files = this.$refs.files.files;
+			this.files = document.getElementById('files').files[0];
 		},
 		// Отправляет измененные данные первого блока сайта
 		onChangeHeader() {

@@ -19,57 +19,78 @@
                 <input type="radio" name="tab" id="tab1" checked />
                 <label class="tab-label no-select" for="tab1" nth="1">ГЛАВНАЯ</label>
                 <div class="tab-item" id="tab-content1">
-                    <div class="tab-content-back_office">
-                        <div class="tab-left-back_office">
-                            <div class="block-change-menu_back_office">
-                                <form v-on:submit.prevent class="form-back_office">
-                                    <fieldset>
-                                        <legend>Главное меню</legend>
-                                        <input type="text" class="header-menu-txt" v-bind:id="item.id" v-for="item in header" v-bind:value="item.mainItem">
-                                    </fieldset>
-                                    <button v-on:click="onChangeHeader">Сохранить</button>
-                                </form>
-                                <form v-on:submit.prevent class="form-back_office">
-                                    <fieldset>
-                                        <legend>Приветственный текст</legend>
-                                        <input type="text" class="header-menu-title" id="mainText-back_office" v-bind:value="header[0].mainTitle">
-                                    </fieldset>
-                                </form>
+                    <form v-on:submit.prevent class="form-back_office">
+                        <fieldset>
+                            <legend>Загрузить логотип</legend>
+                            <input type="file" id="files" ref="files" multiple v-on:change="handleFilesUpload" />
+                        </fieldset>
+
+                        <button v-on:click="submitFile">Сохранить</button>
+
+                        <fieldset>
+                            <legend>Главное меню</legend>
+                            <input type="text" class="header-menu-txt" v-bind:id="item.id" v-for="item in header" v-bind:value="item.mainItem">
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>Приветственный текст</legend>
+                            <input type="text" class="header-menu-title" id="mainText-back_office" v-bind:value="header[0].mainTitle">
+                        </fieldset>
+
+                        <button v-on:click="submitFile">Сохранить</button>
+                    </form>
+                </div>
+                    @*<div class="tab-content-back_office">
+            <div class="tab-left-back_office">
+                <div class="block-change-menu_back_office">
+                    <form v-on:submit.prevent class="form-back_office">
+                        <fieldset>
+                            <legend>Главное меню</legend>
+                            <input type="text" class="header-menu-txt" v-bind:id="item.id" v-for="item in header" v-bind:value="item.mainItem">
+                        </fieldset>
+                        <button v-on:click="onChangeHeader">Сохранить</button>
+                    </form>
+                    <form v-on:submit.prevent class="form-back_office">
+                        <fieldset>
+                            <legend>Приветственный текст</legend>
+                            <input type="text" class="header-menu-title" id="mainText-back_office" v-bind:value="header[0].mainTitle">
+                        </fieldset>
+                    </form>
+                </div>
+                <div class="block-change-menu_back_office">
+                    <div class="form-back_office">
+                        <fieldset>
+                            <legend>Загрузить логотип</legend>
+                            <div>
+                                <input type="file" id="files" ref="files" multiple v-on:change="handleFilesUpload" />
                             </div>
-                            <div class="block-change-menu_back_office">
-                                <div class="form-back_office">
-                                    <fieldset>
-                                        <legend>Загрузить логотип</legend>
-                                        <div>
-                                            <input type="file" id="files" ref="files" multiple v-on:change="handleFilesUpload" />
-                                        </div>
-                                    </fieldset>
-                                    <button v-on:click="submitFile">Принять</button>
-                                </div>
-                                <div class="form-back_office">
-                                    <fieldset>
-                                        <legend>Загрузить видео</legend>
-                                        <div>
-                                            <input type="file" id="files" ref="files" multiple v-on:change="handleFilesUpload" />
-                                        </div>
-                                    </fieldset>
-                                    <button v-on:click="submitFile">Принять</button>
-                                </div>
+                        </fieldset>
+                        <button v-on:click="submitFile">Принять</button>
+                    </div>
+                    <div class="form-back_office">
+                        <fieldset>
+                            <legend>Загрузить видео</legend>
+                            <div>
+                                <input type="file" id="files" ref="files" multiple v-on:change="handleFilesUpload" />
                             </div>
-                        </div>
-                        <div class="tab-right-back_office">
-                            <h1>ЧАТ</h1>
-                            <form v-on:submit.prevent class="form-back_office">
-                                <fieldset>
-                                    <legend>Сообщения</legend>
-                                    <input type="text" id="name">
-                                    <input type="text" id="email">
-                                </fieldset>
-                                <button v-on:click="submitFile">Отправить</button>
-                            </form>
-                        </div>
+                        </fieldset>
+                        <button v-on:click="submitFile">Принять</button>
                     </div>
                 </div>
+            </div>
+            <div class="tab-right-back_office">
+                <h1>ЧАТ</h1>
+                <form v-on:submit.prevent class="form-back_office">
+                    <fieldset>
+                        <legend>Сообщения</legend>
+                        <input type="text" id="name">
+                        <input type="text" id="email">
+                    </fieldset>
+                    <button v-on:click="submitFile">Отправить</button>
+                </form>
+            </div>
+        </div>*@
+                
                 @*УСЛУГИ*@
                 <input type="radio" name="tab" id="tab2" />
                 <label class="tab-label no-select" for="tab2" nth="2">УСЛУГИ</label>
