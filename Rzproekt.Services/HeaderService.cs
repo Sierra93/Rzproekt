@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Linq;
 using Rzproekt.Core;
+using Rzproekt.Core.Consts;
 using Rzproekt.Core.Data;
 using Rzproekt.Models;
 using System;
@@ -48,6 +49,8 @@ namespace Rzproekt.Services {
                 var aMainItemsValues = aMainItems.Values().ToList();
                 string mainTitle = jsonObject["MainTitle"].ToString();
 
+                common.ValidErrorFile(filesLogo.Files.Count);
+
                 // Получает хидер из БД.
                 IEnumerable<HeaderDto> aHeaders = await GetHeaders();
 
@@ -61,11 +64,11 @@ namespace Rzproekt.Services {
                         var path = await common.Upload(filesLogo, i);
 
                         // Записывает в зависимости от расширения файла и обрезает лишнюю часть пути для БД. 
-                        if (Path.GetExtension(path) == ".mp4") {
+                        if (Path.GetExtension(path) == FileType.VIDEO_MP4) {
                             aHeaders.ToList()[i].Background = path.Replace("wwwroot", "");
                         }
 
-                        if (Path.GetExtension(path) == ".png") {
+                        if (Path.GetExtension(path) == FileType.IMAGE_PNG) {
                             aHeaders.ToList()[i].Url = path.Replace("wwwroot", "");
                         }                                                                               
                     }
@@ -78,7 +81,7 @@ namespace Rzproekt.Services {
             catch (Exception ex) {
                 throw new Exception(ex.Message.ToString());
             }
-        }
+        }       
 
         /// <summary>
         /// Метод получает хидер из БД.

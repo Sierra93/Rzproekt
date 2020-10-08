@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Rzproekt.Core.Consts;
 using Rzproekt.Core.Data;
-using Rzproekt.Core.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -29,11 +28,6 @@ namespace Rzproekt.Services {
                     throw new ArgumentNullException();
                 }
 
-                //int i = 0;
-                //foreach (var el in form.Files) {
-                //    i++;
-                //}               
-
                 // Полный локальный путь к файлу включая папку проекта wwwroot.
                 var path = Path.Combine(
                             Directory.GetCurrentDirectory(), FilePath.STORE_PATH,
@@ -57,21 +51,13 @@ namespace Rzproekt.Services {
         }
 
         /// <summary>
-        /// Метод загружает файл в папку и записывает путь в БД.
+        /// Проверяет, есть ли файлы.
         /// </summary>
-        /// <param name="form"></param>
-        /// <returns></returns>
-        //public async Task Upload(IFormCollection form) {
-        //    CommonMethodsService common = new CommonMethodsService(_db);
-        //    await common.Upload(form);
-        //}
-
-        //async Task StoreDB(string type) {
-        //    switch (type) {
-        //        case "header":
-        //            _db.Headers
-        //            break;
-        //    }
-        //}
+        /// <param name="count"></param>
+        public void ValidErrorFile(int count) {
+            if (count == 0) {
+                throw new ArgumentNullException("Ни один файл не передан");
+            }
+        }
     }
 }
