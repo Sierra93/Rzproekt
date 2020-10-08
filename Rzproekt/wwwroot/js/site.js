@@ -5,6 +5,7 @@ var appHome = new Vue({
     data: {
         date: new Date().getFullYear(),
         urlApi: 'https://localhost:44349',
+        //urlApi: 'https://devmyprojects24.xyz',
         listRequests: [
             '/api/header/get-header',
             '/api/order/get-orders',

@@ -4,6 +4,7 @@ using Rzproekt.Core.Data;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,7 +22,7 @@ namespace Rzproekt.Services {
         /// </summary>
         /// <returns></returns>
         public async override Task<IEnumerable> GetProjectsInfo() {
-            return await _db.Projects.ToListAsync();
+            return await _db.Projects.Take(3).ToListAsync();
         }
     }
 }
