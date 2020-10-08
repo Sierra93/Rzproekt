@@ -17,13 +17,13 @@ namespace Rzproekt.Models {
         public string Url { get; set; }     // Путь к логотипу.
 
         [Column("manu_item", TypeName = "nvarchar(1000)")]
-        public string MainItem { get; set; }
+        public string MainItem { get; set; }    // Пункт меню хидера.
 
         [Column("main_title", TypeName = "nvarchar(1000)")]
-        public string MainTitle { get; set; }
+        public string MainTitle { get; set; }   // Главный заголовок.
 
         [Column("background", TypeName = "nvarchar(1000)")]
-        public string Background { get; set; }
+        public string Background { get; set; }  // Фоновое изображение хидера или видео.
 
         [Column("block")]
         public string Block { get; set; }   // Тип блока, в который нужно вставлять контент.

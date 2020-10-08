@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Rzproekt.Core;
 using Rzproekt.Core.Data;
+using Rzproekt.Models;
 using Rzproekt.Services;
 
 namespace Rzproekt.Controllers {
@@ -30,5 +31,16 @@ namespace Rzproekt.Controllers {
 
             return Ok("Файл успешно загружен");
         }       
+
+        /// <summary>
+        /// Метод изменяет хидер.
+        /// </summary>
+        [HttpPost, Route("change-header")]
+        public async Task<IActionResult> ChangeHeader([FromBody] object header) {
+            HeaderBase backOfficeBase = new HeaderService(_db);
+            await backOfficeBase.ChangeHeader(header);
+
+            return Ok("Header успешно изменен");
+        }
     }
 }

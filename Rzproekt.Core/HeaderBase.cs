@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Rzproekt.Models;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
@@ -14,5 +15,12 @@ namespace Rzproekt.Core {
         /// </summary>
         /// <returns></returns>
         public abstract Task<IEnumerable> GetHeaderInfo();
+
+        /// <summary>
+        /// Метод изменяет хидер.
+        /// </summary>
+        /// <param name="headerDto"></param>
+        /// <returns></returns>
+        public abstract Task<HeaderDto> ChangeHeader(object header);
     }
 }
