@@ -14,7 +14,8 @@ $liteSilver: #f7f5f5;
 @import '_contacts';
 @import '_numbers';
 @import '_projects.scss';
-
+@import '_logonPage';
+@import '_adminPage';
 
 @mixin block-title-txt {
     display: flex;
@@ -28,7 +29,11 @@ $liteSilver: #f7f5f5;
     border-bottom: 0.8rem solid $redMain;
     margin: 0 auto;
 }
-//@include horizontal-list;
+
+body {
+    margin: 0!important;
+    padding: 0!important;
+}
 * {
     margin: 0;
     padding: 0;

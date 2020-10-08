@@ -1,40 +1,75 @@
 ﻿"use strict";
 
-const hubConnection = new signalR.HubConnectionBuilder()
-	.withUrl("/chat")
-	.build();
+//const hubConnection = new signalR.HubConnectionBuilder()
+//	.withUrl("/chat")
+//	.build();
 
-hubConnection.on("Send", function (data) {
-	let elem = document.createElement("p");
-	elem.appendChild(document.createTextNode(data));
-	let firstElem = document.getElementById("chatroom").firstChild;
-	document.getElementById("chatroom").insertBefore(elem, firstElem);
+//hubConnection.on("Send", function (data) {
+//	let elem = document.createElement("p");
+//	elem.appendChild(document.createTextNode(data));
+//	let firstElem = document.getElementById("chatroom").firstChild;
+//	document.getElementById("chatroom").insertBefore(elem, firstElem);
 
-});
+//});
 
-document.getElementById("sendBtn").addEventListener("click", function (e) {
-	let message = document.getElementById("message").value;
-	hubConnection.invoke("Send", message);
-});
+//document.getElementById("sendBtn").addEventListener("click", function (e) {
+//	let message = document.getElementById("message").value;
+//	hubConnection.invoke("Send", message);
+//});
 
-hubConnection.start();
+//hubConnection.start();
 
 var back_office = new Vue({
-	el: "#back_office",
-	created() {
-		if (window.location.href.includes("/back-office")) {
-			return;
-		}
-	},
+	el: '#back_office',
 	data() {
 		return {
-			files: ""
+			files: '',
+			date: new Date().getFullYear(),
+			urlApi: 'https://localhost:44349',
+			listRequests: [
+				'/api/header/get-header',
+				'/api/order/get-orders',
+				'/api/about/get-about',
+				'/api/statistic/get-statistic',
+				'/api/project/get-projects',
+				'/api/client/get-clients',
+				'/api/contact/get-contacts',
+				'/api/footer/get-footer'
+			],
+			general: {
+				detailse: 'Подробнее'
+			},
+			header: [],
+			service: [],
+			about: [],
+			stat: [],
+			project: [],
+			client: [],
+			contact: [],
+			footer: []
 		}
+	},
+	update: {
+
+	},
+	created() {
+		console.log('init');
+	},
+	// После загрузки страницы вызывает функцию _getData для всех блоков сайта
+	mounted: function () {
+		this.$nextTick(function () {
+			let self = this;
+			let allREquest = this.$data.listRequests;
+			allREquest.forEach(function (el) {
+				self._getData(el);
+			})
+
+		})
 	},
 	methods: {
 		// Функция отправляет изображения.
 		submitFile() {
-			let sUrl = "https://localhost:44349/api/back-office/upload-image";
+			let sUrl = 'https://localhost:44349/api/back-office/upload-image';
 			let formData = new FormData();
 
 			for (var i = 0; i < this.files.length; i++) {
@@ -64,6 +99,82 @@ var back_office = new Vue({
 		// Функция собирает файлы.
 		handleFilesUpload() {
 			this.files = this.$refs.files.files;
-		}
+		},
+		//  Функция выгружает все данные
+		_getData(url) {
+			let self = this;
+			let sUrl = self.$data.urlApi + url;
+
+			try {
+				axios.post(sUrl)
+					.then((response) => {
+						switch (response.data[0].block) {
+							case 'header':
+								self.$data.header = response.data;
+								console.log('header получен', response.data);
+								break;
+							case 'service':
+								self.$data.service = response.data;
+								console.log('service получен', response.data);
+								break;
+							case 'about':
+								self.$data.about = response.data;
+								console.log('about получен', response.data);
+								break;
+							case 'stat':
+								self.$data.stat = response.data;
+								console.log('stat получен', response.data);
+								break;
+							case 'project':
+								self.$data.project = response.data;
+								console.log('project получен', response.data);
+								break;
+							case 'client':
+								self.$data.client = response.data;
+								console.log('client получен', response.data);
+								break;
+							case 'contact':
+								self.$data.contact = response.data;
+								console.log('contact получен', response.data);
+								break;
+							case 'footer':
+								self.$data.footer = response.data;
+								console.log('footer получен', response.data);
+								break;
+
+						}
+
+					})
+					.catch((XMLHttpRequest) => {
+						throw new Error(XMLHttpRequest);
+					});
+			}
+			catch (ex) {
+				throw new Error(ex);
+			}
+		},
+		onSignIn() {
+			let self = this;
+			let Login = document.getElementById('login').value;
+			let Password = document.getElementById('password').value;
+			let sUrl = 'https://localhost:44349/api/auth/signin';
+			let oData = {
+				Login,
+				Password
+			};
+            try {
+				axios.post(sUrl, oData)
+					.then((response) => {
+						if (response.data.access_token) window.location.href = 'https://localhost:44349/back-office'
+
+                    })
+                    .catch((XMLHttpRequest) => {
+                        throw new Error(XMLHttpRequest);
+                    });
+            }
+            catch (ex) {
+                throw new Error(ex);
+            }
+        }
 	}
 });

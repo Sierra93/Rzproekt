@@ -1,0 +1,126 @@
+$WhiteColor: #fff;
+$SilverColor: #c9c9c9;
+$SilverDarkColor: #c0c0c0;
+$HeaderBg: #009688;
+$BtnColor: #7c4dff;
+$BtnHvrColor: #6d39ff;
+$bg: #484848;
+$blueMenuHvr: #0074a8;
+
+
+.tab-container {
+    background-color: #009688;
+    overflow: hidden;
+}
+
+.tab-title {
+    font-family: sans-serif;
+    color: #fff;
+    margin: 10px;
+    font-weight: normal;
+    font-size: 18px;
+}
+
+.tab-wrapper {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+    font-family: sans-serif;
+}
+
+.tab-wrapper .tab-item,
+.tab-wrapper input {
+    display: none;
+}
+
+.tab-wrapper .tab-item {
+    background-color: $bg;
+    width: calc(100% - 40px);
+    max-width: 100%;
+    padding: 20px;
+    order: 1;
+}
+
+.tab-wrapper label {
+    height: 35px;
+    line-height: 35px;
+    min-width: 50px;
+    padding: 0px 20px;
+    text-align: center;
+    color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    border-top: 3px solid transparent;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+}
+
+.no-select {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.tab-wrapper input:checked + label {
+    border-bottom: 3px solid #caeafb;
+
+}
+
+.tab-wrapper input:checked + label + .tab-item {
+    display: block;
+}
+.tab-content-back_office {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.body-back_office {
+    background: $bg;
+}
+.tab-left-back_office, .tab-right-back_office {
+    background: $WhiteColor;
+    padding: 2rem;
+}
+.block-change-menu_back_office {
+    display: flex;
+}
+.form-back_office {
+    margin: 1rem;
+
+    fieldset {
+        padding: 1rem;
+
+        legend {
+        }
+
+        input {
+            display: block;
+            border: 1px solid silver;
+            padding: .3rem;
+            margin: .2rem;
+        }
+    }
+
+    button {
+        width: 100px;
+        margin: 15px auto 0;
+        cursor: pointer;
+        padding: 10px 20px;
+        border: none;
+        background: $BtnColor;
+        color: $WhiteColor;
+        border-radius: 5px;
+        transition: .3s;
+
+        &:hover {
+            background: $BtnHvrColor;
+        }
+    }
+}

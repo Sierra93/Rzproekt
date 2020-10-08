@@ -22,95 +22,96 @@ var appHome = new Vue({
     el: '#appHome',
     data: {
         date: new Date().getFullYear(),
+        urlApi: 'https://localhost:44349',
+        listRequests: [
+            '/api/header/get-header',
+            '/api/order/get-orders',
+            '/api/about/get-about',
+            '/api/statistic/get-statistic',
+            '/api/project/get-projects',
+            '/api/client/get-clients',
+            '/api/contact/get-contacts',
+            '/api/footer/get-footer'
+        ],
         general: {
             detailse: 'Подробнее'
         },
-        header: {
-            logo: '',
-            nav: {
-                main: 'Главная',
-                service: 'Услуги',
-                project: 'Проекты',
-                about: 'О нас',
-                contacts: 'Контакты'
-            }
-        },
-        block: {
-            title: {
-                mainTitle: 'ЛИДЕРЫ В ОБЛАСТИ ПРОЕКТИРОВАНИЯ',
-                service: 'УСЛУГИ',
-                about: 'О НАС',
-                project: 'ПРОЕКТЫ',
-                clients: 'КЛИЕНТЫ',
-                contacts: 'КОНТАКТЫ',
-            }
-        },
-        service: {
-            title1: 'УСЛУГА 1',
-            title2: 'УСЛУГА 2',
-            title3: 'УСЛУГА 3',
-            txt1: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
-            txt2: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
-            txt3: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum'
-        },
-        about: {
-            aboutTxt: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum'
-        },
-        counter: {
-            ageCompany: {
-                counter: 80,
-                txt: 'ЛЕТ НА РЫНКЕ'
-            },
-            projects: {
-                counter: '>50',
-                txt: 'СТРОИТЕЛЬНЫХ ОБЪЕКТОВ'
-            },
-            sertificats: {
-                counter: 25,
-                txt: 'ЛИЦЕНЦИЙ И СЕРТИФИКАТОВ'
-            },
-            directActivity: {
-                counter: 16,
-                txt: 'НАПРАВЛЕНИЙ ДЕЯТЕЛЬНОСТИ'
-            }
-        },
-        project: {
-            vimpel: 'ЦОД ОАО "Вымпелком" г.Ярославль',
-            citroen: 'Автосалон "CITROEN"',
-            archive: 'Централизованное архивохранилище ЦФО, г. Калуга',
-            tireFactory: 'Воронежский шинный завод'
-        },
-        contacts: {
-            title: {
-                office: 'Центральный офис'
-            },
-            infoCompany: {
-                address: 'Адрес: Россия, 150003, г.Ярославль, ул.Советская, 69',
-                mail: 'E-mail: mail@rzproekt.ru',
-                number: 'Тел./факс: (4852) 25-18-35, 25-24-74'
-            }
-        }
+        header: [],
+        service: [],
+        about: [],
+        stat: [],
+        project: [],
+        client: [],
+        contact: [],
+        footer: []
     },
-    //update: {
+    update: {
 
-    //},
+    },
     created() {
         console.log('init');
-        this._getLogo();
+        
+        
+    },
+    // После загрузки страницы вызывает функцию _getData для всех блоков сайта
+    mounted: function () {
+        this.$nextTick(function () {
+            let self = this;
+            let allREquest = this.$data.listRequests;
+            allREquest.forEach(function (el) {
+                self._getData(el);
+            })
+            
+        })
     },
     methods: {
-        // Функция получает лого.
-        _getLogo() {
-            let sUrl = 'https://localhost:44349/api/header/get-header';
+        //  Функция выгружает все данные
+        _getData(url) {
+            let self = this;
+            let sUrl = self.$data.urlApi + url;
             
             try {
                 axios.post(sUrl)
                     .then((response) => {
-                        console.log('Лого получен', response.data);
-                        this.header.logo = response.data[0].url;
+                        switch (response.data[0].block) {
+                            case 'header':
+                                self.$data.header = response.data;
+                                console.log('header получен', response.data);
+                                break;
+                            case 'service':
+                                self.$data.service = response.data;
+                                console.log('service получен', response.data);
+                                break;
+                            case 'about':
+                                self.$data.about = response.data;
+                                console.log('about получен', response.data);
+                                break;
+                            case 'stat':
+                                self.$data.stat = response.data;
+                                console.log('stat получен', response.data);
+                                break;
+                            case 'project':
+                                self.$data.project = response.data;
+                                console.log('project получен', response.data);
+                                break;
+                            case 'client':
+                                self.$data.client = response.data;
+                                console.log('client получен', response.data);
+                                break;
+                            case 'contact':
+                                self.$data.contact = response.data;
+                                console.log('contact получен', response.data);
+                                break;
+                            case 'footer':
+                                self.$data.footer = response.data;
+                                console.log('footer получен', response.data);
+                                break;
+
+                        }
+                        
                     })
                     .catch((XMLHttpRequest) => {
-                        throw new Error(XMLHttpRequest.response.data);
+                        throw new Error(XMLHttpRequest);
                     });
             }
             catch (ex) {
@@ -118,7 +119,7 @@ var appHome = new Vue({
             }
         },
         smoothScroll() {
-            $('.custom-navbar a, #home a').on('click', function (event) {
+            $('.block-nav a, #home a').on('click', function (event) {
                 var $anchor = $(this);
                 $('html, body').stop().animate({
                     scrollTop: $($anchor.attr('href')).offset().top - 49
