@@ -116,7 +116,7 @@ var back_office = new Vue({
 				MainTitle
 			};
 			try {
-				axios.post(sUrl, oData, formData)
+				axios.post(sUrl, oData, formData, { headers: { 'Content-Type': 'multipart/form-data' } })
 					.then((response) => {
 						console.log('Данные успешно изменены');
 					})
