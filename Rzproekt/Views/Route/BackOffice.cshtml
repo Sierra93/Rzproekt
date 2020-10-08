@@ -21,23 +21,22 @@
                     <div class="tab-content-back_office">
                         <div class="tab-left-back_office">
                             <div class="block-change-menu_back_office">
-                                <form class="form-back_office">
+                                <form v-on:submit.prevent class="form-back_office">
                                     <fieldset>
                                         <legend>Главное меню</legend>
                                         <input type="text" class="header-menu-txt" v-bind:id="item.id" v-for="item in header" v-bind:value="item.mainItem">
                                     </fieldset>
                                     <button v-on:click="onChangeHeader">Сохранить</button>
                                 </form>
-                                <form class="form-back_office">
+                                <form v-on:submit.prevent class="form-back_office">
                                     <fieldset>
                                         <legend>Приветственный текст</legend>
                                         <input type="text" class="header-menu-title" id="mainText-back_office" v-bind:value="header[0].mainTitle">
                                     </fieldset>
-                                    <button v-on:click="onChangeHeader">Сохранить</button>
                                 </form>
                             </div>
                             <div class="block-change-menu_back_office">
-                                <form class="form-back_office">
+                                <form v-on:submit.prevent class="form-back_office">
                                     <fieldset>
                                         <legend>Загрузить логотип</legend>
                                         <div id="back_office">
@@ -46,7 +45,7 @@
                                     </fieldset>
                                     <button v-on:click="submitFile">Принять</button>
                                 </form>
-                                <form class="form-back_office">
+                                <form v-on:submit.prevent class="form-back_office">
                                     <fieldset>
                                         <legend>Загрузить видео</legend>
                                         <div id="back_office">
@@ -59,7 +58,7 @@
                             </div>
                             <div class="tab-right-back_office">
                                 <h1>ЧАТ</h1>
-                                <form class="form-back_office">
+                                <form v-on:submit.prevent class="form-back_office">
                                     <fieldset>
                                         <legend>Сообщения</legend>
                                         <input type="text" id="name">

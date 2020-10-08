@@ -103,7 +103,7 @@ var back_office = new Vue({
 		},
 		onChangeHeader() {
 			let self = this;
-			let sUrl = self.$data.urlApi + 'api/back-office/change-header';
+			let sUrl = self.$data.urlApi + '/api/back-office/change-header';
 			let MainItem = $('.header-menu-txt');
 			let MainTitle = $('.header-menu-title')[0].value;
 
