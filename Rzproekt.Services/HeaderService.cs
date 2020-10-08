@@ -8,6 +8,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -49,6 +50,7 @@ namespace Rzproekt.Services {
 
                 // Получает хидер из БД.
                 IEnumerable<HeaderDto> aHeaders = await GetHeaders();
+
                 aHeaders.ToList()[0].MainTitle = mainTitle;
 
                 int i = 0;
@@ -58,9 +60,14 @@ namespace Rzproekt.Services {
                         // Загружает каждый файл в папку.
                         var path = await common.Upload(filesLogo, i);
 
-                        // ОБрезает лишнюю часть пути для БД.                    
-                        aHeaders.ToList()[i].Url = path.Replace("wwwroot", "");
-                        
+                        // Записывает в зависимости от расширения файла и обрезает лишнюю часть пути для БД. 
+                        if (Path.GetExtension(path) == ".mp4") {
+                            aHeaders.ToList()[i].Background = path.Replace("wwwroot", "");
+                        }
+
+                        if (Path.GetExtension(path) == ".png") {
+                            aHeaders.ToList()[i].Url = path.Replace("wwwroot", "");
+                        }                                                                               
                     }
                     _db.Headers.UpdateRange(aHeaders);
                     i++;
