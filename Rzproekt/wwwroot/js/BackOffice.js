@@ -21,6 +21,11 @@ hubConnection.start();
 
 var back_office = new Vue({
 	el: "#back_office",
+	created() {
+		if (window.location.href.includes("/back-office")) {
+			return;
+		}
+	},
 	data() {
 		return {
 			files: ""
