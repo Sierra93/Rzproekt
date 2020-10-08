@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="~/css/site.css" />
     <link href="~/css/StyleSheet.css" rel="stylesheet" />
 </head>
-<body>
+<body class="body-back_office">
     <div id="back_office" class="wrapper">
         <div class="tab-container ">
             <h4 class="tab-title">АО "ЯПИ "Резиноасбопроект"</h4>
@@ -18,15 +18,52 @@
                 <input type="radio" name="tab" id="tab1" checked />
                 <label class="tab-label no-select" for="tab1" nth="1">ГЛАВНАЯ</label>
                 <div class="tab-item" id="tab-content1">
-                    <h1>ГЛАВНАЯ</h1>
-                    <form class="form-back_office">
-                        <fieldset>
-                            <legend>Главное меню</legend>
-                            <input type="text" id="name">
-                            <input type="text" id="email">
-                        </fieldset>
-                        <p><input type="submit" value="Отправить"></p>
-                    </form>
+                    <div class="tab-content-back_office">
+                        <div class="tab-left-back_office">
+                            <div class="block-change-menu_back_office">
+                                <h1>ГЛАВНАЯ</h1>
+                                <form class="form-back_office">
+                                    <fieldset>
+                                        <legend>Главное меню</legend>
+                                        <input type="text" id="main-back_office">
+                                        <input type="text" id="service-back_office">
+                                        <input type="text" id="about-back_office">
+                                        <input type="text" id="project-back_office">
+                                        <input type="text" id="clients-back_office">
+                                        <input type="text" id="contacts-back_office">
+                                    </fieldset>
+                                    <button v-on:click="submitFile">Сохранить</button>
+                                </form>
+                                <form class="form-back_office">
+                                    <fieldset>
+                                        <legend>Приветственный текст</legend>
+                                        <input type="text" id="main-back_office">
+                                    </fieldset>
+                                    <button v-on:click="submitFile">Сохранить</button>
+                                </form>
+                            </div>
+                            <form class="form-back_office">
+                                <fieldset>
+                                    <legend>Загрузить логотип</legend>
+                                    <div id="back_office">
+                                        <input type="file" id="files" ref="files" multiple v-on:change="handleFilesUpload" />
+                                    </div>
+                                </fieldset>
+                                <button v-on:click="submitFile">Принять</button>
+                            </form>
+                        </div>
+                        <div class="tab-right-back_office">
+                            <h1>ЧАТ</h1>
+                            <form class="form-back_office">
+                                <fieldset>
+                                    <legend>Сообщения</legend>
+                                    <input type="text" id="name">
+                                    <input type="text" id="email">
+                                </fieldset>
+                                <button v-on:click="submitFile">Отправить</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
 
                 <input type="radio" name="tab" id="tab2" />
@@ -66,12 +103,6 @@
                 </div>
             </div>
         </div>
-
-        @*<div id="back_office">
-            <input type="file" id="files" ref="files" multiple v-on:change="handleFilesUpload" />
-            <button v-on:click="submitFile">Submit</button>
-        </div>*@
-
     </div>
 	<script src="~/lib/jquery/dist/jquery.min.js"></script>
 	<script src="~/lib/vue/vue.min.js"></script>

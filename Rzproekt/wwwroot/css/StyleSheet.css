@@ -242,7 +242,7 @@
   display: none; }
 
 .tab-wrapper .tab-item {
-  background-color: #fff;
+  background-color: #484848;
   width: calc(100% - 40px);
   max-width: 100%;
   padding: 20px;
@@ -276,8 +276,42 @@
 .tab-wrapper input:checked + label + .tab-item {
   display: block; }
 
-.form-back_office fieldset input {
-  display: block; }
+.tab-content-back_office {
+  display: flex;
+  align-items: center;
+  justify-content: space-around; }
+
+.body-back_office {
+  background: #484848; }
+
+.tab-left-back_office, .tab-right-back_office {
+  background: #fff;
+  padding: 2rem; }
+
+.block-change-menu_back_office {
+  display: flex; }
+
+.form-back_office {
+  margin: 1rem; }
+  .form-back_office fieldset {
+    padding: 1rem; }
+    .form-back_office fieldset input {
+      display: block;
+      border: 1px solid silver;
+      padding: .3rem;
+      margin: .2rem; }
+  .form-back_office button {
+    width: 100px;
+    margin: 15px auto 0;
+    cursor: pointer;
+    padding: 10px 20px;
+    border: none;
+    background: #7c4dff;
+    color: #fff;
+    border-radius: 5px;
+    transition: .3s; }
+    .form-back_office button:hover {
+      background: #6d39ff; }
 
 body {
   margin: 0 !important;
