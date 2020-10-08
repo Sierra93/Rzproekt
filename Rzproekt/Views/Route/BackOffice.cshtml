@@ -25,7 +25,7 @@
                             <input type="file" id="files" ref="files" multiple v-on:change="handleFilesUpload" />
                         </fieldset>
 
-                        <button v-on:click="submitFile">Сохранить</button>
+                        @*<button v-on:click="submitFile">Сохранить</button>*@
 
                         <fieldset>
                             <legend>Главное меню</legend>
@@ -37,7 +37,7 @@
                             <input type="text" class="header-menu-title" id="mainText-back_office" v-bind:value="header[0].mainTitle">
                         </fieldset>
 
-                        <button v-on:click="submitFile">Сохранить</button>
+                        <button v-on:click="onChangeHeader">Сохранить</button>
                     </form>
                 </div>
                     @*<div class="tab-content-back_office">

@@ -70,32 +70,28 @@ var back_office = new Vue({
 	methods: {
 		// Функция отправляет изображения.
 		submitFile() {
-			let sUrl = 'https://localhost:44349/api/back-office/upload-image';
-			let formData = new FormData();
+            let sUrl = 'https://localhost:44349/api/back-office/upload-image';
+            let formData = new FormData();
 
-			//for (var i = 0; i < this.files.length; i++) {
-			//	let file = this.files[i];
-			formData.set('filesLogo', this.files);
-			//}
+            //for (var i = 0; i < this.files.length; i++) {
+            //	let file = this.files[i];
+            formData.set('filesLogo', this.files);
+            //}
 
-			try {
-				axios.post(sUrl, formData,
-					{
-						headers: {
-							'Content-Type': 'multipart/form-data'
-						}
-					}
-				).then(function () {
-					console.log('success');
-				})
+            try {
+                axios.post(sUrl, formData,
+                    {headers: {'Content-Type': 'multipart/form-data'}})
+					.then(function () {
+						console.log('success');
+					})
 					.catch(function () {
 						console.log('fail');
 					});
-			}
-			catch (ex) {
-				throw new Error(ex);
-			}
-		},
+            }
+            catch (ex) {
+                throw new Error(ex);
+            }
+        },
 
 		// Функция собирает файлы.
 		handleFilesUpload() {
@@ -106,19 +102,21 @@ var back_office = new Vue({
 			let self = this;
 			let sUrl = self.$data.urlApi + '/api/back-office/change-header';
 			let MainItem = $('.header-menu-txt');
+			let formData = new FormData();
+			formData.set('filesLogo', this.files);
 			let mainItemArr = [];
 			for (let item of MainItem) {
 				mainItemArr.push(item.value)
 			} 
 			let MainTitle = $('.header-menu-title')[0].value;
-
+			formData.set('filesLogo', this.files);
 
 			let oData = {
 				MainItem: mainItemArr,
 				MainTitle
 			};
 			try {
-				axios.post(sUrl, oData)
+				axios.post(sUrl, oData, formData)
 					.then((response) => {
 						console.log('Данные успешно изменены');
 					})
