@@ -1,5 +1,5 @@
 ﻿@{
-	Layout = null;
+    Layout = null;
 }
 
 <!DOCTYPE html>
@@ -37,24 +37,24 @@
                                 </form>
                             </div>
                             <div class="block-change-menu_back_office">
-                                <form v-on:submit.prevent class="form-back_office">
+                                <div class="form-back_office">
                                     <fieldset>
                                         <legend>Загрузить логотип</legend>
-                                        <div id="back_office">
+                                        <div>
                                             <input type="file" id="files" ref="files" multiple v-on:change="handleFilesUpload" />
                                         </div>
                                     </fieldset>
                                     <button v-on:click="submitFile">Принять</button>
-                                </form>
-                                <form v-on:submit.prevent class="form-back_office">
+                                </div>
+                                <div class="form-back_office">
                                     <fieldset>
                                         <legend>Загрузить видео</legend>
-                                        <div id="back_office">
+                                        <div>
                                             <input type="file" id="files" ref="files" multiple v-on:change="handleFilesUpload" />
                                         </div>
                                     </fieldset>
                                     <button v-on:click="submitFile">Принять</button>
-                                </form>
+                                </div>
                             </div>
                         </div>
                         <div class="tab-right-back_office">
@@ -84,7 +84,7 @@
                                     </fieldset>
                                     <fieldset>
                                         <legend>Загрузить фотографию услуги</legend>
-                                        <div id="back_office">
+                                        <div>
                                             <label v-for="item in service">
                                                 Услуга {{ item.orderId }}
                                                 <input type="file" id="files" ref="files" multiple v-on:change="handleFilesUpload" />
@@ -110,7 +110,7 @@
                                         </label>
                                     </fieldset>
                                     <button v-on:click="onChangeService">Сохранить</button>
-                                    </form>
+                                </form>
                                 <form v-on:submit.prevent class="form-back_office">
                                     <fieldset>
                                         <legend>Название доп. услуг</legend>
@@ -122,12 +122,12 @@
                                     </fieldset>
                                     <button v-on:click="onChangeService">Сохранить</button>
                                 </form>
-</div>
+                            </div>
                             <div class="block-change-menu_back_office">
                                 <form v-on:submit.prevent class="form-back_office">
                                     <fieldset>
                                         <legend>Загрузить доп. услугу на главную стр.</legend>
-                                        <div id="back_office">
+                                        <div>
                                             <input type="file" id="files" ref="files" multiple v-on:change="handleFilesUpload" />
                                             <input type="text" class="service-name" placeholder="Название услуги">
                                             <input type="text" class="service-txt" placeholder="Описание услуги">
@@ -138,7 +138,7 @@
                                 <form v-on:submit.prevent class="form-back_office">
                                     <fieldset>
                                         <legend>Загрузить доп. услугу в общий список</legend>
-                                        <div id="back_office">
+                                        <div>
                                             <input type="text" class="service-name" placeholder="Название услуги">
                                             <input type="text" class="service-txt" placeholder="Описание услуги">
                                         </div>
@@ -154,6 +154,15 @@
                 <label class="tab-label no-select" for="tab3" nth="3">О НАС</label>
                 <div class="tab-item" id="tab-content3">
                     <h1>О НАС</h1>
+                    <div class="form-back_office">
+                        <fieldset>
+                            <legend>Загрузить логотип</legend>
+                            <div>
+                                <input type="file" id="files" ref="files" multiple v-on:change="handleFilesUpload" />
+                            </div>
+                        </fieldset>
+                        <button v-on:click="submitFile">Принять</button>
+                    </div>
                 </div>
 
                 <input type="radio" name="tab" id="tab4" />
@@ -182,9 +191,9 @@
             </div>
         </div>
     </div>
-	<script src="~/lib/jquery/dist/jquery.min.js"></script>
-	<script src="~/lib/vue/vue.min.js"></script>
-	<script src="~/lib/vue/axios/axios.js"></script>
-	<script src="~/js/BackOffice.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/vue/vue.min.js"></script>
+    <script src="~/lib/vue/axios/axios.js"></script>
+    <script src="~/js/BackOffice.js"></script>
 </body>
 </html>

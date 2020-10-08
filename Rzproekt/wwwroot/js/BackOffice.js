@@ -86,10 +86,10 @@ var back_office = new Vue({
 						}
 					}
 				).then(function () {
-					console.log('SUCCESS!!');
+					console.log('success');
 				})
 					.catch(function () {
-						console.log('FAILURE!!');
+						console.log('fail');
 					});
 			}
 			catch (ex) {
