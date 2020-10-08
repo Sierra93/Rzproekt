@@ -15,7 +15,7 @@ namespace Rzproekt.Models {
                     string extension = Path.GetExtension(fileName);
 
                     // Задает расширение файлов.
-                    if (extension == ".png" || extension == ".jpg") {
+                    if (extension == ".png" || extension == ".jpg" || extension == ".mp4") {
                         // Записывает путь к папке, в которую будет загружать файлы.
                         string filePath = Path.GetFullPath(
                             Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/img"));
