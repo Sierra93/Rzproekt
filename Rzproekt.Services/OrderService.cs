@@ -43,7 +43,6 @@ namespace Rzproekt.Services {
                 _db.Orders.Update(isOrder);
 
                 await _db.SaveChangesAsync();
-                Debugger.Break();
             }
 
             catch (Exception ex) {
