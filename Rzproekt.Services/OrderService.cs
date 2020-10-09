@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Rzproekt.Core;
 using Rzproekt.Core.Data;
 using System;
@@ -14,11 +15,11 @@ namespace Rzproekt.Services {
 
         public OrderService(ApplicationDbContext db) => _db = db;
 
-        /// <summary>
-        /// Метод получает данные хидера.
-        /// </summary>
-        /// <returns></returns>
-        public async override Task<IEnumerable> GetOrders() {
+        public override Task ChangeOrder(IFormCollection filesLogo, string jsonString) {
+            throw new NotImplementedException();
+        }
+
+        public async override Task<IEnumerable> GetOrderInfo() {
             return await _db.Orders.Take(3).ToListAsync();
         }
     }

@@ -8,6 +8,5 @@ namespace Rzproekt.Core {
     /// <summary>
     /// Базовый абстрактный класс описывает работу админки.
     /// </summary>
-    public abstract class BackOfficeBase {
-    }
+    public abstract class BackOfficeBase { }
 }

@@ -25,7 +25,7 @@ namespace Rzproekt.Controllers {
         public async Task<IActionResult> GetHeaderInfo() {
             OrderBase headerBase = new OrderService(_db);
 
-            return Ok(await headerBase.GetOrders());
+            return Ok(await headerBase.GetOrderInfo());
         }
     }
 }

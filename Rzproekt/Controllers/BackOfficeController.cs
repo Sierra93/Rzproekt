@@ -34,5 +34,15 @@ namespace Rzproekt.Controllers {
 
             return Ok("Header успешно изменен");
         }
+
+        /// <summary>
+        /// Метод изменяет данные услуг.
+        /// </summary>
+        [HttpPost, Route("change-order")]
+        public async Task<IActionResult> ChangeOrder() {
+
+
+            return Ok("Услуги успешно изменены");
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
@@ -13,6 +14,12 @@ namespace Rzproekt.Core {
         /// Метод получает все услуги.
         /// </summary>
         /// <returns></returns>
-        public abstract Task<IEnumerable> GetOrders();
+        public abstract Task<IEnumerable> GetOrderInfo();
+
+        /// <summary>
+        /// Метод изменяет данные услуг.
+        /// </summary>
+        /// <returns></returns>
+        public abstract Task ChangeOrder(IFormCollection filesLogo, string jsonString);
     }
 }
