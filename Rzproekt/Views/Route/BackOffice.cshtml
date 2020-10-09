@@ -22,7 +22,7 @@
                     <form v-on:submit.prevent class="form-back_office">
                         <fieldset>
                             <legend>Загрузить логотип</legend>
-                            <input type="file" id="files" ref="files" multiple v-on:change="handleFilesUpload" />
+                            <input type="file" id="filesLogo" ref="files" multiple v-on:change="handleFilesUpload" />
                         </fieldset>
 
                         <fieldset>
@@ -37,7 +37,7 @@
 
                         <fieldset>
                             <legend>Загрузить видео</legend>
-                            <input type="file" id="files" ref="files" multiple v-on:change="handleFilesUpload" />
+                            <input type="file" id="filesVideoBgHeader" ref="files" multiple v-on:change="handleFilesUpload" />
                         </fieldset>
                         <button v-on:click="onChangeHeader">Сохранить</button>
                     </form>

@@ -70,7 +70,16 @@ var back_office = new Vue({
 	methods: {
 		// Функция собирает файлы.
 		handleFilesUpload() {
-			this.files = document.getElementById('files').files[0];
+			let filesLogo = document.getElementById('filesLogo').files[0];
+			let filesVideoBgHeader = document.getElementById('filesVideoBgHeader').files[0];
+
+			if (!!filesLogo) {
+				this.files = filesLogo;
+			} else if (!!filesVideoBgHeader){
+				this.files = filesVideoBgHeader;
+            }
+			
+			
 		},
 		// Отправляет измененные данные первого блока сайта
 		onChangeHeader() {
