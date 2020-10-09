@@ -90,13 +90,16 @@
 		<h1>{{ client[0].mainTitle }}</h1>
 	</div>
 	<div class="border-bottom-title"></div>
-	<section class="clients-list">
+    <section class="clients-list">
 
-		<article class="clients-block" v-for="item in client">
-			<img :src="item.url" />
-		</article>
+        @*<article class="clients-block" v-for="item in client">
+            <img :src="item.url" />
+        </article>*@
+        <div class="clients-block" data-slick='{"slidesToShow": 4, "slidesToScroll": 4}' v-for="item in client">
+            <img :src="item.url" />
+        </div>
 
-	</section>
+    </section>
 	<div class="btn-detail">
 		<a href="#">{{ client[0].buttonText }}</a>
 	</div>
