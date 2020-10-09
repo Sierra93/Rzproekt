@@ -142,8 +142,8 @@ var back_office = new Vue({
             };
             if (!!this.filesService[idService]) {
                 formData.set('filesLogo', this.filesService[idService].files[0]);
-                formData.set('jsonString', JSON.stringify(oData));
             }
+            formData.set('jsonString', JSON.stringify(oData));
     
             try {
                 axios.post(sUrl, formData)

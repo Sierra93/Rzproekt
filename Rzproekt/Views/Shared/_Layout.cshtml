@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link href="~/css/StyleSheet.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
 </head>
 <body>
     <div id="appHome">
@@ -24,16 +25,16 @@
 
         @RenderBody()
 
-    <footer>
-        <small>
-            &copy; {{ date }} {{ footer[0].copyStr }}
-        </small>
-    </footer>
+        <footer>
+            <small>
+                &copy; {{ date }} {{ footer[0].copyStr }}
+            </small>
+        </footer>
     </div>
-
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/vue/vue.min.js"></script>
-	<script src="~/lib/vue/axios/axios.js"></script>
+    <script src="~/lib/vue/axios/axios.js"></script>
     <script src="~/js/site.js"></script>
 
     @RenderSection("Scripts", required: false)
