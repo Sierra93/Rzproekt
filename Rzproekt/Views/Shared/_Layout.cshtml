@@ -11,7 +11,7 @@
         <header class="header">
             <div>
                 <div class="block-logo"><img :src="header[0].url" alt="logo" /></div>
-                <h1>АО "ЯПИ "РЕЗИНОАСБОПРОЕКТ"</h1>
+                <h1>{{ header[0].mainText }}</h1>
             </div>
             <nav class="block-nav">
                 <ul class="block-nav">
@@ -26,9 +26,7 @@
 
     <footer>
         <small>
-            &copy; {{ date }} «АО ЯПИ «Резиноасбопроект»
-            Проектные решения для промышленного
-            и гражданского строительства
+            &copy; {{ date }} {{ footer[0].copyStr }}
         </small>
     </footer>
     </div>
