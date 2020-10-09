@@ -86,7 +86,7 @@ var back_office = new Vue({
 			let self = this; 
 			let sUrl = self.$data.urlApi + '/api/back-office/change-header';
 			let MainItem = $('.header-menu-txt');
-			let MainNum = $('.header-menu-num');
+			let MainNum = $('.header-menu-num')[0].value;
 			let formData = new FormData();
 			
 			//formData = formData.get('filesLogo');
