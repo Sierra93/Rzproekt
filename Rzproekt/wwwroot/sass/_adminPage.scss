@@ -154,6 +154,10 @@ $blueMenuHvr: #0074a8;
         color: $WhiteColor;
         border-radius: 5px;
         transition: .3s;
+
+        &:hover {
+            background: #bf1024;
+        }
     }
 
 

@@ -232,14 +232,14 @@
                             <input type="text" class="client-menu-title" v-bind:value="client[0].mainTitle">
                         </fieldset>
                     </form>
-                    <form v-on:submit.prevent class="form-back_office" v-for="item in client">
-                        <fieldset>
-                            <legend>Загрузить логотип клиента</legend>
+                    <form v-on:submit.prevent class="form-back_office">
+                        <fieldset v-for="item in client">
+                            <legend>Загрузить логотип клиента {{ item.clientId }}</legend>
                             <input type="file" class="form-files-client" ref="files" multiple v-on:change="handleFilesUploadClient" />
+                            <button  v-bind:idCustom="item.clientId" v-on:click="onChangeClient">Сохранить</button>
+                            <button  v-bind:idCustom="item.clientId" class="btm-back-del-client" v-on:click="onDelClient">Удалить</button>
                         </fieldset>
 
-                        <button v-on:click="onChangeClient">Сохранить</button>
-                        <button class="btm-back-del-client" v-on:click="onDelClient">Удалить</button>
                     </form>
 
                     <form v-on:submit.prevent class="form-back_office">

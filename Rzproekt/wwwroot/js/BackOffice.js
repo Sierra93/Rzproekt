@@ -84,6 +84,10 @@ var back_office = new Vue({
             let arrBlocksImg = document.getElementsByClassName('form-files-service');
             this.filesService = arrBlocksImg;
         },
+        handleFilesUploadClient() {
+            let arrBlocksImg = document.getElementsByClassName('form-files-client');
+            this.filesService = arrBlocksImg;
+        },
 
         // Отправляет измененные данные первого блока сайта
         onChangeHeader() {
@@ -193,6 +197,46 @@ var back_office = new Vue({
             catch (ex) {
                 throw new Error(ex);
             }
+        },
+        onChangeClient(e) {
+            // Отправляет измененные данные блока Client
+            let self = this;
+            let sUrl = self.$data.urlApi + '/api/back-office/change-client';
+            let MainTitle = $('.client-menu-title')[0].value;
+            let idService = +e.target.getAttribute('idCustom') - 1;
+            let OrderId = idService + 1;
+            let formData = new FormData();
+            let oData = {
+                OrderId,
+                MainTitle
+            };
+            formData.set('filesClient', this.filesService[idService].files[0]);
+            formData.set('jsonString', JSON.stringify(oData));
+
+
+            try {
+                axios.post(sUrl, formData)
+                    .then((response) => {
+                        console.log('Данные успешно изменены');
+
+                    })
+                    .catch((XMLHttpRequest) => {
+                        throw new Error(XMLHttpRequest);
+                    });
+            }
+            catch (ex) {
+                throw new Error(ex);
+            }
+        },
+        onDelClient(e) {
+            let self = this;
+            let sUrl = self.$data.urlApi + '/api/back-office/add-client';
+
+        },
+        onDelClient(e) {
+            let self = this;
+            let sUrl = self.$data.urlApi + '/api/back-office/delete-client';
+
         },
         //  Функция выгружает все данные
         _getData(url) {
