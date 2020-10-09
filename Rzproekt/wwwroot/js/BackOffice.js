@@ -68,7 +68,7 @@ var back_office = new Vue({
 		})
 	},
 	methods: {
-		// Функция собирает файлы.
+		// Функция собирает файлы header.
 		handleFilesUpload() {
 			let filesLogo = document.getElementById('filesLogo').files[0];
 			let filesVideoBgHeader = document.getElementById('filesVideoBgHeader').files[0];
@@ -119,7 +119,7 @@ var back_office = new Vue({
 				throw new Error(ex);
 			}
 		},
-		// Отправляет измененные данные первого блока сайта (Услуги)
+		// Отправляет измененные данные блока Услуги
 		onChangeService() {
 			let self = this;
 			let sUrl = self.$data.urlApi + '/api/back-office/change-order';
