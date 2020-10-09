@@ -63,13 +63,13 @@
                 <div class="tab-item" id="tab-content2">
                     <div class="tab-content-back_office">
                         <div class="tab-left-back_office">
+                            <form v-on:submit.prevent class="form-back_office">
+                                <fieldset>
+                                    <legend>Главный текст</legend>
+                                    <input type="text" class="service-main-title" v-bind:value="service[0].mainTitle">
+                                </fieldset>
+                            </form>
                             <div class="block-change-menu_back_office">
-                                <form v-on:submit.prevent class="form-back_office">
-                                    <fieldset>
-                                        <legend>Главный текст</legend>
-                                        <input type="text" class="service-main-title" v-bind:value="service[0].mainTitle">
-                                    </fieldset>
-                                </form>
                                 <form v-on:submit.prevent class="form-back_office" v-bind:id="item.orderId" v-for="item in service">
                                     <fieldset>
                                         <legend>Загрузить фотографию услуги</legend>
@@ -86,7 +86,7 @@
                                     <fieldset>
                                         <legend>Описание услуги</legend>
                                         <label>
-                                            <input type="text" class="service-text" v-bind:value="item.text">
+                                            <textarea class="service-text" draggable="false" v-bind:value="item.text"></textarea>
                                         </label>
                                     </fieldset>
                                     <button v-bind:idCustom="item.orderId" v-on:click="onChangeService">Сохранить</button>

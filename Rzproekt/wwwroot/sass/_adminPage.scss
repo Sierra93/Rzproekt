@@ -136,6 +136,12 @@ $blueMenuHvr: #0074a8;
             margin: .2rem;
             width: 18rem;
         }
+
+        textarea {
+            width: 100%;
+            height: 12rem;
+            resize: vertical;
+        }
     }
 
     button {

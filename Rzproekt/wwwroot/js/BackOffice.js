@@ -126,6 +126,43 @@ var back_office = new Vue({
         onChangeService(e) {
             let self = this;
             let sUrl = self.$data.urlApi + '/api/back-office/change-order';
+            let idService = +e.target.getAttribute('idCustom') - 1;
+            let OrderId = idService + 1;
+            let MainTitle = $('.service-main-title')[0].value;
+            let Title = $('.service-title')[OrderId-1].value;
+            let Text = $('.service-text')[OrderId-1].value;
+            
+            
+            let formData = new FormData();
+            let oData = {
+                OrderId,
+                MainTitle,
+                Title,
+                Text
+            };
+            if (!!this.filesService[idService]) {
+                formData.set('filesLogo', this.filesService[idService].files[0]);
+                formData.set('jsonString', JSON.stringify(oData));
+            }
+    
+            try {
+                axios.post(sUrl, formData)
+                    .then((response) => {
+                        console.log('Данные успешно изменены');
+
+                    })
+                    .catch((XMLHttpRequest) => {
+                        throw new Error(XMLHttpRequest);
+                    });
+            }
+            catch (ex) {
+                throw new Error(ex);
+            }
+        },
+        // Отправляет измененные данные блока About
+        onChangeAbout(e) {
+            let self = this;
+            let sUrl = self.$data.urlApi + '/api/back-office/change-order';
             let MainTitle = $('.service-main-title')[0].value;
             let Title = $('.service-title')[0].value;
             let Text = $('.service-text')[0].value;
@@ -141,7 +178,7 @@ var back_office = new Vue({
             formData.set('filesLogo', this.filesService[idService].files[0]);
             formData.set('jsonString', JSON.stringify(oData));
 
-    
+
             try {
                 axios.post(sUrl, formData)
                     .then((response) => {

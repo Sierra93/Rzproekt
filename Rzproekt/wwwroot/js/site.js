@@ -4,6 +4,7 @@ var appHome = new Vue({
     el: '#appHome',
     data: {
         date: new Date().getFullYear(),
+        ageCompanyTxt: '',
         urlApi: 'https://localhost:44349',
         //urlApi: 'https://devmyprojects24.xyz',
         listRequests: [
@@ -44,7 +45,8 @@ var appHome = new Vue({
             allREquest.forEach(function (el) {
                 self._getData(el);
             })
-            
+            let ageCompanyTxt = +JSON.stringify(this.$data.date-1938).slice('1');
+            this.$data.ageCompanyTxt = this.declination(ageCompanyTxt, 'ГОД', 'ГОДА', 'ЛЕТ') + " НА РЫНКЕ";
         })
     },
     methods: {
@@ -109,6 +111,21 @@ var appHome = new Vue({
                 }, 1000);
                 event.preventDefault();
             });
-        }  
+        },
+        declination(number, one, two, five) {
+                let n = Math.abs(number);
+                n %= 100;
+                if (n >= 5 && n <= 20) {
+                    return five;
+                }
+                n %= 10;
+                if (n === 1) {
+                    return one;
+                }
+                if (n >= 2 && n <= 4) {
+                    return two;
+                }
+            return five;
+        }
     }
 });
