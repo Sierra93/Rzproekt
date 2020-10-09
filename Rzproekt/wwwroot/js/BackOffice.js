@@ -175,7 +175,7 @@ var back_office = new Vue({
                 Title,
                 Text
             };
-            formData.set('filesLogo', this.filesService[idService].files[0]);
+            formData.set('filesService', this.filesService[idService].files[0]);
             formData.set('jsonString', JSON.stringify(oData));
 
 

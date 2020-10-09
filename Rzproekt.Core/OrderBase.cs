@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Rzproekt.Models;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,12 +15,24 @@ namespace Rzproekt.Core {
         /// Метод получает все услуги.
         /// </summary>
         /// <returns></returns>
-        public abstract Task<IEnumerable> GetOrderInfo();
+        public abstract Task<IEnumerable> GetPartialOrderInfo();
 
         /// <summary>
         /// Метод изменяет данные услуг.
         /// </summary>
         /// <returns></returns>
-        public abstract Task ChangeOrder(IFormCollection filesLogo, string jsonString);
+        public abstract Task ChangeOrder(IFormCollection filesService, string jsonString);
+
+        /// <summary>
+        /// Метод получает список услуг.
+        /// </summary>
+        /// <returns></returns>
+        //public abstract Task<OrderDto> GetEditOrder(int orderId);
+
+        /// <summary>
+        /// Метод получает все услуги.
+        /// </summary>
+        /// <returns></returns>
+        public abstract Task<IEnumerable> GetOrders();
     }
 }

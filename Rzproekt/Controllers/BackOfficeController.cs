@@ -39,8 +39,9 @@ namespace Rzproekt.Controllers {
         /// Метод изменяет данные услуг.
         /// </summary>
         [HttpPost, Route("change-order")]
-        public async Task<IActionResult> ChangeOrder() {
-
+        public async Task<IActionResult> ChangeOrder([FromForm] IFormCollection filesService, [FromForm] string jsonString) {
+            OrderBase orderBase = new OrderService(_db);
+            await orderBase.ChangeOrder(filesService, jsonString);
 
             return Ok("Услуги успешно изменены");
         }
