@@ -36,7 +36,8 @@ namespace Rzproekt.Services {
         /// <summary>
         /// Метод изменяет хидер.
         /// </summary>
-        /// <param name="headerDto"></param>
+        /// <param name="filesLogo">Коллекция файлов.</param>
+        /// <param name="jsonString">Объект с данными.</param>
         /// <returns></returns>
         public async override Task ChangeHeader(IFormCollection filesLogo, string jsonString) {
             try {
@@ -46,8 +47,9 @@ namespace Rzproekt.Services {
 
                 // Список элементов меню.
                 var aMainItems = (JArray)jsonObject["MainItem"];
-                var aMainItemsValues = aMainItems.Values().ToList();
-                string mainTitle = jsonObject["MainTitle"].ToString();
+                var aMainItemsValues = aMainItems.Values().ToList();    // Массив элементов меню хидера.
+                string mainTitle = jsonObject["MainTitle"].ToString();  // Заголовок хидера.
+                string mainNumber = jsonObject["MainNum"].ToString();   // Номер телефона.
 
                 common.ValidErrorFile(filesLogo.Files.Count);
 
@@ -55,6 +57,7 @@ namespace Rzproekt.Services {
                 IEnumerable<HeaderDto> aHeaders = await GetHeaders();
 
                 aHeaders.FirstOrDefault().MainTitle = mainTitle;
+                aHeaders.FirstOrDefault().MainText = mainNumber;
 
                 int i = 0;
                 foreach (var el in aHeaders) {
@@ -72,9 +75,11 @@ namespace Rzproekt.Services {
                             aHeaders.ToList()[i].Url = path.Replace("wwwroot", "");
                         }                                                                               
                     }
+
                     _db.Headers.UpdateRange(aHeaders);
                     i++;
                 }
+
                 await _db.SaveChangesAsync();
             }
 
