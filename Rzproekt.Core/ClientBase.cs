@@ -14,5 +14,7 @@ namespace Rzproekt.Core {
         /// </summary>
         /// <returns></returns>
         public abstract Task<IEnumerable> GetClientsInfo();
+
+        public abstract Task AddClient();
     }
 }

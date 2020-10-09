@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
@@ -14,5 +15,13 @@ namespace Rzproekt.Core {
         /// </summary>
         /// <returns></returns>
         public abstract Task<IEnumerable> GetAboutInfo();
+
+        /// <summary>
+        /// Метод изменяет информацию о нас.
+        /// </summary>
+        /// <param name="filesService"></param>
+        /// <param name="jsonString"></param>
+        /// <returns></returns>
+        public abstract Task ChangeAboutInfo(IFormCollection filesService, string jsonString);
     }
 }

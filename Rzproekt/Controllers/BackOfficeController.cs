@@ -32,7 +32,7 @@ namespace Rzproekt.Controllers {
             HeaderBase backOfficeBase = new HeaderService(_db);
             await backOfficeBase.ChangeHeader(filesLogo, jsonString);
 
-            return Ok("Header успешно изменен");
+            return Ok();
         }
 
         /// <summary>
@@ -43,7 +43,23 @@ namespace Rzproekt.Controllers {
             OrderBase orderBase = new OrderService(_db);
             await orderBase.ChangeOrder(filesService, jsonString);
 
-            return Ok("Услуги успешно изменены");
+            return Ok();
+        }
+
+        /// <summary>
+        /// Метод изменяет информацию о нас.
+        /// </summary>
+        [HttpPost, Route("change-about")]
+        public async Task<IActionResult> ChangeAbout() {
+            return Ok();
+        }
+
+        /// <summary>
+        /// Метод добавляет клиента.
+        /// </summary>
+        [HttpPost, Route("add-client")]
+        public async Task<IActionResult> AddClient([FromForm] IFormCollection filesService, [FromForm] string jsonString) {
+            return Ok();
         }
     }
 }

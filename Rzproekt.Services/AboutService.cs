@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Rzproekt.Core;
 using Rzproekt.Core.Data;
 using System;
@@ -14,7 +15,7 @@ namespace Rzproekt.Services {
     public class AboutService : AboutBase {
         ApplicationDbContext _db;
 
-        public AboutService(ApplicationDbContext db) => _db = db;
+        public AboutService(ApplicationDbContext db) => _db = db;        
 
         /// <summary>
         /// Метод получает все данные о нас.
@@ -22,6 +23,16 @@ namespace Rzproekt.Services {
         /// <returns></returns>
         public async override Task<IEnumerable> GetAboutInfo() {
             return await _db.Abouts.ToListAsync();
+        }
+
+        /// <summary>
+        /// Метод изменяет информацию о нас.
+        /// </summary>
+        /// <param name="filesService"></param>
+        /// <param name="jsonString"></param>
+        /// <returns></returns>
+        public override Task ChangeAboutInfo(IFormCollection filesService, string jsonString) {
+            throw new NotImplementedException();
         }
     }
 }

@@ -15,13 +15,21 @@ namespace Rzproekt.Services {
         ApplicationDbContext _db;
 
         public ClientService(ApplicationDbContext db) => _db = db;
-
+       
         /// <summary>
         /// Метод получает список клиентов.
         /// </summary>
         /// <returns></returns>
         public async override Task<IEnumerable> GetClientsInfo() {
             return await _db.Clients.ToListAsync();
+        }
+
+        /// <summary>
+        /// Метод добавляет нового клиента.
+        /// </summary>
+        /// <returns></returns>
+        public override Task AddClient() {
+            throw new NotImplementedException();
         }
     }
 }
