@@ -51,7 +51,7 @@ namespace Rzproekt.Services {
                 string mainTitle = jsonObject["MainTitle"].ToString();  // Заголовок хидера.
                 string mainNumber = jsonObject["MainNum"].ToString();   // Номер телефона.
 
-                common.ValidErrorFile(filesLogo.Files.Count);
+                //common.ValidErrorFile(filesLogo.Files.Count);
 
                 // Получает хидер из БД.
                 IEnumerable<HeaderDto> aHeaders = await GetHeaders();
@@ -62,7 +62,7 @@ namespace Rzproekt.Services {
                 int i = 0;
                 foreach (var el in aHeaders) {
                     aHeaders.ToList()[i].MainItem = aMainItemsValues[i].ToString();
-                    if (i < filesLogo.Files.Count) {                        
+                    if (filesLogo.Files.Count > 0 && i < filesLogo.Files.Count) {                        
                         // Загружает каждый файл в папку.
                         var path = await common.Upload(filesLogo, i);
 
