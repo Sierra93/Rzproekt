@@ -48,20 +48,6 @@ var appHome = new Vue({
             let ageCompanyTxt = +JSON.stringify(this.$data.date-1938).slice('1');
             this.$data.ageCompanyTxt = this.declination(ageCompanyTxt, 'ГОД', 'ГОДА', 'ЛЕТ') + " НА РЫНКЕ";
 
-
-            $(document).ready(function(){
-              //  $('.clients-block').slick({
-                
-              //});
-                $('.clients-block').slick({
-                    dots: true,
-                    infinite: true,
-                    speed: 500,
-                    fade: true,
-                    cssEase: 'linear'
-                });
-            });
-
         })
     },
     methods: {
@@ -143,4 +129,13 @@ var appHome = new Vue({
             return five;
         }
     }
+});
+$(document).ready(function () {
+    $('.clients-block').slick({
+        dots: true,
+        infinite: true,
+        speed: 500,
+        fade: true,
+        cssEase: 'linear'
+    });
 });

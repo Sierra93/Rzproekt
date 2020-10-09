@@ -144,6 +144,19 @@ $blueMenuHvr: #0074a8;
         }
     }
 
+    .btm-back-del-client {
+        width: 100px;
+        margin: 15px auto 0;
+        cursor: pointer;
+        padding: 10px 20px;
+        border: none;
+        background: $redMain;
+        color: $WhiteColor;
+        border-radius: 5px;
+        transition: .3s;
+    }
+
+
     button {
         width: 100px;
         margin: 15px auto 0;

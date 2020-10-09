@@ -84,6 +84,7 @@ var back_office = new Vue({
             let arrBlocksImg = document.getElementsByClassName('form-files-service');
             this.filesService = arrBlocksImg;
         },
+
         // Отправляет измененные данные первого блока сайта
         onChangeHeader() {
             let self = this;
