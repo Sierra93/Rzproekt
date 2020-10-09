@@ -83,9 +83,10 @@ var back_office = new Vue({
 		},
 		// Отправляет измененные данные первого блока сайта
 		onChangeHeader() {
-			let self = this;
+			let self = this; 
 			let sUrl = self.$data.urlApi + '/api/back-office/change-header';
 			let MainItem = $('.header-menu-txt');
+			let MainNum = $('.header-menu-num');
 			let formData = new FormData();
 			
 			//formData = formData.get('filesLogo');
@@ -98,7 +99,8 @@ var back_office = new Vue({
 
 			let oData = {
 				MainItem: mainItemArr,
-				MainTitle
+				MainTitle,
+				MainNum
 			};
 
 			formData.set('filesLogo', this.files);
@@ -126,11 +128,12 @@ var back_office = new Vue({
 			for (item of MainItem) {
 				mainItemArr.push(item.value)
 			} 
-			let MainTitle = $('.header-menu-title')[0].value;
+			let MainTitle = $('.service-menu-title')[0].value;
 
 			let oData = {
 				MainItem: mainItemArr,
 				MainTitle
+
 			};
 			try {
 				axios.post(sUrl, oData)

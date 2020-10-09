@@ -28,7 +28,7 @@
 
                         <fieldset>
                             <legend>Номер телефона</legend>
-                            <input type="text" class="header-menu-txt" id="mainText-back_office" v-bind:value="header[0].mainText">
+                            <input type="text" class="header-menu-num" id="mainText-back_office" v-bind:value="header[0].mainText">
                         </fieldset>
 
                         <fieldset>
@@ -86,7 +86,6 @@
                                         <label v-for="item in service">
                                             Услуга {{ item.orderId }}
                                             <input type="text" class="service-name" v-bind:value="item.title">
-
                                         </label>
                                     </fieldset>
                                     <fieldset>
@@ -131,7 +130,7 @@
 
                         <fieldset>
                             <legend>Главный текст</legend>
-                            <input type="text" class="header-menu-txt" v-bind:value="about[0].mainTitle">
+                            <input type="text" class="about-menu-txt" v-bind:value="about[0].mainTitle">
                         </fieldset>
 
                         <fieldset>
@@ -167,20 +166,20 @@
 
                         <fieldset>
                             <legend>Статистика 2</legend>
-                            <input type="text" class="header-menu-txt" v-bind:value="stat[0].number">
-                            <input type="text" class="header-menu-txt" v-bind:value="stat[0].text">
+                            <input type="text" class="stat-menu-txt" v-bind:value="stat[0].number">
+                            <input type="text" class="stat-menu-txt" v-bind:value="stat[0].text">
                         </fieldset>
 
                         <fieldset>
                             <legend>Статистика 3</legend>
-                            <input type="text" class="header-menu-txt" v-bind:value="stat[1].number">
-                            <input type="text" class="header-menu-txt" v-bind:value="stat[1].text">
+                            <input type="text" class="stat-menu-txt" v-bind:value="stat[1].number">
+                            <input type="text" class="stat-menu-txt" v-bind:value="stat[1].text">
                         </fieldset>
 
                         <fieldset>
                             <legend>Статистика 4</legend>
-                            <input type="text" class="header-menu-txt" v-bind:value="stat[2].number">
-                            <input type="text" class="header-menu-txt" v-bind:value="stat[2].text">
+                            <input type="text" class="stat-menu-txt" v-bind:value="stat[2].number">
+                            <input type="text" class="stat-menu-txt" v-bind:value="stat[2].text">
                         </fieldset>
 
                         <button v-on:click="onChangeHeader">Сохранить</button>
@@ -194,7 +193,7 @@
                     <form v-on:submit.prevent class="form-back_office">
                         <fieldset>
                             <legend>Главный текст</legend>
-                            <input type="text" class="header-menu-txt" v-bind:value="project[0].mainTitle">
+                            <input type="text" class="project-menu-title" v-bind:value="project[0].mainTitle">
                         </fieldset>
 
                         <fieldset>
@@ -250,7 +249,7 @@
                     <form v-on:submit.prevent class="form-back_office">
                         <fieldset>
                             <legend>Главный текст</legend>
-                            <input type="text" class="header-menu-txt" v-bind:value="client[0].mainTitle">
+                            <input type="text" class="client-menu-title" v-bind:value="client[0].mainTitle">
                         </fieldset>
 
                         <fieldset>
@@ -300,25 +299,25 @@
                     <form v-on:submit.prevent class="form-back_office">
                         <fieldset>
                             <legend>Главный текст</legend>
-                            <input type="text" class="header-menu-txt" v-bind:value="contact[0].mainTitle">
+                            <input type="text" class="contact-menu-title" v-bind:value="contact[0].mainTitle">
                         </fieldset>
 
                         <fieldset>
                             <legend>Описание</legend>
-                            <input type="text" class="header-menu-title" v-bind:value="contact[0].title">
+                            <input type="text" class="contact-menu-txt" v-bind:value="contact[0].title">
                         </fieldset>
 
                         <fieldset>
                             <legend>Адрес</legend>
-                            <input type="text" class="header-menu-title" v-bind:value="contact[1].text">
+                            <input type="text" class="contact-menu-txt" v-bind:value="contact[1].text">
                         </fieldset>
                         <fieldset>
                             <legend>Почта</legend>
-                            <input type="text" class="header-menu-title" v-bind:value="contact[2].text">
+                            <input type="text" class="contact-menu-txt" v-bind:value="contact[2].text">
                         </fieldset>
                         <fieldset>
                             <legend>Телефон</legend>
-                            <input type="text" class="header-menu-title" v-bind:value="contact[3].text">
+                            <input type="text" class="contact-menu-txt" v-bind:value="contact[3].text">
                         </fieldset>
                     </form>
 
