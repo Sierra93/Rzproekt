@@ -9,10 +9,5 @@ namespace Rzproekt.Core {
     /// Базовый абстрактный класс описывает работу админки.
     /// </summary>
     public abstract class BackOfficeBase {
-        /// <summary>
-        /// Метод изменяет лого.
-        /// </summary>
-        /// <returns></returns>
-        public abstract Task UploadImage(IFormCollection form);
     }
 }

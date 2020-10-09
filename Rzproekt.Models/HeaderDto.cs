@@ -28,6 +28,9 @@ namespace Rzproekt.Models {
         [Column("block")]
         public string Block { get; set; }   // Тип блока, в который нужно вставлять контент.
 
+        [Column("main_text", TypeName = "nvarchar(1000)")]
+        public string MainText { get; set; }    // Заголовок хидера.
+
         public List<MultepleContextTable> MultepleContextTables { get; set; }
 
         public HeaderDto() {

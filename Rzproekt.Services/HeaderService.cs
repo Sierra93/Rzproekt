@@ -54,7 +54,7 @@ namespace Rzproekt.Services {
                 // Получает хидер из БД.
                 IEnumerable<HeaderDto> aHeaders = await GetHeaders();
 
-                aHeaders.ToList()[0].MainTitle = mainTitle;
+                aHeaders.FirstOrDefault().MainTitle = mainTitle;
 
                 int i = 0;
                 foreach (var el in aHeaders) {

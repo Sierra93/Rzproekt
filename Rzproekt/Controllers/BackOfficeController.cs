@@ -20,22 +20,14 @@ namespace Rzproekt.Controllers {
         ApplicationDbContext _db;
 
         public BackOfficeController(ApplicationDbContext db) => _db = db;
-
-        /// <summary>
-        /// Метод загружает файл в папку.
-        /// </summary>
-        [HttpPost, Route("upload-image")]
-        public async Task<IActionResult> UploadImage(IFormCollection form) {
-            BackOfficeBase backOfficeBase = new BackOfficeService(_db);
-            await backOfficeBase.UploadImage(form);
-
-            return Ok("Файл успешно загружен");
-        }       
-
+  
         /// <summary>
         /// Метод изменяет хидер.
         /// </summary>
         [HttpPost, Route("change-header")]
+        //[RequestSizeLimit(100_000_000)]
+        //[RequestFormLimits(MultipartBodyLengthLimit = 409715200)]
+        //[RequestSizeLimit(409715200)]
         public async Task<IActionResult> ChangeHeader([FromForm] IFormCollection filesLogo, [FromForm] string jsonString) {
             HeaderBase backOfficeBase = new HeaderService(_db);
             await backOfficeBase.ChangeHeader(filesLogo, jsonString);
