@@ -33,9 +33,12 @@ namespace Rzproekt.Services {
 
                 var isOrder = await GetEditOrder(newOrder.OrderId);
 
-                var path = await common.UploadSingleFile(filesService);
-                path = path.Replace("wwwroot", "");
-                isOrder.Url = path;
+                if (filesService.Files.Count > 0) {
+                    var path = await common.UploadSingleFile(filesService);
+                    path = path.Replace("wwwroot", "");
+                    isOrder.Url = path;
+                }
+                               
                 isOrder.MainTitle = newOrder.MainTitle;
                 isOrder.Title = newOrder.Title;
                 isOrder.Text = newOrder.Text;
