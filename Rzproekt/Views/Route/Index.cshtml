@@ -21,7 +21,7 @@
 	<div class="border-bottom-title"></div>
 	<section class="service-list">
 		<article v-for="item in service">
-			<img :src="item.url" alt="service" />
+            <div><img :src="item.url" alt="service" /></div>
 			<h1>{{ item.title }}</h1>
 			<p>{{ item.text }}</p>
 		</article>

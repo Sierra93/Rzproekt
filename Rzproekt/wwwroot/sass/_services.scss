@@ -9,11 +9,13 @@
 
     article {
         background: $liteSilver;
-        width: 19rem;
+        width: 18.5rem;
         margin: 1rem;
+        overflow: hidden;
 
         img {
-            width: 100%;
+            width: auto;
+            height: 14rem;
         }
 
         h1 {
@@ -22,7 +24,6 @@
         }
 
         p {
-            width: 14.5rem;
             padding: 1rem;
         }
     }

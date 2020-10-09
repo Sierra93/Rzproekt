@@ -222,6 +222,7 @@
                     </form>
                 </div>
 
+                @*КЛИЕНТЫ*@
                 <input type="radio" name="tab" id="tab6" />
                 <label class="tab-label no-select" for="tab6" nth="6">КЛИЕНТЫ</label>
                 <div class="tab-item" id="tab-content6">
@@ -230,28 +231,15 @@
                             <legend>Главный текст</legend>
                             <input type="text" class="client-menu-title" v-bind:value="client[0].mainTitle">
                         </fieldset>
+                    </form>
+                    <form v-on:submit.prevent class="form-back_office" v-for="item in client">
+                        <fieldset>
+                            <legend>Загрузить логотип клиента</legend>
+                            <input type="file" class="form-files-client" ref="files" multiple v-on:change="handleFilesUploadClient" />
+                        </fieldset>
 
-                        <fieldset>
-                            <legend>Загрузить логотип клиента 1</legend>
-                            <input type="file" id="files" ref="files" multiple v-on:change="handleFilesUpload" />
-                        </fieldset>
-                        <fieldset>
-                            <legend>Загрузить логотип клиента 2</legend>
-                            <input type="file" id="files" ref="files" multiple v-on:change="handleFilesUpload" />
-                        </fieldset>
-                        <fieldset>
-                            <legend>Загрузить логотип клиента 3</legend>
-                            <input type="file" id="files" ref="files" multiple v-on:change="handleFilesUpload" />
-                        </fieldset>
-                        <fieldset>
-                            <legend>Загрузить логотип клиента 4</legend>
-                            <input type="file" id="files" ref="files" multiple v-on:change="handleFilesUpload" />
-                        </fieldset>
-                        <fieldset>
-                            <legend>Загрузить логотип клиента 5</legend>
-                            <input type="file" id="files" ref="files" multiple v-on:change="handleFilesUpload" />
-                        </fieldset>
-                        <button v-on:click="onChangeHeader">Сохранить</button>
+                        <button v-on:click="onChangeClient">Сохранить</button>
+                        <button class="btm-back-del-client" v-on:click="onDelClient">Удалить</button>
                     </form>
 
                     <form v-on:submit.prevent class="form-back_office">
@@ -262,16 +250,8 @@
                         </fieldset>
                         <button v-on:click="onChangeHeader">Добавить</button>
                     </form>
-
-                    <form v-on:submit.prevent class="form-back_office">
-                        <fieldset>
-                            <legend>Кнопка подробной информации</legend>
-                            <input type="text" id="name" v-bind:value="client[0].buttonText">
-                        </fieldset>
-                        <button v-on:click="onChangeHeader">Сохранить</button>
-                    </form>
                 </div>
-
+                @*КОНТАКТЫ*@
                 <input type="radio" name="tab" id="tab7" />
                 <label class="tab-label no-select" for="tab7" nth="7">КОНТАКТЫ</label>
                 <div class="tab-item" id="tab-content7">
