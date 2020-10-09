@@ -58,9 +58,9 @@ namespace Rzproekt.Services {
 
         public async Task<string> UploadSingleFile(IFormCollection form) {
             try {
-                if (form.Files == null || form.Files[0].Length == 0) {
-                    throw new ArgumentNullException();
-                }
+                //if (form.Files == null || form.Files[0].Length == 0) {
+                //    throw new ArgumentNullException();
+                //}
 
                 // Полный локальный путь к файлу включая папку проекта wwwroot.
                 var path = Path.Combine(
