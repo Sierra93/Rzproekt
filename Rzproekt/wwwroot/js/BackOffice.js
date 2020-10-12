@@ -354,7 +354,7 @@ var back_office = new Vue({
             let self = this;
             let Login = document.getElementById('login').value;
             let Password = document.getElementById('password').value;
-            let sUrl = 'https://localhost:44349/api/auth/signin';
+            let sUrl = self.$data.urlApi + '/api/auth/signin';
             let oData = {
                 Login,
                 Password
@@ -362,7 +362,7 @@ var back_office = new Vue({
             try {
                 axios.post(sUrl, oData)
                     .then((response) => {
-                        if (response.data.access_token) window.location.href = 'https://localhost:44349/back-office'
+                        if (response.data.access_token) window.location.href = self.$data.urlApi + '/back-office';
 
                     })
                     .catch((XMLHttpRequest) => {
