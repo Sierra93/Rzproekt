@@ -67,9 +67,10 @@ var appHome = new Vue({
             try {
                 axios.post(sUrl)
                     .then((response) => {
-                        switch (response.data[0].block) {
+                        console.log("RESPONSE!!!!!!!!!!!!!!!!", response);
+                        switch (response.data[0].block || response.data.results[0].block) {
                             case 'header':
-                                let arrId = ['','#main', '#service', '#about', '#project', '#client', '#conatact'];
+                                let arrId = ['','#main', '#service', '#about', '#project', '#client', '#contact'];
                                 self.$data.header = response.data;
                                 self.$data.smoothScrollArr = arrId;
                                 console.log('header получен', response.data);

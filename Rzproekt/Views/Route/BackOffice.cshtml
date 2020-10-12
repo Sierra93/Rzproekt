@@ -259,7 +259,7 @@
                                 <input type="file" class="form-files-client" ref="files" multiple v-on:change="handleFilesUploadClient" />
                             </label>
                         </fieldset>
-                        <button v-on:click="onChangeHeader">Добавить</button>
+                        <button v-bind:idCustom="client[client.length-1].clientId" v-on:click="onAddClient">Добавить</button>
                     </form>
                 </div>
                 @*КОНТАКТЫ*@

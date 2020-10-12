@@ -233,11 +233,11 @@ var back_office = new Vue({
                 throw new Error(ex);
             }
         },
-        onAddClient() {
+        onAddClient(e) {
             let self = this;
             let sUrl = self.$data.urlApi + '/api/back-office/add-client';
             let formData = new FormData();
-
+            let idService = +e.target.getAttribute('idCustom') - 1;
             formData.set('filesClient', this.filesService[idService].files[0]);
 
             try {
