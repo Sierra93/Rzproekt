@@ -25,10 +25,13 @@
 
         .serviceTxt {
             height: auto;
-            width: 17.6rem;
+            width: 16rem;
             background: transparent;
             border: none;
             padding: 1rem;
+            min-height: 20rem;
+            resize: none;
+            outline: none;
         }
 
         p {

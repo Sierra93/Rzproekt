@@ -86,10 +86,13 @@
       color: #3d5975; }
     .service-list article .serviceTxt {
       height: auto;
-      width: 17.6rem;
+      width: 16rem;
       background: transparent;
       border: none;
-      padding: 1rem; }
+      padding: 1rem;
+      min-height: 20rem;
+      resize: none;
+      outline: none; }
     .service-list article p {
       padding: 1rem; }
 
@@ -375,12 +378,13 @@
     cursor: pointer;
     padding: 10px 20px;
     border: none;
-    background: #da0f27;
-    color: #fff;
+    background: #fff;
+    color: #da0f27;
     border-radius: 5px;
     transition: .3s; }
     .form-back_office .btm-back-del-client:hover {
-      background: #bf1024; }
+      background: #bf1024;
+      color: #fff; }
   .form-back_office button {
     width: 100px;
     margin: 15px auto 0;

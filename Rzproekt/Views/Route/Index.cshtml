@@ -10,7 +10,7 @@
 	</div>
 	<section class="main-block-title">
 		<h1>{{ header[0].mainTitle }}</h1>
-		<a href="#"><span class="arrow-down"></span></a>
+		<a class="arrow-down" v-bind:href="smoothScrollArr[1].id" v-on:click="smoothScroll"></a>
 	</section>
 </div>
 
@@ -23,7 +23,7 @@
 		<article v-for="item in service">
             <div><img :src="item.url" alt="service" /></div>
 			<h1>{{ item.title }}</h1>
-            <textarea class="serviceTxt">{{ item.text }}</textarea>
+            <textarea class="serviceTxt" readonly>{{ item.text }}</textarea>
 			@*<p>{{ item.text }}</p>*@
 		</article>
 	</section>

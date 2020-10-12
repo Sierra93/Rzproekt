@@ -152,13 +152,14 @@ $blueMenuHvr: #0074a8;
         cursor: pointer;
         padding: 10px 20px;
         border: none;
-        background: $redMain;
-        color: $WhiteColor;
+        background: $WhiteColor;
+        color: $redMain;
         border-radius: 5px;
         transition: .3s;
 
         &:hover {
             background: #bf1024;
+            color: $WhiteColor;
         }
     }
 
