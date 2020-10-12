@@ -16,6 +16,8 @@ $liteSilver: #f7f5f5;
 @import '_projects.scss';
 @import '_logonPage';
 @import '_adminPage';
+@import '_aboutDetails';
+@import '_burger';
 
 @mixin block-title-txt {
     display: flex;
@@ -44,6 +46,9 @@ body {
     justify-content: space-between;
     align-items: center;
     background: $bgHeader;
+    position: fixed;
+    width: 100%;
+    z-index: 5;
 
     div {
         display: flex;
@@ -70,25 +75,23 @@ body {
             display: flex;
             list-style-type: none;
 
-            li {
+            a {
+                color: $white;
+                text-decoration: none;
+                font-size: 1.2rem;
+                transition: .3s;
                 padding: 1rem;
                 margin: 0 1rem;
                 cursor: pointer;
 
-                &:hover a {
+                &:hover {
                     color: $linkHvr;
-                }
-
-                a {
-                    color: $white;
-                    text-decoration: none;
-                    font-size: 1.2rem;
-                    transition: .3s;
                 }
             }
         }
     }
 }
+
 .block {
     height: auto;
     padding-top: 3rem;
@@ -112,20 +115,15 @@ body {
     padding: 1rem 2.5rem;
     transition: .3s;
     cursor: pointer;
+    text-decoration: none;
+    color: $redMain;
+    transition: .3s;
 
     &:hover {
         background: $redMain;
-    }
-
-    a {
-        text-decoration: none;
-        color: $redMain;
-        transition: .3s;
-    }
-
-    &:hover a {
         color: $white;
     }
+
 }
 .block-counter {
     display: flex;
@@ -163,6 +161,10 @@ body {
         }
     }
 }
+.map-block .iframe {
+    width: 800px;
+    height: 300px;
+}
 footer {
     position: absolute;
     bottom: 0px;
@@ -176,4 +178,50 @@ footer {
         margin-top: 1.5rem;
         color: silver;
     }
+}
+.hamburger-menu {
+    display: none!important;
+}
+
+
+///////////////////
+
+#viewport {
+    width: 100vw;
+    height: 450px;
+    overflow: hidden;
+}
+
+.slider {
+    position: relative;
+    transition: 500ms;
+    width: 40rem;
+    height: 450px;
+    display: flex;
+    justify-content: start;
+    flex-wrap: nowrap;
+}
+
+.slide {
+    width: 100%;
+    height: 240px;
+}
+
+.slide img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    object-position: 0;
+}
+
+#viewSlider {
+    width: calc(30px * 5);
+    display: flex;
+    justify-content: space-between;
+}
+
+.viewSlide {
+    width: 20px;
+    height: 20px;
+    background-color: red;
 }

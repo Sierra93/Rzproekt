@@ -104,28 +104,38 @@
                     <form v-on:submit.prevent class="form-back_office">
                         <fieldset>
                             <legend>Загрузить фоновую картинку</legend>
-                            <input type="file" id="files" ref="files" multiple v-on:change="handleFilesUpload" />
+                            <input type="file" ref="files" multiple v-on:change="handleFilesUpload" />
                         </fieldset>
 
                         <fieldset>
                             <legend>Главный текст</legend>
-                            <input type="text" class="about-menu-txt" v-bind:value="about[0].mainTitle">
+                            <input type="text" class="about-menu-title" v-bind:value="about[0].mainTitle">
                         </fieldset>
 
                         <fieldset>
                             <legend>Описание</legend>
-                            <input type="text" class="header-menu-title" id="mainText-back_office" v-bind:value="about[0].text">
+                            <label>
+                                <textarea class="about-text" draggable="false" v-bind:value="about[0].text"></textarea>
+                            </label>
                         </fieldset>
 
                         <button v-on:click="onChangeHeader">Сохранить</button>
                     </form>
                     <form v-on:submit.prevent class="form-back_office">
                         <fieldset>
-                            <legend>Доп. описание</legend>
-                            <input type="text" id="name">
-                            <input type="text" id="email">
+                            <legend>Загрузить фотографию в доп. инфо</legend>
+                            <label>
+                                <input type="file" class="form-files-about" ref="files" multiple v-on:change="handleFilesUploadService" />
+                            </label>
                         </fieldset>
-                        <button v-on:click="onChangeHeader">Отправить</button>
+                        <fieldset>
+                            <legend>Доп. описание</legend>
+                            <input type="text" class="about-menu-txt" v-bind:value="about[0].mainTitle">
+                            <label>
+                                <textarea class="about-text" draggable="false" v-bind:value="about[0].mainTitle"></textarea>
+                            </label>
+                        </fieldset>
+                        <button v-on:click="onChangeAbout">Сохранить</button>
                     </form>
 
                     <form v-on:submit.prevent class="form-back_office">

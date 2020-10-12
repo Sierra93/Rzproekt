@@ -75,6 +75,7 @@ $blueMenuHvr: #0074a8;
 .tab-wrapper input:checked + label + .tab-item {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 
@@ -97,7 +98,8 @@ $blueMenuHvr: #0074a8;
 }
 .block-change-menu_back_office {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 .form-back_office {
     margin: 1rem;

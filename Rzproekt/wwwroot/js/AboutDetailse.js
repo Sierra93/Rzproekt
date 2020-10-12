@@ -4,9 +4,7 @@ var appHome = new Vue({
     el: '#appHome',
     data: {
         date: new Date().getFullYear(),
-        blocksServices: '',
         ageCompanyTxt: '',
-        smoothScrollArr: [],
         urlApi: 'https://localhost:44349',
         //urlApi: 'https://devmyprojects24.xyz',
         listRequests: [
@@ -31,34 +29,29 @@ var appHome = new Vue({
         contact: [],
         footer: []
     },
+    update: {
+
+    },
     created() {
         console.log('init');
-    },
         
+        
+    },
     // После загрузки страницы вызывает функцию _getData для всех блоков сайта
     mounted: function () {
-        autosize(document.getElementsByClassName("serviceTxt"));
         this.$nextTick(function () {
             let self = this;
             let allREquest = this.$data.listRequests;
             allREquest.forEach(function (el) {
                 self._getData(el);
-            });
-            function sayHi() {
-                appHome.$data.blocksServices = document.getElementsByClassName("serviceTxt");
-                if (!appHome.$data.blocksServices) return;
-                self.getBlocksSevices();
-            }
-            setTimeout(sayHi, 100);
+            })
             let ageCompanyTxt = +JSON.stringify(this.$data.date-1938).slice('1');
             this.$data.ageCompanyTxt = this.declination(ageCompanyTxt, 'ГОД', 'ГОДА', 'ЛЕТ') + " НА РЫНКЕ";
+
+            $('.single-slide').slick();
         })
     },
     methods: {
-        getBlocksSevices() {
-
-            autosize(this.blocksServices);
-        },
         //  Функция выгружает все данные
         _getData(url) {
             let self = this;
@@ -69,9 +62,7 @@ var appHome = new Vue({
                     .then((response) => {
                         switch (response.data[0].block) {
                             case 'header':
-                                let arrId = ['','#main', '#service', '#about', '#project', '#client', '#conatact'];
                                 self.$data.header = response.data;
-                                self.$data.smoothScrollArr = arrId;
                                 console.log('header получен', response.data);
                                 break;
                             case 'service':
@@ -118,7 +109,7 @@ var appHome = new Vue({
             $('.block-nav a').on('click', function (event) {
                 var $anchor = $(this);
                 $('html, body').stop().animate({
-                    scrollTop: $($anchor.attr('href')).offset().top - 100
+                    scrollTop: $($anchor.attr('href')).offset().top - 49
                 }, 1000);
                 event.preventDefault();
             });
@@ -140,6 +131,3 @@ var appHome = new Vue({
         }
     }
 });
-//window.onload = function () {
-//    autosize(document.getElementsByClassName("serviceTxt"));
-//};

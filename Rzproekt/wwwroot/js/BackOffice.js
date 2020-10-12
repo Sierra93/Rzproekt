@@ -25,6 +25,7 @@ var back_office = new Vue({
         return {
             files: '',
             filesService: '',
+            filesAbout: '',
             date: new Date().getFullYear(),
             urlApi: 'https://localhost:44349',
             listRequests: [
@@ -83,6 +84,10 @@ var back_office = new Vue({
         handleFilesUploadService() {
             let arrBlocksImg = document.getElementsByClassName('form-files-service');
             this.filesService = arrBlocksImg;
+        },
+        handleFilesUploadAbout() {
+            let arrBlocksImg = document.getElementsByClassName('form-files-about');
+            this.filesAbout = arrBlocksImg;
         },
         handleFilesUploadClient() {
             let arrBlocksImg = document.getElementsByClassName('form-files-client');
@@ -168,7 +173,7 @@ var back_office = new Vue({
         onChangeAbout(e) {
             let self = this;
             let sUrl = self.$data.urlApi + '/api/back-office/change-order';
-            let MainTitle = $('.service-main-title')[0].value;
+            let MainTitle = $('.about-menu-title')[0].value;
             let Title = $('.service-title')[0].value;
             let Text = $('.service-text')[0].value;
             let idService = +e.target.getAttribute('idCustom') - 1;

@@ -1,0 +1,29 @@
+.aboutDetalis {
+    background: #fff;
+
+    .aboutDetalis-list {
+        margin: 3rem;
+        margin-bottom: 7rem;
+
+        article {
+            background: $liteSilver;
+            margin: 1rem;
+            overflow: hidden;
+
+            img {
+                width: 40rem!important;
+                float: right;
+            }
+
+            h1 {
+                padding: 1rem;
+                color: #3d5975;
+            }
+
+            p {
+                padding: 1rem;
+            }
+        }
+    }
+}
+

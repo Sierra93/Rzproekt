@@ -1,1 +1,69 @@
-﻿
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="~/css/StyleSheet.css" rel="stylesheet" />
+    <link href="~/css/media.css" rel="stylesheet" />
+    <link href="~/lib/slick.css" rel="stylesheet" />
+    <link href="~/lib/slick-theme.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="appHome">
+        <header class="header">
+            <div>
+                <div class="block-logo"><img :src="header[0].url" alt="logo" /></div>
+                <h1>{{ header[0].mainText }}</h1>
+            </div>
+            <nav class="block-nav">
+                <ul class="block-nav">
+                    <li>
+                        <a v-bind:href="urlApi" v-on:click="smoothScroll">Вернуться</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <div class="block aboutDetalis">
+                <div class="title-block">
+                    <h1>{{ about[0].mainTitle }}</h1>
+                </div>
+                <div class="border-bottom-title"></div>
+                <section class="aboutDetalis-list">
+                    <article>
+                        <div><img :src="about[0].url" alt="about" /></div>
+                        <h1>{{ about[0].title }}</h1>
+                        <p>{{ about[0].text }}</p>
+                    </article>
+                </section>
+            </div>
+            <div class="responsive" data-slick='{"slidesToShow": 4, "slidesToScroll": 4}'>
+                <div>123</div>
+                <div>qwe</div>
+                <div>asd</div>
+                <div>zxc</div>
+            </div>
+
+        </main>
+
+        <footer>
+            <small>
+                &copy; {{ date }} {{ footer[0].copyStr }}
+            </small>
+        </footer>
+    </div>
+    <script src="https://rawgit.com/jackmoore/autosize/master/dist/autosize.min.js"></script>
+    <script src="~/lib/vue/vue.min.js"></script>
+    <script src="~/lib/vue/axios/axios.js"></script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/slick.min.js"></script>
+    <script src="~/js/site.js"></script>
+    <script src="~/js/test.js"></script>
+    @*@RenderSection("Scripts", required: false)*@
+</body>
+</html>
