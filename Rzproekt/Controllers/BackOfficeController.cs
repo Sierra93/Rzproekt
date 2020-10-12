@@ -48,10 +48,10 @@ namespace Rzproekt.Controllers {
         }
 
         /// <summary>
-        /// Метод изменяет информацию о нас.
+        /// Метод изменяет полную информацию о нас.
         /// </summary>
         [HttpPost, Route("change-about")]
-        public async Task<IActionResult> ChangeAbout() {
+        public async Task<IActionResult> ChangeAbout([FromForm] IFormCollection filesClient, [FromForm] string jsonString) {
             AboutBase aboutBase = new AboutService(_db);
 
 
