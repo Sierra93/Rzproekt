@@ -241,7 +241,23 @@ var back_office = new Vue({
         onDelClient(e) {
             let self = this;
             let sUrl = self.$data.urlApi + '/api/back-office/delete-client';
+            let ClientId = idService + 1;
+            let oData = {
+                ClientId
+            };
+            try {
+                axios.put(sUrl, oData)
+                    .then((response) => {
+                        console.log('Данные успешно удалены');
 
+                    })
+                    .catch((XMLHttpRequest) => {
+                        throw new Error(XMLHttpRequest);
+                    });
+            }
+            catch (ex) {
+                throw new Error(ex);
+            }
         },
         //  Функция выгружает все данные
         _getData(url) {
