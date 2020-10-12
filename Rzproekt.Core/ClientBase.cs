@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
@@ -15,6 +16,20 @@ namespace Rzproekt.Core {
         /// <returns></returns>
         public abstract Task<IEnumerable> GetClientsInfo();
 
+        /// <summary>
+        /// Метод добавляет клиента.
+        /// </summary>
+        /// <param name="filesClient"></param>
+        /// <param name="jsonString"></param>
+        /// <returns></returns>
         public abstract Task AddClient();
+
+        /// <summary>
+        /// Метод изменяет клиента.
+        /// </summary>
+        /// <param name="filesClient"></param>
+        /// <param name="jsonString"></param>
+        /// <returns></returns>
+        public abstract Task ChangeClientInfo(IFormCollection filesClient, string jsonString);
     }
 }

@@ -61,5 +61,16 @@ namespace Rzproekt.Controllers {
         public async Task<IActionResult> AddClient([FromForm] IFormCollection filesService, [FromForm] string jsonString) {
             return Ok();
         }
+
+        /// <summary>
+        /// Метод изменяет клиента.
+        /// </summary>
+        [HttpPost, Route("change-client")]
+        public async Task<IActionResult> ChangeClientInfo([FromForm] IFormCollection filesClient, [FromForm] string jsonString) {
+            ClientBase clientBase = new ClientService(_db);
+            await clientBase.ChangeClientInfo(filesClient, jsonString);
+
+            return Ok();
+        }
     }
 }

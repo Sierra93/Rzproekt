@@ -26,6 +26,6 @@ namespace Rzproekt.Controllers {
             ClientBase clientBase = new ClientService(_db);
 
             return Ok(await clientBase.GetClientsInfo());
-        }
+        }        
     }
 }
