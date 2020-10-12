@@ -26,14 +26,14 @@ namespace Rzproekt.Controllers {
         public async Task<IActionResult> GetClientsInfo() {
             ClientBase clientBase = new ClientService(_db);
             var oClients = await clientBase.GetClientsInfo();
-            int iCount = await clientBase.GetClientCount();
+            //int iCount = await clientBase.GetClientCount();
 
-            var oResult = new {
-                results = oClients,
-                count = iCount
-            };
+            //var oResults = new {
+            //    results = oClients,
+            //    count = iCount
+            //};
 
-            return Ok(oResult);
+            return Ok(oClients);
         }        
     }
 }
