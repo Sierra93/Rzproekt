@@ -26,6 +26,8 @@ namespace Rzproekt.Core.Data {
 
         public DbSet<MessageDto> Messages { get; set; }     // Таблица сообщений.
 
+        public DbSet<CertDto> Certs { get; set; }   // Таблица сертификатов.
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
@@ -70,6 +72,10 @@ namespace Rzproekt.Core.Data {
 
             modelBuilder.Entity<MultepleContextTable>()
                 .HasOne(sc => sc.Messages)
+                .WithMany(s => s.MultepleContextTables);
+
+            modelBuilder.Entity<MultepleContextTable>()
+                .HasOne(sc => sc.Certs)
                 .WithMany(s => s.MultepleContextTables);
         }
     }

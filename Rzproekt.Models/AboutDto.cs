@@ -32,7 +32,7 @@ namespace Rzproekt.Models {
         public string ButtonText { get; set; }  // Текст кнопки.
 
         [Column("dop_main_title", TypeName = "nvarchar(1000)")]
-        public string DopMainTitke { get; set; }    // Заголовок на странице "Подробнее".
+        public string DopMainTitle { get; set; }    // Заголовок на странице "Подробнее".
 
         [Column("dop_title", TypeName = "nvarchar(1000)")]
         public string DopTitle { get; set; }    // Дополнительный заголовок.

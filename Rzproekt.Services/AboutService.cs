@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json.Linq;
 using Rzproekt.Core;
 using Rzproekt.Core.Data;
 using System;
@@ -15,7 +16,7 @@ namespace Rzproekt.Services {
     public class AboutService : AboutBase {
         ApplicationDbContext _db;
 
-        public AboutService(ApplicationDbContext db) => _db = db;        
+        public AboutService(ApplicationDbContext db) => _db = db;
 
         /// <summary>
         /// Метод получает все данные о нас.
@@ -31,8 +32,44 @@ namespace Rzproekt.Services {
         /// <param name="filesService"></param>
         /// <param name="jsonString"></param>
         /// <returns></returns>
-        public override Task ChangeAboutInfo(IFormCollection filesService, string jsonString) {
-            throw new NotImplementedException();
+        public async override Task ChangeAboutInfo(IFormCollection filesAbout, string jsonString) {
+            try {
+                //CommonMethodsService common = new CommonMethodsService(_db);
+                //JObject jsonObject = JObject.Parse(jsonString);
+                //string mainTitle = jsonObject["MainTitle"].ToString();
+                //string sText = jsonObject["Text"].ToString();
+                //string detailMainTitle = jsonObject["detMainTitle"].ToString();
+                //string detailTitle = jsonObject["detTitle"].ToString();
+                //string detailText = jsonObject["detText"].ToString();
+
+                //bool isEmpty = isEmptyStringInfo(mainTitle, sText, detailMainTitle, detailTitle, detailText);
+
+                //if (isEmpty) {
+
+                //}
+                throw new NotImplementedException();
+            }
+
+            catch (Exception ex) {
+                throw new Exception(ex.Message.ToString());
+            }
+        }
+
+        /// <summary>
+        /// Метод валидирует поля с информацией о нас.
+        /// </summary>
+        /// <returns></returns>
+        bool isEmptyStringInfo(string mainTitle, string sText, string detailMainTitle, string detailTitle, string detailText) {
+            if (!string.IsNullOrEmpty(mainTitle) &&
+                !string.IsNullOrEmpty(sText) &&
+                !string.IsNullOrEmpty(detailMainTitle) &&
+                !string.IsNullOrEmpty(detailTitle) &&
+                !string.IsNullOrEmpty(detailText)) {
+
+                return true;
+            }
+
+            return false;
         }
     }
 }

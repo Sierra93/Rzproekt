@@ -51,13 +51,11 @@ namespace Rzproekt.Services {
                     isClient.Url = path;
                 }
 
-                if (filesClient.Files.Count == 0 && !string.IsNullOrEmpty(newOrder.MainTitle))
-                {
-                    isClient =  await _db.Clients.FirstOrDefaultAsync();
+                // Если изменяет только заголовок.
+                if (filesClient.Files.Count == 0 && !string.IsNullOrEmpty(newOrder.MainTitle)) {
+                    isClient = await _db.Clients.FirstOrDefaultAsync();
                     isClient.MainTitle = newOrder.MainTitle;
                 }
-
-               // isClient.MainTitle = newOrder.MainTitle;
 
                 _db.Clients.Update(isClient);
 

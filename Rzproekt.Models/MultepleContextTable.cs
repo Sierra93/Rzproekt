@@ -33,5 +33,8 @@ namespace Rzproekt.Models {
 
         public int MessageId { get; set; }
         public MessageDto Messages { get; set; }
+
+        public int CertId { get; set; }
+        public CertDto Certs { get; set; }
     }
 }

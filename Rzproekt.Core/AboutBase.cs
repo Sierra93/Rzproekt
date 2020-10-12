@@ -22,6 +22,6 @@ namespace Rzproekt.Core {
         /// <param name="filesService"></param>
         /// <param name="jsonString"></param>
         /// <returns></returns>
-        public abstract Task ChangeAboutInfo(IFormCollection filesService, string jsonString);
+        public abstract Task ChangeAboutInfo(IFormCollection filesAbout, string jsonString);
     }
 }
