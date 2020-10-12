@@ -255,8 +255,9 @@
                     <form v-on:submit.prevent class="form-back_office">
                         <fieldset>
                             <legend>Добавить клиента в список</legend>
-                            <input type="text" id="name">
-                            <input type="text" id="email">
+                            <label>
+                                <input type="file" class="form-files-client" ref="files" multiple v-on:change="handleFilesUploadClient" />
+                            </label>
                         </fieldset>
                         <button v-on:click="onChangeHeader">Добавить</button>
                     </form>

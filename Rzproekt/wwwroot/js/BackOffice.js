@@ -233,18 +233,12 @@ var back_office = new Vue({
                 throw new Error(ex);
             }
         },
-        onAddClient(e) {
+        onAddClient() {
             let self = this;
             let sUrl = self.$data.urlApi + '/api/back-office/add-client';
-            let idService = +e.target.getAttribute('idCustom') - 1;
-            let ClientId = idService + 1;
             let formData = new FormData();
-            let oData = {
-                ClientId,
-                MainTitle
-            };
+
             formData.set('filesClient', this.filesService[idService].files[0]);
-            formData.set('jsonString', JSON.stringify(oData));
 
             try {
                 axios.post(sUrl, formData)
