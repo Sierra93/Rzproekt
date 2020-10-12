@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -69,6 +70,17 @@ namespace Rzproekt.Controllers {
         public async Task<IActionResult> ChangeClientInfo([FromForm] IFormCollection filesClient, [FromForm] string jsonString) {
             ClientBase clientBase = new ClientService(_db);
             await clientBase.ChangeClientInfo(filesClient, jsonString);
+
+            return Ok();
+        }
+
+        /// <summary>
+        /// Метод удаляет клиента.
+        /// </summary>
+        [HttpPut, Route("delete-client")]
+        public async Task<IActionResult> DeleteClient([FromBody] ClientDto clientDto) {
+            ClientBase clientBase = new ClientService(_db);
+            await clientBase.DeleteClient(clientDto.ClientId);
 
             return Ok();
         }

@@ -20,7 +20,7 @@ namespace Rzproekt.Services {
         ApplicationDbContext _db;
 
         public ClientService(ApplicationDbContext db) => _db = db;
-       
+
         /// <summary>
         /// Метод получает список клиентов.
         /// </summary>
@@ -75,6 +75,32 @@ namespace Rzproekt.Services {
         /// <returns></returns>
         async Task<ClientDto> GetEditClient(int id) {
             return await _db.Clients.Where(o => o.ClientId == id).FirstOrDefaultAsync();
+        }
+
+        /// <summary>
+        /// Метод удаляет клиента.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async override Task DeleteClient(int id) {
+            try {
+                if (id == 0) {
+                    throw new ArgumentNullException();
+                }
+
+                ClientDto client = await _db.Clients.Where(c => c.ClientId == id).FirstOrDefaultAsync();
+
+                _db.Clients.RemoveRange(client);
+                await _db.SaveChangesAsync();
+            }
+
+            catch (ArgumentNullException ex) {
+                throw new ArgumentNullException("Id не передан", ex.Message.ToString());
+            }
+
+            catch (Exception ex) {
+                throw new Exception(ex.Message.ToString());
+            }
         }
     }
 }

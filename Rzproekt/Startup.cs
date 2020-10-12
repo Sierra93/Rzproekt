@@ -14,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Rzproekt.Core.Data;
+using Rzproekt.Core.Extensions;
 using Rzproekt.Models;
 using Rzproekt.Services;
 
@@ -51,6 +52,10 @@ namespace Rzproekt {
                         ValidateIssuerSigningKey = true,
                     };
                 });
+
+            services.AddControllers()
+        .AddJsonOptions(options =>
+                options.JsonSerializerOptions.Converters.Add(new IntToStringExtension()));
 
             //services.Configure<FormOptions>(o =>  // currently all set to max, configure it to your needs!
             //{

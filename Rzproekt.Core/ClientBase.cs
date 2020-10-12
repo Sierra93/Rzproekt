@@ -31,5 +31,12 @@ namespace Rzproekt.Core {
         /// <param name="jsonString"></param>
         /// <returns></returns>
         public abstract Task ChangeClientInfo(IFormCollection filesClient, string jsonString);
+
+        /// <summary>
+        /// Метод удаляет клиента.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public abstract Task DeleteClient(int id);
     }
 }
