@@ -241,6 +241,7 @@ var back_office = new Vue({
         onDelClient(e) {
             let self = this;
             let sUrl = self.$data.urlApi + '/api/back-office/delete-client';
+            let idService = +e.target.getAttribute('idCustom') - 1;
             let ClientId = idService + 1;
             let oData = {
                 ClientId
