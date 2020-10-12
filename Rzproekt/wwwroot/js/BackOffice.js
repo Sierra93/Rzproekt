@@ -98,9 +98,9 @@ var back_office = new Vue({
             let filesVideoBgHeader = document.getElementById('form-files-det-about').files[0];
 
             if (!!filesLogo) {
-                this.files = filesLogo;
+                this.filesAbout = filesLogo;
             } else if (!!filesVideoBgHeader) {
-                this.files = filesVideoBgHeader;
+                this.filesAbout = filesVideoBgHeader;
             }
         },
 
@@ -185,18 +185,23 @@ var back_office = new Vue({
             let sUrl = self.$data.urlApi + '/api/back-office/change-about';
             let MainTitle = $('.about-Maintitle')[0].value;
             let Text = $('.about-text')[0].value;
+            let detMainTitle = $('.about-Det-Maintitle')[0].value;
             let detTitle = $('.about-DetTitle')[0].value;
             let detText = $('.about-detail-text')[0].value;
             let idService = +e.target.getAttribute('idCustom') - 1;
-            let OrderId = idService + 1;
+            let Id = idService + 1;
             let formData = new FormData();
             let oData = {
-                OrderId,
+                Id,
                 MainTitle,
-                Title,
-                Text
+                Text,
+                detMainTitle,
+                detTitle,
+                detText
             };
-            formData.set('filesService', this.filesService[idService].files[0]);
+            if (!!this.filesService[idService]) {
+                formData.set('filesAbout', this.filesService[idService].files[0]);
+            }
             formData.set('jsonString', JSON.stringify(oData));
 
             //mainTitle, title, text, url, buttonText, dopMainTitle, dopMainTitle, dopTitle, dopText, dopUrl, certUrl

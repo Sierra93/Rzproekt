@@ -101,6 +101,7 @@
                 <input type="radio" name="tab" id="tab3" />
                 <label class="tab-label no-select" for="tab3" nth="3">О НАС</label>
                 <div class="tab-item" id="tab-content3">
+
                     <form v-on:submit.prevent class="form-back_office">
                         <fieldset>
                             <legend>Загрузить фоновую картинку</legend>
@@ -118,9 +119,9 @@
                                 <textarea class="about-text" draggable="false" v-bind:value="about[0].text"></textarea> @* ТЕКСТ *@
                             </label>
                         </fieldset>
-
-                        <button v-on:click="onChangeAbout">Сохранить</button>
+                        <button v-bind:idCustom="about.Id" v-on:click="onChangeAbout">Сохранить</button>
                     </form>
+
                     <form v-on:submit.prevent class="form-back_office">
                         <fieldset>
                             <legend>Загрузить фотографию в доп. инфо</legend>
@@ -129,13 +130,17 @@
                             </label>
                         </fieldset>
                         <fieldset>
+                            <legend>Главный текст детальной инфо.</legend>
+                            <input type="text" class="about-Det-Maintitle" v-bind:value="about[0].dopMainTitle">@* MAIN TITLE *@
+                        </fieldset>
+                        <fieldset>
                             <legend>Доп. описание</legend>
                             <input type="text" class="about-DetTitle" v-bind:value="about[0].dopTitle">@* ДОП TITLE *@
                             <label>
                                 <textarea class="about-detail-text" draggable="false" v-bind:value="about[0].dopText"></textarea>@* ДОП ТЕКСТ *@
                             </label>
                         </fieldset>
-                        <button v-on:click="onChangeAbout">Сохранить</button>
+                        <button v-bind:idCustom="about.Id" v-on:click="onChangeAbout">Сохранить</button>
                     </form>
 
                     <form v-on:submit.prevent class="form-back_office">
@@ -143,7 +148,7 @@
                             <legend>Кнопка подробной информации</legend>
                             <input type="text" id="name" v-bind:value="about[0].buttonText">
                         </fieldset>
-                        <button v-on:click="onChangeAbout">Сохранить</button>
+                        <button v-bind:idCustom="about.Id" v-on:click="onChangeAbout">Сохранить</button>
                     </form>
                 </div>
 
