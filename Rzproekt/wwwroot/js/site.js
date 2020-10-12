@@ -68,7 +68,7 @@ var appHome = new Vue({
                 axios.post(sUrl)
                     .then((response) => {
                         console.log("RESPONSE!!!!!!!!!!!!!!!!", response);
-                        switch (response.data[0].block || response.data.results[0].block) {
+                        switch (response.data[0].block) {
                             case 'header':
                                 let arrId = ['','#main', '#service', '#about', '#project', '#client', '#contact'];
                                 self.$data.header = response.data;
