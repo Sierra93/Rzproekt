@@ -399,7 +399,8 @@
       background: #6d39ff; }
 
 .aboutDetalis {
-  background: #fff; }
+  background: #fff;
+  padding-top: 11rem; }
   .aboutDetalis .aboutDetalis-list {
     margin: 3rem;
     margin-bottom: 7rem; }

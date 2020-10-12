@@ -56,8 +56,13 @@ var appHome = new Vue({
     },
     methods: {
         getBlocksSevices() {
-
             autosize(this.blocksServices);
+            $('.multiple-items').slick({
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 2000,
+            });
         },
         //  Функция выгружает все данные
         _getData(url) {
@@ -67,7 +72,6 @@ var appHome = new Vue({
             try {
                 axios.post(sUrl)
                     .then((response) => {
-                        console.log("RESPONSE!!!!!!!!!!!!!!!!", response);
                         switch (response.data[0].block) {
                             case 'header':
                                 let arrId = ['','#main', '#service', '#about', '#project', '#client', '#contact'];

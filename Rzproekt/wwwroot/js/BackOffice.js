@@ -93,6 +93,16 @@ var back_office = new Vue({
             let arrBlocksImg = document.getElementsByClassName('form-files-client');
             this.filesService = arrBlocksImg;
         },
+        handleFilesUploadDetAbout() {
+            let filesLogo = document.getElementById('form-files-about').files[0];
+            let filesVideoBgHeader = document.getElementById('form-files-det-about').files[0];
+
+            if (!!filesLogo) {
+                this.files = filesLogo;
+            } else if (!!filesVideoBgHeader) {
+                this.files = filesVideoBgHeader;
+            }
+        },
 
         // Отправляет измененные данные первого блока сайта
         onChangeHeader() {
@@ -172,10 +182,11 @@ var back_office = new Vue({
         // Отправляет измененные данные блока About
         onChangeAbout(e) {
             let self = this;
-            let sUrl = self.$data.urlApi + '/api/back-office/change-order';
-            let MainTitle = $('.about-menu-title')[0].value;
-            let Title = $('.service-title')[0].value;
-            let Text = $('.service-text')[0].value;
+            let sUrl = self.$data.urlApi + '/api/back-office/change-about';
+            let MainTitle = $('.about-Maintitle')[0].value;
+            let Text = $('.about-text')[0].value;
+            let detTitle = $('.about-DetTitle')[0].value;
+            let detText = $('.about-detail-text')[0].value;
             let idService = +e.target.getAttribute('idCustom') - 1;
             let OrderId = idService + 1;
             let formData = new FormData();
@@ -188,6 +199,7 @@ var back_office = new Vue({
             formData.set('filesService', this.filesService[idService].files[0]);
             formData.set('jsonString', JSON.stringify(oData));
 
+            //mainTitle, title, text, url, buttonText, dopMainTitle, dopMainTitle, dopTitle, dopText, dopUrl, certUrl
 
             try {
                 axios.post(sUrl, formData)
