@@ -123,25 +123,23 @@
   background: #f7f5f5;
   padding: 3rem 0; }
   .clients .clients-list {
+    width: 80%;
+    margin: 4rem auto; }
+  .clients .slick-track {
     display: flex;
     align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin: 2rem auto; }
-    .clients .clients-list .clients-block {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      width: 10rem;
-      height: 6rem;
-      margin: 2rem;
-      cursor: pointer;
-      filter: grayscale(1); }
-      .clients .clients-list .clients-block:hover {
-        filter: grayscale(0); }
-      .clients .clients-list .clients-block img {
-        width: 10rem; }
+    justify-content: center; }
+  .clients .slick-slide img {
+    display: block;
+    margin: 0 auto; }
+  .clients .slick-prev:before, .clients .slick-next:before {
+    font-family: 'slick';
+    font-size: 20px;
+    line-height: 1;
+    opacity: .75;
+    color: black;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale; }
 
 .contacts {
   margin-bottom: 4rem;

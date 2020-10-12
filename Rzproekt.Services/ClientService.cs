@@ -40,16 +40,24 @@ namespace Rzproekt.Services {
             try {
                 CommonMethodsService common = new CommonMethodsService(_db);
                 ClientDto newOrder = JsonSerializer.Deserialize<ClientDto>(jsonString);
-
-                var isClient = await GetEditClient(newOrder.ClientId);
+                ClientDto isClient = null;
+               
 
                 if (filesClient.Files.Count > 0) {
                     var path = await common.UploadSingleFile(filesClient);
                     path = path.Replace("wwwroot", "");
+
+                    isClient = await GetEditClient(newOrder.ClientId);
                     isClient.Url = path;
                 }
 
-                isClient.MainTitle = newOrder.MainTitle;
+                if (filesClient.Files.Count == 0 && !string.IsNullOrEmpty(newOrder.MainTitle))
+                {
+                    isClient =  await _db.Clients.FirstOrDefaultAsync();
+                    isClient.MainTitle = newOrder.MainTitle;
+                }
+
+               // isClient.MainTitle = newOrder.MainTitle;
 
                 _db.Clients.Update(isClient);
 

@@ -232,7 +232,10 @@ var back_office = new Vue({
                 ClientId,
                 MainTitle
             };
-            formData.set('filesClient', this.filesService[idService].files[0]);
+            if (!!this.filesService[idService]) {
+                formData.set('filesClient', this.filesService[idService].files[0]);
+            }
+            
             formData.set('jsonString', JSON.stringify(oData));
 
 
