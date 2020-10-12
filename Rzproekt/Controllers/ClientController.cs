@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -24,8 +25,15 @@ namespace Rzproekt.Controllers {
         [HttpPost, Route("get-clients")]
         public async Task<IActionResult> GetClientsInfo() {
             ClientBase clientBase = new ClientService(_db);
+            var oClients = await clientBase.GetClientsInfo();
+            int iCount = await clientBase.GetClientCount();
 
-            return Ok(await clientBase.GetClientsInfo());
+            var oResult = new {
+                results = oClients,
+                count = iCount
+            };
+
+            return Ok(oResult);
         }        
     }
 }

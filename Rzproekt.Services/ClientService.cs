@@ -8,6 +8,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -27,15 +28,7 @@ namespace Rzproekt.Services {
         /// <returns></returns>
         public async override Task<IEnumerable> GetClientsInfo() {
             return await _db.Clients.ToListAsync();
-        }
-
-        /// <summary>
-        /// Метод добавляет нового клиента.
-        /// </summary>
-        /// <returns></returns>
-        public override Task AddClient() {
-            throw new NotImplementedException();
-        }
+        }    
 
         /// <summary>
         /// Метод изменяет клиента.
@@ -58,7 +51,6 @@ namespace Rzproekt.Services {
                 isClient.MainTitle = newOrder.MainTitle;
 
                 _db.Clients.Update(isClient);
-                Debugger.Break();
 
                 await _db.SaveChangesAsync();
             }
@@ -96,6 +88,45 @@ namespace Rzproekt.Services {
 
             catch (ArgumentNullException ex) {
                 throw new ArgumentNullException("Id не передан", ex.Message.ToString());
+            }
+
+            catch (Exception ex) {
+                throw new Exception(ex.Message.ToString());
+            }
+        }
+
+        /// <summary>
+        /// Метод добавляет нового клиента.
+        /// </summary>
+        /// <returns></returns>
+        public async override Task AddClient(IFormCollection filesClient) {
+            try {
+                CommonMethodsService common = new CommonMethodsService(_db);
+                ClientDto client = new ClientDto();
+
+                if (filesClient.Files.Count > 0) {
+                    var path = await common.UploadSingleFile(filesClient);
+                    path = path.Replace("wwwroot", "");
+                    client.Url = path;
+                }
+
+                _db.Clients.Update(client);
+
+                await _db.SaveChangesAsync();
+            }
+
+            catch (Exception ex) {
+                throw new Exception(ex.Message.ToString());
+            }
+        }
+
+        /// <summary>
+        /// Метод получает кол-во клиентов.
+        /// </summary>
+        /// <returns></returns>
+        public async override Task<int> GetClientCount() {
+            try {
+                return await _db.Clients.CountAsync();
             }
 
             catch (Exception ex) {

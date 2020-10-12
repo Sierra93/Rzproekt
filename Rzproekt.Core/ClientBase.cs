@@ -22,7 +22,7 @@ namespace Rzproekt.Core {
         /// <param name="filesClient"></param>
         /// <param name="jsonString"></param>
         /// <returns></returns>
-        public abstract Task AddClient();
+        public abstract Task AddClient(IFormCollection filesClient);
 
         /// <summary>
         /// Метод изменяет клиента.
@@ -38,5 +38,11 @@ namespace Rzproekt.Core {
         /// <param name="id"></param>
         /// <returns></returns>
         public abstract Task DeleteClient(int id);
+
+        /// <summary>
+        /// Метод получает кол-во клиентов.
+        /// </summary>
+        /// <returns></returns>
+        public abstract Task<int> GetClientCount();
     }
 }
