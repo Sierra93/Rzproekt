@@ -7,6 +7,8 @@ namespace Rzproekt.Core.Consts {
     /// Класс описывает константы названий блоков.
     /// </summary>
     public class BlockType {
-        public const string HEADER = "header"; 
+        public const string HEADER = "header";
+
+        public const string CLIENT = "client";
     }
 }

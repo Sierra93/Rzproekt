@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Rzproekt.Core;
+using Rzproekt.Core.Consts;
 using Rzproekt.Core.Data;
 using Rzproekt.Models;
 using System;
@@ -108,6 +109,7 @@ namespace Rzproekt.Services {
                     var path = await common.UploadSingleFile(filesClient);
                     path = path.Replace("wwwroot", "");
                     client.Url = path;
+                    client.Block = BlockType.CLIENT;
                 }
 
                 _db.Clients.Update(client);

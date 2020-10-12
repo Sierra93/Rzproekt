@@ -52,6 +52,9 @@ namespace Rzproekt.Controllers {
         /// </summary>
         [HttpPost, Route("change-about")]
         public async Task<IActionResult> ChangeAbout() {
+            AboutBase aboutBase = new AboutService(_db);
+
+
             return Ok();
         }
 
