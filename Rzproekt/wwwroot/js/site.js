@@ -7,8 +7,8 @@ var appHome = new Vue({
         blocksServices: '',
         ageCompanyTxt: '',
         smoothScrollArr: [],
-        //urlApi: 'https://localhost:44349',
-        urlApi: 'https://devmyprojects24.xyz',
+        urlApi: 'https://localhost:44349',
+        //urlApi: 'https://devmyprojects24.xyz',
         listRequests: [
             '/api/header/get-header',
             '/api/order/get-orders',

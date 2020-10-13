@@ -3,9 +3,11 @@ using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Linq;
 using Rzproekt.Core;
 using Rzproekt.Core.Data;
+using Rzproekt.Models;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -34,20 +36,34 @@ namespace Rzproekt.Services {
         /// <returns></returns>
         public async override Task ChangeAboutInfo(IFormCollection filesAbout, string jsonString) {
             try {
-                //CommonMethodsService common = new CommonMethodsService(_db);
-                //JObject jsonObject = JObject.Parse(jsonString);
-                //string mainTitle = jsonObject["MainTitle"].ToString();
-                //string sText = jsonObject["Text"].ToString();
-                //string detailMainTitle = jsonObject["detMainTitle"].ToString();
-                //string detailTitle = jsonObject["detTitle"].ToString();
-                //string detailText = jsonObject["detText"].ToString();
+                CommonMethodsService common = new CommonMethodsService(_db);
+                JObject jsonObject = JObject.Parse(jsonString);
+                string mainTitle = jsonObject["MainTitle"].ToString();
+                string sText = jsonObject["Text"].ToString();
+                string detailMainTitle = jsonObject["detMainTitle"].ToString();
+                string detailTitle = jsonObject["detTitle"].ToString();
+                string detailText = jsonObject["detText"].ToString();
+                AboutDto oAbout = null;
 
-                //bool isEmpty = isEmptyStringInfo(mainTitle, sText, detailMainTitle, detailTitle, detailText);
+                bool isEmpty = isEmptyStringInfo(mainTitle, sText, detailMainTitle, detailTitle, detailText);
 
-                //if (isEmpty) {
+                if (!isEmpty) {
+                    throw new ArgumentNullException();
+                }
 
-                //}
-                throw new NotImplementedException();
+                oAbout = await _db.Abouts.FirstOrDefaultAsync();
+                oAbout.MainTitle = mainTitle;
+                oAbout.Text = sText;
+                oAbout.DopMainTitle = detailMainTitle;
+                oAbout.DopTitle = detailTitle;
+                oAbout.DopText = detailText;
+
+                _db.Update(oAbout);
+                await _db.SaveChangesAsync();                
+            }
+
+            catch (ArgumentNullException ex) {
+                throw new ArgumentNullException("Не все поля заполнены", ex.Message.ToString());
             }
 
             catch (Exception ex) {

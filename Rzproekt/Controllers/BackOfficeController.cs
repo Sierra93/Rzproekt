@@ -53,7 +53,7 @@ namespace Rzproekt.Controllers {
         [HttpPost, Route("change-about")]
         public async Task<IActionResult> ChangeAbout([FromForm] IFormCollection filesAbout, [FromForm] string jsonString) {
             AboutBase aboutBase = new AboutService(_db);
-
+            await aboutBase.ChangeAboutInfo(filesAbout, jsonString);
 
             return Ok();
         }
