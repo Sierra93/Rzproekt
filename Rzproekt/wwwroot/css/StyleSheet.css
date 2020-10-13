@@ -92,7 +92,8 @@
       padding: 1rem;
       min-height: 21rem;
       resize: none;
-      outline: none; }
+      outline: none;
+      font-size: 1rem; }
     .service-list article p {
       padding: 1rem; }
 
@@ -121,13 +122,14 @@
 
 .aboutTxtTextarea {
   height: auto;
-  width: 16rem;
+  width: 28rem;
   background: transparent;
   border: none;
-  padding: 1rem;
+  padding: 0rem;
   min-height: 15rem;
   resize: none;
-  outline: none; }
+  outline: none;
+  font-size: 1.2rem; }
 
 .clients {
   background: #f7f5f5;

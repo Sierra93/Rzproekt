@@ -149,6 +149,19 @@
                             <input type="text" id="name" v-bind:value="about[0].buttonText">
                         </fieldset>
                         <button v-bind:idCustom="about.Id" v-on:click="onChangeAbout">Сохранить</button>
+
+                        <fieldset>
+                            <legend>Список сертификатов</legend>
+                            <input id="searchCert" type="search" placeholder="Введите название сертификата" />
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>Загрузить сертификат</legend>
+                            <label>
+                                <input type="file" class="form-files-cert" ref="files" multiple v-on:change="handleFilesUploadCert" /> @* ДОП ФОТО *@
+                            </label>
+                        </fieldset>
+                        <button v-on:click="onAddCert">Добавить</button>
                     </form>
                 </div>
 
@@ -160,20 +173,20 @@
 
                         <fieldset>
                             <legend>Статистика 2</legend>
-                            <input type="text" class="stat-menu-txt" v-bind:value="stat[0].number">
-                            <input type="text" class="stat-menu-txt" v-bind:value="stat[0].text">
+                            <input type="text" class="stat-menu-number-one" v-bind:value="stat[0].number">
+                            <input type="text" class="stat-menu-txt-one" v-bind:value="stat[0].text">
                         </fieldset>
 
                         <fieldset>
                             <legend>Статистика 3</legend>
-                            <input type="text" class="stat-menu-txt" v-bind:value="stat[1].number">
-                            <input type="text" class="stat-menu-txt" v-bind:value="stat[1].text">
+                            <input type="text" class="stat-menu-number-two" v-bind:value="stat[1].number">
+                            <input type="text" class="stat-menu-txt-two" v-bind:value="stat[1].text">
                         </fieldset>
 
                         <fieldset>
                             <legend>Статистика 4</legend>
-                            <input type="text" class="stat-menu-txt" v-bind:value="stat[2].number">
-                            <input type="text" class="stat-menu-txt" v-bind:value="stat[2].text">
+                            <input type="text" class="stat-menu-number-three" v-bind:value="stat[2].number">
+                            <input type="text" class="stat-menu-txt-two" v-bind:value="stat[2].text">
                         </fieldset>
 
                         <button v-on:click="onChangeHeader">Сохранить</button>

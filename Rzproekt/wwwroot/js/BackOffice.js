@@ -26,6 +26,7 @@ var back_office = new Vue({
             files: '',
             filesService: '',
             filesAbout: '',
+            filesCert: '',
             date: new Date().getFullYear(),
             urlApi: 'https://localhost:44349',
             //urlApi: 'https://devmyprojects24.xyz',
@@ -95,14 +96,18 @@ var back_office = new Vue({
             this.filesService = arrBlocksImg;
         },
         handleFilesUploadDetAbout() {
-            let filesLogo = document.getElementsByClassName('form-files-about')[0].files[0];
-            let filesVideoBgHeader = document.getElementsByClassName('form-files-det-about')[0].files[0];
+            let filesAbout = document.getElementsByClassName('form-files-about')[0].files[0];
+            let filesDetAbout = document.getElementsByClassName('form-files-det-about')[0].files[0];
 
-            if (!!filesLogo) {
-                this.filesAbout = filesLogo;
-            } else if (!!filesVideoBgHeader) {
-                this.filesAbout = filesVideoBgHeader;
+            if (!!filesAbout) {
+                this.filesAbout = filesAbout;
+            } else if (!!filesDetAbout) {
+                this.filesAbout = filesDetAbout;
             }
+        },
+        handleFilesUploadCert() {
+            let filesCert = document.getElementsByClassName('form-files-cert')[0].files;
+            this.filesCert = filesCert;
         },
 
         // Отправляет измененные данные первого блока сайта
@@ -211,6 +216,83 @@ var back_office = new Vue({
 
             try {
                 axios.post(sUrl, formData)
+                    .then((response) => {
+                        console.log('Данные успешно изменены');
+
+                    })
+                    .catch((XMLHttpRequest) => {
+                        throw new Error(XMLHttpRequest);
+                    });
+            }
+            catch (ex) {
+                throw new Error(ex);
+            }
+        },
+        onSearthCert() {
+            let that = this;
+            let arrFilter = [];
+            let urlApi = that.MainData.urlApi;
+            let inputCert = document.getElementById("searchCert").value;
+            let sUrl = urlApi + '/api/auth/get-cert';
+
+            axios.post(sUrl)
+                .then((response) => {
+                    arrFilter = response.data.map(function (el) {
+                        if (el.login.indexOf(inputCert) > -1) arrFilter.push(el);
+                        return arrFilter;
+                    });
+                    if (inputCert) {
+                        that.listUsers = arrFilter[0];
+                    } else {
+                        that.listUsers = []
+                    }
+                    console.log("success / getAllCert", response);
+                })
+                .catch((XMLHttpRequest) => {
+                    console.log("request send error", XMLHttpRequest);
+                });
+        },
+        onAddCert() {
+            let self = this;
+            let sUrl = self.$data.urlApi + '/api/back-office/add-cert';
+            let formData = new FormData();
+
+            if (!!this.filesCert) formData.set('filesAddCert', this.filesCert);
+            try {
+                axios.post(sUrl, formData)
+                    .then((response) => {
+                        console.log('Данные успешно изменены');
+
+                    })
+                    .catch((XMLHttpRequest) => {
+                        throw new Error(XMLHttpRequest);
+                    });
+            }
+            catch (ex) {
+                throw new Error(ex);
+            }
+        },
+
+        onChangeStat() {
+            let self = this;
+            let sUrl = self.$data.urlApi + '/api/back-office/change-stat';
+            let nOne = $('.stat-menu-number-one')[0].value;
+            let sOne = $('.stat-menu-txt-one')[0].value;
+            let nTwo = $('.stat-menu-number-Two')[0].value;
+            let sTwo = $('.stat-menu-txt-Two')[0].value;
+            let nThree = $('.stat-menu-number-three')[0].value;
+            let sThree = $('.stat-menu-txt-three')[0].value;
+
+            let oData = {
+                nOne,
+                sOne,
+                nTwo,
+                sTwo,
+                nThree,
+                sThree
+            }
+            try {
+                axios.post(sUrl, oData)
                     .then((response) => {
                         console.log('Данные успешно изменены');
 

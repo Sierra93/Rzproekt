@@ -5,6 +5,8 @@ var appHome = new Vue({
     data: {
         date: new Date().getFullYear(),
         blocksServices: '',
+        aboutTxtTextarea: '',
+        aboutDetailTxtTextarea: '',
         ageCompanyTxt: '',
         smoothScrollArr: [],
         urlApi: 'https://localhost:44349',
@@ -44,12 +46,14 @@ var appHome = new Vue({
             allREquest.forEach(function (el) {
                 self._getData(el);
             });
-            function sayHi() {
+            function autosize() {
                 appHome.$data.blocksServices = document.getElementsByClassName("serviceTxt");
-                if (!appHome.$data.blocksServices) return;
+                appHome.$data.aboutTxtTextarea = document.getElementsByClassName("aboutTxtTextarea");
+                appHome.$data.aboutDetailTxtTextarea = document.getElementsByClassName("aboutDetailTxtTextarea");
+                if (!appHome.$data.blocksServices || !appHome.$data.aboutTxtTextarea || !appHome.$data.aboutDetailTxtTextarea) return;
                 self.getBlocksSevices();
             }
-            setTimeout(sayHi, 100);
+            setTimeout(autosize, 100);
             let ageCompanyTxt = +JSON.stringify(this.$data.date-1938).slice('1');
             this.$data.ageCompanyTxt = this.declination(ageCompanyTxt, 'ГОД', 'ГОДА', 'ЛЕТ') + " НА РЫНКЕ";
         })
@@ -57,6 +61,8 @@ var appHome = new Vue({
     methods: {
         getBlocksSevices() {
             autosize(this.blocksServices);
+            autosize(this.aboutTxtTextarea);
+            autosize(this.aboutDetailTxtTextarea);
             $('[data-fancybox="gallery"]').fancybox({
                 selector: '.imglist a:visible'
             });
