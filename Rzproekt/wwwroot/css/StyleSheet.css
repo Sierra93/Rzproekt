@@ -131,7 +131,12 @@
     justify-content: center; }
   .clients .slick-slide img {
     display: block;
-    margin: 0 auto; }
+    margin: 0 auto;
+    filter: grayscale(1); }
+    .clients .slick-slide img:hover {
+      filter: grayscale(0); }
+  .clients .slick-initialized .slick-slide {
+    outline: none; }
   .clients .slick-prev:before, .clients .slick-next:before {
     font-family: 'slick';
     font-size: 20px;
