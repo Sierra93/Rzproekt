@@ -1,10 +1,10 @@
 .aboutDetalis {
     background: #fff;
-    padding-top: 11rem;
+    padding-top: 10rem !important;
 
     .aboutDetalis-list {
-        margin: 3rem;
-        margin-bottom: 7rem;
+        margin: 3rem auto;
+        width: 80%;
 
         article {
             background: $liteSilver;
@@ -25,5 +25,23 @@
                 padding: 1rem;
             }
         }
+    }
+}
+.aboutSert {
+    padding-top: 0!important;
+}
+.cert-list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 6rem;
+
+    a {
+        img {
+            width: 160px
+        }
+    }
+    a[data-fancybox="gallery"] {
+        margin: 2rem;
     }
 }

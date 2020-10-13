@@ -8,14 +8,20 @@
     flex-wrap: wrap;
     margin: 2rem auto;
 
+    .siema {
+        background: silver;
+        width: 20rem;
+        height: 35rem;
+    }
+
     .project-block {
         display: flex;
         align-items: center;
         justify-content: center;
         background: silver;
         overflow: hidden;
-        width: 26rem;
-        height: 29rem;
+        width: 23rem;
+        height: 25rem;
         margin: 2rem;
         cursor: pointer;
 
