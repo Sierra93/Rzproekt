@@ -189,6 +189,7 @@ var back_office = new Vue({
             let detMainTitle = $('.about-Det-Maintitle')[0].value;
             let detTitle = $('.about-DetTitle')[0].value;
             let detText = $('.about-detail-text')[0].value;
+            let mainImg = !!e.target.getAttribute('id');
             let idService = +e.target.getAttribute('idCustom') - 1;
             let Id = idService + 1;
             let formData = new FormData();
@@ -198,7 +199,8 @@ var back_office = new Vue({
                 Text,
                 detMainTitle,
                 detTitle,
-                detText
+                detText,
+                mainImg
             };
             if (!!this.filesService[idService]) {
                 formData.set('filesAbout', this.filesService[idService].files[0]);

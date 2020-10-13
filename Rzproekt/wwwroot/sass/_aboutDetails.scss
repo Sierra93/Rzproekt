@@ -12,13 +12,17 @@
             overflow: hidden;
 
             img {
-                width: 40rem !important;
                 float: right;
+                max-width: 35rem !important;
+                float: right;
+                margin-left: 1rem;
+                margin-bottom: 1rem;
             }
 
             h1 {
                 padding: 1rem;
                 color: #3d5975;
+                font-size: 2rem;
             }
 
             p {
@@ -44,4 +48,16 @@
     a[data-fancybox="gallery"] {
         margin: 2rem;
     }
+}
+.aboutDetailTxtTextarea {
+    height: auto;
+    width: 100%;
+    max-width: 53rem;
+    background: transparent;
+    border: none;
+    padding: 1rem;
+    min-height: 15rem;
+    resize: none;
+    outline: none;
+    font-size: 1rem;
 }

@@ -119,7 +119,7 @@
                                 <textarea class="about-text" draggable="false" v-bind:value="about[0].text"></textarea> @* ТЕКСТ *@
                             </label>
                         </fieldset>
-                        <button v-bind:idCustom="about.Id" v-on:click="onChangeAbout">Сохранить</button>
+                        <button v-bind:idCustom="about.Id" id="mainImg" v-on:click="onChangeAbout">Сохранить</button>
                     </form>
 
                     <form v-on:submit.prevent class="form-back_office">

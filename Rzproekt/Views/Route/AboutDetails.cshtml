@@ -30,14 +30,14 @@
         <main>
             <div class="block aboutDetalis">
                 <div class="title-block">
-                    <h1>О КОМПАНИИ</h1>
+                    <h1>{{ about[0].dopMainTitle }}</h1>
                 </div>
                 <div class="border-bottom-title"></div>
                 <section class="aboutDetalis-list">
                     <article>
                         <div><img :src="about[0].url" alt="about" /></div>
-                        <h1>{{ about[0].title }}</h1>
-                        <p>{{ about[0].text }}</p>
+                        <h1>{{ about[0].dopTitle }}</h1>
+                        <textarea class="aboutDetailTxtTextarea" readonly>{{ about[0].dopText }}</textarea>
                     </article>
                 </section>
             </div>

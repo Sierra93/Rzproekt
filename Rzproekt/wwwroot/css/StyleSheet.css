@@ -119,6 +119,16 @@
     background-position: center;
     height: auto; }
 
+.aboutTxtTextarea {
+  height: auto;
+  width: 16rem;
+  background: transparent;
+  border: none;
+  padding: 1rem;
+  min-height: 15rem;
+  resize: none;
+  outline: none; }
+
 .clients {
   background: #f7f5f5;
   padding: 3rem 0; }
@@ -416,11 +426,15 @@
       margin: 1rem;
       overflow: hidden; }
       .aboutDetalis .aboutDetalis-list article img {
-        width: 40rem !important;
-        float: right; }
+        float: right;
+        max-width: 35rem !important;
+        float: right;
+        margin-left: 1rem;
+        margin-bottom: 1rem; }
       .aboutDetalis .aboutDetalis-list article h1 {
         padding: 1rem;
-        color: #3d5975; }
+        color: #3d5975;
+        font-size: 2rem; }
       .aboutDetalis .aboutDetalis-list article p {
         padding: 1rem; }
 
@@ -436,6 +450,18 @@
     width: 160px; }
   .cert-list a[data-fancybox="gallery"] {
     margin: 2rem; }
+
+.aboutDetailTxtTextarea {
+  height: auto;
+  width: 100%;
+  max-width: 53rem;
+  background: transparent;
+  border: none;
+  padding: 1rem;
+  min-height: 15rem;
+  resize: none;
+  outline: none;
+  font-size: 1rem; }
 
 #menu__toggle {
   opacity: 0; }
