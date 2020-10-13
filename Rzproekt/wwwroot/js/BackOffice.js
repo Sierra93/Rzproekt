@@ -95,8 +95,8 @@ var back_office = new Vue({
             this.filesService = arrBlocksImg;
         },
         handleFilesUploadDetAbout() {
-            let filesLogo = document.getElementById('form-files-about').files[0];
-            let filesVideoBgHeader = document.getElementById('form-files-det-about').files[0];
+            let filesLogo = document.getElementsByClassName('form-files-about')[0].files[0];
+            let filesVideoBgHeader = document.getElementsByClassName('form-files-det-about')[0].files[0];
 
             if (!!filesLogo) {
                 this.filesAbout = filesLogo;
