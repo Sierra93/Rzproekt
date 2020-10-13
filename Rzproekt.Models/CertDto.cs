@@ -22,6 +22,9 @@ namespace Rzproekt.Models {
         [Column("block", TypeName = "nvarchar(500)")]
         public string Block { get; set; }   // Тип блока сертификатов.
 
+        [Column("cert_title", TypeName = "nvarchar(1000)")]
+        public string CertTitle { get; set; }   // Заголовок сертификаты.
+
         public List<MultepleContextTable> MultepleContextTables { get; set; }
 
         public CertDto() {

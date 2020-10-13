@@ -23,5 +23,31 @@ namespace Rzproekt.Core {
         /// <param name="jsonString"></param>
         /// <returns></returns>
         public abstract Task ChangeAboutInfo(IFormCollection filesAbout, string jsonString);
+
+        /// <summary>
+        /// Метод добавляет сертификаты.
+        /// </summary>
+        /// <param name=""></param>
+        /// <returns></returns>
+        public abstract Task AddCert(IFormCollection filesCert);
+
+        /// <summary>
+        /// Метод удаляет сертификат.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public abstract Task RemoveCert(int id);
+
+        /// <summary>
+        /// Метод получает список сертификатов.
+        /// </summary>
+        /// <returns></returns>
+        public abstract Task<IEnumerable> GetCerts();
+
+        /// <summary>
+        /// Метод удаляет все сертификаты.
+        /// </summary>
+        /// <returns></returns>
+        public abstract Task RemoveAllCerts();
     }
 }

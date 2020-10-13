@@ -17,7 +17,7 @@ namespace Rzproekt.Services {
         public CommonMethodsService(ApplicationDbContext db) => _db = db;
 
         /// <summary>
-        /// Метод загружает файл в папку и возвращает путь.
+        /// Метод загружает файлы в папку и возвращает путь.
         /// </summary>
         /// <param name="form">Коллекция с файлами.</param>
         /// <returns></returns>

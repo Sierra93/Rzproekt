@@ -90,5 +90,51 @@ namespace Rzproekt.Controllers {
 
             return Ok();
         }
+
+        /// <summary>
+        /// Метод добавляет сертификаты.
+        /// </summary>
+        [HttpPost, Route("add-cert")]
+        public async Task<IActionResult> AddCert([FromForm] IFormCollection filesCert) {
+            AboutBase cert = new AboutService(_db);
+            await cert.AddCert(filesCert);
+
+            return Ok();
+        }
+
+        /// <summary>
+        /// Метод получает список сертификатов.
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost, Route("get-certs")]
+        public async Task<IActionResult> GetCerts() {
+            AboutBase cert = new AboutService(_db);
+
+            return Ok(await cert.GetCerts());
+        }
+
+        /// <summary>
+        /// Метод удаляет все сертификаты.
+        /// </summary>
+        /// <returns></returns>
+        [HttpPut, Route("remove-certs")]
+        public async Task<IActionResult> RemoveAllCerts() {
+            AboutBase cert = new AboutService(_db);
+            await cert.RemoveAllCerts();
+
+            return Ok();
+        }
+
+        /// <summary>
+        /// Метод удаляет сертификат.
+        /// </summary>
+        /// <returns></returns>
+        [HttpPut, Route("remove-certs")]
+        public async Task<IActionResult> RemoveCert() {
+            AboutBase cert = new AboutService(_db);
+            //await cert.RemoveAllCerts();
+
+            return Ok();
+        }
     }
 }
