@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Linq;
 using Rzproekt.Core;
+using Rzproekt.Core.Consts;
 using Rzproekt.Core.Data;
 using Rzproekt.Models;
 using System;
@@ -123,21 +124,26 @@ namespace Rzproekt.Services {
         /// <returns></returns>
         public async override Task AddCert(IFormCollection filesCert) {
             try {
-                CommonMethodsService common = new CommonMethodsService(_db);
-                CertDto cert = null;
+                CommonMethodsService common = new CommonMethodsService(_db);                
 
                 if (filesCert.Files.Count == 0) {
                     throw new ArgumentNullException();
                 }
 
                 // Итеративно добавляет сертификаты.
-                int i = 0;
-                filesCert.ToList().ForEach(async el => {
-                    await common.Upload(filesCert, i);
-                    await _db.AddRangeAsync(cert);
-                    i++;
-                });
+                //int i = 0;
+                //filesCert.ToList().ForEach(async el => {
+                //    var path = await common.Upload(filesCert, i);
+                //    path = path.Replace("wwwroot", "");
+                //    cert.Url = path;
+                //    await _db.Certs.AddRangeAsync(cert);
+                //    i++;
+                //});
+                var path = await common.UploadSingleFile(filesCert);
+                path = path.Replace("wwwroot", "");
 
+                CertDto cert = new CertDto() { Url = path, Block = BlockType.CERT };
+                await _db.Certs.AddRangeAsync(cert);
                 await _db.SaveChangesAsync();
             }
 
