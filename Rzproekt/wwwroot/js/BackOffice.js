@@ -256,16 +256,17 @@ var back_office = new Vue({
             let self = this;
             let sUrl = self.$data.urlApi + '/api/back-office/add-cert';
             let formData = new FormData();
-            let arrCert = [];
-
+            //if (!!this.filesCert) {
+            //    for (let i in this.filesCert) {
+            //        if (typeof (this.filesCert[i]) === 'number') break;
+            //        arrCert.push(this.filesCert[i]);
+            //    }
+            //}
             if (!!this.filesCert) {
-                for (let i in this.filesCert) {
-                    if (typeof (this.filesCert[i]) === 'number') break;
-                    arrCert.push(this.filesCert[i]);
-                }
+                formData.set('filesCert', this.filesCert[0]);
             }
             try {
-                axios.post(sUrl, arrCert)
+                axios.post(sUrl, formData)
                     .then((response) => {
                         console.log('Данные успешно изменены');
 
