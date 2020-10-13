@@ -108,7 +108,7 @@
     align-items: flex-end;
     text-align: left; }
     .about .about-left .about-block-txt {
-      width: 400px;
+      width: 340px;
       margin: 8rem; }
   .about .about-txt {
     margin-top: 2rem; }
@@ -202,14 +202,18 @@
   justify-content: center;
   flex-wrap: wrap;
   margin: 2rem auto; }
+  .project-list .siema {
+    background: silver;
+    width: 20rem;
+    height: 35rem; }
   .project-list .project-block {
     display: flex;
     align-items: center;
     justify-content: center;
     background: silver;
     overflow: hidden;
-    width: 26rem;
-    height: 29rem;
+    width: 23rem;
+    height: 25rem;
     margin: 2rem;
     cursor: pointer; }
     .project-list .project-block h1 {
@@ -398,10 +402,10 @@
 
 .aboutDetalis {
   background: #fff;
-  padding-top: 11rem; }
+  padding-top: 10rem !important; }
   .aboutDetalis .aboutDetalis-list {
-    margin: 3rem;
-    margin-bottom: 7rem; }
+    margin: 3rem auto;
+    width: 80%; }
     .aboutDetalis .aboutDetalis-list article {
       background: #f7f5f5;
       margin: 1rem;
@@ -414,6 +418,19 @@
         color: #3d5975; }
       .aboutDetalis .aboutDetalis-list article p {
         padding: 1rem; }
+
+.aboutSert {
+  padding-top: 0 !important; }
+
+.cert-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 6rem; }
+  .cert-list a img {
+    width: 160px; }
+  .cert-list a[data-fancybox="gallery"] {
+    margin: 2rem; }
 
 #menu__toggle {
   opacity: 0; }

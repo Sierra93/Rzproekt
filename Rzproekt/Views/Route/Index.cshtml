@@ -8,9 +8,9 @@
 			<source v-bind:src="header[0].background" type="video/mp4" />
 		</video>
 	</div>
-	<section class="main-block-title">
+	<section class="block-nav main-block-title">
 		<h1>{{ header[0].mainTitle }}</h1>
-		<a class="arrow-down" v-bind:href="smoothScrollArr[1].id" v-on:click="smoothScroll"></a>
+        <a class="arrow-down" href="#service" v-on:click="smoothScroll">{{ smoothScrollArr[1].id }}</a>
 	</section>
 </div>
 
@@ -24,7 +24,6 @@
             <div><img :src="item.url" alt="service" /></div>
 			<h1>{{ item.title }}</h1>
             <textarea class="serviceTxt" readonly>{{ item.text }}</textarea>
-			@*<p>{{ item.text }}</p>*@
 		</article>
 	</section>
 	
@@ -72,14 +71,21 @@
 		<h1>{{ project[0].mainTitle }}</h1>
 	</div>
 	<div class="border-bottom-title"></div>
-	<section class="project-list">
-		<article v-for="item in project">
-			<div :src="item.url" class="project-block">
-				<h1>{{ item.title }}</h1>
-			</div>
-		</article>
-	</section>
-	<a class="btn-detail" href="#">{{ project[0].buttonText }}</a>
+    <section class="project-list">
+        @*<article v-for="item in project">
+            <div :src="item.url" class="project-block siema" v-for="item in project">
+                <h1>{{ item.title }}</h1>
+            </div>
+        </article>*@
+        <div class="siema">
+            @*<img src="http://www.rzproekt.ru/files/1/800/271.jpg" />
+            <img src="http://www.rzproekt.ru/files/1/800/273.jpg"/>
+            <img src="http://www.rzproekt.ru/files/1/800/295.jpg"/>
+            <img src="http://www.rzproekt.ru/files/1/800/296.jpg"/>*@
+        </div>
+
+    </section>
+	<a class="btn-detail" href="https://localhost:44349/project-details">{{ project[0].buttonText }}</a>
 </div>
 
 <div id="client" class="block clients">

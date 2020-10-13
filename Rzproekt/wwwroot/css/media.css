@@ -89,6 +89,13 @@
         width: 360px;
         height: 200px;
     }
+    .contacts-block {
+        display: block;
+
+    }
+    .btn-detail {
+        margin: 1rem 3rem;
+    }
 }
 
 
