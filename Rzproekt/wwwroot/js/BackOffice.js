@@ -48,6 +48,7 @@ var back_office = new Vue({
             service: [],
             about: [],
             cert: [],
+            arrCertSearth: [],
             stat: [],
             project: [],
             client: [],
@@ -239,6 +240,7 @@ var back_office = new Vue({
             };
             axios.post(sUrl, oData)
                 .then((response) => {
+                    self.$data.arrCertSearth = response.data;
                     console.log("success / getCert", response);
                 })
                 .catch((XMLHttpRequest) => {
