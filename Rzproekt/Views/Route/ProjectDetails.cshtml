@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="~/css/site.css" />
     <link href="~/css/StyleSheet.css" rel="stylesheet" />
     <link href="~/css/media.css" rel="stylesheet" />
+    <link href="~/lib/slick.css" rel="stylesheet" />
+    <link href="~/lib/slick-theme.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" />
 </head>
 <body>
@@ -25,34 +27,26 @@
                     </li>
                 </ul>
             </nav>
-            <div class="hamburger-menu">
-                <input id="menu__toggle" type="checkbox" />
-                <label class="menu__btn" for="menu__toggle">
-                    <span></span>
-                </label>
-
-                <ul class="menu__box">
-                    <li v-for="item in header">
-                        <a v-bind:href="smoothScrollArr[item.id]" class="menu__item scrollto">{{ item.mainItem }}</a>
-                    </li>
-                </ul>
-            </div>
         </header>
 
         <main>
-            <div class="block project-details">
+            <div class="block projectDetalis">
                 <div class="title-block">
-                    <h1>НАШИ ПРОЕКТЫ</h1>
+                    <h1>{{ project[0].dopMainTitle }}</h1>
                 </div>
                 <div class="border-bottom-title"></div>
-                <section class="multiple-items project-list">
-
-                    @*<div v-for="item in project">
-            <img :src="item.url" />
-        </div>*@
-                    <a id="qweqweqwe" class="qweinline-gallery" href="~/img/cert1.jpg"><img src="~/img/cert1.jpg" /></a>
-                    <a class="qweinline-gallery" href="~/img/cert2.jpg"><img src="~/img/cert2.jpg" /></a>
-
+                <section class="projectDetalis-list">
+                    <article>
+                        <button type="button" class="slick-prev"> Предыдущая </button>
+                        <div class="single-slide">
+                            <img :src="project[0].url" alt="project" />
+                            <img :src="project[0].url" alt="project" />
+                            <img :src="project[0].url" alt="project" />
+                        </div>
+                        <button type="button" class="slick-next"> Next </button>
+                        <h1>{{ about[0].dopTitle }}</h1>
+                        <textarea class="aboutDetailTxtTextarea" readonly>{{ about[0].dopText }}</textarea>
+                    </article>
                 </section>
             </div>
 
@@ -69,7 +63,7 @@
     <script src="~/lib/vue/axios/axios.js"></script>
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
-
+    <script src="~/lib/slick.min.js"></script>
     <script src="~/js/site.js"></script>
 </body>
 </html>

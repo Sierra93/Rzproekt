@@ -131,44 +131,52 @@
   outline: none;
   font-size: 1.2rem; }
 
-.clients {
-  background: #f7f5f5;
-  padding: 3rem 0; }
-  .clients .clients-list {
-    width: 80%;
-    margin: 4rem auto; }
-  .clients .slick-track {
-    display: flex;
-    align-items: center;
-    justify-content: center; }
-  .clients .slick-slide img {
-    display: block;
-    margin: 0 auto;
-    filter: grayscale(1); }
-    .clients .slick-slide img:hover {
-      filter: grayscale(0); }
-  .clients .slick-initialized .slick-slide {
-    outline: none; }
-  .clients .slick-prev:before, .clients .slick-next:before {
-    font-family: 'slick';
-    font-size: 20px;
-    line-height: 1;
-    opacity: .75;
-    color: black;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale; }
+.aboutDetalis {
+  background: #fff;
+  padding-top: 10rem !important; }
+  .aboutDetalis .aboutDetalis-list {
+    margin: 3rem auto;
+    width: 80%; }
+    .aboutDetalis .aboutDetalis-list article {
+      background: #f7f5f5;
+      margin: 1rem;
+      overflow: hidden; }
+      .aboutDetalis .aboutDetalis-list article img {
+        float: right;
+        max-width: 35rem !important;
+        margin-left: 1rem;
+        margin-bottom: 1rem; }
+      .aboutDetalis .aboutDetalis-list article h1 {
+        padding: 1rem;
+        color: #3d5975;
+        font-size: 2rem; }
+      .aboutDetalis .aboutDetalis-list article p {
+        padding: 1rem; }
 
-.contacts {
-  margin-bottom: 4rem;
-  background: #fff; }
-  .contacts .map-block {
-    margin: 2rem auto; }
-  .contacts .contacts-block {
-    display: flex;
-    align-items: center;
-    justify-content: center; }
-    .contacts .contacts-block .address {
-      margin: 1rem 2rem; }
+.aboutSert {
+  padding-top: 0 !important; }
+
+.cert-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 6rem; }
+  .cert-list a img {
+    width: 160px; }
+  .cert-list a[data-fancybox="gallery"] {
+    margin: 2rem; }
+
+.aboutDetailTxtTextarea {
+  height: auto;
+  width: 100%;
+  max-width: 53rem;
+  background: transparent;
+  border: none;
+  padding: 1rem;
+  min-height: 15rem;
+  resize: none;
+  outline: none;
+  font-size: 1rem; }
 
 .block1 {
   background: #1861ac;
@@ -235,6 +243,84 @@
     cursor: pointer; }
     .project-list .project-block h1 {
       padding: 0 2rem; }
+
+.projectDetalis {
+  background: #fff;
+  padding-top: 10rem !important; }
+  .projectDetalis .projectDetalis-list {
+    margin: 3rem auto 6rem;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    .projectDetalis .projectDetalis-list article {
+      background: #f7f5f5;
+      margin: 1rem;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      width: 25rem; }
+      .projectDetalis .projectDetalis-list article img {
+        max-width: 25rem !important;
+        margin-left: 1rem;
+        margin-bottom: 1rem; }
+      .projectDetalis .projectDetalis-list article h1 {
+        padding: 1rem;
+        color: #3d5975;
+        font-size: 2rem; }
+      .projectDetalis .projectDetalis-list article p {
+        padding: 1rem; }
+
+.projectDetailTxtTextarea {
+  height: auto;
+  width: 100%;
+  max-width: 53rem;
+  background: transparent;
+  border: none;
+  padding: 1rem;
+  min-height: 15rem;
+  resize: none;
+  outline: none;
+  font-size: 1rem; }
+
+.clients {
+  background: #f7f5f5;
+  padding: 3rem 0; }
+  .clients .clients-list {
+    width: 80%;
+    margin: 4rem auto; }
+  .clients .slick-track {
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+  .clients .slick-slide img {
+    display: block;
+    margin: 0 auto;
+    filter: grayscale(1); }
+    .clients .slick-slide img:hover {
+      filter: grayscale(0); }
+  .clients .slick-initialized .slick-slide {
+    outline: none; }
+  .clients .slick-prev:before, .clients .slick-next:before {
+    font-family: 'slick';
+    font-size: 20px;
+    line-height: 1;
+    opacity: .75;
+    color: black;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale; }
+
+.contacts {
+  margin-bottom: 4rem;
+  background: #fff; }
+  .contacts .map-block {
+    margin: 2rem auto; }
+  .contacts .contacts-block {
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+    .contacts .contacts-block .address {
+      margin: 1rem 2rem; }
 
 .back_office-block {
   display: flex;
@@ -416,54 +502,6 @@
     transition: .3s; }
     .form-back_office button:hover {
       background: #6d39ff; }
-
-.aboutDetalis {
-  background: #fff;
-  padding-top: 10rem !important; }
-  .aboutDetalis .aboutDetalis-list {
-    margin: 3rem auto;
-    width: 80%; }
-    .aboutDetalis .aboutDetalis-list article {
-      background: #f7f5f5;
-      margin: 1rem;
-      overflow: hidden; }
-      .aboutDetalis .aboutDetalis-list article img {
-        float: right;
-        max-width: 35rem !important;
-        float: right;
-        margin-left: 1rem;
-        margin-bottom: 1rem; }
-      .aboutDetalis .aboutDetalis-list article h1 {
-        padding: 1rem;
-        color: #3d5975;
-        font-size: 2rem; }
-      .aboutDetalis .aboutDetalis-list article p {
-        padding: 1rem; }
-
-.aboutSert {
-  padding-top: 0 !important; }
-
-.cert-list {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 6rem; }
-  .cert-list a img {
-    width: 160px; }
-  .cert-list a[data-fancybox="gallery"] {
-    margin: 2rem; }
-
-.aboutDetailTxtTextarea {
-  height: auto;
-  width: 100%;
-  max-width: 53rem;
-  background: transparent;
-  border: none;
-  padding: 1rem;
-  min-height: 15rem;
-  resize: none;
-  outline: none;
-  font-size: 1rem; }
 
 #menu__toggle {
   opacity: 0; }
@@ -663,37 +701,3 @@ footer {
 
 .hamburger-menu {
   display: none !important; }
-
-#viewport {
-  width: 100vw;
-  height: 450px;
-  overflow: hidden; }
-
-.slider {
-  position: relative;
-  transition: 500ms;
-  width: 40rem;
-  height: 450px;
-  display: flex;
-  justify-content: start;
-  flex-wrap: nowrap; }
-
-.slide {
-  width: 100%;
-  height: 240px; }
-
-.slide img {
-  width: 100%;
-  height: 240px;
-  object-fit: cover;
-  object-position: 0; }
-
-#viewSlider {
-  width: calc(30px * 5);
-  display: flex;
-  justify-content: space-between; }
-
-.viewSlide {
-  width: 20px;
-  height: 20px;
-  background-color: red; }

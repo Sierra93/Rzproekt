@@ -1,19 +1,24 @@
-.aboutDetalis {
+.projectDetalis {
     background: #fff;
     padding-top: 10rem !important;
 
-    .aboutDetalis-list {
-        margin: 3rem auto;
+    .projectDetalis-list {
+        margin: 3rem auto 6rem;
         width: 80%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
         article {
             background: $liteSilver;
             margin: 1rem;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            width: 25rem;
 
             img {
-                float: right;
-                max-width: 35rem !important;
+                max-width: 25rem !important;
                 margin-left: 1rem;
                 margin-bottom: 1rem;
             }
@@ -30,25 +35,8 @@
         }
     }
 }
-.aboutSert {
-    padding-top: 0!important;
-}
-.cert-list {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 6rem;
 
-    a {
-        img {
-            width: 160px
-        }
-    }
-    a[data-fancybox="gallery"] {
-        margin: 2rem;
-    }
-}
-.aboutDetailTxtTextarea {
+.projectDetailTxtTextarea {
     height: auto;
     width: 100%;
     max-width: 53rem;

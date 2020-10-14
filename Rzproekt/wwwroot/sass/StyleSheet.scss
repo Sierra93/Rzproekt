@@ -10,13 +10,14 @@ $liteSilver: #f7f5f5;
 @import '_block1';
 @import '_services';
 @import '_about';
+@import '_aboutDetails';
+@import '_numbers';
+@import '_projects';
+@import '_projectDetails';
 @import '_clients';
 @import '_contacts';
-@import '_numbers';
-@import '_projects.scss';
 @import '_logonPage';
 @import '_adminPage';
-@import '_aboutDetails';
 @import '_burger';
 
 @mixin block-title-txt {
@@ -186,42 +187,21 @@ footer {
 
 ///////////////////
 
-#viewport {
-    width: 100vw;
-    height: 450px;
-    overflow: hidden;
-}
+//.loader {
+//    border: 16px solid #f3f3f3; /* Light grey */
+//    border-top: 16px solid #3498db; /* Blue */
+//    border-radius: 50%;
+//    width: 120px;
+//    height: 120px;
+//    animation: spin 2s linear infinite;
+//}
 
-.slider {
-    position: relative;
-    transition: 500ms;
-    width: 40rem;
-    height: 450px;
-    display: flex;
-    justify-content: start;
-    flex-wrap: nowrap;
-}
+//@keyframes spin {
+//    0% {
+//        transform: rotate(0deg);
+//    }
 
-.slide {
-    width: 100%;
-    height: 240px;
-}
-
-.slide img {
-    width: 100%;
-    height: 240px;
-    object-fit: cover;
-    object-position: 0;
-}
-
-#viewSlider {
-    width: calc(30px * 5);
-    display: flex;
-    justify-content: space-between;
-}
-
-.viewSlide {
-    width: 20px;
-    height: 20px;
-    background-color: red;
-}
+//    100% {
+//        transform: rotate(360deg);
+//    }
+//}

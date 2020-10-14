@@ -152,17 +152,20 @@
 
                         <fieldset>
                             <legend>Список сертификатов</legend>
-                            <input id="searchCert" type="search" placeholder="Введите название сертификата" />
+                            <input id="searchCert" type="search" placeholder="Поиск сертификата" />
+                            <button v-on:click="onSearthCert">Найти</button>
                         </fieldset>
 
                         <fieldset>
                             <legend>Загрузить сертификат</legend>
                             <label>
+                                <input id="nameCert" type="search" placeholder="Укажите название сертификата" />
                                 <input type="file" class="form-files-cert" ref="files" multiple v-on:change="handleFilesUploadCert" /> @* ДОП ФОТО *@
                             </label>
                         </fieldset>
                         <button v-on:click="onAddCert">Добавить</button>
                     </form>
+
                 </div>
 
                 @*СТАТИСТИКА*@

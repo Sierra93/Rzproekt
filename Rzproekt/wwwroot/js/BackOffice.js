@@ -229,11 +229,10 @@ var back_office = new Vue({
             }
         },
         onSearthCert() {
-            let that = this;
+            let self = this;
             let arrFilter = [];
-            let urlApi = that.MainData.urlApi;
             let inputCert = document.getElementById("searchCert").value;
-            let sUrl = urlApi + '/api/auth/get-cert';
+            let sUrl = self.$data.urlApi + '/api/back-office/get-certs';
 
             axios.post(sUrl)
                 .then((response) => {
@@ -255,16 +254,15 @@ var back_office = new Vue({
         onAddCert() {
             let self = this;
             let sUrl = self.$data.urlApi + '/api/back-office/add-cert';
+            let nameCert = document.getElementById("nameCert").value;
             let formData = new FormData();
-            //if (!!this.filesCert) {
-            //    for (let i in this.filesCert) {
-            //        if (typeof (this.filesCert[i]) === 'number') break;
-            //        arrCert.push(this.filesCert[i]);
-            //    }
-            //}
+            let oData = {
+                nameCert
+            }
             if (!!this.filesCert) {
                 formData.set('filesCert', this.filesCert[0]);
             }
+            formData.set('jsonString', JSON.stringify(oData));
             try {
                 axios.post(sUrl, formData)
                     .then((response) => {
@@ -279,6 +277,24 @@ var back_office = new Vue({
                 throw new Error(ex);
             }
         },
+        //onGetCert() {
+        //    let self = this;
+        //    let sUrl = self.$data.urlApi + '/api/back-office/get-cert';
+        //    let input = document.getElementById('searchCert').value;
+        //    try {
+        //        axios.post(sUrl)
+        //            .then((response) => {
+        //                console.log('Список сертификатов', response);
+
+        //            })
+        //            .catch((XMLHttpRequest) => {
+        //                throw new Error(XMLHttpRequest);
+        //            });
+        //    }
+        //    catch (ex) {
+        //        throw new Error(ex);
+        //    }
+        //},
 
         onChangeStat() {
             let self = this;
@@ -350,7 +366,7 @@ var back_office = new Vue({
             let sUrl = self.$data.urlApi + '/api/back-office/add-client';
             let formData = new FormData();
             let idService = +e.target.getAttribute('idCustom') - 1;
-            formData.set('filesClient', this.filesService[idService].files[0]);
+            formData.set('filesClient', this.filesService[idService - 1].files[0]);
 
             try {
                 axios.post(sUrl, formData)

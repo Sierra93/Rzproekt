@@ -1,5 +1,7 @@
 ﻿"use strict";
 
+
+
 var appHome = new Vue({
     el: '#appHome',
     data: {
@@ -33,13 +35,12 @@ var appHome = new Vue({
         contact: [],
         footer: []
     },
-    created() {
-        console.log('init');
-    },
+    //created() {
+        
+    //},
         
     // После загрузки страницы вызывает функцию _getData для всех блоков сайта
     mounted: function () {
-        autosize(document.getElementsByClassName("serviceTxt"));
         this.$nextTick(function () {
             let self = this;
             let allREquest = this.$data.listRequests;
@@ -56,6 +57,7 @@ var appHome = new Vue({
             setTimeout(autosize, 100);
             let ageCompanyTxt = +JSON.stringify(this.$data.date-1938).slice('1');
             this.$data.ageCompanyTxt = this.declination(ageCompanyTxt, 'ГОД', 'ГОДА', 'ЛЕТ') + " НА РЫНКЕ";
+
         })
     },
     methods: {
@@ -66,11 +68,15 @@ var appHome = new Vue({
             $('[data-fancybox="gallery"]').fancybox({
                 selector: '.imglist a:visible'
             });
+            $('.single-slide').slick({
+                infinite: true,
+                dots: true
+            });
             $('.multiple-items').slick({
                 dots: true,
                 infinite: false,
                 speed: 300,
-                slidesToShow: 4,
+                slidesToShow: 5,
                 slidesToScroll: 4,
                 responsive: [
                     {
@@ -155,14 +161,14 @@ var appHome = new Vue({
                 throw new Error(ex);
             }
         },
-        smoothScroll() {
-            $('.block-nav a').on('click', function (event) {
+        smoothScroll(event) {
+             $('.block-nav a').on('click', function (event) {
                 var $anchor = $(this);
                 $('html, body').stop().animate({
                     scrollTop: $($anchor.attr('href')).offset().top - 100
                 }, 1000);
                 event.preventDefault();
-            });
+             });
         },
         declination(number, one, two, five) {
                 let n = Math.abs(number);
