@@ -247,6 +247,9 @@ var back_office = new Vue({
                     console.log("request send error", XMLHttpRequest);
                 });
         },
+        onDelCert() {
+
+        },
         onAddCert() {
             let self = this;
             let sUrl = self.$data.urlApi + '/api/back-office/add-cert';
