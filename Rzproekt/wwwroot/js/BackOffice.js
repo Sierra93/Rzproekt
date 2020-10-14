@@ -240,6 +240,7 @@ var back_office = new Vue({
             };
             axios.post(sUrl, oData)
                 .then((response) => {
+                    if (!!response.data) { self.$data.arrCertSearth = []; return}
                     self.$data.arrCertSearth = response.data;
                     console.log("success / getCert", response);
                 })
