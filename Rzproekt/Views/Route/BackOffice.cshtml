@@ -154,7 +154,7 @@
                             <legend>Список сертификатов</legend>
                             <input id="searchCert" type="search" placeholder="Поиск сертификата" v-on:input="onSearthCert" v-on:change="onSearthCert"/>
                             <div class="blockListCert">
-                                <div class="blockCert" v-for="item in cert">
+                                <div class="blockCert" v-for="item in arrCertSearth">
                                     <h4>{{ item.certName }}test</h4>
                                     <button v-bind:idCustom="item.id" class="btm-back-del-client" v-on:click="onDelCert">Удалить</button>
                                 </div>
