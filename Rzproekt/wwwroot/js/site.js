@@ -45,21 +45,15 @@ var appHome = new Vue({
     mounted: function () {
         this.$nextTick(function () {
             let self = this;
+            let ageCompanyTxt = +JSON.stringify(this.$data.date - 1938).slice('1');
+            this.$data.ageCompanyTxt = this.declination(ageCompanyTxt, 'ГОД', 'ГОДА', 'ЛЕТ') + " НА РЫНКЕ";
             let allREquest = this.$data.listRequests;
             allREquest.forEach(function (el) {
                 self._getData(el);
             });
-            function autosize() {
-                appHome.$data.blocksServices = document.getElementsByClassName("serviceTxt");
-                appHome.$data.aboutTxtTextarea = document.getElementsByClassName("aboutTxtTextarea");
-                appHome.$data.aboutDetailTxtTextarea = document.getElementsByClassName("aboutDetailTxtTextarea");
-                if (!appHome.$data.blocksServices || !appHome.$data.aboutTxtTextarea || !appHome.$data.aboutDetailTxtTextarea) return;
-                self.getBlocksSevices();
-            }
-            setTimeout(autosize, 100);
-            let ageCompanyTxt = +JSON.stringify(this.$data.date-1938).slice('1');
-            this.$data.ageCompanyTxt = this.declination(ageCompanyTxt, 'ГОД', 'ГОДА', 'ЛЕТ') + " НА РЫНКЕ";
-
+            appHome.$data.blocksServices = document.getElementsByClassName("serviceTxt");
+            appHome.$data.aboutTxtTextarea = document.getElementsByClassName("aboutTxtTextarea");
+            appHome.$data.aboutDetailTxtTextarea = document.getElementsByClassName("aboutDetailTxtTextarea");
         })
     },
     methods: {
@@ -91,7 +85,7 @@ var appHome = new Vue({
                         }
                     },
                     {
-                        breakpoint: 600,
+                        breakpoint: 800,
                         settings: {
                             slidesToShow: 2,
                             slidesToScroll: 2
@@ -192,4 +186,7 @@ var appHome = new Vue({
             return five;
         }
     }
+});
+window.addEventListener('wheel', event => {
+    appHome.getBlocksSevices();
 });

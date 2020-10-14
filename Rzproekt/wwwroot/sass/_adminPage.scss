@@ -184,6 +184,8 @@ $blueMenuHvr: #0074a8;
     border: 1px solid silver;
     background: #ececec;
     max-height: 20rem;
+    overflow: hidden;
+    overflow-y: scroll;
 
     .blockCert {
         margin: 0.5rem;

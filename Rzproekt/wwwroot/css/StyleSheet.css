@@ -309,6 +309,8 @@
     color: black;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale; }
+  .clients .slick-list {
+    background: white; }
 
 .contacts {
   margin-bottom: 4rem;
@@ -506,7 +508,9 @@
 .blockListCert {
   border: 1px solid silver;
   background: #ececec;
-  max-height: 20rem; }
+  max-height: 20rem;
+  overflow: hidden;
+  overflow-y: scroll; }
   .blockListCert .blockCert {
     margin: 0.5rem;
     background: white; }
