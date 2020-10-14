@@ -269,25 +269,30 @@
                             <button v-on:click="onChangeClient">Сохранить</button>
                         </fieldset>
                     </form>
+
                     <form v-on:submit.prevent class="form-back_office">
-                        <fieldset v-for="item in client">
-                            <legend>Загрузить логотип клиента {{ item.clientId }}</legend>
-                            <input type="file" class="form-files-client" ref="files" multiple v-on:change="handleFilesUploadClient" />
-                            <button  v-bind:idCustom="item.clientId" v-on:click="onChangeClient">Сохранить</button>
-                            <button  v-bind:idCustom="item.clientId" class="btm-back-del-client" v-on:click="onDelClient">Удалить</button>
+
+                        <fieldset>
+                            <legend>Список клиентов</legend>
+                            <input id="searchClient" type="search" placeholder="Поиск сертификата" v-on:input="onSearthClient" v-on:change="onSearthClient" />
+                            <div class="blockListClient">
+                                <div class="blockClient" v-for="item in arrClientSearth">
+                                    <h4>{{ item.clientName }}</h4>
+                                    <button v-bind:idCustom="item.clientId" class="btm-back-del-client" v-on:click="onDelClient">Удалить</button>
+                                </div>
+                            </div>
                         </fieldset>
 
-                    </form>
-
-                    <form v-on:submit.prevent class="form-back_office">
                         <fieldset>
-                            <legend>Добавить клиента в список</legend>
+                            <legend>Загрузить фото клиента</legend>
                             <label>
-                                <input type="file" class="form-files-client" ref="files" multiple v-on:change="handleFilesUploadClient" />
+                                <input id="nameClient" type="search" placeholder="Укажите название клиента" />
+                                <input type="file" class="form-files-client" ref="files" multiple v-on:change="handleFilesUploadClient" /> 
                             </label>
                         </fieldset>
-                        <button v-bind:idCustom="client[client.length-1].clientId" v-on:click="onAddClient">Добавить</button>
+                        <button v-on:click="onAddClient">Добавить</button>
                     </form>
+
                 </div>
                 @*КОНТАКТЫ*@
                 <input type="radio" name="tab" id="tab7" />

@@ -192,3 +192,15 @@ $blueMenuHvr: #0074a8;
         background: white;
     }
 }
+.blockListClient {
+    border: 1px solid silver;
+    background: #ececec;
+    max-height: 20rem;
+    overflow: hidden;
+    overflow-y: scroll;
+
+    .blockClient {
+        margin: 0.5rem;
+        background: white;
+    }
+}

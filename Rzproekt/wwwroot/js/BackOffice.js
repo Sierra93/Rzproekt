@@ -27,6 +27,7 @@ var back_office = new Vue({
             filesService: '',
             filesAbout: '',
             filesCert: '',
+            filesClient: '',
             date: new Date().getFullYear(),
             urlApi: 'https://localhost:44349',
             //urlApi: 'https://devmyprojects24.xyz',
@@ -52,6 +53,7 @@ var back_office = new Vue({
             stat: [],
             project: [],
             client: [],
+            arrClientSearth: [],
             contact: [],
             footer: []
         }
@@ -111,6 +113,10 @@ var back_office = new Vue({
         handleFilesUploadCert() {
             let filesCert = document.getElementsByClassName('form-files-cert')[0].files;
             this.filesCert = filesCert;
+        },
+        handleFilesUploadClient() {
+            let filesClient = document.getElementsByClassName('form-files-client')[0].files;
+            this.filesClient = filesClient;
         },
 
         // Отправляет измененные данные первого блока сайта
@@ -277,7 +283,7 @@ var back_office = new Vue({
             let oData = {
                 nameCert
             }
-            if (!!this.filesCert) {
+            if (!!this.filesClient) {
                 formData.set('filesCert', this.filesCert[0]);
             }
             formData.set('jsonString', JSON.stringify(oData));
@@ -362,13 +368,58 @@ var back_office = new Vue({
                 throw new Error(ex);
             }
         },
-        onAddClient(e) {
+
+        /////////
+        onSearthClient() {
+            let self = this;
+            let CertName = document.getElementById("searchCert").value;
+            if (!CertName) { self.$data.arrCertSearth = []; return }
+            let sUrl = self.$data.urlApi + '/api/about/search';
+            let oData = {
+                CertName
+            };
+            axios.post(sUrl, oData)
+                .then((response) => {
+                    if (!response.data) { self.$data.arrCertSearth = []; return }
+                    self.$data.arrCertSearth = response.data;
+                    console.log("success / getCert", response);
+                })
+                .catch((XMLHttpRequest) => {
+                    console.log("request send error", XMLHttpRequest);
+                });
+        },
+        onDelClient(e) {
+            let self = this;
+            let sUrl = self.$data.urlApi + '/api/back-office/remove-client';
+            let idClient = +e.target.getAttribute('idCustom');
+
+            try {
+                axios.put(sUrl + '?id=' + idClient)
+                    .then((response) => {
+                        self.onSearthCert();
+                        console.log('Данные успешно удалены');
+
+                    })
+                    .catch((XMLHttpRequest) => {
+                        throw new Error(XMLHttpRequest);
+                    });
+            }
+            catch (ex) {
+                throw new Error(ex);
+            }
+        },
+        onAddClient() {
             let self = this;
             let sUrl = self.$data.urlApi + '/api/back-office/add-client';
+            let nameClient = document.getElementById("nameClient").value;
             let formData = new FormData();
-            let idService = +e.target.getAttribute('idCustom') - 1;
-            formData.set('filesClient', this.filesService[idService - 1].files[0]);
-
+            let oData = {
+                nameClient
+            }
+            if (!!this.filesCert) {
+                formData.set('filesClient', this.filesClient[0]);
+            }
+            formData.set('jsonString', JSON.stringify(oData));
             try {
                 axios.post(sUrl, formData)
                     .then((response) => {
@@ -383,6 +434,7 @@ var back_office = new Vue({
                 throw new Error(ex);
             }
         },
+        /////////
         onDelClient(e) {
             let self = this;
             let sUrl = self.$data.urlApi + '/api/back-office/delete-client';
