@@ -24,7 +24,7 @@ namespace Rzproekt.Controllers {
         [HttpPost, Route("get-statistic")]
         public async Task<IActionResult> GetStatisticInfo() {
             StatisticBase statisticBase = new StatisticService(_db);
-
+            
             return Ok(await statisticBase.GetStatisticInfo());
         }
     }

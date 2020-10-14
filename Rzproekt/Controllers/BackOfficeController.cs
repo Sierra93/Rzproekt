@@ -136,5 +136,16 @@ namespace Rzproekt.Controllers {
 
             return Ok();
         }
+
+        /// <summary>
+        /// Метод изменяет данные статистики.
+        /// </summary>
+        [HttpPost, Route("change-stat")]
+        public async Task<IActionResult> ChangeStatistic([FromBody] object data) {
+            StatisticBase statis = new StatisticService(_db);
+            await statis.ChangeStatistic(data);
+
+            return Ok();
+        }
     }
 }
