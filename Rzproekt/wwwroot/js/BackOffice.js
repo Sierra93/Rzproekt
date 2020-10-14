@@ -234,7 +234,7 @@ var back_office = new Vue({
         onSearthCert() {
             let self = this;
             let CertName = document.getElementById("searchCert").value;
-            let sUrl = self.$data.urlApi + '/api/back-office/get-certs';
+            let sUrl = self.$data.urlApi + '/api/about/search';
             let oData = {
                 CertName
             };
