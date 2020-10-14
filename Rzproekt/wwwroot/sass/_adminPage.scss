@@ -180,3 +180,13 @@ $blueMenuHvr: #0074a8;
         }
     }
 }
+.blockListCert {
+    border: 1px solid silver;
+    background: #ececec;
+    max-height: 20rem;
+
+    .blockCert {
+        margin: 0.5rem;
+        background: white;
+    }
+}

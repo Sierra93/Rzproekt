@@ -21,7 +21,8 @@ var appHome = new Vue({
             '/api/project/get-projects',
             '/api/client/get-clients',
             '/api/contact/get-contacts',
-            '/api/footer/get-footer'
+            '/api/footer/get-footer',
+            '/api/back-office/get-certs'
         ],
         general: {
             detailse: 'Подробнее'
@@ -29,6 +30,7 @@ var appHome = new Vue({
         header: [],
         service: [],
         about: [],
+        cert: [],
         stat: [],
         project: [],
         client: [],
@@ -129,6 +131,10 @@ var appHome = new Vue({
                                 self.$data.about = response.data;
                                 console.log('about получен', response.data);
                                 break;
+                            case 'cert':
+                                self.$data.cert = response.data;
+                                console.log('cert получены', response.data);
+                                break
                             case 'stat':
                                 self.$data.stat = response.data;
                                 console.log('stat получен', response.data);

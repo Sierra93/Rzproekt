@@ -39,6 +39,7 @@ var back_office = new Vue({
                 '/api/client/get-clients',
                 '/api/contact/get-contacts',
                 '/api/footer/get-footer'
+                '/api/back-office/get-certs'
             ],
             general: {
                 detailse: 'Подробнее'
@@ -46,6 +47,7 @@ var back_office = new Vue({
             header: [],
             service: [],
             about: [],
+            cert: [],
             stat: [],
             project: [],
             client: [],
@@ -230,22 +232,14 @@ var back_office = new Vue({
         },
         onSearthCert() {
             let self = this;
-            let arrFilter = [];
-            let inputCert = document.getElementById("searchCert").value;
+            let CertName = document.getElementById("searchCert").value;
             let sUrl = self.$data.urlApi + '/api/back-office/get-certs';
-
-            axios.post(sUrl)
+            let oData = {
+                CertName
+            };
+            axios.post(sUrl, oData)
                 .then((response) => {
-                    arrFilter = response.data.map(function (el) {
-                        if (el.login.indexOf(inputCert) > -1) arrFilter.push(el);
-                        return arrFilter;
-                    });
-                    if (inputCert) {
-                        that.listUsers = arrFilter[0];
-                    } else {
-                        that.listUsers = []
-                    }
-                    console.log("success / getAllCert", response);
+                    console.log("success / getCert", response);
                 })
                 .catch((XMLHttpRequest) => {
                     console.log("request send error", XMLHttpRequest);
@@ -277,24 +271,6 @@ var back_office = new Vue({
                 throw new Error(ex);
             }
         },
-        //onGetCert() {
-        //    let self = this;
-        //    let sUrl = self.$data.urlApi + '/api/back-office/get-cert';
-        //    let input = document.getElementById('searchCert').value;
-        //    try {
-        //        axios.post(sUrl)
-        //            .then((response) => {
-        //                console.log('Список сертификатов', response);
-
-        //            })
-        //            .catch((XMLHttpRequest) => {
-        //                throw new Error(XMLHttpRequest);
-        //            });
-        //    }
-        //    catch (ex) {
-        //        throw new Error(ex);
-        //    }
-        //},
 
         onChangeStat() {
             let self = this;
@@ -425,6 +401,10 @@ var back_office = new Vue({
                             case 'about':
                                 self.$data.about = response.data;
                                 console.log('about получен', response.data);
+                                break;
+                            case 'cert':
+                                self.$data.cert = response.data;
+                                console.log('cert получен', response.data);
                                 break;
                             case 'stat':
                                 self.$data.stat = response.data;
