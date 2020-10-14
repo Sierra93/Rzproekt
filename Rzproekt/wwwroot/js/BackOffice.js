@@ -337,52 +337,50 @@ var back_office = new Vue({
         },
         onChangeClient(e) {
             // Отправляет измененные данные блока Client
-            //let self = this;
-            //let sUrl = self.$data.urlApi + '/api/back-office/change-client';
-            //let MainTitle = $('.client-menu-title')[0].value;
-            //let idService = +e.target.getAttribute('idCustom') - 1;
-            //let ClientId = idService + 1;
-            //let formData = new FormData();
-            //let oData = {
-            //    ClientId,
-            //    MainTitle
-            //};
-            //if (!!this.filesService[idService]) {
-            //    formData.set('filesClient', this.filesService[idService].files[0]);
-            //}
+            let self = this;
+            let sUrl = self.$data.urlApi + '/api/back-office/change-client';
+            let MainTitle = $('.client-menu-title')[0].value;
+            let idService = +e.target.getAttribute('idCustom') - 1;
+            let ClientId = idService + 1;
+            let formData = new FormData();
+            let oData = {
+                ClientId,
+                MainTitle
+            };
+            if (!!this.filesService[idService]) {
+                formData.set('filesClient', this.filesService[idService].files[0]);
+            }
             
-            //formData.set('jsonString', JSON.stringify(oData));
+            formData.set('jsonString', JSON.stringify(oData));
 
 
-            //try {
-            //    axios.post(sUrl, formData)
-            //        .then((response) => {
-            //            console.log('Данные успешно изменены');
+            try {
+                axios.post(sUrl, formData)
+                    .then((response) => {
+                        console.log('Данные успешно изменены');
 
-            //        })
-            //        .catch((XMLHttpRequest) => {
-            //            throw new Error(XMLHttpRequest);
-            //        });
-            //}
-            //catch (ex) {
-            //    throw new Error(ex);
-            //}
+                    })
+                    .catch((XMLHttpRequest) => {
+                        throw new Error(XMLHttpRequest);
+                    });
+            }
+            catch (ex) {
+                throw new Error(ex);
+            }
         },
-
-        /////////
         onSearthClient() {
             let self = this;
-            let CertName = document.getElementById("searchCert").value;
-            if (!CertName) { self.$data.arrCertSearth = []; return }
-            let sUrl = self.$data.urlApi + '/api/about/search';
+            let ClientName = document.getElementById("searchClient").value;
+            if (!ClientName) { self.$data.arrClientSearth = []; return }
+            let sUrl = self.$data.urlApi + '/api/client/search';
             let oData = {
-                CertName
+                ClientName
             };
             axios.post(sUrl, oData)
                 .then((response) => {
-                    if (!response.data) { self.$data.arrCertSearth = []; return }
-                    self.$data.arrCertSearth = response.data;
-                    console.log("success / getCert", response);
+                    if (!response.data) { self.$data.arrClientSearth = []; return }
+                    self.$data.arrClientSearth = response.data;
+                    console.log("success / getClient", response);
                 })
                 .catch((XMLHttpRequest) => {
                     console.log("request send error", XMLHttpRequest);
@@ -396,7 +394,7 @@ var back_office = new Vue({
             try {
                 axios.put(sUrl + '?id=' + idClient)
                     .then((response) => {
-                        self.onSearthCert();
+                        self.onSearthClient();
                         console.log('Данные успешно удалены');
 
                     })
@@ -434,7 +432,6 @@ var back_office = new Vue({
                 throw new Error(ex);
             }
         },
-        /////////
         onDelClient(e) {
             let self = this;
             let sUrl = self.$data.urlApi + '/api/back-office/delete-client';
