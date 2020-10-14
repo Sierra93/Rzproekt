@@ -29,7 +29,7 @@ namespace Rzproekt.Core {
         /// </summary>
         /// <param name=""></param>
         /// <returns></returns>
-        public abstract Task AddCert(IFormCollection filesCert);
+        public abstract Task AddCert(IFormCollection filesCert, string jsonString);
 
         /// <summary>
         /// Метод удаляет сертификат.

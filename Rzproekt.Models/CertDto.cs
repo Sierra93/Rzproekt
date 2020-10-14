@@ -25,6 +25,9 @@ namespace Rzproekt.Models {
         [Column("cert_title", TypeName = "nvarchar(1000)")]
         public string CertTitle { get; set; }   // Заголовок сертификаты.
 
+        [Column("cert_name", TypeName = "nvarchar(1000)")]
+        public string CertName { get; set; }    // Название сертификата.
+
         public List<MultepleContextTable> MultepleContextTables { get; set; }
 
         public CertDto() {

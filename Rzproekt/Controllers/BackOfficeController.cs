@@ -95,9 +95,9 @@ namespace Rzproekt.Controllers {
         /// Метод добавляет сертификаты.
         /// </summary>
         [HttpPost, Route("add-cert")]
-        public async Task<IActionResult> AddCert([FromForm] IFormCollection filesCert) {
+        public async Task<IActionResult> AddCert([FromForm] IFormCollection filesCert, [FromForm] string jsonString) {
             AboutBase cert = new AboutService(_db);
-            await cert.AddCert(filesCert);
+            await cert.AddCert(filesCert, jsonString);
 
             return Ok();
         }
@@ -129,7 +129,7 @@ namespace Rzproekt.Controllers {
         /// Метод удаляет сертификат.
         /// </summary>
         /// <returns></returns>
-        [HttpPut, Route("remove-certs")]
+        [HttpPut, Route("remove-cert")]
         public async Task<IActionResult> RemoveCert() {
             AboutBase cert = new AboutService(_db);
             //await cert.RemoveAllCerts();

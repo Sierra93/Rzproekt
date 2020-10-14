@@ -122,9 +122,11 @@ namespace Rzproekt.Services {
         /// </summary>
         /// <param name=""></param>
         /// <returns></returns>
-        public async override Task AddCert(IFormCollection filesCert) {
+        public async override Task AddCert(IFormCollection filesCert, string jsonString) {
             try {
-                CommonMethodsService common = new CommonMethodsService(_db);                
+                CommonMethodsService common = new CommonMethodsService(_db);
+                JObject jsonParse = JObject.Parse(jsonString);
+                string certName = jsonParse["nameCert"].ToString();
 
                 if (filesCert.Files.Count == 0) {
                     throw new ArgumentNullException();
@@ -143,6 +145,12 @@ namespace Rzproekt.Services {
                 path = path.Replace("wwwroot", "");
 
                 CertDto cert = new CertDto() { Url = path, Block = BlockType.CERT };
+
+                // Если есть имя сертификата.
+                if (!string.IsNullOrEmpty(certName)) {
+                    cert.CertName = certName;
+                }
+
                 await _db.Certs.AddRangeAsync(cert);
                 await _db.SaveChangesAsync();
             }
