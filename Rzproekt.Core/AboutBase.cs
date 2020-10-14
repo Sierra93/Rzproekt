@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Rzproekt.Models;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -49,5 +50,12 @@ namespace Rzproekt.Core {
         /// </summary>
         /// <returns></returns>
         public abstract Task RemoveAllCerts();
+
+
+        /// <summary>
+        /// Метод находит сертификаты по тексту.
+        /// </summary>
+        /// <returns></returns>
+        public abstract Task<IEnumerable> SearchCert(string name);
     }
 }

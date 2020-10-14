@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 using Newtonsoft.Json.Linq;
 using Rzproekt.Core;
 using Rzproekt.Core.Consts;
@@ -37,7 +38,7 @@ namespace Rzproekt.Services {
         /// <param name="jsonString"></param>
         /// <returns></returns>
         public async override Task ChangeAboutInfo(IFormCollection filesAbout, string jsonString) {
-            try {                         
+            try {
                 JObject jsonObject = JObject.Parse(jsonString);
 
                 string mainTitle = jsonObject["MainTitle"].ToString();
@@ -50,14 +51,14 @@ namespace Rzproekt.Services {
                 bool mainImage = Convert.ToBoolean(jsonObject["mainImg"].ToString());
 
                 // Сохранять изображение для дополнительной страницы.
-                bool detailImage = Convert.ToBoolean(jsonObject["detImg"].ToString());                
+                bool detailImage = Convert.ToBoolean(jsonObject["detImg"].ToString());
                 bool isEmpty = isEmptyStringInfo(mainTitle, sText, detailMainTitle, detailTitle, detailText);
 
                 if (!isEmpty) {
                     throw new ArgumentNullException();
-                }                
+                }
 
-                await AddAboutInfo(mainTitle, sText, detailMainTitle, detailTitle, detailText, mainImage, detailImage, filesAbout);     
+                await AddAboutInfo(mainTitle, sText, detailMainTitle, detailTitle, detailText, mainImage, detailImage, filesAbout);
             }
 
             catch (ArgumentNullException ex) {
@@ -112,7 +113,7 @@ namespace Rzproekt.Services {
                 path = path.Replace("wwwroot", "");
                 oAbout.DopUrl = path;
             }
-            
+
             _db.Update(oAbout);
             await _db.SaveChangesAsync();
         }
@@ -188,6 +189,30 @@ namespace Rzproekt.Services {
         public async override Task RemoveAllCerts() {
             IEnumerable<CertDto> certs = await _db.Certs.ToListAsync();
             _db.RemoveRange(certs);
+        }
+
+        /// <summary>
+        /// Метод находит сертификаты по тексту.
+        /// </summary>
+        /// <returns></returns>
+        public async override Task<IEnumerable> SearchCert(string name) {
+            try {
+                if (string.IsNullOrEmpty(name)) {
+                    throw new ArgumentNullException();
+                }
+
+                var aCerts = await _db.Certs.Where(c => c.CertName.ToLower().Contains(name.ToLower())).Select(c => c.CertName).ToListAsync();
+
+                return aCerts;
+            }
+
+            catch (ArgumentNullException ex) {
+                throw new ArgumentNullException("Не передан текст поиска", ex.Message.ToString());
+            }
+
+            catch (Exception ex) {
+                throw new Exception(ex.Message.ToString());
+            }
         }
     }
 }
