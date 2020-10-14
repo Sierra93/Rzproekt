@@ -257,6 +257,7 @@ var back_office = new Vue({
             try {
                 axios.put(sUrl + '?id=' + idCert)
                     .then((response) => {
+                        self.onSearthCert();
                         console.log('Данные успешно удалены');
 
                     })
@@ -300,8 +301,8 @@ var back_office = new Vue({
             let sUrl = self.$data.urlApi + '/api/back-office/change-stat';
             let nOne = $('.stat-menu-number-one')[0].value;
             let sOne = $('.stat-menu-txt-one')[0].value;
-            let nTwo = $('.stat-menu-number-Two')[0].value;
-            let sTwo = $('.stat-menu-txt-Two')[0].value;
+            let nTwo = $('.stat-menu-number-two')[0].value;
+            let sTwo = $('.stat-menu-txt-two')[0].value;
             let nThree = $('.stat-menu-number-three')[0].value;
             let sThree = $('.stat-menu-txt-three')[0].value;
 

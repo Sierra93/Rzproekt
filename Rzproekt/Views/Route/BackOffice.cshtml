@@ -155,7 +155,7 @@
                             <input id="searchCert" type="search" placeholder="Поиск сертификата" v-on:input="onSearthCert" v-on:change="onSearthCert"/>
                             <div class="blockListCert">
                                 <div class="blockCert" v-for="item in arrCertSearth">
-                                    <h4>{{ item.certName }}test</h4>
+                                    <h4>{{ item.certName }}</h4>
                                     <button v-bind:idCustom="item.certId" class="btm-back-del-client" v-on:click="onDelCert">Удалить</button>
                                 </div>
                             </div>
@@ -194,10 +194,10 @@
                         <fieldset>
                             <legend>Статистика 4</legend>
                             <input type="text" class="stat-menu-number-three" v-bind:value="stat[2].number">
-                            <input type="text" class="stat-menu-txt-two" v-bind:value="stat[2].text">
+                            <input type="text" class="stat-menu-txt-three" v-bind:value="stat[2].text">
                         </fieldset>
 
-                        <button v-on:click="onChangeHeader">Сохранить</button>
+                        <button v-on:click="onChangeStat">Сохранить</button>
                     </form>
                 </div>
 
