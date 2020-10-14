@@ -314,7 +314,7 @@ var back_office = new Vue({
                 nThree,
                 sThree
             }
-            oData = JSON.stringify(oData);
+            //oData = JSON.stringify(oData);
             try {
                 axios.post(sUrl, oData)
                     .then((response) => {
