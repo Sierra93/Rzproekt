@@ -168,10 +168,27 @@ namespace Rzproekt.Services {
         /// <summary>
         /// Метод удаляет сертификат.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">Id сертификата.</param>
         /// <returns></returns>
-        public override Task RemoveCert(int id) {
-            throw new NotImplementedException();
+        public async override Task RemoveCert(int id) {
+            try {
+                if (id == 0) {
+                    throw new ArgumentNullException();
+                }
+
+                CertDto cert = await _db.Certs.Where(c => c.CertId == id).FirstOrDefaultAsync();
+
+                _db.Certs.Remove(cert);
+                await _db.SaveChangesAsync();
+            }
+
+            catch (ArgumentNullException ex) {
+                throw new ArgumentNullException("Id не передан", ex.Message.ToString());
+            }
+
+            catch (Exception ex) {
+                throw new Exception(ex.Message.ToString());
+            }
         }
 
         /// <summary>

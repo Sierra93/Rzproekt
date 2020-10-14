@@ -130,9 +130,9 @@ namespace Rzproekt.Controllers {
         /// </summary>
         /// <returns></returns>
         [HttpPut, Route("remove-cert")]
-        public async Task<IActionResult> RemoveCert() {
+        public async Task<IActionResult> RemoveCert([FromQuery] int id) {
             AboutBase cert = new AboutService(_db);
-            //await cert.RemoveAllCerts();
+            await cert.RemoveCert(id);
 
             return Ok();
         }
