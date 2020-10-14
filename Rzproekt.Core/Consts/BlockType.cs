@@ -14,5 +14,7 @@ namespace Rzproekt.Core.Consts {
         public const string ABOUT = "about";
 
         public const string CERT = "cert";
+
+        public const string STAT = "stat";
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Linq;
 using Rzproekt.Core;
+using Rzproekt.Core.Consts;
 using Rzproekt.Core.Data;
 using Rzproekt.Models;
 using System;
@@ -43,9 +44,9 @@ namespace Rzproekt.Services {
                 var sText_2 = jsonObject["sTwo"].ToString();
                 var sText_3 = jsonObject["sThree"].ToString();
 
-                StatisticDto statisticDto = new StatisticDto() { Number = aNumber_1, Text = sText_1 };
-                StatisticDto statisticDto1 = new StatisticDto() { Number = aNumber_2, Text = sText_2 };
-                StatisticDto statisticDto2 = new StatisticDto() { Number = aNumber_3, Text = sText_3 };
+                StatisticDto statisticDto = new StatisticDto() { Number = aNumber_1, Text = sText_1, Block = BlockType.STAT };
+                StatisticDto statisticDto1 = new StatisticDto() { Number = aNumber_2, Text = sText_2, Block = BlockType.STAT };
+                StatisticDto statisticDto2 = new StatisticDto() { Number = aNumber_3, Text = sText_3, Block = BlockType.STAT };
 
                 var aStats = await _db.Statistic.ToListAsync();
                 _db.Statistic.RemoveRange(aStats); 
