@@ -83,10 +83,10 @@ namespace Rzproekt.Controllers {
         /// <summary>
         /// Метод удаляет клиента.
         /// </summary>
-        [HttpPut, Route("delete-client")]
-        public async Task<IActionResult> DeleteClient([FromBody] ClientDto clientDto) {
+        [HttpPut, Route("remove-client")]
+        public async Task<IActionResult> DeleteClient([FromQuery] int id) {
             ClientBase clientBase = new ClientService(_db);
-            await clientBase.DeleteClient(clientDto.ClientId);
+            await clientBase.DeleteClient(id);
 
             return Ok();
         }

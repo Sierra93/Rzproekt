@@ -165,9 +165,9 @@ namespace Rzproekt.Services {
                     throw new ArgumentNullException();
                 }
 
-                var aCerts = await _db.Clients.Where(c => c.ClientName.ToLower().Contains(name.ToLower())).Select(c => new { c.ClientId, c.ClientName }).ToListAsync();
+                var oClient = await _db.Clients.Where(c => c.ClientName.ToLower().Contains(name.ToLower())).Select(c => new { c.ClientId, c.ClientName }).ToListAsync();
 
-                return aCerts;
+                return oClient;
             }
 
             catch (ArgumentNullException ex) {
