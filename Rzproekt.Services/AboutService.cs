@@ -201,7 +201,7 @@ namespace Rzproekt.Services {
                     throw new ArgumentNullException();
                 }
 
-                var aCerts = await _db.Certs.Where(c => c.CertName.ToLower().Contains(name.ToLower())).Select(c => c.CertName).ToListAsync();
+                var aCerts = await _db.Certs.Where(c => c.CertName.ToLower().Contains(name.ToLower())).Select(c => new { c.CertId, c.CertName }).ToListAsync();
 
                 return aCerts;
             }
