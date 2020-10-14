@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json.Linq;
 using Rzproekt.Core;
 using Rzproekt.Core.Consts;
 using Rzproekt.Core.Data;
@@ -106,20 +107,32 @@ namespace Rzproekt.Services {
         /// Метод добавляет нового клиента.
         /// </summary>
         /// <returns></returns>
-        public async override Task AddClient(IFormCollection filesClient) {
+        public async override Task AddClient(IFormCollection filesClient, string jsonString) {
             try {
                 CommonMethodsService common = new CommonMethodsService(_db);
                 ClientDto client = new ClientDto();
+                var json = JObject.Parse(jsonString);
+                string clientTitle = default;
+
+                if (json["mainTitle"] != null) {
+                    clientTitle = json["mainTitle"].ToString();
+                }
+                
+                string clientName = json["nameClient"].ToString();
+
+                if (!string.IsNullOrEmpty(clientTitle)) {
+                    client.MainTitle = clientTitle;
+                }
 
                 if (filesClient.Files.Count > 0) {
                     var path = await common.UploadSingleFile(filesClient);
                     path = path.Replace("wwwroot", "");
                     client.Url = path;
+                    client.ClientName = clientName;
                     client.Block = BlockType.CLIENT;
                 }
 
                 _db.Clients.Update(client);
-
                 await _db.SaveChangesAsync();
             }
 

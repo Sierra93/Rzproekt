@@ -22,7 +22,7 @@ namespace Rzproekt.Core {
         /// <param name="filesClient"></param>
         /// <param name="jsonString"></param>
         /// <returns></returns>
-        public abstract Task AddClient(IFormCollection filesClient);
+        public abstract Task AddClient(IFormCollection filesClient, string jsonString);
 
         /// <summary>
         /// Метод изменяет клиента.

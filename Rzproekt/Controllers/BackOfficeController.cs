@@ -62,9 +62,9 @@ namespace Rzproekt.Controllers {
         /// Метод добавляет клиента.
         /// </summary>
         [HttpPost, Route("add-client")]
-        public async Task<IActionResult> AddClient([FromForm] IFormCollection filesClient) {
+        public async Task<IActionResult> AddClient([FromForm] IFormCollection filesClient, [FromForm] string jsonString) {
             ClientBase clientBase = new ClientService(_db);
-            await clientBase.AddClient(filesClient);
+            await clientBase.AddClient(filesClient, jsonString);
 
             return Ok();
         }
