@@ -44,5 +44,12 @@ namespace Rzproekt.Core {
         /// </summary>
         /// <returns></returns>
         public abstract Task<int> GetClientCount();
+
+        /// <summary>
+        /// Метод находит клиента.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public abstract Task<IEnumerable> SearchClient(string name);
     }
 }

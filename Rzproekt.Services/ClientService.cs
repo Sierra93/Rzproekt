@@ -154,5 +154,29 @@ namespace Rzproekt.Services {
                 throw new Exception(ex.Message.ToString());
             }
         }
+
+        /// <summary>
+        /// Метод находит клиента по тексту.
+        /// </summary>
+        /// <returns></returns>
+        public async override Task<IEnumerable> SearchClient(string name) {
+            try {
+                if (string.IsNullOrEmpty(name)) {
+                    throw new ArgumentNullException();
+                }
+
+                var aCerts = await _db.Clients.Where(c => c.ClientName.ToLower().Contains(name.ToLower())).Select(c => new { c.ClientId, c.ClientName }).ToListAsync();
+
+                return aCerts;
+            }
+
+            catch (ArgumentNullException ex) {
+                throw new ArgumentNullException("Не передан текст поиска", ex.Message.ToString());
+            }
+
+            catch (Exception ex) {
+                throw new Exception(ex.Message.ToString());
+            }
+        }
     }
 }
