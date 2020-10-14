@@ -234,13 +234,14 @@ var back_office = new Vue({
         onSearthCert() {
             let self = this;
             let CertName = document.getElementById("searchCert").value;
+            if (!CertName) { self.$data.arrCertSearth = []; return }
             let sUrl = self.$data.urlApi + '/api/about/search';
             let oData = {
                 CertName
             };
             axios.post(sUrl, oData)
                 .then((response) => {
-                    if (!!response.data) { self.$data.arrCertSearth = []; return}
+                    if (!response.data) { self.$data.arrCertSearth = []; return}
                     self.$data.arrCertSearth = response.data;
                     console.log("success / getCert", response);
                 })
@@ -248,8 +249,24 @@ var back_office = new Vue({
                     console.log("request send error", XMLHttpRequest);
                 });
         },
-        onDelCert() {
+        onDelCert(e) {
+            let self = this;
+            let sUrl = self.$data.urlApi + '/api/back-office/remove-cert';
+            let idCert = +e.target.getAttribute('idCustom');
 
+            try {
+                axios.put(sUrl + '?id=' + idCert)
+                    .then((response) => {
+                        console.log('Данные успешно удалены');
+
+                    })
+                    .catch((XMLHttpRequest) => {
+                        throw new Error(XMLHttpRequest);
+                    });
+            }
+            catch (ex) {
+                throw new Error(ex);
+            }
         },
         onAddCert() {
             let self = this;
