@@ -38,7 +38,7 @@ var back_office = new Vue({
                 '/api/project/get-projects',
                 '/api/client/get-clients',
                 '/api/contact/get-contacts',
-                '/api/footer/get-footer'
+                '/api/footer/get-footer',
                 '/api/back-office/get-certs'
             ],
             general: {
