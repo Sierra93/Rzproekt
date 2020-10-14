@@ -337,36 +337,36 @@ var back_office = new Vue({
         },
         onChangeClient(e) {
             // Отправляет измененные данные блока Client
-            let self = this;
-            let sUrl = self.$data.urlApi + '/api/back-office/change-client';
-            let MainTitle = $('.client-menu-title')[0].value;
-            let idService = +e.target.getAttribute('idCustom') - 1;
-            let ClientId = idService + 1;
-            let formData = new FormData();
-            let oData = {
-                ClientId,
-                MainTitle
-            };
-            if (!!this.filesService[idService]) {
-                formData.set('filesClient', this.filesService[idService].files[0]);
-            }
+            //let self = this;
+            //let sUrl = self.$data.urlApi + '/api/back-office/change-client';
+            //let MainTitle = $('.client-menu-title')[0].value;
+            //let idService = +e.target.getAttribute('idCustom') - 1;
+            //let ClientId = idService + 1;
+            //let formData = new FormData();
+            //let oData = {
+            //    ClientId,
+            //    MainTitle
+            //};
+            //if (!!this.filesService[idService]) {
+            //    formData.set('filesClient', this.filesService[idService].files[0]);
+            //}
             
-            formData.set('jsonString', JSON.stringify(oData));
+            //formData.set('jsonString', JSON.stringify(oData));
 
 
-            try {
-                axios.post(sUrl, formData)
-                    .then((response) => {
-                        console.log('Данные успешно изменены');
+            //try {
+            //    axios.post(sUrl, formData)
+            //        .then((response) => {
+            //            console.log('Данные успешно изменены');
 
-                    })
-                    .catch((XMLHttpRequest) => {
-                        throw new Error(XMLHttpRequest);
-                    });
-            }
-            catch (ex) {
-                throw new Error(ex);
-            }
+            //        })
+            //        .catch((XMLHttpRequest) => {
+            //            throw new Error(XMLHttpRequest);
+            //        });
+            //}
+            //catch (ex) {
+            //    throw new Error(ex);
+            //}
         },
 
         /////////
@@ -416,7 +416,7 @@ var back_office = new Vue({
             let oData = {
                 nameClient
             }
-            if (!!this.filesCert) {
+            if (!!this.filesClient) {
                 formData.set('filesClient', this.filesClient[0]);
             }
             formData.set('jsonString', JSON.stringify(oData));
