@@ -75,5 +75,31 @@ namespace Rzproekt.Services {
         public async override Task<IEnumerable> GetAllProjects() {
             return await _db.Projects.ToListAsync();
         }
+
+        /// <summary>
+        /// Метод удаляет проект.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async override Task RemoveProject(int id) {
+            try {
+                if (id == 0) {
+                    throw new ArgumentNullException();
+                }
+
+                ProjectDto oProject = await _db.Projects.Where(p => p.ProjectId == id).FirstOrDefaultAsync();
+
+                _db.Remove(oProject);
+                await _db.SaveChangesAsync();
+            }
+
+            catch (ArgumentNullException ex) {
+                throw new ArgumentNullException("Id не передан", ex.Message.ToString());
+            }
+
+            catch (Exception ex) {
+                throw new Exception(ex.Message.ToString());
+            }
+        }
     }
 }

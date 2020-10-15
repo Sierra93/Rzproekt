@@ -27,5 +27,12 @@ namespace Rzproekt.Core {
         /// </summary>
         /// <returns></returns>
         public abstract Task<IEnumerable> GetAllProjects();
+
+        /// <summary>
+        /// Метод удаляет проект.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public abstract Task RemoveProject(int id);
     }
 }
