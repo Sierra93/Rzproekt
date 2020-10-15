@@ -28,35 +28,34 @@
         </header>
 
         <main>
-            <div class="block aboutDetalis">
-                <div class="title-block">
-                    <h1>{{ about[0].dopMainTitle }}</h1>
-                </div>
-                <div class="border-bottom-title"></div>
-                <section class="aboutDetalis-list">
-                    <article>
-                        <div><img :src="about[0].url" alt="about" /></div>
-                        <h1>{{ about[0].dopTitle }}</h1>
-                        <textarea class="aboutDetailTxtTextarea" readonly>{{ about[0].dopText }}</textarea>
-                    </article>
-                </section>
-            </div>
-            <div class="block aboutSert">
-                <div class="title-block">
-                    <h1>СЕРТИФИКАТЫ</h1>
-                </div>
-                <div class="border-bottom-title"></div>
-                <section class="cert-list">
-
-                    <div v-for="item in cert">
-                        <a data-fancybox="gallery" :href="item.url"><img :src="item.url" /></a>
+            <div class="about-wrapper">
+                <div class="block aboutDetalis">
+                    <div class="title-block">
+                        <h1>{{ about[0].dopMainTitle }}</h1>
                     </div>
-                    @*<a data-fancybox="gallery" href="~/img/cert1.jpg"><img src="~/img/cert1.jpg" /></a>
-                        <a data-fancybox="gallery" href="~/img/cert2.jpg"><img src="~/img/cert2.jpg" /></a>*@
+                    <div class="border-bottom-title"></div>
+                    <section class="aboutDetalis-list">
+                        <article>
+                            <div><img :src="about[0].url" alt="about" /></div>
+                            <h1>{{ about[0].dopTitle }}</h1>
+                            <textarea class="aboutDetailTxtTextarea" readonly>{{ about[0].dopText }}</textarea>
+                        </article>
+                    </section>
+                </div>
+                <div class="block aboutSert">
+                    <div class="title-block">
+                        <h1>СЕРТИФИКАТЫ</h1>
+                    </div>
+                    <div class="border-bottom-title"></div>
+                    <section class="cert-list">
 
-                </section>
+                        <div id="waterwheel-carousel" v-for="item in cert">
+                            <a data-fancybox="gallery" :href="item.url"><img :src="item.url" /></a>
+                        </div>
+
+                    </section>
+                </div>
             </div>
-
         </main>
 
         <footer>
@@ -70,6 +69,7 @@
     <script src="~/lib/vue/axios/axios.js"></script>
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+    <script src="~/lib/jquery.waterwheelCarousel.min.js"></script>
     <script src="~/lib/slick.min.js"></script>
     <script src="~/js/site.js"></script>
 </body>

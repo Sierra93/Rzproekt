@@ -15,7 +15,11 @@
     <div id="appHome" >
         <header class="header">
             <div>
-                <div class="block-logo"><img :src="header[0].url" alt="logo" /></div>
+                <div class="block-logo">
+                    <a v-bind:href="urlApi" v-on:click="smoothScroll">
+                        <img :src="header[0].url" alt="logo" />
+                    </a>
+                </div>
                 <h1>{{ header[0].mainText }}</h1>
             </div>
             <nav class="block-nav">
@@ -33,7 +37,7 @@
 
                 <ul class="menu__box">
                     <li v-for="item in header">
-                        <a v-bind:href="smoothScrollArr[item.id]" class="menu__item scrollto">{{ item.mainItem }}</a>
+                        <a v-bind:href="smoothScrollArr[item.id]" class="menu__item scrollto" v-on:click="smoothScroll">{{ item.mainItem }}</a>
                     </li>
                 </ul>
             </div>
@@ -52,6 +56,7 @@
     <script src="~/lib/vue/axios/axios.js"></script>
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+    <script src="~/lib/jquery.waterwheelCarousel.min.js"></script>
     <script src="~/lib/slick.min.js"></script>
     <script src="~/js/site.js"></script>
     @RenderSection("Scripts", required: false)

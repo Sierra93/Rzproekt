@@ -118,6 +118,26 @@ var back_office = new Vue({
             let filesClient = document.getElementsByClassName('form-files-client')[0].files;
             this.filesClient = filesClient;
         },
+        notyfi(e) {
+            let blockNotify = document.getElementById('notifications');
+            if (e) {
+                blockNotify.style.backgroundColor = 'green';
+                blockNotify.classList.add('notifications-active');
+                function hide() {
+                    blockNotify.classList.remove('notifications-active');
+                }
+
+                setTimeout(hide, 2000);
+            } else {
+                blockNotify.style.backgroundColor = 'red';
+                blockNotify.classList.add('notifications-active');
+                function hide() {
+                    blockNotify.classList.remove('notifications-active');
+                }
+                setTimeout(hide, 2000);
+            }
+
+        },
 
         // Отправляет измененные данные первого блока сайта
         onChangeHeader() {
@@ -147,9 +167,10 @@ var back_office = new Vue({
             try {
                 axios.post(sUrl, formData)
                     .then((response) => {
-                        console.log('Данные успешно изменены');
+                        self.notyfi(true);
                     })
                     .catch((XMLHttpRequest) => {
+                        self.notyfi(false);
                         throw new Error(XMLHttpRequest);
                     });
             }
@@ -183,11 +204,11 @@ var back_office = new Vue({
             try {
                 axios.post(sUrl, formData)
                     .then((response) => {
-                        console.log('Данные успешно изменены');
+                        self.notyfi(true);
 
                     })
                     .catch((XMLHttpRequest) => {
-                        throw new Error(XMLHttpRequest);
+                        self.notyfi(false);
                     });
             }
             catch (ex) {
@@ -226,11 +247,11 @@ var back_office = new Vue({
             try {
                 axios.post(sUrl, formData)
                     .then((response) => {
-                        console.log('Данные успешно изменены');
+                        self.notyfi(true);
 
                     })
                     .catch((XMLHttpRequest) => {
-                        throw new Error(XMLHttpRequest);
+                        self.notyfi(false);
                     });
             }
             catch (ex) {
@@ -250,9 +271,10 @@ var back_office = new Vue({
                     if (!response.data) { self.$data.arrCertSearth = []; return}
                     self.$data.arrCertSearth = response.data;
                     console.log("success / getCert", response);
+                    self.notyfi(true);
                 })
                 .catch((XMLHttpRequest) => {
-                    console.log("request send error", XMLHttpRequest);
+                    self.notyfi(false);
                 });
         },
         onDelCert(e) {
@@ -264,11 +286,11 @@ var back_office = new Vue({
                 axios.put(sUrl + '?id=' + idCert)
                     .then((response) => {
                         self.onSearthCert();
-                        console.log('Данные успешно удалены');
+                        self.notyfi(true);
 
                     })
                     .catch((XMLHttpRequest) => {
-                        throw new Error(XMLHttpRequest);
+                        self.notyfi(false);
                     });
             }
             catch (ex) {
@@ -290,11 +312,11 @@ var back_office = new Vue({
             try {
                 axios.post(sUrl, formData)
                     .then((response) => {
-                        console.log('Данные успешно изменены');
+                        self.notyfi(true);
 
                     })
                     .catch((XMLHttpRequest) => {
-                        throw new Error(XMLHttpRequest);
+                        self.notyfi(false);
                     });
             }
             catch (ex) {
@@ -324,11 +346,11 @@ var back_office = new Vue({
             try {
                 axios.post(sUrl, oData)
                     .then((response) => {
-                        console.log('Данные успешно изменены');
+                        self.notyfi(true);
 
                     })
                     .catch((XMLHttpRequest) => {
-                        throw new Error(XMLHttpRequest);
+                        self.notyfi(false);
                     });
             }
             catch (ex) {
@@ -357,11 +379,11 @@ var back_office = new Vue({
             try {
                 axios.post(sUrl, formData)
                     .then((response) => {
-                        console.log('Данные успешно изменены');
+                        self.notyfi(true);
 
                     })
                     .catch((XMLHttpRequest) => {
-                        throw new Error(XMLHttpRequest);
+                        self.notyfi(false);
                     });
             }
             catch (ex) {
@@ -383,7 +405,7 @@ var back_office = new Vue({
                     console.log("success / getClient", response);
                 })
                 .catch((XMLHttpRequest) => {
-                    console.log("request send error", XMLHttpRequest);
+                    self.notyfi(false);
                 });
         },
         onDelClient(e) {
@@ -395,11 +417,11 @@ var back_office = new Vue({
                 axios.put(sUrl + '?id=' + idClient)
                     .then((response) => {
                         self.onSearthClient();
-                        console.log('Данные успешно удалены');
+                        self.notyfi(true);
 
                     })
                     .catch((XMLHttpRequest) => {
-                        throw new Error(XMLHttpRequest);
+                        self.notyfi(false);
                     });
             }
             catch (ex) {
@@ -422,10 +444,11 @@ var back_office = new Vue({
                 axios.post(sUrl, formData)
                     .then((response) => {
                         console.log('Данные успешно изменены');
+                        self.notyfi(true);
 
                     })
                     .catch((XMLHttpRequest) => {
-                        throw new Error(XMLHttpRequest);
+                        self.notyfi(false);
                     });
             }
             catch (ex) {
@@ -443,11 +466,11 @@ var back_office = new Vue({
             try {
                 axios.put(sUrl, oData)
                     .then((response) => {
-                        console.log('Данные успешно удалены');
+                        self.notyfi(true);
 
                     })
                     .catch((XMLHttpRequest) => {
-                        throw new Error(XMLHttpRequest);
+                        self.notyfi(false);
                     });
             }
             catch (ex) {

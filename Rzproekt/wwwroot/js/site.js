@@ -162,13 +162,13 @@ var appHome = new Vue({
             }
         },
         smoothScroll(event) {
-             $('.block-nav a').on('click', function (event) {
-                var $anchor = $(this);
-                $('html, body').stop().animate({
-                    scrollTop: $($anchor.attr('href')).offset().top - 100
-                }, 1000);
-                event.preventDefault();
-             });
+            var $anchor = event.target;
+            $('html, body').stop().animate({
+                scrollTop: $($anchor.getAttribute('href')).offset().top - 100
+            }, 1000);
+            event.preventDefault();
+            this.getBlocksSevices(); //запускает автосайз
+            this.projectsJs(); //запускает блок прокты
         },
         declination(number, one, two, five) {
                 let n = Math.abs(number);
@@ -184,9 +184,72 @@ var appHome = new Vue({
                     return two;
                 }
             return five;
+        },
+        projectsJs() {
+            $('[data-fancybox^="quick-view"]').fancybox({
+                animationEffect: "fade",
+                animationDuration: 300,
+                margin: 0,
+                gutter: 0,
+                touch: {
+                    vertical: false
+                },
+                baseTpl:
+                    '<div class="fancybox-container" role="dialog" tabindex="-1">' +
+                    '<div class="fancybox-bg"></div>' +
+                    '<div class="fancybox-inner">' +
+                    '<div class="fancybox-stage"></div>' +
+                    '<div class="fancybox-form-wrap">' +
+                    '<button data-fancybox-close class="fancybox-button fancybox-button--close" title="{{CLOSE}}">' +
+                    '<img src="./img/close.png" />' +
+                    '</button></div>' +
+                    '</div>' +
+                    '</div>',
+                onInit: function (instance) {
+                    var current = instance.group[instance.currIndex];
+                    instance.$refs.form = current.opts.$orig.parent().find('.product-form');
+                    instance.$refs.form.appendTo(instance.$refs.container.find('.fancybox-form-wrap'));
+                    var list = '',
+                        $bullets;
+
+                    for (var i = 0; i < instance.group.length; i++) {
+                        list += '<li><a data-index="' + i + '" href="javascript:;"><span>' + (i + 1) + '</span></a></li>';
+                    }
+
+                    $bullets = $('<ul class="product-bullets">' + list + '</ul>').on('click touchstart', 'a', function () {
+                        var index = $(this).data('index');
+
+                        $.fancybox.getInstance(function () {
+                            this.jumpTo(index);
+                        });
+
+                    });
+
+                    instance.$refs.bullets = $bullets.appendTo(instance.$refs.stage);
+
+                },
+                beforeShow: function (instance) {
+                    instance.$refs.stage.find('ul:first')
+                        .children()
+                        .removeClass('active')
+                        .eq(instance.currIndex)
+                        .addClass('active');
+                },
+                afterClose: function (instance, current) {
+                    instance.$refs.form.appendTo(current.opts.$orig.parent());
+                }
+            });
         }
     }
 });
 window.addEventListener('wheel', event => {
     appHome.getBlocksSevices();
+    appHome.projectsJs();
+    //$("#waterwheel-carousel").waterwheelCarousel({
+    //    horizon: 110,
+    //    horizonOffset: -50,
+    //    horizonOffsetMultiplier: .7,
+    //    separation: 150,
+    //    edgeFadeEnabled: true
+    //});
 });

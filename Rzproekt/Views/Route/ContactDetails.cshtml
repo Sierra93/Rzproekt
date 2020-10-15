@@ -1,1 +1,104 @@
-﻿
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="~/css/StyleSheet.css" rel="stylesheet" />
+    <link href="~/css/media.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" />
+</head>
+<body>
+    <div id="appHome">
+        <header class="header">
+            <div>
+                <div class="block-logo"><img :src="header[0].url" alt="logo" /></div>
+                <h1>{{ header[0].mainText }}</h1>
+            </div>
+            <nav class="block-nav btn-return">
+                <ul class="block-nav">
+                    <li>
+                        <a v-bind:href="urlApi" v-on:click="smoothScroll">Вернуться</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <div class="block contactsDetalis">
+                <div class="title-block">
+                    <h1>РУКОВОДСТВО</h1>
+                </div>
+                <div class="border-bottom-title"></div>
+                <section class="contactsDetalis-list">
+                    <article>
+                        <div>
+                            <img src="~/img/472.jpg" />
+                        </div>
+                        <h1>Климова Марина Николаевна</h1>
+                        <h2><em>Генеральный директор</em></h2>
+                        <p>Тел.: (4852) 25-18-35</p>
+                        <p>Факс: (4852) 25-24-74</p>
+                        <p>E-mail: klimovamn@rzproekt.ru</p>
+                    </article>
+                    <article>
+                        <div>
+                            <img src="~/img/474.jpg" />
+                        </div>
+                        <h1>Виноградов Павел Анатольевич</h1>
+                        <h2><em>Директор по экономике и финансам</em></h2>
+                        <p>Тел.: (4852) 25-18-35</p>
+                        <p>Факс: (4852) 25-24-74</p>
+                    </article>
+                    <article>
+                        <div>
+                            <img src="~/img/416.jpg" />
+                        </div>
+                        <h1>Брюхов Дмитрий Геннадьевич</h1>
+                        <h2><em>Главный архитектор</em></h2>
+                        <p>Тел.: 30-82-92</p>
+                        <p>Факс: (4852) 25-24-74</p>
+                        <p>E-mail: Briukhov@rzproekt.ru</p>
+                    </article>
+                    <article>
+                        <div>
+                            <img src="~/img/476.jpg" />
+                        </div>
+                        <h1>Иванычев Евгений Николаевич</h1>
+                        <h2><em>Главный инженер</em></h2>
+                        <p>Тел.: 25-18-35</p>
+                        <p>Факс: (4852) 25-24-74</p>
+                        <p>E-mail: Ivanychev@rzproekt.ru</p>
+                    </article>
+                    <article>
+                        <div>
+                            <img src="~/img/409.jpg" />
+                        </div>
+                        <h1>Солдатова Ольга Германовна</h1>
+                        <h2><em>Главный бухгалтер</em></h2>
+                        <p>Тел.: (4852) 25-18-35</p>
+                        <p>Факс: (4852) 25-24-74</p>
+                        <p>E-mail: soldatova@rzproekt.ru</p>
+                    </article>
+                </section>
+            </div>
+        </main>
+
+        <footer>
+            <small>
+                &copy; {{ date }} {{ footer[0].copyStr }}
+            </small>
+        </footer>
+    </div>
+    <script src="https://rawgit.com/jackmoore/autosize/master/dist/autosize.min.js"></script>
+    <script src="~/lib/vue/vue.min.js"></script>
+    <script src="~/lib/vue/axios/axios.js"></script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+    <script src="~/lib/slick.min.js"></script>
+    <script src="~/js/site.js"></script>
+</body>
+</html>

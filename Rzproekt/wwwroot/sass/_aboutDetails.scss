@@ -1,3 +1,6 @@
+.about-wrapper {
+    display: flex;
+}
 .aboutDetalis {
     background: #fff;
     padding-top: 10rem !important;
@@ -31,12 +34,14 @@
     }
 }
 .aboutSert {
-    padding-top: 0!important;
+    background: #fff;
+    padding-top: 10rem !important;
 }
 .cert-list {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
     margin-bottom: 6rem;
 
     a {
@@ -60,3 +65,19 @@
     outline: none;
     font-size: 1rem;
 }
+
+
+
+//#waterwheel-carousel {
+//    width: 900px;
+//    height: 250px;
+//    position: relative;
+//    clear: both;
+//    overflow: hidden;
+//    margin: 0 auto;
+//}
+
+//#waterwheel-carousel img {
+//    visibility: hidden;
+//    cursor: pointer;
+//}

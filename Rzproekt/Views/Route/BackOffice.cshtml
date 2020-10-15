@@ -11,6 +11,9 @@
     <link href="~/css/StyleSheet.css" rel="stylesheet" />
 </head>
 <body class="body-back_office">
+    <div id='notifications' class="notifications-active">
+        <p>GHBVTH</p>
+    </div>
     <div id="back_office" class="wrapper">
         <div class="tab-container ">
             <h4 class="tab-title">АО "ЯПИ "Резиноасбопроект"</h4>
@@ -152,7 +155,7 @@
 
                         <fieldset>
                             <legend>Список сертификатов</legend>
-                            <input id="searchCert" type="search" placeholder="Поиск сертификата" v-on:input="onSearthCert" v-on:change="onSearthCert"/>
+                            <input id="searchCert" type="search" placeholder="Поиск сертификата" v-on:input="onSearthCert" v-on:change="onSearthCert" />
                             <div class="blockListCert">
                                 <div class="blockCert" v-for="item in arrCertSearth">
                                     <h4>{{ item.certName }}</h4>
@@ -287,7 +290,7 @@
                             <legend>Загрузить фото клиента</legend>
                             <label>
                                 <input id="nameClient" type="search" placeholder="Укажите название клиента" />
-                                <input type="file" class="form-files-client" ref="files" multiple v-on:change="handleFilesUploadClient" /> 
+                                <input type="file" class="form-files-client" ref="files" multiple v-on:change="handleFilesUploadClient" />
                             </label>
                         </fieldset>
                         <button v-on:click="onAddClient">Добавить</button>

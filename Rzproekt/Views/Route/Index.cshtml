@@ -7,7 +7,7 @@
 			<source v-bind:src="header[0].background" type="video/mp4" />
 		</video>
 	</div>
-	<section class="block-nav main-block-title">
+	<section class="main-block-title">
 		<h1>{{ header[0].mainTitle }}</h1>
         <a class="arrow-down" href="#service" v-on:click="smoothScroll">{{ smoothScrollArr[1].id }}</a>
 	</section>
@@ -25,7 +25,6 @@
             <textarea ref="serviceTxt" class="serviceTxt" readonly>{{ item.text }}</textarea>
 		</article>
 	</section>
-	
 </div>
 
 <div id="about" class="block about">
@@ -42,8 +41,8 @@
 		</div>
 	</div>
 	<div class="about-right"></div>
-
 </div>
+
 <div class="block-counter">
 	<div class="counter">
 		<div class="numeral">{{ date - 1938}}</div>
@@ -65,23 +64,29 @@
 		<div class="numeral-detal"><h2>{{ stat[2].text }}</h2></div>
 	</div>
 </div>
+
 <div id="project" class="block project">
 	<div class="title-block">
 		<h1>{{ project[0].mainTitle }}</h1>
 	</div>
 	<div class="border-bottom-title"></div>
     <section class="project-list">
-        @*<article v-for="item in project">
-            <div :src="item.url" class="project-block siema" v-for="item in project">
-                <h1>{{ item.title }}</h1>
+
+        @*/////////*@
+        <div class="product">
+            <a href="https://source.unsplash.com/fZ8uf_L52wg/832x1200" data-fancybox="quick-view-1" data-type="image">
+                <img src="https://source.unsplash.com/fZ8uf_L52wg/208x300" /></a>
+            <div class="product-images">
+                <a href="https://source.unsplash.com/xulIYVIbYIc/832x1200" data-fancybox="quick-view-1" data-type="image"></a>
+                <a href="https://source.unsplash.com/-oSpTrUtvfY/832x1200" data-fancybox="quick-view-1" data-type="image"></a>
             </div>
-        </article>*@
-        <div class="siema">
-            @*<img src="http://www.rzproekt.ru/files/1/800/271.jpg" />
-            <img src="http://www.rzproekt.ru/files/1/800/273.jpg"/>
-            <img src="http://www.rzproekt.ru/files/1/800/295.jpg"/>
-            <img src="http://www.rzproekt.ru/files/1/800/296.jpg"/>*@
+            <div class="product-form">
+                <h3>Cat pictures</h3>
+                <p>Discover cat pictures that fit for your visual content needs.</p>
+                <p>These cat photos feature cats of all sizes, including baby kittens. You'll not only find cat images of common house felines but also rarer breeds.</p>
+            </div>
         </div>
+        @*/////////*@
 
     </section>
 	<a class="btn-detail" href="https://localhost:44349/project-details">{{ project[0].buttonText }}</a>
@@ -93,13 +98,12 @@
     </div>
     <div class="border-bottom-title"></div>
     <section class="multiple-items clients-list">
-
         <div v-for="item in client">
             <img :src="item.url" />
         </div>
-
     </section>
 </div>
+
 <div id="contact" class="block contacts">
 	<div class="title-block">
 		<h1>{{ contact[0].mainTitle }}</h1>
@@ -115,7 +119,7 @@
 				<p>{{ contact[1].text }} <br /><br /> {{ contact[2].text }} <br /><br /> {{ contact[3].text }}</p>
 			</div>
 			<div class="detail-contacts">
-			<a class="btn-detail" href="#">{{ contact[0].buttonText }}</a>
+			<a class="btn-detail" href="https://localhost:44349/contact-details">{{ contact[0].buttonText }}</a>
 			</div>
 		</article>
 	</section>

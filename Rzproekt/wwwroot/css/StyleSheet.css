@@ -131,6 +131,9 @@
   outline: none;
   font-size: 1.2rem; }
 
+.about-wrapper {
+  display: flex; }
+
 .aboutDetalis {
   background: #fff;
   padding-top: 10rem !important; }
@@ -154,12 +157,14 @@
         padding: 1rem; }
 
 .aboutSert {
-  padding-top: 0 !important; }
+  background: #fff;
+  padding-top: 10rem !important; }
 
 .cert-list {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
   margin-bottom: 6rem; }
   .cert-list a img {
     width: 160px; }
@@ -244,6 +249,149 @@
     .project-list .project-block h1 {
       padding: 0 2rem; }
 
+/* 
+
+Style page (the product list)
+
+*/
+.product {
+  float: left;
+  margin: 10px; }
+
+.product .product-images,
+.product .product-form {
+  display: none; }
+
+/* This elements contains both blocks */
+.fancybox-inner {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  width: calc(100% - 40px);
+  height: calc(100% - 40px);
+  max-width: 800px;
+  max-height: 600px; }
+
+/* Left block will contain the gallery */
+.fancybox-stage {
+  width: 52%;
+  background: #fff; }
+
+/* Right block - close button and the form */
+.fancybox-form-wrap {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  bottom: 40px;
+  width: 48%;
+  background: #fff; }
+
+/* Add vertical lines */
+.fancybox-form-wrap::before,
+.fancybox-form-wrap::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+.fancybox-form-wrap::before {
+  width: 8px;
+  background: #f4f4f4; }
+
+.fancybox-form-wrap::after {
+  width: 1px;
+  background: #e9e9e9; }
+
+/* Set position and colors for close button */
+.fancybox-button--close {
+  position: absolute !important;
+  top: 0;
+  right: 0;
+  background: #F0F0F0 !important;
+  color: #222 !important;
+  padding: 7px !important; }
+
+.fancybox-button:hover {
+  color: #111;
+  background: #e4e4e4; }
+
+.fancybox-button svg path {
+  stroke-width: 1; }
+
+/* Set position of the form */
+.fancybox-inner .product-form {
+  overflow: auto;
+  position: absolute;
+  top: 50px;
+  right: 0;
+  bottom: 50px;
+  left: 0;
+  padding: 0 50px;
+  text-align: center; }
+
+/* 
+
+Tweak fade animation
+
+*/
+.fancybox-inner {
+  opacity: 0;
+  transition: opacity .3s; }
+
+.fancybox-is-open .fancybox-inner {
+  opacity: 1; }
+
+.fancybox-is-closing .fancybox-fx-fade {
+  opacity: 1 !important;
+  /* Prevent double-fading */ }
+
+/* 
+
+Bullet navigation design
+
+*/
+.product-bullets {
+  list-style: none;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  z-index: 99999;
+  -webkit-tap-highlight-color: transparent; }
+
+.product-bullets li {
+  display: inline-block;
+  vertical-align: top; }
+
+.product-bullets li a {
+  display: block;
+  height: 30px;
+  width: 20px;
+  position: relative; }
+
+.product-bullets li a span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 99px;
+  text-indent: -99999px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.5); }
+
+.product-bullets li.active a span {
+  background: #FF6666; }
+
 .projectDetalis {
   background: #fff;
   padding-top: 10rem !important; }
@@ -323,6 +471,29 @@
     justify-content: center; }
     .contacts .contacts-block .address {
       margin: 1rem 2rem; }
+
+.contactsDetalis {
+  padding-top: 10rem !important; }
+
+.contactsDetalis-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding-bottom: 7rem;
+  padding-top: 4rem; }
+  .contactsDetalis-list article {
+    max-width: 25rem;
+    margin: 1rem; }
+    .contactsDetalis-list article img {
+      width: 25rem; }
+    .contactsDetalis-list article h1 {
+      font-size: 1.3rem; }
+    .contactsDetalis-list article h2 {
+      margin-bottom: 1rem; }
+    .contactsDetalis-list article em {
+      font-size: 1rem;
+      color: #da0f27; }
 
 .back_office-block {
   display: flex;
@@ -476,9 +647,11 @@
       margin: .2rem;
       width: 18rem; }
     .form-back_office fieldset textarea {
-      width: 100%;
+      width: 97%;
       height: 12rem;
-      resize: vertical; }
+      resize: vertical;
+      text-align: justify;
+      padding: 5px; }
   .form-back_office .btm-back-del-client {
     width: 100px;
     margin: 15px auto 0;
@@ -524,6 +697,23 @@
   .blockListClient .blockClient {
     margin: 0.5rem;
     background: white; }
+
+#notifications {
+  cursor: pointer;
+  position: fixed;
+  top: 7rem;
+  right: -15rem;
+  z-index: 9999;
+  margin-bottom: 22px;
+  margin-right: 15px;
+  max-width: 300px;
+  transition: .5s;
+  padding: 1rem 3rem;
+  border-radius: 1rem;
+  color: white; }
+
+.notifications-active {
+  right: -2rem !important; }
 
 #menu__toggle {
   opacity: 0; }
@@ -617,6 +807,8 @@ body {
   position: fixed;
   width: 100%;
   z-index: 5; }
+  .header h1 {
+    font-size: 1.5rem; }
   .header div {
     display: flex;
     align-items: center;
@@ -723,3 +915,6 @@ footer {
 
 .hamburger-menu {
   display: none !important; }
+
+.btn-return {
+  display: block !important; }
