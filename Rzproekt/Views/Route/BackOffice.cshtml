@@ -11,10 +11,10 @@
     <link href="~/css/StyleSheet.css" rel="stylesheet" />
 </head>
 <body class="body-back_office">
-    <div id='notifications' class="notifications-active">
-        <p>GHBVTH</p>
-    </div>
     <div id="back_office" class="wrapper">
+        <div id='notifications' class="notifications-active">
+            <p>{{ notify }}</p>
+        </div>
         <div class="tab-container ">
             <h4 class="tab-title">АО "ЯПИ "Резиноасбопроект"</h4>
             <div class="tab-wrapper">
@@ -216,10 +216,12 @@
                         </fieldset>
                         <fieldset>
                             <legend>Загрузить картинку проекта</legend>
-                            <label>Заглавное фото
+                            <label>
+                                Заглавное фото
                                 <input type="file" id="files" class="form-files-projectMain" ref="files" multiple v-on:change="handleFilesUploadProject" />
                             </label>
-                            <label>Доп. Фото
+                            <label>
+                                Доп. Фото
                                 <input type="file" id="files" class="form-files-project" ref="files" multiple v-on:change="handleFilesUploadProject" />
                             </label>
                             <input type="text" id="nameProject" class="project-menu-title" placeholder="Название проекта">

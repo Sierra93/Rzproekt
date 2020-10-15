@@ -31,6 +31,7 @@ var back_office = new Vue({
             filesProject: '',
             filesDetProject: '',
             date: new Date().getFullYear(),
+            notify: '',
             urlApi: 'https://localhost:44349',
             //urlApi: 'https://devmyprojects24.xyz',
             listRequests: [
@@ -131,6 +132,7 @@ var back_office = new Vue({
         notyfi(e) {
             let blockNotify = document.getElementById('notifications');
             if (e) {
+                this.notify = "Данные успешно изменены"
                 blockNotify.style.backgroundColor = 'green';
                 blockNotify.classList.add('notifications-active');
                 function hide() {
@@ -139,6 +141,7 @@ var back_office = new Vue({
 
                 setTimeout(hide, 2000);
             } else {
+                this.notify = "Ошибка, данные не изменились"
                 blockNotify.style.backgroundColor = 'red';
                 blockNotify.classList.add('notifications-active');
                 function hide() {
