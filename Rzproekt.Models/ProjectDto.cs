@@ -31,6 +31,12 @@ namespace Rzproekt.Models {
         [Column("button_text", TypeName = "nvarchar(500)")]
         public string ButtonText { get; set; }  // Текст кнопки.
 
+        [Column("is_main", TypeName = "nvarchar(5)")]
+        public string IsMain { get; set; }  // Главный проект или нет.
+
+        [Column("is_main_image", TypeName = "nvarchar(5)")]
+        public string IsMainImage { get; set; }     // Флаг, который определяет основное изображение или дополнительное.
+
         public List<MultepleContextTable> MultepleContextTables { get; set; }
 
         public ProjectDto() {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
@@ -14,5 +15,11 @@ namespace Rzproekt.Core {
         /// </summary>
         /// <returns></returns>
         public abstract Task<IEnumerable> GetProjectsInfo();
+
+        /// <summary>
+        /// Метод добавляет проект.
+        /// </summary>
+        /// <returns></returns>
+        public abstract Task AddProjectInfo(IFormCollection filesMain, IFormCollection filesProject, string jsonString);
     }
 }

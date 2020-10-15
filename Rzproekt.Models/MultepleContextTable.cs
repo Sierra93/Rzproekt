@@ -36,5 +36,8 @@ namespace Rzproekt.Models {
 
         public int CertId { get; set; }
         public CertDto Certs { get; set; }
+
+        public int DetailId { get; set; }
+        public DetailProject DetailProjects { get; set; }
     }
 }
