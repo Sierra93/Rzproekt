@@ -386,7 +386,7 @@ var back_office = new Vue({
 
             formData.set('filesProject', this.filesProject);
             // formData.set('filesDetProject', this.filesDetProject[0]);
-            formData = formData.set('jsonString', JSON.stringify(oData));
+            formData.set('jsonString', JSON.stringify(oData));
 
             try {
                 axios.post(sUrl, formData)
