@@ -183,45 +183,32 @@
   outline: none;
   font-size: 1rem; }
 
-.block1 {
-  background: #1861ac;
-  height: 90vh;
+.block-counter {
   display: flex;
-  justify-content: center; }
-  .block1 .block1-title {
-    width: 600px;
-    margin-top: 100px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  background: #b52536; }
+  .block-counter .block-border-counter {
+    width: .2rem;
+    background: white;
+    height: 75px; }
+  .block-counter .counter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    margin: 1rem 3rem;
     text-align: center; }
-    .block1 .block1-title a {
-      position: relative; }
-    .block1 .block1-title .arrow-down:before {
-      content: '';
-      display: block;
-      height: 0.5rem;
-      transform: rotate(45deg);
-      border-bottom-left-radius: 5px;
-      border-top-left-radius: 5px;
-      width: 3rem;
-      background: #fff;
-      position: absolute;
-      left: -26px; }
-    .block1 .block1-title .arrow-down:after {
-      color: #fff;
-      content: '';
-      display: block;
-      height: 0.5rem;
-      transform: rotate(135deg);
-      border-bottom-left-radius: 5px;
-      border-top-left-radius: 5px;
-      width: 3rem;
-      background: #fff;
-      position: absolute;
-      left: 4px; }
-    .block1 .block1-title h1 {
-      font-size: 3.4rem;
-      line-height: 4rem;
-      color: #fff;
-      margin-bottom: 60px; }
+  .block-counter .numeral {
+    font-size: 4rem;
+    font-weight: bolder;
+    color: #fff; }
+  .block-counter .numeral-detal {
+    font-size: 0.9rem; }
+    .block-counter .numeral-detal h2 {
+      color: #1e2d3b;
+      width: 185px; }
 
 .project {
   background: #fff; }
@@ -870,32 +857,6 @@ body {
   .btn-detail:hover {
     background: #da0f27;
     color: #fff; }
-
-.block-counter {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  background: #b52536; }
-  .block-counter .block-border-counter {
-    width: .2rem;
-    background: white;
-    height: 75px; }
-  .block-counter .counter {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    margin: 1rem 3rem;
-    text-align: center; }
-  .block-counter .numeral {
-    font-size: 4rem;
-    color: #fff; }
-  .block-counter .numeral-detal {
-    font-size: 0.9rem; }
-    .block-counter .numeral-detal h2 {
-      color: #1e2d3b;
-      width: 185px; }
 
 .map-block .iframe {
   width: 800px;
