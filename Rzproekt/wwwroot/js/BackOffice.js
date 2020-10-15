@@ -28,6 +28,8 @@ var back_office = new Vue({
             filesAbout: '',
             filesCert: '',
             filesClient: '',
+            filesProject: '',
+            filesDetProject: '',
             date: new Date().getFullYear(),
             urlApi: 'https://localhost:44349',
             //urlApi: 'https://devmyprojects24.xyz',
@@ -52,6 +54,7 @@ var back_office = new Vue({
             arrCertSearth: [],
             stat: [],
             project: [],
+            arrProjectSearth: [],
             client: [],
             arrClientSearth: [],
             contact: [],
@@ -117,6 +120,13 @@ var back_office = new Vue({
         handleFilesUploadClient() {
             let filesClient = document.getElementsByClassName('form-files-client')[0].files;
             this.filesClient = filesClient;
+        },
+        handleFilesUploadProject() {
+            let filesProject = document.getElementsByClassName('form-files-projectMain')[0].files[0];
+            let filesDetProject = document.getElementsByClassName('form-files-project')[0].files[0];
+            this.filesProject = filesProject;
+            this.filesDetProject = filesDetProject;
+            
         },
         notyfi(e) {
             let blockNotify = document.getElementById('notifications');
@@ -356,6 +366,45 @@ var back_office = new Vue({
             catch (ex) {
                 throw new Error(ex);
             }
+        },
+        onSearthProject(e) {
+
+        },
+        onChangeProject(e) {
+
+        },
+        onAddProject(e) {
+            let self = this;
+            let sUrl = self.$data.urlApi + '/api/back-office/add-project';
+            let nameProject = document.getElementById("nameProject").value;
+            let detailProject = document.getElementById("detailProject").value;
+            let formData = new FormData();
+            let oData = {
+                nameProject,
+                detailProject
+            }
+
+            formData.set('filesProject', this.filesProject);
+            // formData.set('filesDetProject', this.filesDetProject[0]);
+            formData = formData.set('jsonString', JSON.stringify(oData));
+
+            try {
+                axios.post(sUrl, formData)
+                    .then((response) => {
+                        console.log('Данные успешно изменены');
+                        self.notyfi(true);
+
+                    })
+                    .catch((XMLHttpRequest) => {
+                        self.notyfi(false);
+                    });
+            }
+            catch (ex) {
+                throw new Error(ex);
+            }
+        },
+        onDelProject(e) {
+
         },
         onChangeClient(e) {
             // Отправляет измененные данные блока Client

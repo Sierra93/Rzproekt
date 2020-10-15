@@ -212,35 +212,35 @@
                         <fieldset>
                             <legend>Главный текст</legend>
                             <input type="text" class="project-menu-title" v-bind:value="project[0].mainTitle">
+                            <button v-on:click="onChangeProject">Сохранить</button>
                         </fieldset>
+                        <fieldset>
+                            <legend>Загрузить картинку проекта</legend>
+                            <label>Заглавное фото
+                                <input type="file" id="files" class="form-files-projectMain" ref="files" multiple v-on:change="handleFilesUploadProject" />
+                            </label>
+                            <label>Доп. Фото
+                                <input type="file" id="files" class="form-files-project" ref="files" multiple v-on:change="handleFilesUploadProject" />
+                            </label>
+                            <input type="text" id="nameProject" class="project-menu-title" placeholder="Название проекта">
+                            <label>
+                                <textarea id="detailProject" class="about-detail-text" draggable="false" placeholder="Описание проекта"></textarea>
+                            </label>
+                            <button v-on:click="onAddProject">Добавить</button>
+                        </fieldset>
+                    </form>
 
+                    <form v-on:submit.prevent class="form-back_office">
                         <fieldset>
-                            <legend>Загрузить картинку проекта 1</legend>
-                            <input type="file" id="files" ref="files" multiple v-on:change="handleFilesUpload" />
+                            <legend>Список проектов</legend>
+                            <input id="searchProject" type="search" placeholder="Поиск проекта" v-on:input="onSearthProject" v-on:change="onSearthProject" />
+                            <div class="blockListProject">
+                                <div class="blockProject" v-for="item in arrProjectSearth">
+                                    <h4>{{ item.projectName }}</h4>
+                                    <button v-bind:idCustom="item.projectId" class="btm-back-del-client" v-on:click="onDelProject">Удалить</button>
+                                </div>
+                            </div>
                         </fieldset>
-                        <fieldset>
-                            <legend>Загрузить картинку проекта 2</legend>
-                            <input type="file" id="files" ref="files" multiple v-on:change="handleFilesUpload" />
-                        </fieldset>
-                        <fieldset>
-                            <legend>Загрузить картинку проекта 3</legend>
-                            <input type="file" id="files" ref="files" multiple v-on:change="handleFilesUpload" />
-                        </fieldset>
-
-                        <fieldset>
-                            <legend>Описание проекта 1</legend>
-                            <input type="text" class="header-menu-title" id="mainText-back_office" v-bind:value="project[0].title">
-                        </fieldset>
-                        <fieldset>
-                            <legend>Описание проекта 2</legend>
-                            <input type="text" class="header-menu-title" id="mainText-back_office" v-bind:value="project[1].title">
-                        </fieldset>
-                        <fieldset>
-                            <legend>Описание проекта 3</legend>
-                            <input type="text" class="header-menu-title" id="mainText-back_office" v-bind:value="project[2].title">
-                        </fieldset>
-
-                        <button v-on:click="onChangeHeader">Сохранить</button>
                     </form>
 
                     <form v-on:submit.prevent class="form-back_office">
