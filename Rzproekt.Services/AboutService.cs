@@ -40,7 +40,7 @@ namespace Rzproekt.Services {
         public async override Task ChangeAboutInfo(IFormCollection filesAbout, string jsonString) {
             try {
                 JObject jsonObject = JObject.Parse(jsonString);
-
+                bool detailImage = false;
                 string mainTitle = jsonObject["MainTitle"].ToString();
                 string sText = jsonObject["Text"].ToString();
                 string detailMainTitle = jsonObject["detMainTitle"].ToString();
@@ -51,7 +51,10 @@ namespace Rzproekt.Services {
                 bool mainImage = Convert.ToBoolean(jsonObject["mainImg"].ToString());
 
                 // Сохранять изображение для дополнительной страницы.
-                bool detailImage = Convert.ToBoolean(jsonObject["detImg"].ToString());
+                if (jsonObject["detImg"] != null) {
+                    detailImage = Convert.ToBoolean(jsonObject["detImg"].ToString());
+                }
+                
                 bool isEmpty = isEmptyStringInfo(mainTitle, sText, detailMainTitle, detailTitle, detailText);
 
                 if (!isEmpty) {
