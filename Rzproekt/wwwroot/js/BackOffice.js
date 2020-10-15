@@ -371,7 +371,23 @@ var back_office = new Vue({
             }
         },
         onSearthProject(e) {
-
+            let self = this;
+            let ProjectName = document.getElementById("searchProject").value;
+            if (!ProjectName) { self.$data.arrProjectSearth = []; return }
+            let sUrl = self.$data.urlApi + '/api/project/all-projects';
+            let oData = {
+                ProjectName
+            };
+            axios.post(sUrl, oData)
+                .then((response) => {
+                    if (!response.data) { self.$data.arrProjectSearth = []; return }
+                    self.$data.arrProjectSearth = response.data;
+                    console.log("success / getProject", response);
+                    self.notyfi(true);
+                })
+                .catch((XMLHttpRequest) => {
+                    self.notyfi(false);
+                });
         },
         onChangeProject(e) {
 
@@ -407,7 +423,23 @@ var back_office = new Vue({
             }
         },
         onDelProject(e) {
+            let self = this;
+            let sUrl = self.$data.urlApi + '/api/back-office/remove-project';
+            let idCert = +e.target.getAttribute('idCustom');
 
+            try {
+                axios.put(sUrl + '?id=' + idCert)
+                    .then((response) => {
+                        self.onSearthCert();
+
+                    })
+                    .catch((XMLHttpRequest) => {
+                        self.notyfi(false);
+                    });
+            }
+            catch (ex) {
+                throw new Error(ex);
+            }
         },
         onChangeClient(e) {
             // Отправляет измененные данные блока Client

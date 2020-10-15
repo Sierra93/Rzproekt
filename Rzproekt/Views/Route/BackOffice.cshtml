@@ -238,7 +238,7 @@
                             <input id="searchProject" type="search" placeholder="Поиск проекта" v-on:input="onSearthProject" v-on:change="onSearthProject" />
                             <div class="blockListProject">
                                 <div class="blockProject" v-for="item in arrProjectSearth">
-                                    <h4>{{ item.projectName }}</h4>
+                                    <h4>{{ item.title }}</h4>
                                     <button v-bind:idCustom="item.projectId" class="btm-back-del-client" v-on:click="onDelProject">Удалить</button>
                                 </div>
                             </div>

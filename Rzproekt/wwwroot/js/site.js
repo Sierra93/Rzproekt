@@ -101,6 +101,20 @@ var appHome = new Vue({
                 ]
             });
 
+            var carousel = $("#waterwheel-carousel").waterwheelCarousel({
+                flankingItems: 3,
+            });
+
+            $('#prev').bind('click', function () {
+                carousel.prev();
+                return false
+            });
+
+            $('#next').bind('click', function () {
+                carousel.next();
+                return false;
+            });
+
         },
         //  Функция выгружает все данные
         _getData(url) {
@@ -245,11 +259,4 @@ var appHome = new Vue({
 window.addEventListener('wheel', event => {
     appHome.getBlocksSevices();
     appHome.projectsJs();
-    //$("#waterwheel-carousel").waterwheelCarousel({
-    //    horizon: 110,
-    //    horizonOffset: -50,
-    //    horizonOffsetMultiplier: .7,
-    //    separation: 150,
-    //    edgeFadeEnabled: true
-    //});
 });
