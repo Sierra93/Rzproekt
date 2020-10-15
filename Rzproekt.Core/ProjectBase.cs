@@ -21,5 +21,11 @@ namespace Rzproekt.Core {
         /// </summary>
         /// <returns></returns>
         public abstract Task AddProjectInfo(IFormCollection filesMain, IFormCollection filesProject, string jsonString);
+
+        /// <summary>
+        /// Метод выводит список проектов.
+        /// </summary>
+        /// <returns></returns>
+        public abstract Task<IEnumerable> GetAllProjects();
     }
 }

@@ -67,5 +67,13 @@ namespace Rzproekt.Services {
                 throw new Exception(ex.Message.ToString());
             }
         }
+
+        /// <summary>
+        /// Метод выводит список проектов.
+        /// </summary>
+        /// <returns></returns>
+        public async override Task<IEnumerable> GetAllProjects() {
+            return await _db.Projects.ToListAsync();
+        }
     }
 }
