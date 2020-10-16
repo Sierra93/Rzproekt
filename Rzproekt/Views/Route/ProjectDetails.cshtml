@@ -32,20 +32,23 @@
         <main>
             <div class="block projectDetalis">
                 <div class="title-block">
-                    <h1>{{ project[0].dopMainTitle }}</h1>
+                    @*<h1>{{ project[0].dopMainTitle }}</h1>*@
+                    <h1>Наши проекты</h1>
                 </div>
                 <div class="border-bottom-title"></div>
+                <div class="block-map-list">
+                    <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A8b0f0f923d84f8b4c84c863cb6585a98975a779f0ff45aeb036aeb4ce5f7342f&amp;source=constructor" width="853" height="333" frameborder="0"></iframe>
+                </div>
                 <section class="projectDetalis-list">
-                    <article>
-                        <button type="button" class="slick-prev"> Предыдущая </button>
-                        <div class="single-slide">
-                            <img :src="project[0].url" alt="project" />
-                            <img :src="project[0].url" alt="project" />
-                            <img :src="project[0].url" alt="project" />
-                        </div>
-                        <button type="button" class="slick-next"> Next </button>
-                        <h1>{{ about[0].dopTitle }}</h1>
-                        <textarea class="aboutDetailTxtTextarea" readonly>{{ about[0].dopText }}</textarea>
+                    <article v-for="item in project">
+                        <h1>АО «Русские краски»</h1>
+                        <em>АО «Русские краски», г.Ярославль, ул.Большая Федоровская, 96</em>
+                        <p>Разработаны проекты: <br /><br />
+
+                            на установку  оборудования по производству антикоррозионных ЛКМ в рамках технического перевооружения цеха №3;
+                            на установку технологической линии  по производству связующих для антикоррозионных ЛКМ в рамках технического перевооружения цеха №1;
+                            на замену жидкостных  электронагревателей ВОТ (инв. №3753 и №3754) в рамках технического перевооружения цеха №1
+                        </p>
                     </article>
                 </section>
             </div>

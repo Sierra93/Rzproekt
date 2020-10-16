@@ -35,7 +35,14 @@
         }
     }
 }
-
+.block-map-list {
+    margin: 3rem 0;
+    padding: 1rem;
+    background: #ececec;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .projectDetailTxtTextarea {
     height: auto;
     width: 100%;

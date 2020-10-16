@@ -11,6 +11,7 @@ var appHome = new Vue({
         aboutDetailTxtTextarea: '',
         ageCompanyTxt: '',
         smoothScrollArr: [],
+        countIdCert: 1,
         urlApi: 'https://localhost:44349',
         //urlApi: 'https://devmyprojects24.xyz',
         listRequests: [
@@ -51,6 +52,12 @@ var appHome = new Vue({
             allREquest.forEach(function (el) {
                 self._getData(el);
             });
+            function Carusel() {
+                self.certCarusel(true);
+                self.getBlocksSevices();
+                self.fnListProjectMap();
+            }
+            setTimeout(Carusel, 100);
             appHome.$data.blocksServices = document.getElementsByClassName("serviceTxt");
             appHome.$data.aboutTxtTextarea = document.getElementsByClassName("aboutTxtTextarea");
             appHome.$data.aboutDetailTxtTextarea = document.getElementsByClassName("aboutDetailTxtTextarea");
@@ -61,12 +68,14 @@ var appHome = new Vue({
             autosize(this.blocksServices);
             autosize(this.aboutTxtTextarea);
             autosize(this.aboutDetailTxtTextarea);
-            $('[data-fancybox="gallery"]').fancybox({
-                selector: '.imglist a:visible'
-            });
-            $('.single-slide').slick({
-                infinite: true,
-                dots: true
+            $(".fancybox").fancybox({
+                selector: '.imglist a:visible',
+                buttons: [
+                    'slideShow',
+                    'zoom',
+                    'thumbs',
+                    'close'
+                ]
             });
             $('.multiple-items').slick({
                 dots: true,
@@ -99,20 +108,6 @@ var appHome = new Vue({
                         }
                     }
                 ]
-            });
-
-            var carousel = $("#waterwheel-carousel").waterwheelCarousel({
-                flankingItems: 3,
-            });
-
-            $('#prev').bind('click', function () {
-                carousel.prev();
-                return false
-            });
-
-            $('#next').bind('click', function () {
-                carousel.next();
-                return false;
             });
 
         },
@@ -199,64 +194,58 @@ var appHome = new Vue({
                 }
             return five;
         },
-        projectsJs() {
-            $('[data-fancybox^="quick-view"]').fancybox({
-                animationEffect: "fade",
-                animationDuration: 300,
-                margin: 0,
-                gutter: 0,
-                touch: {
-                    vertical: false
-                },
-                baseTpl:
-                    '<div class="fancybox-container" role="dialog" tabindex="-1">' +
-                    '<div class="fancybox-bg"></div>' +
-                    '<div class="fancybox-inner">' +
-                    '<div class="fancybox-stage"></div>' +
-                    '<div class="fancybox-form-wrap">' +
-                    '<button data-fancybox-close class="fancybox-button fancybox-button--close" title="{{CLOSE}}">' +
-                    '<img src="./img/close.png" />' +
-                    '</button></div>' +
-                    '</div>' +
-                    '</div>',
-                onInit: function (instance) {
-                    var current = instance.group[instance.currIndex];
-                    instance.$refs.form = current.opts.$orig.parent().find('.product-form');
-                    instance.$refs.form.appendTo(instance.$refs.container.find('.fancybox-form-wrap'));
-                    var list = '',
-                        $bullets;
+        certCarusel(e) {
+            let listCert = document.getElementsByClassName('cert-item');
+            if (!listCert) return; 
+            if (e.target) var direction = e.target.parentNode.getAttribute('customId')
+            if (direction) {
+                this.countIdCert++;
+            } else {
+                this.countIdCert--;
+            }
+            let countCert = this.countIdCert;
+            if ( countCert < 0) {
+                this.countIdCert = listCert.length - 1;
+                countCert = listCert.length - 1;
+            } else if (countCert > listCert.length - 1) {
+                this.countIdCert = 0;
+                countCert = 0;
+            }
+            let countL = countCert - 1;
+            if (countL < 0) countL = listCert.length - 1;
+            let countR = countCert + 1;
+            if (!listCert[countR]) countR = 0;
+            if (!listCert[countL]) countL = 0;
 
-                    for (var i = 0; i < instance.group.length; i++) {
-                        list += '<li><a data-index="' + i + '" href="javascript:;"><span>' + (i + 1) + '</span></a></li>';
-                    }
+            for (let i = 0; i < listCert.length; i++) {
 
-                    $bullets = $('<ul class="product-bullets">' + list + '</ul>').on('click touchstart', 'a', function () {
-                        var index = $(this).data('index');
-
-                        $.fancybox.getInstance(function () {
-                            this.jumpTo(index);
-                        });
-
-                    });
-
-                    instance.$refs.bullets = $bullets.appendTo(instance.$refs.stage);
-
-                },
-                beforeShow: function (instance) {
-                    instance.$refs.stage.find('ul:first')
-                        .children()
-                        .removeClass('active')
-                        .eq(instance.currIndex)
-                        .addClass('active');
-                },
-                afterClose: function (instance, current) {
-                    instance.$refs.form.appendTo(current.opts.$orig.parent());
+                if (countL == i) {
+                    listCert[i].classList.remove("item-cert-hidden");
+                    listCert[i].classList.remove("item-cert-center");
+                    listCert[i].classList.remove("item-cert-right");
+                    listCert[i].classList.add("item-cert-left");
+                } else if (countCert == i) {
+                    listCert[i].classList.remove("item-cert-hidden");
+                    listCert[i].classList.remove("item-cert-left");
+                    listCert[i].classList.remove("item-cert-right");
+                    listCert[i].classList.add("item-cert-center");
+                } else if (countR == i) {
+                    listCert[i].classList.remove("item-cert-hidden");
+                    listCert[i].classList.remove("item-cert-left");
+                    listCert[i].classList.remove("item-cert-center");
+                    listCert[i].classList.add("item-cert-right");
+                } else {
+                    listCert[i].classList.remove("item-cert-left");
+                    listCert[i].classList.remove("item-cert-center");
+                    listCert[i].classList.remove("item-cert-right");
+                    listCert[i].classList.add("item-cert-hidden");
                 }
-            });
-        }
+                
+            }
+
+        },
     }
 });
 window.addEventListener('wheel', event => {
     appHome.getBlocksSevices();
-    appHome.projectsJs();
 });

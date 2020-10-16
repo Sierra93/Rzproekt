@@ -383,7 +383,6 @@ var back_office = new Vue({
                     if (!response.data) { self.$data.arrProjectSearth = []; return }
                     self.$data.arrProjectSearth = response.data;
                     console.log("success / getProject", response);
-                    self.notyfi(true);
                 })
                 .catch((XMLHttpRequest) => {
                     self.notyfi(false);

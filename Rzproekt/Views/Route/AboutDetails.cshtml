@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="~/css/site.css" />
     <link href="~/css/StyleSheet.css" rel="stylesheet" />
     <link href="~/css/media.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" />
+    <link href="~/css/jquery.fancybox.css" rel="stylesheet" />
 </head>
 <body>
     <div id="appHome">
@@ -36,7 +36,7 @@
                     <div class="border-bottom-title"></div>
                     <section class="aboutDetalis-list">
                         <article>
-                            <div><img :src="about[0].url" alt="about" /></div>
+                            @*<div><img :src="about[0].url" alt="about" /></div>*@
                             <h1>{{ about[0].dopTitle }}</h1>
                             <textarea class="aboutDetailTxtTextarea" readonly>{{ about[0].dopText }}</textarea>
                         </article>
@@ -49,9 +49,16 @@
                         </div>
                         <div class="border-bottom-title"></div>
                         <section class="cert-list">
-
-                            <div id="waterwheel-carousel" v-for="item in cert">
-                                <a :href="item.url"><img :src="item.url" /></a>
+                            <div class="block-carusel-cert">
+                                <button class="btnL-cert-carusel" :customId="false" v-on:click="certCarusel">
+                                    <img src="~/img/back.png" />
+                                </button>
+                                <div v-for="item in cert" class="cert-item">
+                                    <a class="fancybox" data-fancybox="gallery" :href="item.url" :id="item.certId" ><img :src="item.url" /></a>
+                                </div>
+                                <button class="btnR-cert-carusel" :customId="true" v-on:click="certCarusel">
+                                    <img src="~/img/next.png" />
+                                </button>
                             </div>
 
                         </section>
@@ -83,8 +90,7 @@
     <script src="~/lib/vue/vue.min.js"></script>
     <script src="~/lib/vue/axios/axios.js"></script>
     <script src="~/lib/jquery/dist/jquery.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
-    <script src="~/lib/jquery.waterwheelCarousel.min.js"></script>
+    <script src="~/lib/jquery/jquery.fancybox.js"></script>
     <script src="~/lib/slick.min.js"></script>
     <script src="~/js/site.js"></script>
 </body>
