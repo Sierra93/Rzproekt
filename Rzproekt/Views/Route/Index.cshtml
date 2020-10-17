@@ -73,16 +73,11 @@
     <section class="project-list">
 
         @*/////////*@
-        <div class="product" v-for="item in project">
-            <a :href="item.url" data-fancybox="quick-view-1" data-type="image">
+        <div class="project-item" v-for="item in project">
+            <a :href="item.url">
                 <img :src="item.url"/></a>
-            <div class="product-images">
-                <a href="https://source.unsplash.com/xulIYVIbYIc/832x1200" data-fancybox="quick-view-1" data-type="image"></a>
-                <a href="https://source.unsplash.com/-oSpTrUtvfY/832x1200" data-fancybox="quick-view-1" data-type="image"></a>
-            </div>
-            <div class="product-form">
+            <div class="project-form">
                 <h3>{{ item.title }}</h3>
-                <p>Discover cat pictures that fit for your visual content needs.</p>
                 <p>{{ item.detail }}</p>
             </div>
         </div>
@@ -123,4 +118,21 @@
 			</div>
 		</article>
 	</section>
+</div>
+<div class="block-chat">
+    <button class="toggle-btn" v-on:click="toggleChat">Toogle Button</button>
+    <div class="main-block-chat main-block-chat-hide">
+        <div class="block-msg">
+            <p data-id="1">Test</p>
+            <p data-id="2">Test2</p>
+            <p data-id="1">Test</p>
+            <p data-id="2">Test2</p>
+        </div>
+        <div class="block-send-msg">
+            <input type="text" class="input-chat"/>
+            <button class="send-msg-btn">
+                <img src="~/img/paper-plane.png" />
+			</button>
+		</div>
+    </div>
 </div>

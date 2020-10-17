@@ -19,6 +19,7 @@ $liteSilver: #f7f5f5;
 @import '_logonPage';
 @import '_adminPage';
 @import '_burger';
+@import '_chat';
 
 @mixin block-title-txt {
     display: flex;

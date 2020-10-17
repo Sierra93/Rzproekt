@@ -177,7 +177,6 @@ var appHome = new Vue({
             }, 1000);
             event.preventDefault();
             this.getBlocksSevices(); //запускает автосайз
-            this.projectsJs(); //запускает блок прокты
         },
         declination(number, one, two, five) {
                 let n = Math.abs(number);
@@ -244,6 +243,10 @@ var appHome = new Vue({
             }
 
         },
+        toggleChat() {
+            var element = document.getElementsByClassName("main-block-chat");
+            element[0].classList.toggle("main-block-chat-hide")
+        }
     }
 });
 window.addEventListener('wheel', event => {

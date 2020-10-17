@@ -231,7 +231,7 @@
                             <button v-on:click="onAddProject">Добавить</button>
                         </fieldset>
                     </form>
-                    <a href="https://yandex.ru/maps/?um=constructor%3A8b0f0f923d84f8b4c84c863cb6585a98975a779f0ff45aeb036aeb4ce5f7342f&source=constructorLink">ссылка</a>
+
                     <form v-on:submit.prevent class="form-back_office">
                         <fieldset>
                             <legend>Список проектов</legend>
@@ -243,8 +243,14 @@
                                 </div>
                             </div>
                         </fieldset>
+                        <fieldset>
+                            <legend>Изменение проектов на карте</legend><p>
+    <a href="https://yandex.ru/maps/?um=constructor%3A8b0f0f923d84f8b4c84c863cb6585a98975a779f0ff45aeb036aeb4ce5f7342f&source=constructorLink">Ссылка</a>
+    для перехода на страницу редактирование проектов на карте
+</p>
+                        </fieldset>
                     </form>
-
+                    
                     <form v-on:submit.prevent class="form-back_office">
                         <fieldset>
                             <legend>Добавить проект в список</legend>
@@ -279,7 +285,7 @@
 
                         <fieldset>
                             <legend>Список клиентов</legend>
-                            <input id="searchClient" type="search" placeholder="Поиск сертификата" v-on:input="onSearthClient" v-on:change="onSearthClient" />
+                            <input id="searchClient" type="search" placeholder="Поиск клиентов" v-on:input="onSearthClient" v-on:change="onSearthClient" />
                             <div class="blockListClient">
                                 <div class="blockClient" v-for="item in arrClientSearth">
                                     <h4>{{ item.clientName }}</h4>

@@ -297,6 +297,12 @@
     cursor: pointer; }
     .project-list .project-block h1 {
       padding: 0 2rem; }
+  .project-list .project-item {
+    background: silver;
+    margin: 2rem;
+    height: 25rem;
+    width: 22rem;
+    padding: 1rem; }
 
 .projectDetalis {
   background: #fff;
@@ -713,6 +719,75 @@
 
 .menu__item:hover {
   background-color: #CFD8DC; }
+
+.block-chat {
+  position: fixed;
+  bottom: 0rem;
+  right: 1rem;
+  z-index: 5;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  -webkit-box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.75); }
+  .block-chat .toggle-btn {
+    border: none;
+    outline: none;
+    color: white;
+    background: firebrick;
+    padding: .5rem 5rem;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    cursor: pointer; }
+  .block-chat .main-block-chat {
+    height: 20rem;
+    position: relative;
+    background: white;
+    transition: .5s; }
+    .block-chat .main-block-chat .block-msg {
+      height: 85%;
+      display: flex;
+      flex-direction: column;
+      overflow: auto; }
+      .block-chat .main-block-chat .block-msg p[data-id="1"] {
+        margin: .4rem;
+        padding: 1rem;
+        background: #d28484;
+        border-top-left-radius: 1rem;
+        border-top-right-radius: 1rem;
+        border-bottom-right-radius: 1rem;
+        width: 50%; }
+      .block-chat .main-block-chat .block-msg p[data-id="2"] {
+        margin: 0.4rem .4rem .4rem 5rem;
+        padding: 1rem;
+        background: #8cd284;
+        border-top-left-radius: 1rem;
+        border-top-right-radius: 1rem;
+        border-bottom-left-radius: 1rem;
+        text-align: right;
+        width: 50%;
+        align-items: flex-end; }
+    .block-chat .main-block-chat .block-send-msg {
+      padding: .5rem;
+      border-top: 1px solid #ececec;
+      height: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center; }
+      .block-chat .main-block-chat .block-send-msg .input-chat {
+        border: none;
+        outline: none;
+        font-size: .9rem;
+        padding: .5rem .5rem 0 .5rem;
+        border-bottom: 1px solid #c7c7c7; }
+      .block-chat .main-block-chat .block-send-msg .send-msg-btn {
+        border: none;
+        background: white;
+        outline: none;
+        cursor: pointer; }
+
+.main-block-chat-hide {
+  height: 0rem !important; }
 
 body {
   margin: 0 !important;
