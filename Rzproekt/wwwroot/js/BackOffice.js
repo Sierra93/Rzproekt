@@ -816,7 +816,7 @@ var back_office = new Vue({
             try {
                 axios.put(sUrl + '?id=' + idContact)
                     .then((response) => {
-                        self.onSearthContact();
+                        self.onSearthContacts();
                         self.notyfi(true);
 
                     })
