@@ -45,9 +45,9 @@ namespace Rzproekt.Controllers {
         [HttpPost, Route("search")]
         public async Task<IActionResult> SearchLead([FromBody] ContactLeadDto contactLeadDto) {
             ContactBase contactBase = new ContactService(_db);
-            var oContact = await contactBase.SearchLead(contactLeadDto.LeadName);
+            var oLead = await contactBase.SearchLead(contactLeadDto.LeadName);
 
-            return Ok(oContact);
+            return Ok(oLead);
         }
     }
 }

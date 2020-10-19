@@ -61,5 +61,17 @@ namespace Rzproekt.Core {
         /// <param name="name"></param>
         /// <returns></returns>
         public abstract Task<IEnumerable> SearchLead(string name);
+
+        /// <summary>
+        /// Метод добавляет контакты руководителя.
+        /// </summary>
+        public abstract Task AddContactLead(IFormCollection filesContact, string jsonString);
+
+        /// <summary>
+        /// Метод удаляет контакты руководителя.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public abstract Task RemoveLead(int id);
     }
 }
