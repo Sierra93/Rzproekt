@@ -21,11 +21,21 @@ namespace Rzproekt.Controllers {
         /// <summary>
         /// Метод получает контактную информацию.
         /// </summary>
-        [HttpPost, Route("get-contacts")]
+        [HttpPost, Route("contacts-company")]
         public async Task<IActionResult> GetContactInfo() {
             ContactBase contactBase = new ContactService(_db);
 
-            return Ok(await contactBase.GetContactsInfo());
+            return Ok(await contactBase.GetContactsCompany());
+        }
+
+        /// <summary>
+        /// Метод получает контактную информацию.
+        /// </summary>
+        [HttpPost, Route("contacts-lead")]
+        public async Task<IActionResult> GetContactLead() {
+            ContactBase contactBase = new ContactService(_db);
+
+            return Ok(await contactBase.GetContactsLeads());
         }
     }
 }

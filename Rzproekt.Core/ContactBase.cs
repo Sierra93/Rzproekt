@@ -16,7 +16,13 @@ namespace Rzproekt.Core {
         /// Метод получает контактную информацию.
         /// </summary>
         /// <returns></returns>
-        public abstract Task<IEnumerable> GetContactsInfo();
+        public abstract Task<IEnumerable> GetContactsCompany();
+
+        /// <summary>
+        /// Метод получает контактную информацию руководства.
+        /// </summary>
+        /// <returns></returns>
+        public abstract Task<IEnumerable> GetContactsLeads();
 
         /// <summary>
         /// Метод добавляет контакты.

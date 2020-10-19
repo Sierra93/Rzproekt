@@ -22,8 +22,16 @@ namespace Rzproekt.Services {
         /// Метод получает контактную информацию.
         /// </summary>
         /// <returns></returns>
-        public async override Task<IEnumerable> GetContactsInfo() {
-            return await _db.Contacts.ToListAsync();
+        public async override Task<IEnumerable> GetContactsCompany() {
+            return await _db.ContactsCompany.ToListAsync();
+        }
+
+        /// <summary>
+        /// Метод получает контактную информацию.
+        /// </summary>
+        /// <returns></returns>
+        public async override Task<IEnumerable> GetContactsLeads() {
+            return await _db.ContactLeads.ToListAsync();
         }
 
         /// <summary>
