@@ -14,8 +14,8 @@ namespace Rzproekt.Services {
         /// </summary>
         /// <param name="message"></param>
         /// <returns></returns>
-        public async Task Send(string message) {
-            await Clients.All.SendAsync("Send", message);
-        }
+        //public async Task Send(string message) {
+        //    await Clients.All.SendAsync("Send", message);
+        //}
     }
 }

@@ -67,5 +67,14 @@ namespace Rzproekt.Controllers {
         public IActionResult ContactDetails() {
             return View();
         }
+
+        /// <summary>
+        /// Метод переходит на страницу контактов.
+        /// </summary>
+        /// <returns></returns>
+        [Route("test")]
+        public IActionResult Test() {
+            return View();
+        }
     }
 }
