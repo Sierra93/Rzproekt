@@ -26,7 +26,7 @@ namespace Rzproekt.Models {
         public string EmailCompany { get; set; }  // Email компании.
 
         [Column("company_number", TypeName = "nvarchar(500)")]
-        public string CompanyNumber { get; set; }  // Номер компании.   
+        public string NumberCompany { get; set; }  // Номер компании.   
 
         [Column("button_text", TypeName = "nvarchar(500)")]
         public string ButtonText { get; set; }

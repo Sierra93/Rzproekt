@@ -50,6 +50,6 @@ namespace Rzproekt.Core {
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        public abstract Task<IEnumerable> SearchClient(string name);
+        public abstract Task<IEnumerable> SearchClient(string name);        
     }
 }

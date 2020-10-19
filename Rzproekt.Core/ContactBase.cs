@@ -30,7 +30,7 @@ namespace Rzproekt.Core {
         /// <param name="filesCert"></param>
         /// <param name="jsonString"></param>
         /// <returns></returns>
-        public abstract Task AddContact(IFormCollection filesCert, ContactCompanyDto contactDto);
+        public abstract Task AddContactCompany(ContactCompanyDto contactCompanyDto);
 
         /// <summary>
         /// Метод удаляет контакт.
@@ -46,5 +46,20 @@ namespace Rzproekt.Core {
         /// <param name="jsonString"></param>
         /// <returns></returns>
         public abstract Task ChangeContact(IFormCollection filesCert, ContactCompanyDto contactDto);
+
+        /// <summary>
+        /// Метод изменяет контакты руководства.
+        /// </summary>
+        /// <param name="filesClient"></param>
+        /// <param name="jsonString"></param>
+        /// <returns></returns>
+        public abstract Task ChangeContactLead(IFormCollection filesClient, string jsonString);
+
+        /// <summary>
+        /// Метод находит руководства.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public abstract Task<IEnumerable> SearchLead(string name);
     }
 }
