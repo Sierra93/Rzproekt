@@ -696,10 +696,10 @@ var back_office = new Vue({
             let LeadNumber = document.getElementsByClassName("contact-lead-number")[0].value;
             let LeadEmail = document.getElementsByClassName("contact-lead-email")[0].value;
             let idService = +e.target.getAttribute('idCustom') - 1;
-            let Id = idService + 1;
+            let LeadId = idService + 1;
             let formData = new FormData();
             let oData = {
-                Id,
+                LeadId,
                 LeadName,
                 LeadPosition,
                 LeadNumber,
@@ -707,7 +707,7 @@ var back_office = new Vue({
                 LeadEmail
             };
             if (!!this.filesService[idService]) {
-                formData.set('filesAbout', this.filesService[idService].files[0]);
+                formData.set('filesContact', this.filesService[idService].files[0]);
             }
             formData.set('jsonString', JSON.stringify(oData));
 

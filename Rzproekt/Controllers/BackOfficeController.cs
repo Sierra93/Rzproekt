@@ -196,7 +196,7 @@ namespace Rzproekt.Controllers {
         /// Метод добавляет контакты компании.
         /// </summary>
         [HttpPost, Route("change-contact-company")]
-        public async Task<IActionResult> AddContactCompany([FromBody] ContactCompanyDto contactCompanyDto) {
+        public async Task<IActionResult> ChangeContactCompany([FromBody] ContactCompanyDto contactCompanyDto) {
             ContactBase contactBase = new ContactService(_db);
             await contactBase.AddContactCompany(contactCompanyDto);
 
@@ -204,12 +204,12 @@ namespace Rzproekt.Controllers {
         }
 
         /// <summary>
-        /// Метод добавляет контакты компании.
+        /// Метод изменяет контакты руководителя.
         /// </summary>
         [HttpPost, Route("change-contact-lead")]
-        public async Task<IActionResult> ChangeContactLead([FromForm] IFormCollection filesCert, [FromForm] string jsonString) {
+        public async Task<IActionResult> ChangeContactLead([FromForm] IFormCollection filesContact, [FromForm] string jsonString) {
             ContactBase contactBase = new ContactService(_db);
-            //await contactBase.AddContactCompany(contactCompanyDto);
+            await contactBase.ChangeContactLead(filesContact, jsonString);
 
             return Ok();
         }

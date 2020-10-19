@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Rzproekt.Services {
@@ -102,8 +103,57 @@ namespace Rzproekt.Services {
             }
         }
 
-        public override Task ChangeContactLead(IFormCollection filesClient, string jsonString) {
-            throw new NotImplementedException();
+        public async override Task ChangeContactLead(IFormCollection filesClient, string jsonString) {
+            try {
+                CommonMethodsService common = new CommonMethodsService(_db);
+                ContactLeadDto newLead = JsonSerializer.Deserialize<ContactLeadDto>(jsonString);
+                ContactLeadDto isLead = new ContactLeadDto();
+
+
+                if (filesClient.Files.Count > 0) {
+                    var path = await common.UploadSingleFile(filesClient);
+                    path = path.Replace("wwwroot", "");
+
+                    isLead = await GetEditLead(newLead.LeadId);
+                    isLead.Url = path;
+                }
+
+                isLead = await _db.ContactLeads.FirstOrDefaultAsync();
+
+                // Если изменяет только заголовок.
+                if (filesClient.Files.Count == 0 && !string.IsNullOrEmpty(newLead.MainTitle)) {                    
+                    isLead.MainTitle = newLead.MainTitle;                    
+                }
+
+                if (isLead != null) {
+                    if (isLead.MainTitle != null) {
+                        isLead.MainTitle = newLead.MainTitle;
+                    }
+
+                    isLead.LeadName = newLead.LeadName;
+                    isLead.LeadPosition = newLead.LeadPosition;
+                    isLead.LeadNumber = newLead.LeadNumber;
+                    isLead.LeadFax = newLead.LeadFax;
+                    isLead.LeadEmail = newLead.LeadEmail;
+                }
+                isLead.Block = BlockType.CONTACT_LEAD;
+
+                _db.ContactLeads.Update(isLead);
+                await _db.SaveChangesAsync();
+            }
+
+            catch (Exception ex) {
+                throw new Exception(ex.Message.ToString());
+            }
+        }
+
+        /// <summary>
+        /// Метод выбирает руководителя, которого нужно изменить.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        async Task<ContactLeadDto> GetEditLead(int id) {
+            return await _db.ContactLeads.Where(o => o.LeadId == id).FirstOrDefaultAsync();
         }
     }
 }
