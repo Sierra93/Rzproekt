@@ -57,5 +57,24 @@ namespace Rzproekt.Core {
         /// </summary>
         /// <returns></returns>
         public abstract Task<IEnumerable> SearchCert(string name);
+
+        /// <summary>
+        /// Метод добавляет награды.
+        /// </summary>
+        /// <returns></returns>
+        public abstract Task AddAwards(IFormCollection filesCert, string jsonString);
+
+        /// <summary>
+        /// Метод удаляет наград.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public abstract Task RemoveAward(int id);
+
+        /// <summary>
+        /// Метод находит награду по тексту.
+        /// </summary>
+        /// <returns></returns>
+        public abstract Task<IEnumerable> SearchAward(string name);
     }
 }

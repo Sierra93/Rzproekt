@@ -169,5 +169,38 @@ namespace Rzproekt.Controllers {
 
             return Ok();
         }
+
+        /// <summary>
+        /// Метод добавляет награды.
+        /// </summary>
+        [HttpPost, Route("add-award")]
+        public async Task<IActionResult> AddAwards([FromForm] IFormCollection filesCert, [FromForm] string jsonString) {
+            AboutBase award = new AboutService(_db);
+            await award.AddAwards(filesCert, jsonString);
+
+            return Ok();
+        }
+
+        /// <summary>
+        /// Метод удаляет награды.
+        /// </summary>
+        [HttpPut, Route("remove-award")]
+        public async Task<IActionResult> RemoveAward([FromQuery] int id) {
+            AboutBase award = new AboutService(_db);
+            await award.RemoveAward(id);
+
+            return Ok();
+        }
+
+        /// <summary>
+        /// Метод добавляет контакты.
+        /// </summary>
+        [HttpPost, Route("add-contact")]
+        public async Task<IActionResult> AddContact([FromForm] IFormCollection filesCert, [FromBody] ContactDto contactDto) {
+            //AboutBase award = new AboutService(_db);
+            //await award.AddAwards(filesCert, contactDto);
+
+            return Ok();
+        }
     }
 }

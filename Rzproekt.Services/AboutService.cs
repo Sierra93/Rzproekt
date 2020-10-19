@@ -136,15 +136,6 @@ namespace Rzproekt.Services {
                     throw new ArgumentNullException();
                 }
 
-                // Итеративно добавляет сертификаты.
-                //int i = 0;
-                //filesCert.ToList().ForEach(async el => {
-                //    var path = await common.Upload(filesCert, i);
-                //    path = path.Replace("wwwroot", "");
-                //    cert.Url = path;
-                //    await _db.Certs.AddRangeAsync(cert);
-                //    i++;
-                //});
                 var path = await common.UploadSingleFile(filesCert);
                 path = path.Replace("wwwroot", "");
 
@@ -224,6 +215,93 @@ namespace Rzproekt.Services {
                 var aCerts = await _db.Certs.Where(c => c.CertName.ToLower().Contains(name.ToLower())).Select(c => new { c.CertId, c.CertName }).ToListAsync();
 
                 return aCerts;
+            }
+
+            catch (ArgumentNullException ex) {
+                throw new ArgumentNullException("Не передан текст поиска", ex.Message.ToString());
+            }
+
+            catch (Exception ex) {
+                throw new Exception(ex.Message.ToString());
+            }
+        }
+
+        /// <summary>
+        /// Метод добавляет награды.
+        /// </summary>
+        /// <returns></returns>
+        public async override Task AddAwards(IFormCollection filesCert, string jsonString) {
+            try {
+                CommonMethodsService common = new CommonMethodsService(_db);
+                JObject jsonParse = JObject.Parse(jsonString);
+                string awardName = jsonParse["nameAward"].ToString();
+
+                if (filesCert.Files.Count == 0) {
+                    throw new ArgumentNullException();
+                }
+
+                var path = await common.UploadSingleFile(filesCert);
+                path = path.Replace("wwwroot", "");
+
+                AwardDto award = new AwardDto() { Url = path, Block = BlockType.AWARD };
+
+                // Если есть имя награды.
+                if (!string.IsNullOrEmpty(awardName)) {
+                    award.AwardName = awardName;
+                }
+
+                await _db.Awards.AddRangeAsync(award);
+                await _db.SaveChangesAsync();
+            }
+
+            catch (ArgumentNullException ex) {
+                throw new ArgumentNullException("Нет файлов для добавления", ex.Message.ToString());
+            }
+
+            catch (Exception ex) {
+                throw new Exception(ex.Message.ToString());
+            }
+        }
+
+        /// <summary>
+        /// Метод удаляет награду.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async override Task RemoveAward(int id) {
+            try {
+                if (id == 0) {
+                    throw new ArgumentNullException();
+                }
+
+                AwardDto award = await _db.Awards.Where(c => c.AwardId == id).FirstOrDefaultAsync();
+
+                _db.Awards.Remove(award);
+                await _db.SaveChangesAsync();
+            }
+
+            catch (ArgumentNullException ex) {
+                throw new ArgumentNullException("Id не передан", ex.Message.ToString());
+            }
+
+            catch (Exception ex) {
+                throw new Exception(ex.Message.ToString());
+            }
+        }
+
+        /// <summary>
+        /// Метод находит награду по тексту.
+        /// </summary>
+        /// <returns></returns>
+        public async override Task<IEnumerable> SearchAward(string name) {
+            try {
+                if (string.IsNullOrEmpty(name)) {
+                    throw new ArgumentNullException();
+                }
+
+                var aAwards = await _db.Awards.Where(c => c.AwardName.ToLower().Contains(name.ToLower())).Select(c => new { c.AwardId, c.AwardName }).ToListAsync();
+
+                return aAwards;
             }
 
             catch (ArgumentNullException ex) {

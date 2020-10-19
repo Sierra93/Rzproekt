@@ -39,5 +39,8 @@ namespace Rzproekt.Models {
 
         public int DetailId { get; set; }
         public DetailProject DetailProjects { get; set; }
+
+        public int AwardId { get; set; }
+        public AwardDto Awards { get; set; }
     }
 }
