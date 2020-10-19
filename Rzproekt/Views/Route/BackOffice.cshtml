@@ -386,11 +386,11 @@
                             <legend>Добавить контакт</legend>
                             <label>
                                 <input type="file" class="form-files-contactAdd" ref="files" multiple v-on:change="handleFilesUploadClientAdd" />
-                                <input id="nameContactAdd" placeholder="ФИО" />
-                                <input id="namePositionAdd" placeholder="Должность"/>
-                                <input id="telContactAdd" placeholder="Телефон"/>
-                                <input id="faxContactAdd" placeholder="Факс"/>
-                                <input id="emailContactAdd" placeholder="E-mail"/>
+                                <input id="nameContactAdd" class="add-contact-lead-name" placeholder="ФИО" />
+                                <input id="namePositionAdd" class="add-contact-lead-position" placeholder="Должность"/>
+                                <input id="telContactAdd" class="add-contact-lead-number" placeholder="Телефон"/>
+                                <input id="faxContactAdd" class="add-contact-lead-fax" placeholder="Факс"/>
+                                <input id="emailContactAdd" class="add-contact-lead-email" placeholder="E-mail"/>
                             </label>
                         </fieldset>
                         <button v-on:click="onAddContact">Добавить</button>
