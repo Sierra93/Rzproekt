@@ -46,7 +46,7 @@ namespace Rzproekt.Controllers {
         public async Task<IActionResult> SearchAward([FromBody] AwardDto awardDto) {
             AboutBase aboutBase = new AboutService(_db);
 
-            return Ok(await aboutBase.SearchCert(certDto.CertName));
+            return Ok(await aboutBase.SearchAward(awardDto.AwardName));
         }
     }
 }

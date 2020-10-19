@@ -35,5 +35,24 @@ namespace Rzproekt.Services {
         public override Task AddContact(IFormCollection filesCert, ContactDto contactDto) {
             throw new NotImplementedException();
         }
+
+        /// <summary>
+        /// Метод удаляет контакт.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public override Task RemoveContact(int id) {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Метод изменяет контакты.
+        /// </summary>
+        /// <param name="filesCert"></param>
+        /// <param name="jsonString"></param>
+        /// <returns></returns>
+        public override Task ChangeContact(IFormCollection filesCert, ContactDto contactDto) {
+            throw new NotImplementedException();
+        }
     }
 }

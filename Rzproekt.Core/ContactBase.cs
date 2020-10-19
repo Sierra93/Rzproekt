@@ -25,5 +25,20 @@ namespace Rzproekt.Core {
         /// <param name="jsonString"></param>
         /// <returns></returns>
         public abstract Task AddContact(IFormCollection filesCert, ContactDto contactDto);
+
+        /// <summary>
+        /// Метод удаляет контакт.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public abstract Task RemoveContact(int id);
+
+        /// <summary>
+        /// Метод изменяет контакты.
+        /// </summary>
+        /// <param name="filesCert"></param>
+        /// <param name="jsonString"></param>
+        /// <returns></returns>
+        public abstract Task ChangeContact(IFormCollection filesCert, ContactDto contactDto);
     }
 }
