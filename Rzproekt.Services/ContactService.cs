@@ -155,5 +155,56 @@ namespace Rzproekt.Services {
         async Task<ContactLeadDto> GetEditLead(int id) {
             return await _db.ContactLeads.Where(o => o.LeadId == id).FirstOrDefaultAsync();
         }
+
+        /// <summary>
+        /// Метод добавляет контакты руководителя.
+        /// </summary>
+        public async override Task AddContactLead(IFormCollection filesContact, string jsonString) {
+            try {
+                CommonMethodsService common = new CommonMethodsService(_db);
+                ContactLeadDto newLead = JsonSerializer.Deserialize<ContactLeadDto>(jsonString);
+
+                if (filesContact.Files.Count > 0) {
+                    var path = await common.UploadSingleFile(filesContact);
+                    path = path.Replace("wwwroot", "");
+                    newLead.Url = path;
+                }
+
+                newLead.Block = BlockType.CONTACT_LEAD;
+
+                await _db.ContactLeads.AddAsync(newLead);
+                await _db.SaveChangesAsync();
+            }
+
+            catch (Exception ex) {
+                throw new Exception(ex.Message.ToString());
+            }
+        }
+
+        /// <summary>
+        /// Метод удаляет контакты руководителя.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async override Task RemoveLead(int id) {
+            try {
+                if (id == 0) {
+                    throw new ArgumentNullException();
+                }
+
+                ContactLeadDto lead = await _db.ContactLeads.Where(c => c.LeadId == id).FirstOrDefaultAsync();
+
+                _db.ContactLeads.Remove(lead);
+                await _db.SaveChangesAsync();
+            }
+
+            catch (ArgumentNullException ex) {
+                throw new ArgumentNullException("Id не передан", ex.Message.ToString());
+            }
+
+            catch (Exception ex) {
+                throw new Exception(ex.Message.ToString());
+            }
+        }
     }
 }
