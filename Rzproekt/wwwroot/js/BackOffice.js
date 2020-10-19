@@ -686,7 +686,7 @@ var back_office = new Vue({
                 throw new Error(ex);
             }
         },
-        // Изменение клиентов
+        // Изменение компании
         onChangeContact() {
             let self = this;
             let sUrl = self.$data.urlApi + '/api/back-office/change-contact';
@@ -725,7 +725,7 @@ var back_office = new Vue({
         // изменение контактов компании
         onChangeContactCompany() {
             let self = this;
-            let sUrl = self.$data.urlApi + '/api/back-office/add-contact-company';
+            let sUrl = self.$data.urlApi + '/api/back-office/change-contact-company';
             let mainTitle = document.getElementsByClassName("contact-company-main-title")[0].value;
             let Title = document.getElementsByClassName("contact-company-title")[0].value;
             let addressCompany = document.getElementsByClassName("contact-company-address")[0].value;
