@@ -30,58 +30,19 @@
         <main>
             <div class="block contactsDetalis">
                 <div class="title-block">
-                    <h1>РУКОВОДСТВО</h1>
+                    <h1>{{ contactLead[0].mainTitle }}</h1>
                 </div>
                 <div class="border-bottom-title"></div>
                 <section class="contactsDetalis-list">
-                    <article>
+                    <article v-for="item in contactLead">
                         <div>
-                            <img src="~/img/472.jpg" />
+                            <img :src="item.url" />
                         </div>
-                        <h1>Климова Марина Николаевна</h1>
-                        <h2><em>Генеральный директор</em></h2>
-                        <p>Тел.: (4852) 25-18-35</p>
-                        <p>Факс: (4852) 25-24-74</p>
-                        <p>E-mail: klimovamn@rzproekt.ru</p>
-                    </article>
-                    <article>
-                        <div>
-                            <img src="~/img/474.jpg" />
-                        </div>
-                        <h1>Виноградов Павел Анатольевич</h1>
-                        <h2><em>Директор по экономике и финансам</em></h2>
-                        <p>Тел.: (4852) 25-18-35</p>
-                        <p>Факс: (4852) 25-24-74</p>
-                    </article>
-                    <article>
-                        <div>
-                            <img src="~/img/416.jpg" />
-                        </div>
-                        <h1>Брюхов Дмитрий Геннадьевич</h1>
-                        <h2><em>Главный архитектор</em></h2>
-                        <p>Тел.: 30-82-92</p>
-                        <p>Факс: (4852) 25-24-74</p>
-                        <p>E-mail: Briukhov@rzproekt.ru</p>
-                    </article>
-                    <article>
-                        <div>
-                            <img src="~/img/476.jpg" />
-                        </div>
-                        <h1>Иванычев Евгений Николаевич</h1>
-                        <h2><em>Главный инженер</em></h2>
-                        <p>Тел.: 25-18-35</p>
-                        <p>Факс: (4852) 25-24-74</p>
-                        <p>E-mail: Ivanychev@rzproekt.ru</p>
-                    </article>
-                    <article>
-                        <div>
-                            <img src="~/img/409.jpg" />
-                        </div>
-                        <h1>Солдатова Ольга Германовна</h1>
-                        <h2><em>Главный бухгалтер</em></h2>
-                        <p>Тел.: (4852) 25-18-35</p>
-                        <p>Факс: (4852) 25-24-74</p>
-                        <p>E-mail: soldatova@rzproekt.ru</p>
+                        <h1>{{ item.leadName }}</h1>
+                        <h2><em>{{ item.leadPosition }}</em></h2>
+                        <p>{{ item.leadNumber }}</p>
+                        <p>{{ item.leadFax }}</p>
+                        <p>{{ item.leadEmail }}</p>
                     </article>
                 </section>
             </div>

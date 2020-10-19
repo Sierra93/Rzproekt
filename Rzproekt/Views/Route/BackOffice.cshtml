@@ -334,40 +334,40 @@
                     <form v-on:submit.prevent class="form-back_office">
                         <fieldset>
                             <legend>Главный текст</legend>
-                            <input type="text" class="contact-menu-title" v-bind:value="contact[0].mainTitle">
+                            <input type="text" class="contact-menu-title contact-company-main-title" v-bind:value="contact[0].mainTitle">
                         </fieldset>
 
                         <fieldset>
                             <legend>Описание</legend>
-                            <input type="text" class="contact-menu-txt" v-bind:value="contact[0].title">
+                            <input type="text" class="contact-menu-txt contact-company-title" v-bind:value="contact[0].title">
                         </fieldset>
 
                         <fieldset>
                             <legend>Адрес</legend>
-                            <input type="text" class="contact-menu-txt" v-bind:value="contact[0].text">
+                            <input type="text" class="contact-menu-txt contact-company-address" v-bind:value="contact[0].addressCompany">
                         </fieldset>
 
                         <fieldset>
                             <legend>Почта</legend>
-                            <input type="text" class="contact-menu-txt" v-bind:value="contact[1].text">
+                            <input type="text" class="contact-menu-txt contact-company-email" v-bind:value="contact[0].emailCompany">
                         </fieldset>
 
                         <fieldset>
                             <legend>Телефон</legend>
-                            <input type="text" class="contact-menu-txt" v-bind:value="contact[2].text">
+                            <input type="text" class="contact-menu-txt contact-company-number" v-bind:value="contact[0].companyNumber">
                         </fieldset>
 
                         <fieldset>
                             <legend>Кнопка подробной информации</legend>
-                            <input type="text" id="name" v-bind:value="contact[0].buttonText">
+                            <input type="text" id="name" class="contact-company-btn" v-bind:value="contact[0].buttonText">
                         </fieldset>
-                        <button v-on:click="onChangeContact">Сохранить</button>
+                        <button v-on:click="onChangeContactCompany">Сохранить</button>
                     </form>
 
                     <form v-on:submit.prevent class="form-back_office">
                         <fieldset>
-                            <legend>Главный текст</legend>
-                            <input type="text" class="contact-menu-title" v-bind:value="contact[0].mainTitle">
+                            <legend>Главный текст списка контактов</legend>
+                            <input type="text" class="contact-menu-title" v-bind:value="contactLead[0].mainTitle">
                         </fieldset>
 
                         <fieldset>
@@ -378,12 +378,12 @@
                                     <label>
                                         <input type="file" class="form-files-contact" ref="files" multiple v-on:change="handleFilesUploadContact" />
                                     </label>
-                                    <input id="nameContact" v-bind:value="contact[0].nameContact" />
-                                    <input id="namePosition" v-bind:value="contact[0].namePosition" />
-                                    <input id="telContact" v-bind:value="contact[0].telContact" />
-                                    <input id="faxContact" v-bind:value="contact[0].faxContact" />
-                                    <input id="emailContact" v-bind:value="contact[0].emailContact" />
-                                    <button v-bind:idCustom="item.clientId" class="btm-back-del-client" v-on:click="onDelContacts">Удалить</button>
+                                    <input id="nameContact" v-bind:value="contactLead[0].leadName" />
+                                    <input id="namePosition" v-bind:value="contactLead[0].leadPosition" />
+                                    <input id="telContact" v-bind:value="contactLead[0].leadNumber" />
+                                    <input id="faxContact" v-bind:value="contactLead[0].leadFax" />
+                                    <input id="emailContact" v-bind:value="contactLead[0].leadEmail" />
+                                    <button v-bind:idCustom="item.leadId" class="btm-back-del-client" v-on:click="onDelContacts">Удалить</button>
                                     <button v-on:click="onChangeContact">Сохранить</button>
                                 </div>
                             </div>

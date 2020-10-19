@@ -44,9 +44,10 @@ var back_office = new Vue({
                 '/api/statistic/get-statistic',
                 '/api/project/get-projects',
                 '/api/client/get-clients',
-                '/api/contact/get-contacts',
+                '/api/contact/contacts-company',
                 '/api/footer/get-footer',
-                '/api/back-office/get-certs'
+                '/api/back-office/get-certs',
+                '/api/contact/contacts-lead'
             ],
             general: {
                 detailse: 'Подробнее'
@@ -63,6 +64,7 @@ var back_office = new Vue({
             client: [],
             arrClientSearth: [],
             contact: [],
+            contactLead: [],
             arrContactsSearth: [],
             footer: []
         }
@@ -720,6 +722,40 @@ var back_office = new Vue({
                 throw new Error(ex);
             }
         },
+        // изменение контактов компании
+        onChangeContactCompany() {
+            let self = this;
+            let sUrl = self.$data.urlApi + '/api/back-office/add-contact-company';
+            let mainTitle = document.getElementsByClassName("contact-company-main-title").value;
+            let Title = document.getElementsByClassName("contact-company-title").value;
+            let addressCompany = document.getElementsByClassName("contact-company-address").value;
+            let emailCompany = document.getElementsByClassName("contact-company-email").value;
+            let numberCompany = document.getElementsByClassName("contact-company-number").value;
+            let btnText = document.getElementsByClassName("contact-company-btn").value;
+            let oData = {
+                mainTitle,
+                Title,
+                addressCompany,
+                emailCompany,
+                numberCompany,
+                btnText
+            }
+
+            try {
+                axios.post(sUrl, oData)
+                    .then((response) => {
+                        console.log('Данные успешно изменены');
+                        self.notyfi(true);
+
+                    })
+                    .catch((XMLHttpRequest) => {
+                        self.notyfi(false);
+                    });
+            }
+            catch (ex) {
+                throw new Error(ex);
+            }
+        },
         // Поиск контактов
         onSearthContacts() {
             let self = this;
@@ -740,7 +776,7 @@ var back_office = new Vue({
                 });
         },
 
-        // Удаление клиентов
+        // Удаление контактов
         onDelContact(e) {
             let self = this;
             let sUrl = self.$data.urlApi + '/api/back-office/remove-contact';
@@ -761,7 +797,7 @@ var back_office = new Vue({
                 throw new Error(ex);
             }
         },
-        // Добваление клиентов
+        // Добваление контактов
         onAddContact() {
             let self = this;
             let sUrl = self.$data.urlApi + '/api/back-office/add-contact';
@@ -839,6 +875,10 @@ var back_office = new Vue({
                             case 'contact':
                                 self.$data.contact = response.data;
                                 console.log('contact получен', response.data);
+                                break;
+                            case 'contact_lead':
+                                self.$data.contactLead = response.data;
+                                console.log('contactLead получен', response.data);
                                 break;
                             case 'footer':
                                 self.$data.footer = response.data;

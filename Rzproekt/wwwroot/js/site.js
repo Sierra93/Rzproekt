@@ -21,9 +21,10 @@ var appHome = new Vue({
             '/api/statistic/get-statistic',
             '/api/project/get-projects',
             '/api/client/get-clients',
-            '/api/contact/get-contacts',
+            '/api/contact/contacts-company',
             '/api/footer/get-footer',
-            '/api/back-office/get-certs'
+            '/api/back-office/get-certs',
+            '/api/contact/contacts-lead'
         ],
         general: {
             detailse: 'Подробнее'
@@ -36,6 +37,7 @@ var appHome = new Vue({
         project: [],
         client: [],
         contact: [],
+        contactLead: [],
         footer: []
     },
     //created() {
@@ -55,7 +57,6 @@ var appHome = new Vue({
             function Carusel() {
                 self.certCarusel(true);
                 self.getBlocksSevices();
-                self.fnListProjectMap();
             }
             setTimeout(Carusel, 100);
             appHome.$data.blocksServices = document.getElementsByClassName("serviceTxt");
@@ -153,6 +154,10 @@ var appHome = new Vue({
                             case 'contact':
                                 self.$data.contact = response.data;
                                 console.log('contact получен', response.data);
+                                break;
+                            case 'contact_lead':
+                                self.$data.contactLead = response.data;
+                                console.log('contactLead получен', response.data);
                                 break;
                             case 'footer':
                                 self.$data.footer = response.data;
