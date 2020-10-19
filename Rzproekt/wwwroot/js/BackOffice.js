@@ -65,7 +65,7 @@ var back_office = new Vue({
             arrClientSearth: [],
             contact: [],
             contactLead: [],
-            arrContactsSearth: [],
+            arrContactSearth: [],
             footer: []
         }
     },
@@ -759,11 +759,11 @@ var back_office = new Vue({
         // Поиск контактов
         onSearthContacts() {
             let self = this;
-            let ContactName = document.getElementById("searchContact").value;
-            if (!ContactName) { self.$data.arrContactSearth = []; return }
+            let LeadName = document.getElementById("searchContacts").value;
+            if (!LeadName) { self.$data.arrContactSearth = []; return }
             let sUrl = self.$data.urlApi + '/api/contact/search';
             let oData = {
-                ContactName
+                LeadName
             };
             axios.post(sUrl, oData)
                 .then((response) => {

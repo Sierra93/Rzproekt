@@ -219,6 +219,16 @@ $blueMenuHvr: #0074a8;
     }
 }
 
+.block-contact-lead {
+    border: 1px solid #ececec;
+    padding: 5px;
+    margin: 5px;
+}
+.contact-lead-btn {
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+}
 
 #notifications {
     cursor: pointer;

@@ -338,22 +338,10 @@
                         </fieldset>
 
                         <fieldset>
-                            <legend>Описание</legend>
+                            <legend>Информация о компании</legend>
                             <input type="text" class="contact-menu-txt contact-company-title" v-bind:value="contact[0].title">
-                        </fieldset>
-
-                        <fieldset>
-                            <legend>Адрес</legend>
                             <input type="text" class="contact-menu-txt contact-company-address" v-bind:value="contact[0].addressCompany">
-                        </fieldset>
-
-                        <fieldset>
-                            <legend>Почта</legend>
                             <input type="text" class="contact-menu-txt contact-company-email" v-bind:value="contact[0].emailCompany">
-                        </fieldset>
-
-                        <fieldset>
-                            <legend>Телефон</legend>
                             <input type="text" class="contact-menu-txt contact-company-number" v-bind:value="contact[0].companyNumber">
                         </fieldset>
 
@@ -374,17 +362,21 @@
                             <legend>Список контактов</legend>
                             <input id="searchContacts" type="search" placeholder="Поиск контактов" v-on:input="onSearthContacts" v-on:change="onSearthContacts" />
                             <div class="blockListClient">
-                                <div class="blockClient" v-for="item in arrContactsSearth">
+                                <div class="blockClient" v-for="item in arrContactSearth">
                                     <label>
                                         <input type="file" class="form-files-contact" ref="files" multiple v-on:change="handleFilesUploadContact" />
                                     </label>
-                                    <input id="nameContact" v-bind:value="contactLead[0].leadName" />
-                                    <input id="namePosition" v-bind:value="contactLead[0].leadPosition" />
-                                    <input id="telContact" v-bind:value="contactLead[0].leadNumber" />
-                                    <input id="faxContact" v-bind:value="contactLead[0].leadFax" />
-                                    <input id="emailContact" v-bind:value="contactLead[0].leadEmail" />
-                                    <button v-bind:idCustom="item.leadId" class="btm-back-del-client" v-on:click="onDelContacts">Удалить</button>
-                                    <button v-on:click="onChangeContact">Сохранить</button>
+                                    <div class="block-contact-lead">
+                                        <input id="nameContact" v-bind:value="contactLead[0].leadName" />
+                                        <input id="namePosition" v-bind:value="contactLead[0].leadPosition" />
+                                        <input id="telContact" v-bind:value="contactLead[0].leadNumber" />
+                                        <input id="faxContact" v-bind:value="contactLead[0].leadFax" />
+                                        <input id="emailContact" v-bind:value="contactLead[0].leadEmail" />
+                                    </div>
+                                    <div class="contact-lead-btn">
+                                        <button v-bind:idCustom="item.leadId" class="btm-back-del-client" v-on:click="onDelContacts">Удалить</button>
+                                        <button v-bind:idCustom="item.leadId" v-on:click="onChangeContact">Сохранить</button>
+                                    </div>
                                 </div>
                             </div>
                         </fieldset>
