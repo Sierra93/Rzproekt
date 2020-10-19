@@ -196,7 +196,7 @@ namespace Rzproekt.Controllers {
         /// Метод добавляет контакты.
         /// </summary>
         [HttpPost, Route("add-contact")]
-        public async Task<IActionResult> AddContact([FromForm] IFormCollection filesCert, [FromBody] ContactDto contactDto) {
+        public async Task<IActionResult> AddContact([FromForm] IFormCollection filesContact, [FromForm] string jsonString) {
             //AboutBase award = new AboutService(_db);
             //await award.AddAwards(filesCert, contactDto);
 

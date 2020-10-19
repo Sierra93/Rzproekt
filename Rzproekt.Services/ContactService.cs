@@ -32,7 +32,7 @@ namespace Rzproekt.Services {
         /// <param name="filesCert"></param>
         /// <param name="jsonString"></param>
         /// <returns></returns>
-        public override Task AddContact(IFormCollection filesCert, ContactDto contactDto) {
+        public override Task AddContact(IFormCollection filesCert, ContactCompanyDto contactDto) {
             throw new NotImplementedException();
         }
 
@@ -51,7 +51,7 @@ namespace Rzproekt.Services {
         /// <param name="filesCert"></param>
         /// <param name="jsonString"></param>
         /// <returns></returns>
-        public override Task ChangeContact(IFormCollection filesCert, ContactDto contactDto) {
+        public override Task ChangeContact(IFormCollection filesCert, ContactCompanyDto contactDto) {
             throw new NotImplementedException();
         }
     }

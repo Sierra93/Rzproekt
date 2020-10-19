@@ -20,7 +20,9 @@ namespace Rzproekt.Core.Data {
 
         public DbSet<ClientDto> Clients { get; set; }     // Таблица клиентов.
 
-        public DbSet<ContactDto> Contacts { get; set; }     // Таблица контактов.
+        public DbSet<ContactCompanyDto> ContactsCompany { get; set; }     // Таблица контактов.
+
+        public DbSet<ContactLead> ContactLeads { get; set; }    // Табилца контактов руководства.
 
         public DbSet<FooterDto> Footers { get; set; }   // Таблица футера.
 

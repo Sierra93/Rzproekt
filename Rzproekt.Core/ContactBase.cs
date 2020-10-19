@@ -24,7 +24,7 @@ namespace Rzproekt.Core {
         /// <param name="filesCert"></param>
         /// <param name="jsonString"></param>
         /// <returns></returns>
-        public abstract Task AddContact(IFormCollection filesCert, ContactDto contactDto);
+        public abstract Task AddContact(IFormCollection filesCert, ContactCompanyDto contactDto);
 
         /// <summary>
         /// Метод удаляет контакт.
@@ -39,6 +39,6 @@ namespace Rzproekt.Core {
         /// <param name="filesCert"></param>
         /// <param name="jsonString"></param>
         /// <returns></returns>
-        public abstract Task ChangeContact(IFormCollection filesCert, ContactDto contactDto);
+        public abstract Task ChangeContact(IFormCollection filesCert, ContactCompanyDto contactDto);
     }
 }

@@ -26,7 +26,7 @@ namespace Rzproekt.Models {
         public ClientDto Clients { get; set; }
 
         public int ContactId { get; set; }
-        public ContactDto Contacts { get; set; }
+        public ContactCompanyDto Contacts { get; set; }
 
         public int FooterId { get; set; }
         public FooterDto Footers { get; set; }
@@ -42,5 +42,8 @@ namespace Rzproekt.Models {
 
         public int AwardId { get; set; }
         public AwardDto Awards { get; set; }
+
+        public int ContactLead { get; set; }
+        public ContactLead ContactLeads { get; set; }
     }
 }
