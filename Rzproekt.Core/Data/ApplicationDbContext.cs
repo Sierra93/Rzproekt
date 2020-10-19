@@ -30,6 +30,8 @@ namespace Rzproekt.Core.Data {
 
         public DbSet<DetailProject> DetailProjects { get; set; }    // Таблица с дополнительными изображениями проектов.
 
+        public DbSet<AwardDto> Awards { get; set; }    // Таблица наград.
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
@@ -82,6 +84,10 @@ namespace Rzproekt.Core.Data {
 
             modelBuilder.Entity<MultepleContextTable>()
                 .HasOne(sc => sc.DetailProjects)
+                .WithMany(s => s.MultepleContextTables);
+
+            modelBuilder.Entity<MultepleContextTable>()
+                .HasOne(sc => sc.Awards)
                 .WithMany(s => s.MultepleContextTables);
         }
     }

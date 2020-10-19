@@ -38,5 +38,15 @@ namespace Rzproekt.Controllers {
 
             return Ok(await aboutBase.SearchCert(certDto.CertName));
         }
+
+        /// <summary>
+        /// Метод ищет награду по тексту.
+        /// </summary>
+        [HttpPost, Route("search-award")]
+        public async Task<IActionResult> SearchAward([FromBody] AwardDto awardDto) {
+            AboutBase aboutBase = new AboutService(_db);
+
+            return Ok(await aboutBase.SearchCert(certDto.CertName));
+        }
     }
 }

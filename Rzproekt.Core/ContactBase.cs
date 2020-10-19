@@ -1,4 +1,6 @@
-﻿using Rzproekt.Core.Data;
+﻿using Microsoft.AspNetCore.Http;
+using Rzproekt.Core.Data;
+using Rzproekt.Models;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,5 +17,13 @@ namespace Rzproekt.Core {
         /// </summary>
         /// <returns></returns>
         public abstract Task<IEnumerable> GetContactsInfo();
+
+        /// <summary>
+        /// Метод добавляет контакты.
+        /// </summary>
+        /// <param name="filesCert"></param>
+        /// <param name="jsonString"></param>
+        /// <returns></returns>
+        public abstract Task AddContact(IFormCollection filesCert, ContactDto contactDto);
     }
 }

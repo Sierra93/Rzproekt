@@ -13,14 +13,20 @@ namespace Rzproekt.Models {
         [Key, Column("contact_id")]
         public int ContactId { get; set; }
 
-        [Column("main_title", TypeName = "nvarchar(1000)")]
-        public string MainTitle { get; set; }
+        [Column("contact_name", TypeName = "nvarchar(max)")]
+        public string ContactName { get; set; }     // Имя контакта.
 
-        [Column("title", TypeName = "nvarchar(1000)")]
-        public string  Title { get; set; }
+        [Column("position_name", TypeName = "nvarchar(max)")]
+        public string  PositionName { get; set; }   // Название позиции.
 
-        [Column("text", TypeName = "nvarchar(max)")]
-        public string Text { get; set; }
+        [Column("contact_number", TypeName = "nvarchar(max)")]
+        public string ContactNumber { get; set; }   // Номер контакта.
+
+        [Column("contact_fax", TypeName = "nvarchar(max)")]
+        public string ContactFax { get; set; }   // Факс.
+
+        [Column("contact_email", TypeName = "nvarchar(max)")]
+        public string ContactEmail { get; set; }   // Номер контакта.
 
         [Column("block")]
         public string Block { get; set; }   // Тип блока, в который нужно вставлять контент.
