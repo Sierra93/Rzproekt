@@ -284,7 +284,6 @@ var back_office = new Vue({
                     if (!response.data) { self.$data.arrCertSearth = []; return}
                     self.$data.arrCertSearth = response.data;
                     console.log("success / getCert", response);
-                    self.notyfi(true);
                 })
                 .catch((XMLHttpRequest) => {
                     self.notyfi(false);
@@ -383,7 +382,6 @@ var back_office = new Vue({
                     if (!response.data) { self.$data.arrProjectSearth = []; return }
                     self.$data.arrProjectSearth = response.data;
                     console.log("success / getProject", response);
-                    self.notyfi(true);
                 })
                 .catch((XMLHttpRequest) => {
                     self.notyfi(false);
