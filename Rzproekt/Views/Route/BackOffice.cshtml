@@ -123,6 +123,12 @@
                             </label>
                         </fieldset>
                         <button v-bind:idCustom="about.Id" id="mainImg" v-on:click="onChangeAbout">Сохранить</button>
+
+                        <fieldset>
+                            <legend>Кнопка подробной информации</legend>
+                            <input type="text" id="name" v-bind:value="about[0].buttonText">
+                        </fieldset>
+                        <button v-bind:idCustom="about.Id" v-on:click="onChangeAbout">Сохранить</button>
                     </form>
 
                     <form v-on:submit.prevent class="form-back_office">
@@ -147,11 +153,6 @@
                     </form>
 
                     <form v-on:submit.prevent class="form-back_office">
-                        <fieldset>
-                            <legend>Кнопка подробной информации</legend>
-                            <input type="text" id="name" v-bind:value="about[0].buttonText">
-                        </fieldset>
-                        <button v-bind:idCustom="about.Id" v-on:click="onChangeAbout">Сохранить</button>
 
                         <fieldset>
                             <legend>Список сертификатов</legend>
@@ -172,6 +173,26 @@
                             </label>
                         </fieldset>
                         <button v-on:click="onAddCert">Добавить</button>
+
+                        <fieldset>
+                            <legend>Список награды</legend>
+                            <input id="searchAwards" type="search" placeholder="Поиск наград" v-on:input="onSearthAwards" v-on:change="onSearthAwards" />
+                            <div class="blockListAwards">
+                                <div class="blockAwards" v-for="item in arrAwardsSearth">
+                                    <h4>{{ item.certName }}</h4>
+                                    <button v-bind:idCustom="item.awardsId" class="btm-back-del-client" v-on:click="onDelAwards">Удалить</button>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>Загрузить награды</legend>
+                            <label>
+                                <input id="nameAwards" type="search" placeholder="Укажите название награды" />
+                                <input type="file" class="form-files-awards" ref="files" multiple v-on:change="handleFilesUploadAwards" /> @* ДОП ФОТО *@
+                            </label>
+                        </fieldset>
+                        <button v-on:click="onAddAwards">Добавить</button>
                     </form>
 
                 </div>
@@ -245,9 +266,10 @@
                         </fieldset>
                         <fieldset>
                             <legend>Изменение проектов на карте</legend><p>
-    <a href="https://yandex.ru/maps/?um=constructor%3A8b0f0f923d84f8b4c84c863cb6585a98975a779f0ff45aeb036aeb4ce5f7342f&source=constructorLink">Ссылка</a>
-    для перехода на страницу редактирование проектов на карте
-</p>
+                                <a href="https://yandex.ru/maps/?um=constructor%3A8b0f0f923d84f8b4c84c863cb6585a98975a779f0ff45aeb036aeb4ce5f7342f&source=constructorLink">
+                                    Ссылка
+                                </a>для перехода на страницу редактирование проектов на карте
+                            </p>
                         </fieldset>
                     </form>
                     
@@ -324,22 +346,62 @@
                             <legend>Адрес</legend>
                             <input type="text" class="contact-menu-txt" v-bind:value="contact[0].text">
                         </fieldset>
+
                         <fieldset>
                             <legend>Почта</legend>
                             <input type="text" class="contact-menu-txt" v-bind:value="contact[1].text">
                         </fieldset>
+
                         <fieldset>
                             <legend>Телефон</legend>
                             <input type="text" class="contact-menu-txt" v-bind:value="contact[2].text">
                         </fieldset>
-                    </form>
 
-                    <form v-on:submit.prevent class="form-back_office">
                         <fieldset>
                             <legend>Кнопка подробной информации</legend>
                             <input type="text" id="name" v-bind:value="contact[0].buttonText">
                         </fieldset>
-                        <button v-on:click="onChangeHeader">Сохранить</button>
+                        <button v-on:click="onChangeContact">Сохранить</button>
+                    </form>
+
+                    <form v-on:submit.prevent class="form-back_office">
+                        <fieldset>
+                            <legend>Главный текст</legend>
+                            <input type="text" class="contact-menu-title" v-bind:value="contact[0].mainTitle">
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>Список контактов</legend>
+                            <input id="searchContacts" type="search" placeholder="Поиск контактов" v-on:input="onSearthContacts" v-on:change="onSearthContacts" />
+                            <div class="blockListClient">
+                                <div class="blockClient" v-for="item in arrContactsSearth">
+                                    <label>
+                                        <input type="file" class="form-files-contact" ref="files" multiple v-on:change="handleFilesUploadContact" />
+                                    </label>
+                                    <input id="nameContact" v-bind:value="contact[0].nameContact" />
+                                    <input id="namePosition" v-bind:value="contact[0].namePosition" />
+                                    <input id="telContact" v-bind:value="contact[0].telContact" />
+                                    <input id="faxContact" v-bind:value="contact[0].faxContact" />
+                                    <input id="emailContact" v-bind:value="contact[0].emailContact" />
+                                    <button v-bind:idCustom="item.clientId" class="btm-back-del-client" v-on:click="onDelContacts">Удалить</button>
+                                    <button v-on:click="onChangeContact">Сохранить</button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                    <form v-on:submit.prevent class="form-back_office">
+                        <fieldset>
+                            <legend>Добавить контакт</legend>
+                            <label>
+                                <input type="file" class="form-files-contactAdd" ref="files" multiple v-on:change="handleFilesUploadClientAdd" />
+                                <input id="nameContactAdd" placeholder="ФИО" />
+                                <input id="namePositionAdd" placeholder="Должность"/>
+                                <input id="telContactAdd" placeholder="Телефон"/>
+                                <input id="faxContactAdd" placeholder="Факс"/>
+                                <input id="emailContactAdd" placeholder="E-mail"/>
+                            </label>
+                        </fieldset>
+                        <button v-on:click="onAddContact">Добавить</button>
                     </form>
                 </div>
             </div>

@@ -54,7 +54,7 @@
                                     <img src="~/img/back.png" />
                                 </button>
                                 <div v-for="item in cert" class="cert-item">
-                                    <a class="fancybox" data-fancybox="gallery" :href="item.url" :id="item.certId" ><img :src="item.url" /></a>
+                                    <a class="fancybox" data-fancybox="gallery" :href="item.url" :id="item.certId"><img :src="item.url" /></a>
                                 </div>
                                 <button class="btnR-cert-carusel" :customId="true" v-on:click="certCarusel">
                                     <img src="~/img/next.png" />
@@ -63,19 +63,26 @@
 
                         </section>
                     </div>
-                    @*<div class="block aboutSert">
+                    <div class="block aboutSert">
                         <div class="title-block">
                             <h3>Награды</h3>
                         </div>
                         <div class="border-bottom-title"></div>
                         <section class="cert-list">
-
-                            <div id="waterwheel-carousel" v-for="item in cert">
-                                <a data-fancybox="gallery" :href="item.url"><img :src="item.url" /></a>
+                            <div class="block-carusel-cert">
+                                <button class="btnL-cert-carusel" :customId="false" v-on:click="certCarusel">
+                                    <img src="~/img/back.png" />
+                                </button>
+                                <div v-for="item in cert" class="cert-item">
+                                    <a class="fancybox" data-fancybox="gallery" :href="item.url" :id="item.certId"><img :src="item.url" /></a>
+                                </div>
+                                <button class="btnR-cert-carusel" :customId="true" v-on:click="certCarusel">
+                                    <img src="~/img/next.png" />
+                                </button>
                             </div>
 
                         </section>
-                    </div>*@
+                    </div>
                 </div>
             </div>
         </main>

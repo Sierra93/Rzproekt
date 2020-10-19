@@ -27,9 +27,12 @@ var back_office = new Vue({
             filesService: '',
             filesAbout: '',
             filesCert: '',
+            filesAwards: '',
             filesClient: '',
             filesProject: '',
             filesDetProject: '',
+            filesContact: '',
+            filesContactAdd: '',
             date: new Date().getFullYear(),
             notify: '',
             urlApi: 'https://localhost:44349',
@@ -53,12 +56,14 @@ var back_office = new Vue({
             about: [],
             cert: [],
             arrCertSearth: [],
+            arrAwardsSearth: [],
             stat: [],
             project: [],
             arrProjectSearth: [],
             client: [],
             arrClientSearth: [],
             contact: [],
+            arrContactsSearth: [],
             footer: []
         }
     },
@@ -92,43 +97,63 @@ var back_office = new Vue({
                 this.files = filesVideoBgHeader;
             }
         },
+        // Функция собирает файлы услуг.
         handleFilesUploadService() {
             let arrBlocksImg = document.getElementsByClassName('form-files-service');
             this.filesService = arrBlocksImg;
         },
+        // Функция собирает файлы о нас.
         handleFilesUploadAbout() {
             let arrBlocksImg = document.getElementsByClassName('form-files-about');
             this.filesAbout = arrBlocksImg;
         },
+        // Функция собирает файлы клиенты.
         handleFilesUploadClient() {
             let arrBlocksImg = document.getElementsByClassName('form-files-client');
             this.filesService = arrBlocksImg;
         },
+        // Функция собирает файлы о нас (детальная информания).
         handleFilesUploadDetAbout() {
-            let filesAbout = document.getElementsByClassName('form-files-about')[0].files[0];
+            //let filesAbout = document.getElementsByClassName('form-files-about')[0].files[0];
             let filesDetAbout = document.getElementsByClassName('form-files-det-about')[0].files[0];
 
-            if (!!filesAbout) {
-                this.filesAbout = filesAbout;
-            } else if (!!filesDetAbout) {
+            //if (!!filesAbout) {
+                //this.filesAbout = filesAbout;
+            //} else if (!!filesDetAbout) {
                 this.filesAbout = filesDetAbout;
-            }
+            //}
         },
+        // Функция собирает файлы сертификатов.
         handleFilesUploadCert() {
             let filesCert = document.getElementsByClassName('form-files-cert')[0].files;
             this.filesCert = filesCert;
         },
+        // Функция собирает файлы наград.
+        handleFilesUploadAwards() {
+            let filesAwards = document.getElementsByClassName('form-files-awards')[0].files;
+            this.filesAwards = filesAwards;
+        },
+        // Функция собирает файлы клиентов.
         handleFilesUploadClient() {
             let filesClient = document.getElementsByClassName('form-files-client')[0].files;
             this.filesClient = filesClient;
         },
+        // Функция собирает файлы проектов.
         handleFilesUploadProject() {
             let filesProject = document.getElementsByClassName('form-files-projectMain')[0].files[0];
             let filesDetProject = document.getElementsByClassName('form-files-project')[0].files[0];
             this.filesProject = filesProject;
             this.filesDetProject = filesDetProject;
-            
         },
+        handleFilesUploadContact() {
+            let filesContact = document.getElementsByClassName('form-files-contact')[0].files;
+            this.filesContact = filesContact;
+        },
+        handleFilesUploadClientAdd() {
+            let filesContactAdd = document.getElementsByClassName('form-files-contactAdd')[0].files;
+            this.filesContactAdd = filesContactAdd;
+        },
+        // Функция оповещений результатов запросов.
         notyfi(e) {
             let blockNotify = document.getElementById('notifications');
             if (e) {
@@ -228,7 +253,7 @@ var back_office = new Vue({
                 throw new Error(ex);
             }
         },
-        // Отправляет измененные данные блока About
+        // Отправляет измененные данные блока о нас
         onChangeAbout(e) {
             let self = this;
             let sUrl = self.$data.urlApi + '/api/back-office/change-about';
@@ -255,8 +280,6 @@ var back_office = new Vue({
             }
             formData.set('jsonString', JSON.stringify(oData));
 
-            //mainTitle, title, text, url, buttonText, dopMainTitle, dopMainTitle, dopTitle, dopText, dopUrl, certUrl
-
             try {
                 axios.post(sUrl, formData)
                     .then((response) => {
@@ -271,6 +294,7 @@ var back_office = new Vue({
                 throw new Error(ex);
             }
         },
+        // Поиск Сертификатов
         onSearthCert() {
             let self = this;
             let CertName = document.getElementById("searchCert").value;
@@ -289,6 +313,7 @@ var back_office = new Vue({
                     self.notyfi(false);
                 });
         },
+        // Удаление сертификатов
         onDelCert(e) {
             let self = this;
             let sUrl = self.$data.urlApi + '/api/back-office/remove-cert';
@@ -309,6 +334,7 @@ var back_office = new Vue({
                 throw new Error(ex);
             }
         },
+        // Добавление сертификатов
         onAddCert() {
             let self = this;
             let sUrl = self.$data.urlApi + '/api/back-office/add-cert';
@@ -317,7 +343,7 @@ var back_office = new Vue({
             let oData = {
                 nameCert
             }
-            if (!!this.filesClient) {
+            if (!!this.filesCert) {
                 formData.set('filesCert', this.filesCert[0]);
             }
             formData.set('jsonString', JSON.stringify(oData));
@@ -336,6 +362,74 @@ var back_office = new Vue({
             }
         },
 
+        // Поиск Наград
+        onSearthAwards() {
+            let self = this;
+            let AwardsName = document.getElementById("searchAwards").value;
+            if (!AwardsName) { self.$data.arrAwardsSearth = []; return }
+            let sUrl = self.$data.urlApi + '/api/about/search-awards';
+            let oData = {
+                AwardsName
+            };
+            axios.post(sUrl, oData)
+                .then((response) => {
+                    if (!response.data) { self.$data.arrAwardsSearth = []; return }
+                    self.$data.arrAwardsSearth = response.data;
+                    console.log("success / getAwards", response);
+                })
+                .catch((XMLHttpRequest) => {
+                    self.notyfi(false);
+                });
+        },
+        onDelAwards(e) {
+            let self = this;
+            let sUrl = self.$data.urlApi + '/api/back-office/remove-awards';
+            let idAwards = +e.target.getAttribute('idCustom');
+
+            try {
+                axios.put(sUrl + '?id=' + idAwards)
+                    .then((response) => {
+                        self.onSearthAwards();
+                        self.notyfi(true);
+
+                    })
+                    .catch((XMLHttpRequest) => {
+                        self.notyfi(false);
+                    });
+            }
+            catch (ex) {
+                throw new Error(ex);
+            }
+        },
+        // Добавление наград
+        onAddAwards() {
+            let self = this;
+            let sUrl = self.$data.urlApi + '/api/back-office/add-awards';
+            let nameAwards = document.getElementById("nameAwards").value;
+            let formData = new FormData();
+            let oData = {
+                nameAwards
+            }
+            if (!!this.filesAwards) {
+                formData.set('filesAwards', this.filesAwards[0]);
+            }
+            formData.set('jsonString', JSON.stringify(oData));
+            try {
+                axios.post(sUrl, formData)
+                    .then((response) => {
+                        self.notyfi(true);
+
+                    })
+                    .catch((XMLHttpRequest) => {
+                        self.notyfi(false);
+                    });
+            }
+            catch (ex) {
+                throw new Error(ex);
+            }
+        },
+
+        // Изменение блока статистики
         onChangeStat() {
             let self = this;
             let sUrl = self.$data.urlApi + '/api/back-office/change-stat';
@@ -369,6 +463,8 @@ var back_office = new Vue({
                 throw new Error(ex);
             }
         },
+
+        // Поиск проектов
         onSearthProject(e) {
             let self = this;
             let ProjectName = document.getElementById("searchProject").value;
@@ -387,9 +483,49 @@ var back_office = new Vue({
                     self.notyfi(false);
                 });
         },
+
+        // Изменение Проектов
         onChangeProject(e) {
+            let self = this;
+            let sUrl = self.$data.urlApi + '/api/back-office/change-project';
+            let MainTitle = $('.project-menu-title')[0].value;
+            let detMainTitle = $('.about-Det-Maintitle')[0].value;
+            let detTitle = $('.about-DetTitle')[0].value;
+            let detText = $('.about-detail-text')[0].value;
+            let mainImg = !!e.target.getAttribute('id');
+            let idService = +e.target.getAttribute('idCustom') - 1;
+            let Id = idService + 1;
+            let formData = new FormData();
+            let oData = {
+                Id,
+                MainTitle,
+                Text,
+                detMainTitle,
+                detTitle,
+                detText,
+                mainImg
+            };
+            if (!!this.filesService[idService]) {
+                formData.set('filesAbout', this.filesService[idService].files[0]);
+            }
+            formData.set('jsonString', JSON.stringify(oData));
+
+            try {
+                axios.post(sUrl, formData)
+                    .then((response) => {
+                        self.notyfi(true);
+
+                    })
+                    .catch((XMLHttpRequest) => {
+                        self.notyfi(false);
+                    });
+            }
+            catch (ex) {
+                throw new Error(ex);
+            }
 
         },
+        // Добавление проектов
         onAddProject(e) {
             let self = this;
             let sUrl = self.$data.urlApi + '/api/back-office/add-project';
@@ -420,6 +556,7 @@ var back_office = new Vue({
                 throw new Error(ex);
             }
         },
+        // Удаление проектов
         onDelProject(e) {
             let self = this;
             let sUrl = self.$data.urlApi + '/api/back-office/remove-project';
@@ -439,6 +576,8 @@ var back_office = new Vue({
                 throw new Error(ex);
             }
         },
+
+        // Изменение клиентов
         onChangeClient(e) {
             // Отправляет измененные данные блока Client
             let self = this;
@@ -472,6 +611,8 @@ var back_office = new Vue({
                 throw new Error(ex);
             }
         },
+
+        // Поиск клиентов
         onSearthClient() {
             let self = this;
             let ClientName = document.getElementById("searchClient").value;
@@ -490,26 +631,8 @@ var back_office = new Vue({
                     self.notyfi(false);
                 });
         },
-        onDelClient(e) {
-            let self = this;
-            let sUrl = self.$data.urlApi + '/api/back-office/remove-client';
-            let idClient = +e.target.getAttribute('idCustom');
 
-            try {
-                axios.put(sUrl + '?id=' + idClient)
-                    .then((response) => {
-                        self.onSearthClient();
-                        self.notyfi(true);
-
-                    })
-                    .catch((XMLHttpRequest) => {
-                        self.notyfi(false);
-                    });
-            }
-            catch (ex) {
-                throw new Error(ex);
-            }
-        },
+        // Добваление клиентов
         onAddClient() {
             let self = this;
             let sUrl = self.$data.urlApi + '/api/back-office/add-client';
@@ -537,6 +660,8 @@ var back_office = new Vue({
                 throw new Error(ex);
             }
         },
+
+        // Удаление Клиентов
         onDelClient(e) {
             let self = this;
             let sUrl = self.$data.urlApi + '/api/back-office/delete-client';
@@ -559,6 +684,120 @@ var back_office = new Vue({
                 throw new Error(ex);
             }
         },
+        // Изменение клиентов
+        onChangeContact() {
+            let self = this;
+            let sUrl = self.$data.urlApi + '/api/back-office/change-contact';
+            let nameContact = document.getElementById("nameContact").value;
+            let namePosition = document.getElementById("namePosition").value;
+            let telContact = document.getElementById("telContact").value;
+            let faxContact = document.getElementById("faxContact").value;
+            let emailContact = document.getElementById("emailContact").value;
+            let formData = new FormData();
+            let oData = {
+                nameContact,
+                namePosition,
+                telContact,
+                faxContact,
+                emailContact
+            }
+            if (!!this.filesContact) {
+                formData.set('filesContact', this.filesContact[0]);
+            }
+            formData.set('jsonString', JSON.stringify(oData));
+            try {
+                axios.post(sUrl, formData)
+                    .then((response) => {
+                        console.log('Данные успешно изменены');
+                        self.notyfi(true);
+
+                    })
+                    .catch((XMLHttpRequest) => {
+                        self.notyfi(false);
+                    });
+            }
+            catch (ex) {
+                throw new Error(ex);
+            }
+        },
+        // Поиск контактов
+        onSearthContacts() {
+            let self = this;
+            let ContactName = document.getElementById("searchContact").value;
+            if (!ContactName) { self.$data.arrContactSearth = []; return }
+            let sUrl = self.$data.urlApi + '/api/contact/search';
+            let oData = {
+                ContactName
+            };
+            axios.post(sUrl, oData)
+                .then((response) => {
+                    if (!response.data) { self.$data.arrContactSearth = []; return }
+                    self.$data.arrContactSearth = response.data;
+                    console.log("success / getContact", response);
+                })
+                .catch((XMLHttpRequest) => {
+                    self.notyfi(false);
+                });
+        },
+
+        // Удаление клиентов
+        onDelContact(e) {
+            let self = this;
+            let sUrl = self.$data.urlApi + '/api/back-office/remove-contact';
+            let idContact = +e.target.getAttribute('idCustom');
+
+            try {
+                axios.put(sUrl + '?id=' + idContact)
+                    .then((response) => {
+                        self.onSearthContact();
+                        self.notyfi(true);
+
+                    })
+                    .catch((XMLHttpRequest) => {
+                        self.notyfi(false);
+                    });
+            }
+            catch (ex) {
+                throw new Error(ex);
+            }
+        },
+        // Добваление клиентов
+        onAddContact() {
+            let self = this;
+            let sUrl = self.$data.urlApi + '/api/back-office/add-contact';
+            let ContactName = document.getElementById("nameContactAdd").value;
+            let PositionName = document.getElementById("namePositionAdd").value;
+            let ContactNumber = document.getElementById("telContactAdd").value;
+            let ContactFax = document.getElementById("faxContactAdd").value;
+            let ContactEmail = document.getElementById("emailContactAdd").value;
+            let formData = new FormData();
+            let oData = {
+                ContactName,
+                PositionName,
+                ContactNumber,
+                ContactFax,
+                ContactEmail
+            }
+            if (!!this.filesContactAdd) {
+                formData.set('filesContact', this.filesContactAdd[0]);
+            }
+            //formData.set('jsonString', JSON.stringify(oData));
+            try {
+                axios.post(sUrl, formData, oData)
+                    .then((response) => {
+                        console.log('Данные успешно изменены');
+                        self.notyfi(true);
+
+                    })
+                    .catch((XMLHttpRequest) => {
+                        self.notyfi(false);
+                    });
+            }
+            catch (ex) {
+                throw new Error(ex);
+            }
+        },
+
         //  Функция выгружает все данные
         _getData(url) {
             let self = this;
