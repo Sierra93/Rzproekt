@@ -9,7 +9,7 @@ namespace Rzproekt.Models {
     /// Класс сопоставляется с таблицей контактов сотрудника.
     /// </summary>
     [Table("ContactsLead")]
-    public class ContactLead {
+    public class ContactLeadDto {
         [Key, Column("lead_id")]
         public int LeadId { get; set; }
 
@@ -34,9 +34,12 @@ namespace Rzproekt.Models {
         [Column("lead_email", TypeName = "nvarchar(1000)")]
         public string LeadEmail { get; set; }    // Email руководителя.
 
+        [Column("block", TypeName = "nvarchar(500)")]
+        public string Block { get; set; }
+
         public List<MultepleContextTable> MultepleContextTables { get; set; }
 
-        public ContactLead() {
+        public ContactLeadDto() {
             MultepleContextTables = new List<MultepleContextTable>();
         }
     }

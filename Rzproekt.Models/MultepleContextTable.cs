@@ -44,6 +44,6 @@ namespace Rzproekt.Models {
         public AwardDto Awards { get; set; }
 
         public int ContactLead { get; set; }
-        public ContactLead ContactLeads { get; set; }
+        public ContactLeadDto ContactLeads { get; set; }
     }
 }

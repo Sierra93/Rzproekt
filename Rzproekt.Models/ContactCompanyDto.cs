@@ -29,7 +29,10 @@ namespace Rzproekt.Models {
         public string CompanyNumber { get; set; }  // Номер компании.   
 
         [Column("button_text", TypeName = "nvarchar(500)")]
-        public string ButtonText { get; set; } 
+        public string ButtonText { get; set; }
+
+        [Column("block", TypeName = "nvarchar(500)")]
+        public string Block { get; set; }
 
         public List<MultepleContextTable> MultepleContextTables { get; set; }
 
