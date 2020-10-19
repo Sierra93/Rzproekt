@@ -687,30 +687,33 @@ var back_office = new Vue({
             }
         },
         // Изменение компании
-        onChangeContact() {
+        onChangeContact(e) {
             let self = this;
-            let sUrl = self.$data.urlApi + '/api/back-office/change-contact';
-            let nameContact = document.getElementById("nameContact").value;
-            let namePosition = document.getElementById("namePosition").value;
-            let telContact = document.getElementById("telContact").value;
-            let faxContact = document.getElementById("faxContact").value;
-            let emailContact = document.getElementById("emailContact").value;
+            let sUrl = self.$data.urlApi + '/api/back-office/change-contact-lead';
+            let LeadName = document.getElementsByClassName("contact-lead-name")[0].value;
+            let LeadPosition = document.getElementsByClassName("contact-lead-position")[0].value;
+            let LeadFax = document.getElementsByClassName("contact-lead-fax")[0].value;
+            let LeadNumber = document.getElementsByClassName("contact-lead-number")[0].value;
+            let LeadEmail = document.getElementsByClassName("contact-lead-email")[0].value;
+            let idService = +e.target.getAttribute('idCustom') - 1;
+            let Id = idService + 1;
             let formData = new FormData();
             let oData = {
-                nameContact,
-                namePosition,
-                telContact,
-                faxContact,
-                emailContact
-            }
-            if (!!this.filesContact) {
-                formData.set('filesContact', this.filesContact[0]);
+                Id,
+                LeadName,
+                LeadPosition,
+                LeadNumber,
+                LeadFax,
+                LeadEmail
+            };
+            if (!!this.filesService[idService]) {
+                formData.set('filesAbout', this.filesService[idService].files[0]);
             }
             formData.set('jsonString', JSON.stringify(oData));
+
             try {
                 axios.post(sUrl, formData)
                     .then((response) => {
-                        console.log('Данные успешно изменены');
                         self.notyfi(true);
 
                     })
