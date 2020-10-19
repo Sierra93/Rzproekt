@@ -726,12 +726,12 @@ var back_office = new Vue({
         onChangeContactCompany() {
             let self = this;
             let sUrl = self.$data.urlApi + '/api/back-office/add-contact-company';
-            let mainTitle = document.getElementsByClassName("contact-company-main-title").value;
-            let Title = document.getElementsByClassName("contact-company-title").value;
-            let addressCompany = document.getElementsByClassName("contact-company-address").value;
-            let emailCompany = document.getElementsByClassName("contact-company-email").value;
-            let numberCompany = document.getElementsByClassName("contact-company-number").value;
-            let btnText = document.getElementsByClassName("contact-company-btn").value;
+            let mainTitle = document.getElementsByClassName("contact-company-main-title")[0].value;
+            let Title = document.getElementsByClassName("contact-company-title")[0].value;
+            let addressCompany = document.getElementsByClassName("contact-company-address")[0].value;
+            let emailCompany = document.getElementsByClassName("contact-company-email")[0].value;
+            let numberCompany = document.getElementsByClassName("contact-company-number")[0].value;
+            let btnText = document.getElementsByClassName("contact-company-btn")[0].value;
             let oData = {
                 mainTitle,
                 Title,
