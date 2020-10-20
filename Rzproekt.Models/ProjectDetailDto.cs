@@ -8,7 +8,8 @@ namespace Rzproekt.Models {
     /// <summary>
     /// Класс сопоставляется с таблицей дополнительных изображений проектов.
     /// </summary>
-    public class DetailProject {
+    [Table("ProjectDetails")]
+    public class ProjectDetailDto {
         [Key, Column("id")]
         public int Id { get; set; }
 
@@ -16,14 +17,14 @@ namespace Rzproekt.Models {
         public string Url { get; set; }     // Путь к изображению.
 
         [Column("project_id", TypeName = "int")]
-        public int ProjectCategory { get; set; }    // Id проекта.
+        public int ProjectId { get; set; }    // Id проекта из основной таблиц проектов.
 
-        [Column("is_main_image", TypeName = "nvarchar(5)")]
-        public string IsMainImage { get; set; }     // Флаг, который определяет основное изображение или дополнительное.
+        [Column("type_page", TypeName = "nvarchar(10)")]
+        public string TypePage { get; set; }     // Тип страницы, на которую добавить изображение проекта.
 
         public List<MultepleContextTable> MultepleContextTables { get; set; }
 
-        public DetailProject() {
+        public ProjectDetailDto() {
             MultepleContextTables = new List<MultepleContextTable>();
         }
     }

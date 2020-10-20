@@ -54,10 +54,10 @@ namespace Rzproekt.Services {
                 //}
 
                 projectDto.Block = BlockType.PROJECT;
-                projectDto.Title = nameProject;
-                projectDto.Detail = detailProject;
-                projectDto.IsMain = "false";
-                projectDto.IsMainImage = "true";
+                //projectDto.Title = nameProject;
+                //projectDto.Detail = detailProject;
+                //projectDto.IsMain = "false";
+                //projectDto.IsMainImage = "true";
                 await _db.Projects.AddAsync(projectDto);
                 await _db.SaveChangesAsync();
                 Debugger.Break();

@@ -30,7 +30,7 @@ namespace Rzproekt.Core.Data {
 
         public DbSet<CertDto> Certs { get; set; }   // Таблица сертификатов.
 
-        public DbSet<DetailProject> DetailProjects { get; set; }    // Таблица с дополнительными изображениями проектов.
+        public DbSet<ProjectDetailDto> DetailProjects { get; set; }    // Таблица с дополнительными изображениями проектов.
 
         public DbSet<AwardDto> Awards { get; set; }    // Таблица наград.
 
