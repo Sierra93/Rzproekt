@@ -19,7 +19,7 @@ namespace Rzproekt.Models {
         [Column("award_detail", TypeName = "nvarchar(max)")]
         public string AwardDetail { get; set; }  // Описание сертификата.
 
-        [Column("block", TypeName = "nvarchar(500)")]
+        [Column("block", TypeName = "nvarchar(50)")]
         public string Block { get; set; }   // Тип блока сертификатов.
 
         [Column("award_title", TypeName = "nvarchar(1000)")]

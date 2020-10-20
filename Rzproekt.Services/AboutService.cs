@@ -238,7 +238,7 @@ namespace Rzproekt.Services {
             try {
                 CommonMethodsService common = new CommonMethodsService(_db);
                 JObject jsonParse = JObject.Parse(jsonString);
-                string awardName = jsonParse["nameAward"].ToString();
+                string awardName = jsonParse["nameAwards"].ToString();
 
                 if (filesCert.Files.Count == 0) {
                     throw new ArgumentNullException();
