@@ -43,6 +43,7 @@ var back_office = new Vue({
                 '/api/about/get-about',
                 '/api/statistic/get-statistic',
                 '/api/project/get-projects',
+                '/api/project/all-projects',
                 '/api/client/get-clients',
                 '/api/contact/contacts-company',
                 '/api/footer/get-footer',
@@ -60,7 +61,7 @@ var back_office = new Vue({
             arrAwardsSearth: [],
             stat: [],
             project: [],
-            arrProjectSearth: [],
+            arrProject: [],
             client: [],
             arrClientSearth: [],
             contact: [],
@@ -83,8 +84,8 @@ var back_office = new Vue({
             let allREquest = this.$data.listRequests;
             allREquest.forEach(function (el) {
                 self._getData(el);
-            })
-
+            });
+            self.onAllProject();
         })
     },
     methods: {
@@ -133,13 +134,6 @@ var back_office = new Vue({
         handleFilesUploadClient() {
             let filesClient = document.getElementsByClassName('form-files-client')[0].files;
             this.filesClient = filesClient;
-        },
-        // Функция собирает файлы проектов.
-        handleFilesUploadProject() {
-            let filesProject = document.getElementsByClassName('form-files-projectMain')[0].files[0];
-            let filesDetProject = document.getElementsByClassName('form-files-project')[0].files[0];
-            this.filesProject = filesProject;
-            this.filesDetProject = filesDetProject;
         },
         handleFilesUploadContact() {
             let filesContact = document.getElementsByClassName('form-files-contact')[0].files;
@@ -459,20 +453,16 @@ var back_office = new Vue({
             }
         },
 
-        // Поиск проектов
-        onSearthProject(e) {
+        // Все проекты
+        onAllProject(e) {
             let self = this;
-            let ProjectName = document.getElementById("searchProject").value;
-            if (!ProjectName) { self.$data.arrProjectSearth = []; return }
             let sUrl = self.$data.urlApi + '/api/project/all-projects';
-            let oData = {
-                ProjectName
-            };
-            axios.post(sUrl, oData)
+
+            axios.post(sUrl)
                 .then((response) => {
-                    if (!response.data) { self.$data.arrProjectSearth = []; return }
-                    self.$data.arrProjectSearth = response.data;
-                    console.log("success / getProject", response);
+                    if (!response.data) { self.$data.AllProject = []; return }
+                    self.$data.arrProject = response.data;
+                    console.log("success / getAllProject", response);
                 })
                 .catch((XMLHttpRequest) => {
                     self.notyfi(false);
@@ -484,9 +474,8 @@ var back_office = new Vue({
             let self = this;
             let sUrl = self.$data.urlApi + '/api/back-office/change-project';
             let MainTitle = $('.project-menu-title')[0].value;
-            let detMainTitle = $('.project-Det-Maintitle')[0].value;
-            let detTitle = $('.project-DetTitle')[0].value;
-            let detText = $('.project-detail-text')[0].value;
+            let buttonText = $('.project-menu-buttonText')[0].value;
+
             let mainImg = !!e.target.getAttribute('id');
             let idService = +e.target.getAttribute('idCustom') - 1;
             let Id = idService + 1;
@@ -494,11 +483,7 @@ var back_office = new Vue({
             let oData = {
                 Id,
                 MainTitle,
-                Text,
-                detMainTitle,
-                detTitle,
-                detText,
-                mainImg
+                buttonText,
             };
             if (!!this.filesService[idService]) {
                 formData.set('filesProject', this.filesService[idService].files[0]);
@@ -913,7 +898,9 @@ var back_office = new Vue({
             }
         },
         previewFilesUploadProject(e) {
+            let filesDetProject = document.getElementsByClassName('form-files-project')[0].files[0];
             var input = e.target;
+            this.filesDetProject = filesDetProject;
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
 
@@ -925,7 +912,10 @@ var back_office = new Vue({
             }
         },
         previewMainFilesUploadProject(e) {
+            let filesProject = document.getElementsByClassName('form-files-projectMain')[0].files[0];
             var input = e.target;
+            this.filesProject = filesProject;
+
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
 
@@ -935,6 +925,19 @@ var back_office = new Vue({
 
                 reader.readAsDataURL(input.files[0]);
             }
+        },
+        checkOnlyThreeProject() {
+            var chk_arr = document.getElementsByName("chk");
+            var chklength = chk_arr.length;
+            var tot = 0;
+            var i = -1;
+            for (k = 0; k < chklength; k++) {
+                if (chk_arr[k].checked) {
+                    tot++;
+                    if (i < 0) i = k;
+                }
+                if (tot > 3) { chk_arr[i].checked = false; }
+            } 
         }
     }
 });

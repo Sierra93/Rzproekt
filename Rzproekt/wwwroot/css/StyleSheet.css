@@ -540,7 +540,8 @@
 
 .form-back_office {
   margin: 1rem;
-  width: 390px; }
+  width: 390px;
+  position: relative; }
   .form-back_office fieldset {
     padding: 1rem;
     margin: 1rem 0;
@@ -656,8 +657,22 @@
 .notifications-active {
   right: -2rem !important; }
 
+.normalize-project {
+  justify-content: flex-start !important; }
+
+.main-img-project {
+  border-bottom: 1px solid; }
+
+.block-subImg-list {
+  border-bottom: 1px solid; }
+
+#imageMain {
+  width: 6rem;
+  float: right; }
+
 #image {
-  width: 8rem; }
+  width: 4rem;
+  float: right; }
 
 #menu__toggle {
   opacity: 0; }

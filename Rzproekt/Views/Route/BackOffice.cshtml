@@ -228,7 +228,28 @@
                 @*ПРОЕКТЫ*@
                 <input type="radio" name="tab" id="tab5" />
                 <label class="tab-label no-select" for="tab5" nth="5">ПРОЕКТЫ</label>
-                <div class="tab-item" id="tab-content5">
+                <div class="tab-item normalize-project" id="tab-content5">
+                    <form v-on:submit.prevent class="form-back_office">
+
+                        <fieldset>
+                            <legend>Главный текст</legend>
+                            <input type="text" class="project-menu-title" v-bind:value="project[0].mainTitle">
+                            <label>Текст кнопки детальной информации
+                                <input type="text" id="name"  class="project-menu-buttonText" v-bind:value="project[0].buttonText">
+                            </label>
+                            <button v-on:click="onChangeProject">Сохранить</button>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>Изменение проектов на карте</legend><p>
+                                <a href="https://yandex.ru/maps/?um=constructor%3A8b0f0f923d84f8b4c84c863cb6585a98975a779f0ff45aeb036aeb4ce5f7342f&source=constructorLink">
+                                    Ссылка
+                                </a>для перехода на страницу редактирование проектов на карте
+                            </p>
+
+                        </fieldset>
+                    </form>
+
                     <form v-on:submit.prevent class="form-back_office">
                         <fieldset>
                             <legend>Загрузить проект</legend>
@@ -238,83 +259,36 @@
                                         Заглавное фото
                                         <img id="imageMain" src="#" alt="" />
                                     </label>
-                                        <input type="file" name="pic[]" v-on:change="previewMainFilesUploadProject" />
+                                    <input type="file" name="pic[]" class="form-files-projectMain" v-on:change="previewMainFilesUploadProject" />
                                     <label>
                                         Доп. Фото
                                         <img id="image" src="#" alt="" />
                                     </label>
-                                    <input type="file" name="pic[]" v-on:change="previewFilesUploadProject" />
+                                    <input type="file" name="pic[]" class="form-files-project" v-on:change="previewFilesUploadProject" />
                                 </div>
                             </div>
-                        </fieldset>
-                    </form>
-
-                    <form v-on:submit.prevent class="form-back_office">
-                        <fieldset>
-                            <legend>Загрузить проект 2</legend>
-                            <label>
-                                Заглавное фото
-                                <input type="file" id="files" class="form-files-projectMain" ref="files" multiple v-on:change="handleFilesUploadProject" />
-                            </label>
-                            <label>
-                                Доп. Фото
-                                <input type="file" id="files" class="form-files-project" ref="files" multiple v-on:change="handleFilesUploadProject" />
-                            </label>
                             <input type="text" id="nameProject" class="project-menu-title" placeholder="Название проекта">
-                            <label>
-                                <textarea id="detailProject" class="about-detail-text" draggable="false" placeholder="Описание проекта"></textarea>
-                            </label>
-                            <button v-on:click="onAddProject">Добавить</button>
+                            <textarea id="detailProject" class="about-detail-text" draggable="false" placeholder="Описание проекта"></textarea>
+                            <button v-on:click="onAddProject">Загрузить</button>
                         </fieldset>
                     </form>
 
-                    <form v-on:submit.prevent class="form-back_office">
+                    <form v-on:submit.prevent class="form-back_office" v-for="item in arrProject">
                         <fieldset>
-                            <legend>Загрузить проект 3</legend>
-                            <label>
-                                Заглавное фото
-                                <input type="file" id="files" class="form-files-projectMain" ref="files" multiple v-on:change="handleFilesUploadProject" />
-                            </label>
-                            <label>
-                                Доп. Фото
-                                <input type="file" id="files" class="form-files-project" ref="files" multiple v-on:change="handleFilesUploadProject" />
-                            </label>
-                            <input type="text" id="nameProject" class="project-menu-title" placeholder="Название проекта">
-                            <label>
-                                <textarea id="detailProject" class="about-detail-text" draggable="false" placeholder="Описание проекта"></textarea>
-                            </label>
-                            <button v-on:click="onAddProject">Добавить</button>
-                        </fieldset>
-                    </form>
-
-                    <form v-on:submit.prevent class="form-back_office">
-                        <fieldset>
-                            <legend>Главный текст</legend>
-                            <input type="text" class="project-menu-title" v-bind:value="project[0].mainTitle">
-                            <button v-on:click="onChangeProject">Сохранить</button>
-                        </fieldset>
-                        <fieldset>
-                            <legend>Кнопка подробной информации</legend>
-                            <input type="text" id="name" v-bind:value="project[0].buttonText">
-                        </fieldset>
-                        <fieldset>
-                            <legend>Список проектов</legend>
-                            <input id="searchProject" type="search" placeholder="Поиск проекта" v-on:input="onSearthProject" v-on:change="onSearthProject" />
-                            <div class="blockListProject">
-                                <div class="blockProject" v-for="item in arrProjectSearth">
-                                    <h4>{{ item.title }}</h4>
-                                    <button v-bind:idCustom="item.projectId" class="btm-back-del-client" v-on:click="onDelProject">Удалить</button>
-                                </div>
+                            <legend>Проект {{item.projectId}}</legend>
+                            <div class="main-img-project">
+                                <img :src="item.url" alt="" />
                             </div>
-                        </fieldset>
-                        <fieldset>
-                            <legend>Изменение проектов на карте</legend><p>
-                                <a href="https://yandex.ru/maps/?um=constructor%3A8b0f0f923d84f8b4c84c863cb6585a98975a779f0ff45aeb036aeb4ce5f7342f&source=constructorLink">
-                                    Ссылка
-                                </a>для перехода на страницу редактирование проектов на карте
-                            </p>
+                            <input type="text" id="nameProject" class="project-menu-title" :value="item.projectName" placeholder="Название проекта">
+                            <label>
+                                <textarea id="detailProject" class="about-detail-text" draggable="false" placeholder="Описание проекта">{{ item.projectDetail }}</textarea>
+                            </label>
+                            <button :idCustom="item.projectId" v-on:click="onChangeProject">Сохранить</button>
+                            <button :idCustom="item.projectId" v-on:click="onDelProject" class="btm-back-del-client">Удалить</button>
+                            <input type="checkbox" name="chk" value="" v-on:change="checkOnlyThreeProject"/>
                         </fieldset>
                     </form>
+
                 </div>
 
                 @*КЛИЕНТЫ*@
