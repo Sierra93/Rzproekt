@@ -363,7 +363,7 @@ var back_office = new Vue({
             let self = this;
             let AwardsName = document.getElementById("searchAwards").value;
             if (!AwardsName) { self.$data.arrAwardsSearth = []; return }
-            let sUrl = self.$data.urlApi + '/api/about/search-awards';
+            let sUrl = self.$data.urlApi + '/api/about/search-award';
             let oData = {
                 AwardsName
             };
@@ -374,12 +374,11 @@ var back_office = new Vue({
                     console.log("success / getAwards", response);
                 })
                 .catch((XMLHttpRequest) => {
-                    self.notyfi(false);
                 });
         },
         onDelAwards(e) {
             let self = this;
-            let sUrl = self.$data.urlApi + '/api/back-office/remove-awards';
+            let sUrl = self.$data.urlApi + '/api/back-office/remove-award';
             let idAwards = +e.target.getAttribute('idCustom');
 
             try {
@@ -400,7 +399,7 @@ var back_office = new Vue({
         // Добавление наград
         onAddAwards() {
             let self = this;
-            let sUrl = self.$data.urlApi + '/api/back-office/add-awards';
+            let sUrl = self.$data.urlApi + '/api/back-office/add-award';
             let nameAwards = document.getElementById("nameAwards").value;
             let formData = new FormData();
             let oData = {
