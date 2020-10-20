@@ -361,11 +361,11 @@ var back_office = new Vue({
         // Поиск Наград
         onSearthAwards() {
             let self = this;
-            let AwardsName = document.getElementById("searchAwards").value;
-            if (!AwardsName) { self.$data.arrAwardsSearth = []; return }
+            let AwardName = document.getElementById("searchAwards").value;
+            if (!AwardName) { self.$data.arrAwardsSearth = []; return }
             let sUrl = self.$data.urlApi + '/api/about/search-award';
             let oData = {
-                AwardsName
+                AwardName
             };
             axios.post(sUrl, oData)
                 .then((response) => {
@@ -910,6 +910,30 @@ var back_office = new Vue({
             }
             catch (ex) {
                 throw new Error(ex);
+            }
+        },
+        previewFilesUploadProject(e) {
+            var input = e.target;
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#image').attr('src', e.target.result);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        },
+        previewMainFilesUploadProject(e) {
+            var input = e.target;
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#imageMain').attr('src', e.target.result);
+                };
+
+                reader.readAsDataURL(input.files[0]);
             }
         }
     }

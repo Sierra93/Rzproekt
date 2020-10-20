@@ -656,6 +656,9 @@
 .notifications-active {
   right: -2rem !important; }
 
+#image {
+  width: 8rem; }
+
 #menu__toggle {
   opacity: 0; }
 

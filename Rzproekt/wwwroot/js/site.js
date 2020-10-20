@@ -120,6 +120,7 @@ var appHome = new Vue({
             try {
                 axios.post(sUrl)
                     .then((response) => {
+                        console.log('_getData', response.data);
                         switch (response.data[0].block) {
                             case 'header':
                                 let arrId = ['','#main', '#service', '#about', '#project', '#client', '#contact'];
