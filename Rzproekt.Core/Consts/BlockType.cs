@@ -19,6 +19,8 @@ namespace Rzproekt.Core.Consts {
 
         public const string PROJECT = "project";
 
+        public const string PROJECT_DET = "project_detail";
+
         public const string AWARD = "award";
 
         public const string CONTACT_COMPANY = "contact";

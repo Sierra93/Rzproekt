@@ -34,7 +34,7 @@ namespace Rzproekt.Services {
         /// Метод добавляет проект.
         /// </summary>
         /// <returns></returns>
-        public async override Task AddProjectInfo(IFormCollection filesMain, IFormCollection filesProject, string jsonString) {
+        public async override Task AddProjectInfo(IFormCollection filesProject, string jsonString) {
             try {
                 CommonMethodsService common = new CommonMethodsService(_db);
                 ProjectDto projectDto = new ProjectDto();
@@ -43,8 +43,8 @@ namespace Rzproekt.Services {
                 string detailProject = jsonObj["detailProject"].ToString();
                 //string mainTitle = jsonObj["mainTitle"].ToString();
 
-                if (filesMain.Files.Count > 0) {
-                    string path = await common.UploadSingleFile(filesMain);
+                if (filesProject.Files.Count > 0) {
+                    string path = await common.UploadSingleFile(filesProject);
                     path = path.Replace("wwwroot", "");
                     projectDto.Url = path;
                 }
@@ -60,7 +60,6 @@ namespace Rzproekt.Services {
                 //projectDto.IsMainImage = "true";
                 await _db.Projects.AddAsync(projectDto);
                 await _db.SaveChangesAsync();
-                Debugger.Break();
             }
 
             catch (Exception ex) {

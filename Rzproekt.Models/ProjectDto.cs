@@ -31,8 +31,8 @@ namespace Rzproekt.Models {
         [Column("button_text", TypeName = "nvarchar(500)")]
         public string ButtonText { get; set; }  // Текст кнопки - Подробнее.
 
-        [Column("type_page", TypeName = "nvarchar(10)")]
-        public string TypePage { get; set; }     // Тип страницы, на которую добавить изображение проекта.
+        [Column("is_main", TypeName = "nvarchar(10)")]
+        public string IsMain { get; set; }     // Тип страницы, на которую добавить изображение проекта.
 
         public List<MultepleContextTable> MultepleContextTables { get; set; }
 

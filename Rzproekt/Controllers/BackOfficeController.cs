@@ -152,9 +152,9 @@ namespace Rzproekt.Controllers {
         /// Метод добавляет новый проект.
         /// </summary>
         [HttpPost, Route("add-project")]
-        public async Task<IActionResult> AddProjectInfo([FromForm] IFormCollection filesMain, [FromForm] IFormCollection filesProject, [FromForm] string jsonString) {
+        public async Task<IActionResult> AddProjectInfo([FromForm] IFormCollection filesProject, [FromForm] string jsonString) {
             ProjectBase projectBase = new ProjectService(_db);
-            await projectBase.AddProjectInfo(filesMain, filesProject, jsonString);
+            await projectBase.AddProjectInfo(filesProject, jsonString);
 
             return Ok();
         }
