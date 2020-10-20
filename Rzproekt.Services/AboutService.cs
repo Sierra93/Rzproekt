@@ -54,7 +54,11 @@ namespace Rzproekt.Services {
                 if (jsonObject["detImg"] != null) {
                     detailImage = Convert.ToBoolean(jsonObject["detImg"].ToString());
                 }
-                
+
+                if (jsonObject["mainImg"] != null) {
+                    detailImage = Convert.ToBoolean(jsonObject["mainImg"].ToString());
+                }
+
                 bool isEmpty = isEmptyStringInfo(mainTitle, sText, detailMainTitle, detailTitle, detailText);
 
                 if (!isEmpty) {
@@ -95,7 +99,7 @@ namespace Rzproekt.Services {
         /// </summary>
         /// <returns></returns>
         async Task AddAboutInfo(string mainTitle, string sText, string detailMainTitle, string detailTitle, string detailText, bool detailImage, bool mainImage, IFormCollection filesAbout) {
-            AboutDto oAbout = null;
+            AboutDto oAbout = new AboutDto();
             CommonMethodsService common = new CommonMethodsService(_db);
             oAbout = await _db.Abouts.FirstOrDefaultAsync();
             oAbout.MainTitle = mainTitle;
@@ -105,19 +109,19 @@ namespace Rzproekt.Services {
             oAbout.DopText = detailText;
 
             // Какое изображение нужно добавить (основное или дополнительное).
-            if (mainImage) {
+            if (mainImage && filesAbout.Files.Count > 0) {
                 string path = await common.UploadSingleFile(filesAbout);
                 path = path.Replace("wwwroot", "");
                 oAbout.Url = path;
             }
 
-            if (detailImage) {
+            if (detailImage && filesAbout.Files.Count > 0) {
                 string path = await common.UploadSingleFile(filesAbout);
                 path = path.Replace("wwwroot", "");
                 oAbout.DopUrl = path;
             }
 
-            _db.Update(oAbout);
+            _db.Abouts.Update(oAbout);
             await _db.SaveChangesAsync();
         }
 
