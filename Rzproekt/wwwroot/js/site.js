@@ -35,14 +35,15 @@ var appHome = new Vue({
         cert: [],
         stat: [],
         project: [],
+        arrProject: [],
         client: [],
         contact: [],
         contactLead: [],
         footer: []
     },
-    //created() {
-        
-    //},
+    created() {
+        this.onAllProject();
+    },
         
     // После загрузки страницы вызывает функцию _getData для всех блоков сайта
     mounted: function () {
@@ -175,6 +176,20 @@ var appHome = new Vue({
             catch (ex) {
                 throw new Error(ex);
             }
+        },
+        onAllProject(e) {
+            let self = this;
+            let sUrl = self.$data.urlApi + '/api/project/all-projects';
+
+            axios.post(sUrl)
+                .then((response) => {
+                    if (!response.data) { self.$data.AllProject = []; return }
+                    self.$data.arrProject = response.data;
+                    console.log("success / getAllProject", response);
+                })
+                .catch((XMLHttpRequest) => {
+                    self.notyfi(false);
+                });
         },
         smoothScroll(event) {
             var $anchor = event.target;

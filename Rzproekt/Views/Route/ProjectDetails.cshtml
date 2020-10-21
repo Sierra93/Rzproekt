@@ -40,15 +40,10 @@
                     <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A8b0f0f923d84f8b4c84c863cb6585a98975a779f0ff45aeb036aeb4ce5f7342f&amp;source=constructor" width="853" height="333" frameborder="0"></iframe>
                 </div>
                 <section class="projectDetalis-list">
-                    <article v-for="item in project">
+                    <article v-for="item in arrProject">
+                        <img :src="item.url" alt="" />
                         <h1>{{ item.title }}</h1>
-                        <em>АО «Русские краски», г.Ярославль, ул.Большая Федоровская, 96</em>
-                        <p>Разработаны проекты: <br /><br />
-
-                            на установку  оборудования по производству антикоррозионных ЛКМ в рамках технического перевооружения цеха №3;
-                            на установку технологической линии  по производству связующих для антикоррозионных ЛКМ в рамках технического перевооружения цеха №1;
-                            на замену жидкостных  электронагревателей ВОТ (инв. №3753 и №3754) в рамках технического перевооружения цеха №1
-                        </p>
+                        <textarea class="aboutDetailTxtTextarea" readonly>{{ item.projectDetail }}</textarea>
                     </article>
                 </section>
             </div>
