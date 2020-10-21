@@ -248,7 +248,7 @@
 
                         <fieldset>
                             <legend>Поиск проектов</legend>
-                            <input type="text" class="project-searth-project" placeholder="Введите название проекта">
+                            <input type="text" class="project-searth-project" v-on:input="onSearthProject" v-on:change="onSearthProject" placeholder="Введите название проекта">
                         </fieldset>
                     </form>
                     <div class="block-list-project">

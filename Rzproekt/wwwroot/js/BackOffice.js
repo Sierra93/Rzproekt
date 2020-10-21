@@ -469,7 +469,7 @@ var back_office = new Vue({
                 });
         },
         // Поиск проектов
-        onAllProject(e) {
+        onSearthProject(e) {
             let self = this;
             let projectName = document.getElementsByClassName("project-searth-project").value;
             if (!projectName) { self.onAllProject(); return }
@@ -526,11 +526,11 @@ var back_office = new Vue({
         onAddProject(e) {
             let self = this;
             let sUrl = self.$data.urlApi + '/api/back-office/add-project';
-            let nameProject = document.getElementById("nameProject").value;
+            let projectName = document.getElementById("nameProject").value;
             let detailProject = document.getElementById("detailProject").value;
             let formData = new FormData();
             let oData = {
-                nameProject,
+                projectName,
                 detailProject
             }
 
