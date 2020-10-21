@@ -545,7 +545,8 @@
   .form-back_office fieldset {
     padding: 1rem;
     margin: 1rem 0;
-    width: 20rem; }
+    width: 20rem;
+    position: relative; }
     .form-back_office fieldset label {
       height: 35px;
       line-height: 35px;
@@ -665,6 +666,30 @@
 
 .block-subImg-list {
   border-bottom: 1px solid; }
+
+.block-list-project {
+  display: flex; }
+
+.form-back_office-project {
+  width: auto;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap; }
+  .form-back_office-project fieldset {
+    margin: 0;
+    display: flex;
+    align-items: center; }
+    .form-back_office-project fieldset button {
+      margin: 0; }
+
+.checkOnlyThreeProject {
+  position: absolute;
+  right: -135px;
+  bottom: 20px; }
+
+.block-list-project {
+  display: flex;
+  flex-wrap: wrap; }
 
 #imageMain {
   width: 6rem;

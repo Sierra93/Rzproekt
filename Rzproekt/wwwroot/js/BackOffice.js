@@ -468,30 +468,47 @@ var back_office = new Vue({
                     self.notyfi(false);
                 });
         },
-
+        // Поиск проектов
+        onAllProject(e) {
+            let self = this;
+            let projectName = document.getElementsByClassName("project-searth-project").value;
+            if (!projectName) { self.onAllProject(); return }
+            let sUrl = self.$data.urlApi + '/api/project/search-project';
+            let oData = {
+                projectName
+            };
+            axios.post(sUrl, oData)
+                .then((response) => {
+                    if (!response.data) { self.$data.arrAwardsSearth = []; return }
+                    self.$data.arrProject = response.data;
+                    console.log("success / getProject", response);
+                })
+                .catch((XMLHttpRequest) => {
+                });
+        },
         // Изменение Проектов
         onChangeProject(e) {
             let self = this;
             let sUrl = self.$data.urlApi + '/api/back-office/change-project';
+            let targetProject = e.target.parentNode;
             let MainTitle = $('.project-menu-title')[0].value;
             let buttonText = $('.project-menu-buttonText')[0].value;
+            let projectName = targetProject.getElementsByClassName('project-menu-title')[0].value;
+            let projectDetail = targetProject.getElementsByClassName('about-detail-text')[0].value;
 
-            let mainImg = !!e.target.getAttribute('id');
-            let idService = +e.target.getAttribute('idCustom') - 1;
-            let Id = idService + 1;
-            let formData = new FormData();
+            let projectMainPage = targetProject.getElementsByClassName('checkOnlyThreeProject')[0].checked;
+            let Id = +e.target.getAttribute('idCustom');
             let oData = {
                 Id,
                 MainTitle,
                 buttonText,
+                projectName,
+                projectDetail,
+                projectMainPage
             };
-            if (!!this.filesService[idService]) {
-                formData.set('filesProject', this.filesService[idService].files[0]);
-            }
-            formData.set('jsonString', JSON.stringify(oData));
 
             try {
-                axios.post(sUrl, formData)
+                axios.post(sUrl, oData)
                     .then((response) => {
                         self.notyfi(true);
 
@@ -518,7 +535,7 @@ var back_office = new Vue({
             }
 
             formData.set('filesProject', this.filesProject);
-            // formData.set('filesDetProject', this.filesDetProject[0]);
+            formData.set('filesProject', this.filesDetProject);
             formData.set('jsonString', JSON.stringify(oData));
 
             try {
@@ -931,7 +948,7 @@ var back_office = new Vue({
             var chklength = chk_arr.length;
             var tot = 0;
             var i = -1;
-            for (k = 0; k < chklength; k++) {
+            for (let k = 0; k < chklength; k++) {
                 if (chk_arr[k].checked) {
                     tot++;
                     if (i < 0) i = k;

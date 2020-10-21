@@ -110,6 +110,7 @@ $blueMenuHvr: #0074a8;
         padding: 1rem;
         margin: 1rem 0;
         width: 20rem;
+        position: relative;
 
         legend {
         }
@@ -258,7 +259,34 @@ $blueMenuHvr: #0074a8;
 .block-subImg-list {
     border-bottom: 1px solid;
 }
+.block-list-project{
+    display: flex;
+}
+.form-back_office-project {
+    width: auto;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
 
+    fieldset {
+        margin: 0;
+        display: flex;
+        align-items: center;
+
+        button {
+            margin: 0;
+        }
+    }
+}
+.checkOnlyThreeProject {
+    position: absolute;
+    right: -135px;
+    bottom: 20px;
+}
+.block-list-project {
+    display: flex;
+    flex-wrap: wrap;
+}
 #imageMain {
     width: 6rem;
     float: right;
