@@ -19,8 +19,8 @@ namespace Rzproekt.Models {
         [Column("project_id", TypeName = "int")]
         public int ProjectId { get; set; }    // Id проекта из основной таблиц проектов.
 
-        [Column("type_page", TypeName = "nvarchar(10)")]
-        public string TypePage { get; set; }     // Тип страницы, на которую добавить изображение проекта.
+        [Column("is_main", TypeName = "nvarchar(10)")]
+        public string IsMain { get; set; }     // Тип страницы, на которую добавить изображение проекта.
 
         public List<MultepleContextTable> MultepleContextTables { get; set; }
 

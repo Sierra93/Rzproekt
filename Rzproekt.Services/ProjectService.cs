@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json.Linq;
 using Rzproekt.Core;
 using Rzproekt.Core.Consts;
 using Rzproekt.Core.Data;
@@ -11,6 +10,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Rzproekt.Services {
@@ -21,7 +21,7 @@ namespace Rzproekt.Services {
         ApplicationDbContext _db;
 
         public ProjectService(ApplicationDbContext db) => _db = db;
-       
+
         /// <summary>
         /// Метод получает список проектов.
         /// </summary>
@@ -34,37 +34,107 @@ namespace Rzproekt.Services {
         /// Метод добавляет проект.
         /// </summary>
         /// <returns></returns>
-        public async override Task AddProjectInfo(IFormCollection filesProject, string jsonString) {
+        public async override Task AddProjectInfo(IFormCollection filesProjectMain, IFormCollection filesProject, string jsonString) {
             try {
-                CommonMethodsService common = new CommonMethodsService(_db);
-                ProjectDto projectDto = new ProjectDto();
-                JObject jsonObj = JObject.Parse(jsonString);
-                string nameProject = jsonObj["nameProject"].ToString();
-                string detailProject = jsonObj["detailProject"].ToString();
-                //string mainTitle = jsonObj["mainTitle"].ToString();
+                // Ждет выполнения главной таблицы проектов.
+                Task taskMainTable = Task.Run(async () => await AddMainProject(filesProjectMain, jsonString));
+                taskMainTable.Wait();
 
-                if (filesProject.Files.Count > 0) {
-                    string path = await common.UploadSingleFile(filesProject);
-                    path = path.Replace("wwwroot", "");
-                    projectDto.Url = path;
-                }
-
-                //if (mainTitle != null) {
-                //    projectDto.MainTitle = mainTitle;
-                //}
-
-                projectDto.Block = BlockType.PROJECT;
-                //projectDto.Title = nameProject;
-                //projectDto.Detail = detailProject;
-                //projectDto.IsMain = "false";
-                //projectDto.IsMainImage = "true";
-                await _db.Projects.AddAsync(projectDto);
-                await _db.SaveChangesAsync();
+                // Ждет выполнение добавления дополнительных изображений.
+                Task taskDetailTable = Task.Run(async () => await AddDetailProject(filesProject));
+                taskDetailTable.Wait();
             }
 
             catch (Exception ex) {
                 throw new Exception(ex.Message.ToString());
             }
+        }
+
+        /// <summary>
+        /// Метод добавляет проекты в главную таблицу.
+        /// </summary>
+        /// <param name="filesProject"></param>
+        /// <param name="jsonString"></param>
+        /// <returns></returns>
+        async Task AddMainProject(IFormCollection filesProjectMain, string jsonString) {
+            CommonMethodsService common = new CommonMethodsService(_db);
+            ProjectDto projectDto = JsonSerializer.Deserialize<ProjectDto>(jsonString);
+
+            if (filesProjectMain.Files.Count > 0) {
+                string path = await common.UploadSingleFile(filesProjectMain);
+                path = path.Replace("wwwroot", "");
+                projectDto.Url = path;
+            }
+
+            if (Convert.ToBoolean(projectDto.IsMain)) {
+                projectDto.IsMain = "true";
+            }
+            else {
+                projectDto.IsMain = "false";
+            }
+
+            projectDto.Block = BlockType.PROJECT;
+            projectDto.ButtonText = ButtonType.BTN_DETAIL;
+            await _db.Projects.AddAsync(projectDto);
+            await _db.SaveChangesAsync();
+        }
+
+        /// <summary>
+        /// Метод добавляет проект в дополнительную таблицу.
+        /// </summary>
+        /// <param name="filesProject"></param>
+        /// <param name="jsonString"></param>
+        /// <returns></returns>
+        async Task AddDetailProject(IFormCollection filesProject) {
+            CommonMethodsService common = new CommonMethodsService(_db);
+            ProjectDetailDto projectDetailsDto = new ProjectDetailDto();
+
+            if (filesProject.Files.Count > 0) {
+                string path = await common.UploadSingleFile(filesProject);
+                path = path.Replace("wwwroot", "");
+                projectDetailsDto.Url = path;
+            }
+
+            if (Convert.ToBoolean(projectDetailsDto.IsMain)) {
+                projectDetailsDto.IsMain = "true";
+            }
+            else {
+                projectDetailsDto.IsMain = "false";
+            }
+
+            // Находит Id последнего проекта.
+            int lastId = await GetLastProject();
+
+            // Добавляет в таблицу деталей.
+            await AddProjectDetail(lastId, filesProject, projectDetailsDto.IsMain);       
+        }
+
+        /// <summary>
+        /// Метод находит последний добавленный проект.
+        /// </summary>
+        /// <returns></returns>
+        async Task<int> GetLastProject() {
+            return await _db.Projects.OrderByDescending(p => p.ProjectId).Select(p => p.ProjectId).FirstOrDefaultAsync();
+        }
+
+        /// <summary>
+        /// Метод добавляет детальную информацию о проекте.
+        /// </summary>
+        /// <returns></returns>
+        async Task AddProjectDetail(int id, IFormCollection filesProject, string isMain) {
+            CommonMethodsService common = new CommonMethodsService(_db);
+            ProjectDetailDto projectDetailDto = new ProjectDetailDto();
+
+            if (filesProject.Files.Count > 0) {
+                string path = await common.UploadSingleFile(filesProject);
+                path = path.Replace("wwwroot", "");
+                projectDetailDto.Url = path;
+            }
+            projectDetailDto.ProjectId = id;
+            projectDetailDto.IsMain = isMain;
+
+            await _db.DetailProjects.AddAsync(projectDetailDto);
+            await _db.SaveChangesAsync();
         }
 
         /// <summary>

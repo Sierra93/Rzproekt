@@ -20,7 +20,7 @@ namespace Rzproekt.Core {
         /// Метод добавляет проект.
         /// </summary>
         /// <returns></returns>
-        public abstract Task AddProjectInfo(IFormCollection filesProject, string jsonString);
+        public abstract Task AddProjectInfo(IFormCollection filesProjectMain, IFormCollection filesProject, string jsonString);
 
         /// <summary>
         /// Метод выводит список проектов.
