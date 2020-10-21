@@ -534,7 +534,7 @@ var back_office = new Vue({
                 detailProject
             }
 
-            formData.set('filesProject', this.filesProject);
+            formData.set('filesProjectMain', this.filesProject);
             formData.set('filesProject', this.filesDetProject);
             formData.set('jsonString', JSON.stringify(oData));
 
