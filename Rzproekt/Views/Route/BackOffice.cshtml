@@ -267,12 +267,16 @@
                                             Доп. Фото
                                             <img id="image" src="#" alt="" />
                                         </label>
-                                        <input type="file" name="pic[]" class="form-files-project" v-on:change="previewFilesUploadProject" multiple/>
+                                        <input type="file" name="pic[]" class="form-files-project" v-on:change="previewFilesUploadProject" multiple />
                                     </div>
                                 </div>
                                 <input type="text" id="nameProject" class="project-menu-title" placeholder="Название проекта">
                                 <textarea id="detailProject" class="about-detail-text" draggable="false" placeholder="Описание проекта"></textarea>
                                 <button v-on:click="onAddProject">Загрузить</button>
+                                <label>
+                                    На главную страницу
+                                    <input type="checkbox" name="chk" value="" v-on:change="checkOnlyThreeProject" class="checkOnlyThreeProject" />
+                                </label>
                             </fieldset>
                         </form>
 

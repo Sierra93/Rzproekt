@@ -525,13 +525,16 @@ var back_office = new Vue({
         // Добавление проектов
         onAddProject(e) {
             let self = this;
+            let targetProject = e.target.parentNode;
             let sUrl = self.$data.urlApi + '/api/back-office/add-project';
             let projectName = document.getElementById("nameProject").value;
             let detailProject = document.getElementById("detailProject").value;
+            let projectMainPage = targetProject.getElementsByClassName('checkOnlyThreeProject')[0].checked;
             let formData = new FormData();
             let oData = {
                 projectName,
-                detailProject
+                detailProject,
+                projectMainPage
             }
 
             formData.set('filesProjectMain', this.filesProject);
