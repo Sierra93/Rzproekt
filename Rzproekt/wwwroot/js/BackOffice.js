@@ -533,7 +533,7 @@ var back_office = new Vue({
             let formData = new FormData();
             let oData = {
                 projectName,
-                detailProject,
+                projectDetail,
                 projectMainPage
             }
 
