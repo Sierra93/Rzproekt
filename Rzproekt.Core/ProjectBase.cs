@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Rzproekt.Models;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -34,5 +35,11 @@ namespace Rzproekt.Core {
         /// <param name="id"></param>
         /// <returns></returns>
         public abstract Task RemoveProject(int id);
+
+        /// <summary>
+        /// Метод изменяет проект.
+        /// </summary>
+        /// <returns></returns>
+        public abstract Task ChangeProjectInfo(ProjectDto projectDto);
     }
 }

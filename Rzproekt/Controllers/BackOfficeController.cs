@@ -235,5 +235,16 @@ namespace Rzproekt.Controllers {
 
             return Ok();
         }
+
+        /// <summary>
+        /// Метод изменяет проект.
+        /// </summary>
+        [HttpPost, Route("change-project")]
+        public async Task<IActionResult> ChangeProjectInfo([FromBody] ProjectDto projectDto) {
+            ProjectBase projectBase = new ProjectService(_db);
+            await projectBase.ChangeProjectInfo(projectDto);
+
+            return Ok();
+        }
     }
 }

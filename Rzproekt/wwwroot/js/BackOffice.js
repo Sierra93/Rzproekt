@@ -499,12 +499,12 @@ var back_office = new Vue({
             let projectMainPage = targetProject.getElementsByClassName('checkOnlyThreeProject')[0].checked;
             let Id = +e.target.getAttribute('idCustom');
             let oData = {
-                Id,
+                ProjectId: Id,
                 MainTitle,
-                buttonText,
-                projectName,
-                projectDetail,
-                projectMainPage
+                ButtonText: buttonText,
+                ProjectName: projectName,
+                ProjectDetail: projectDetail,
+                IsMain: projectMainPage.toString()
             };
 
             try {

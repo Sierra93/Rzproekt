@@ -170,5 +170,25 @@ namespace Rzproekt.Services {
                 throw new Exception(ex.Message.ToString());
             }
         }
+
+        /// <summary>
+        /// Метод изменяет проект.
+        /// </summary>
+        /// <returns></returns>
+        public async override Task ChangeProjectInfo(ProjectDto projectDto) {
+            try {
+                // Берет старый путь к изображению.
+                string oldProject = await _db.Projects.Where(p => p.ProjectId == projectDto.ProjectId).Select(p => p.Url).FirstOrDefaultAsync();
+
+                projectDto.Block = BlockType.PROJECT;
+                projectDto.Url = oldProject;
+                _db.Projects.Update(projectDto);
+                await _db.SaveChangesAsync();
+            }
+
+            catch (Exception ex) {
+                throw new Exception(ex.Message.ToString());
+            }
+        }
     }
 }
