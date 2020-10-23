@@ -47,16 +47,6 @@ namespace Rzproekt.Controllers {
             AboutBase aboutBase = new AboutService(_db);
 
             return Ok(await aboutBase.SearchAward(awardDto.AwardName));
-        }
-
-        /// <summary>
-        /// Метод выводит список наград.
-        /// </summary>
-        [HttpPost, Route("get-awards")]
-        public async Task<IActionResult> GetAwards() {
-            AboutBase aboutBase = new AboutService(_db);
-
-            return Ok(await aboutBase.GetAwards());
-        }
+        }       
     }
 }
