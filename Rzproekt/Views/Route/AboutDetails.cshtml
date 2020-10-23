@@ -70,13 +70,13 @@
                         <div class="border-bottom-title"></div>
                         <section class="cert-list">
                             <div class="block-carusel-cert">
-                                <button class="btnL-cert-carusel" :customId="false" v-on:click="certCarusel">
+                                <button class="btnL-cert-carusel" :customId="false" v-on:click="awardsCarusel">
                                     <img src="~/img/back.png" />
                                 </button>
-                                <div v-for="item in cert" class="cert-item">
-                                    <a class="fancybox" data-fancybox="gallery" :href="item.url" :id="item.certId"><img :src="item.url" /></a>
+                                <div v-for="item in awards" class="awards-item">
+                                    <a class="fancybox" data-fancybox="gallery2" :href="item.url" :id="item.certId"><img :src="item.url" /></a>
                                 </div>
-                                <button class="btnR-cert-carusel" :customId="true" v-on:click="certCarusel">
+                                <button class="btnR-cert-carusel" :customId="true" v-on:click="awardsCarusel">
                                     <img src="~/img/next.png" />
                                 </button>
                             </div>

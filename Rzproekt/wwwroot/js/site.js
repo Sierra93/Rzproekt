@@ -24,15 +24,14 @@ var appHome = new Vue({
             '/api/contact/contacts-company',
             '/api/footer/get-footer',
             '/api/back-office/get-certs',
+            '/api/about/get-awards',
             '/api/contact/contacts-lead'
         ],
-        general: {
-            detailse: 'Подробнее'
-        },
         header: [],
         service: [],
         about: [],
         cert: [],
+        awards: [],
         stat: [],
         project: [],
         arrProject: [],
@@ -43,6 +42,12 @@ var appHome = new Vue({
     },
     created() {
         this.onAllProject();
+        let userId = document.cookie;
+        if (userId) {
+            this.setUserId(userId);
+            return;
+        }
+        this.getUserId();
     },
         
     // После загрузки страницы вызывает функцию _getData для всех блоков сайта
@@ -140,6 +145,10 @@ var appHome = new Vue({
                             case 'cert':
                                 self.$data.cert = response.data;
                                 console.log('cert получены', response.data);
+                                break
+                            case 'awards':
+                                self.$data.awards = response.data;
+                                console.log('awards получены', response.data);
                                 break
                             case 'stat':
                                 self.$data.stat = response.data;
@@ -264,9 +273,73 @@ var appHome = new Vue({
             }
 
         },
+        awardsCarusel(e) {
+            let listAwards = document.getElementsByClassName('awards-item');
+            if (!listAwards) return;
+            if (e.target) var direction = e.target.parentNode.getAttribute('customId')
+            if (direction) {
+                this.countIdCert++;
+            } else {
+                this.countIdCert--;
+            }
+            let countCert = this.countIdCert;
+            if (countCert < 0) {
+                this.countIdCert = listAwards.length - 1;
+                countCert = listAwards.length - 1;
+            } else if (countCert > listAwards.length - 1) {
+                this.countIdCert = 0;
+                countCert = 0;
+            }
+            let countL = countCert - 1;
+            if (countL < 0) countL = listAwards.length - 1;
+            let countR = countCert + 1;
+            if (!listAwards[countR]) countR = 0;
+            if (!listAwards[countL]) countL = 0;
+
+            for (let i = 0; i < listAwards.length; i++) {
+
+                if (countL == i) {
+                    listAwards[i].classList.remove("item-cert-hidden");
+                    listAwards[i].classList.remove("item-cert-center");
+                    listAwards[i].classList.remove("item-cert-right");
+                    listAwards[i].classList.add("item-cert-left");
+                } else if (countCert == i) {
+                    listAwards[i].classList.remove("item-cert-hidden");
+                    listAwards[i].classList.remove("item-cert-left");
+                    listAwards[i].classList.remove("item-cert-right");
+                    listAwards[i].classList.add("item-cert-center");
+                } else if (countR == i) {
+                    listAwards[i].classList.remove("item-cert-hidden");
+                    listAwards[i].classList.remove("item-cert-left");
+                    listAwards[i].classList.remove("item-cert-center");
+                    listAwards[i].classList.add("item-cert-right");
+                } else {
+                    listAwards[i].classList.remove("item-cert-left");
+                    listAwards[i].classList.remove("item-cert-center");
+                    listAwards[i].classList.remove("item-cert-right");
+                    listAwards[i].classList.add("item-cert-hidden");
+                }
+
+            }
+        },
         toggleChat() {
             var element = document.getElementsByClassName("main-block-chat");
             element[0].classList.toggle("main-block-chat-hide")
+        },
+        setUserId(userId) {
+            console.log(userId);
+        },
+        getUserId() {
+            var result = '';
+            let position = '';
+            var words = '0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM';
+            var max_position = words.length - 1;
+            for (let i = 0; i < 50; ++i) {
+                position = Math.floor(Math.random() * max_position);
+                result = result + words.substring(position, position + 1);
+            }
+            document.cookie = 'userId=' + result + ';';
+            this.setUserId(result);
         }
     }
 });
