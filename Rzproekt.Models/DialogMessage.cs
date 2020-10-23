@@ -22,6 +22,9 @@ namespace Rzproekt.Models {
         [Column("created", TypeName = "datetime")]
         public DateTime Created { get; set; }   // Дата и время создания сообщения.
 
+        [Column("is_admin", TypeName = "nvarchar(5)")]
+        public string isAdmin { get; set; }   // Админ пишет или нет.
+
         public List<MultepleContextTable> MultepleContextTables { get; set; }
 
         public DialogMessage() {

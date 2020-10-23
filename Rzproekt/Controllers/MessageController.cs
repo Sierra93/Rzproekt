@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
+using Rzproekt.Core;
 using Rzproekt.Core.Data;
 using Rzproekt.Models;
 using Rzproekt.Services;
@@ -23,13 +24,14 @@ namespace Rzproekt.Controllers {
             _hubContext = hubContext;
         }
 
-        [HttpGet, Route("send")]
-        public async Task<IActionResult> Create([FromQuery] string product) {
-            await _hubContext.Clients.All.SendAsync("Send", product);
-            //await _hubContext.Clients.All.SendAsync("Notify", $"Добавлено: {product} - {DateTime.Now.ToShortTimeString()}");
-            //await _hubContext.Clients.Client(connectionId).SendAsync("Notify", $"Ваш товар добавлен!");
+        [HttpPost, Route("send")]
+        public async Task<IActionResult> Create([FromBody] MessageDto messageDto) {
+            MessageBase messageBase = new MessageService(_db);
+            var aResult = await messageBase.Send(messageDto);
 
-            return Ok();
+            //await _hubContext.Clients.All.SendAsync("Send", "1");
+
+            return Ok(aResult);
         }
     }
 }

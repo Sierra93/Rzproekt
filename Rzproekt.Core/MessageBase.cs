@@ -14,6 +14,6 @@ namespace Rzproekt.Core {
         /// </summary>
         /// <param name="messageDto"></param>
         /// <returns></returns>
-        public abstract Task Send(MessageDto messageDto);
+        public abstract Task<object> Send(MessageDto messageDto);
     }
 }

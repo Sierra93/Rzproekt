@@ -54,5 +54,8 @@ namespace Rzproekt.Models {
 
         public int DialogMemberId { get; set; }
         public DialogMember DialogMembers { get; set; }
+
+        public int AnonymousUserId { get; set; }
+        public AnonymousUserDto AnonymousUsers { get; set; }
     }
 }

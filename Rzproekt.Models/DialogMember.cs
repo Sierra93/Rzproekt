@@ -13,8 +13,8 @@ namespace Rzproekt.Models {
         [Key, Column("dialog_id")]
         public int DialogId { get; set; }
 
-        [Column("user_id", TypeName = "int")]
-        public int UserId { get; set; }     // Id участника диалога.
+        [Column("user_id", TypeName = "nvarchar(max)")]
+        public string UserId { get; set; }     // Id участника диалога.
 
         [Column("joined", TypeName = "datetime")]
         public DateTime Joined { get; set; }    // Дата и время, когда участник присоединился к диалогу.
