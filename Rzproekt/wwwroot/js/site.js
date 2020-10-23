@@ -24,7 +24,7 @@ var appHome = new Vue({
             '/api/contact/contacts-company',
             '/api/footer/get-footer',
             '/api/back-office/get-certs',
-            '/api/about/get-awards',
+            '/api/back-office/get-awards',
             '/api/contact/contacts-lead'
         ],
         header: [],
