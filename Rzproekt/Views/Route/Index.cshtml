@@ -119,7 +119,7 @@
 		</article>
 	</section>
 </div>
-<div class="block-chat">
+<div id="chatroom" class="block-chat">
     <button class="toggle-btn" v-on:click="toggleChat">Toogle Button</button>
     <div class="main-block-chat main-block-chat-hide">
         <div class="block-msg">
@@ -129,8 +129,8 @@
             <p data-id="2">Test2</p>
         </div>
         <div class="block-send-msg">
-            <input type="text" class="input-chat"/>
-            <button class="send-msg-btn">
+            <input type="text" id="msgChat" class="input-chat"/>
+            <button id="sendBtn" class="send-msg-btn" v-on:click="checedUserId">
                 <img src="~/img/paper-plane.png" />
 			</button>
 		</div>

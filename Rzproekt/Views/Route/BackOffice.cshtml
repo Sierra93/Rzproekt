@@ -53,10 +53,26 @@
                     <form v-on:submit.prevent class="form-back_office">
                         <fieldset>
                             <legend>Сообщения</legend>
-                            <input type="text" id="name">
-                            <input type="text" id="email">
+                            <div class="block-user-list">
+                                <div class="block-user-item">user</div>
+                                <div class="block-user-item">user</div>
+                                <div class="block-user-item">user</div>
+                            </div>
+                            <div id="chatroom" class="block-chat-back">
+                                <div class="main-block-chat-back">
+                                    <div class="block-msg-back">
+                                        <div data-id="1"><p>Test</p></div>
+                                        <div data-id="2"><p>Test2</p></div>
+                                        <div data-id="1"><p>Test</p></div>
+                                        <div data-id="2"><p>Test2</p></div>
+                                    </div>
+                                    <div class="block-send-msg-back">
+                                        <input type="text" id="msgChat" class="input-chat-back" />
+                                        <button id="sendBtn" class="send-msg-btn-back" >Отправить</button>
+                                    </div>
+                                </div>
+                            </div>
                         </fieldset>
-                        <button v-on:click="onChangeHeader">Отправить</button>
                     </form>
                 </div>
 

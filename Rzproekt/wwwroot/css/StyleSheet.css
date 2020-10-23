@@ -843,6 +843,44 @@
 .main-block-chat-hide {
   height: 0rem !important; }
 
+.block-user-list {
+  background: #ececec;
+  display: flex; }
+  .block-user-list .block-user-item {
+    padding: 1rem;
+    margin: .3rem;
+    border: 1px solid;
+    cursor: pointer; }
+
+.block-msg-back {
+  height: 20rem;
+  border: .5px solid silver;
+  margin: 1rem 0; }
+
+.block-msg-back {
+  height: 85%;
+  display: flex;
+  flex-direction: column;
+  overflow: auto; }
+  .block-msg-back div[data-id="1"] {
+    margin: .4rem;
+    padding: 1rem;
+    background: #d28484;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    width: 50%; }
+  .block-msg-back div[data-id="2"] {
+    margin: 0.4rem .4rem .4rem 7.5rem;
+    padding: 1rem;
+    background: #8cd284;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+    text-align: right;
+    width: 50%;
+    align-items: flex-end; }
+
 body {
   margin: 0 !important;
   padding: 0 !important; }

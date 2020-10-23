@@ -41,12 +41,6 @@ var appHome = new Vue({
         footer: []
     },
     created() {
-        this.onAllProject();
-        let userId = document.cookie;
-        if (userId) {
-            this.setUserId(userId);
-            return;
-        }
         this.getUserId();
     },
         
@@ -65,6 +59,7 @@ var appHome = new Vue({
                 self.getBlocksSevices();
             }
             setTimeout(Carusel, 100);
+            this.onAllProject();
             appHome.$data.blocksServices = document.getElementsByClassName("serviceTxt");
             appHome.$data.aboutTxtTextarea = document.getElementsByClassName("aboutTxtTextarea");
             appHome.$data.aboutDetailTxtTextarea = document.getElementsByClassName("aboutDetailTxtTextarea");
@@ -146,7 +141,7 @@ var appHome = new Vue({
                                 self.$data.cert = response.data;
                                 console.log('cert получены', response.data);
                                 break
-                            case 'awards':
+                            case 'award':
                                 self.$data.awards = response.data;
                                 console.log('awards получены', response.data);
                                 break
@@ -326,8 +321,61 @@ var appHome = new Vue({
             var element = document.getElementsByClassName("main-block-chat");
             element[0].classList.toggle("main-block-chat-hide")
         },
-        setUserId(userId) {
-            console.log(userId);
+        checedUserId() {
+            let userId = document.cookie;
+            if (userId) {
+                this.setUserId(userId);
+                return;
+            }
+            this.getUserId();
+        },
+        setUserId(UserCode) {
+            const hubConnection = new signalR.HubConnectionBuilder()
+                .withUrl("/chat")
+                .build();
+            let connectionId = "";
+            let MessageText = document.getElementById('msgChat').value;
+            let sUrl = appHome.$data.urlApi + "/api/message/send?product=".concat(MessageText);
+            document.getElementById("sendBtn")
+                .addEventListener("click", function (e) {
+                    e.preventDefault();
+
+                    let data = new FormData();
+                    data.set("product", document.getElementById("productField").value);
+                    data.set("connectionId", connectionId);
+                    let oData = {
+                        UserCode,
+                        MessageText
+                    }
+                    try {
+                        axios.get(sUrl, oData)
+                            .then((response) => {
+                                console.log("ok");
+
+                            })
+                            .catch((XMLHttpRequest) => {
+                                console.log("error");
+                            });
+                    }
+                    catch (ex) {
+                        throw new Error(ex);
+                    }
+                });
+            // получение сообщения от сервера
+            hubConnection.on("Notify", function (message) {
+
+                // создает элемент <p> для сообщения пользователя
+                let elem = document.createElement("p");
+                elem.appendChild(document.createTextNode(message));
+
+                document.getElementById("notify").appendChild(elem);
+
+            });
+            hubConnection.start().then(() => {
+                // после соединения получаем id подключения
+                console.log(hubConnection.connectionId);
+                connectionId = hubConnection.connectionId;
+            });
         },
         getUserId() {
             var result = '';
@@ -338,11 +386,31 @@ var appHome = new Vue({
                 position = Math.floor(Math.random() * max_position);
                 result = result + words.substring(position, position + 1);
             }
-            document.cookie = 'userId=' + result + ';';
+            document.cookie = result;
             this.setUserId(result);
         }
     }
 });
+
 window.addEventListener('wheel', event => {
     appHome.getBlocksSevices();
 });
+
+//const hubConnection = new signalR.HubConnectionBuilder()
+//	.withUrl("/chat")
+//	.build();
+
+//hubConnection.on("Send", function (data) {
+//	let elem = document.createElement("p");
+//	elem.appendChild(document.createTextNode(data));
+//	let firstElem = document.getElementById("chatroom").firstChild;
+//	document.getElementById("chatroom").insertBefore(elem, firstElem);
+
+//});
+
+//document.getElementById("sendBtn").addEventListener("click", function (e) {
+//	let message = document.getElementById("message").value;
+//	hubConnection.invoke("Send", message);
+//});
+
+//hubConnection.start();
