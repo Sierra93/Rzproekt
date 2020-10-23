@@ -17,7 +17,10 @@ namespace Rzproekt.Models {
         public string MessageText { get; set; }     // Текст сообщения.
 
         [Column("user_code")]
-        public string UserCode { get; set; }    // Код временного пользователя без регистрации.
+        public string UserCode { get; set; }    // Код временного пользователя без регистрации.      
+
+        [Column("is_admin")]
+        public string IsAdmin { get; set; }    
 
         public List<MultepleContextTable> MultepleContextTables { get; set; }
 

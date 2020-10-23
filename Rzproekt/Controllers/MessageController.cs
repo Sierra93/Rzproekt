@@ -24,6 +24,11 @@ namespace Rzproekt.Controllers {
             _hubContext = hubContext;
         }
 
+        /// <summary>
+        /// Метод передает сообщение параллельно записывая его в БД.
+        /// </summary>
+        /// <param name="messageDto"></param>
+        /// <returns></returns>
         [HttpPost, Route("send")]
         public async Task<IActionResult> Create([FromBody] MessageDto messageDto) {
             MessageBase messageBase = new MessageService(_db);

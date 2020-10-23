@@ -4,6 +4,7 @@ using Rzproekt.Core.Data;
 using Rzproekt.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,21 +37,21 @@ namespace Rzproekt.Services {
                     MainInfoDialog oNewDialog = await CreateDialog();
 
                     // Записывает сообщение.
-                     bool sStatusAd = await AddMessage(messageDto.MessageText, oNewDialog.DialogId, messageDto.UserCode);
+                     bool sStatusAd = await AddMessage(messageDto.MessageText, oNewDialog.DialogId, messageDto.IsAdmin);
 
                     var oMessages = await _db.DialogMessages.Where(d => d.DialogId == oNewDialog.DialogId).ToListAsync();
 
                     // Добавляет участника диалога.
                     await AddDialogMember(messageDto.UserCode);
 
-                    var resultObj1 = new {
+                    var resultNewObj = new {
                         aDialogs = oNewDialog,
                         aMessages = oMessages,
                         userCode = messageDto.UserCode,
                         isAdmin = sStatusAd
                     };
 
-                    return resultObj1;
+                    return resultNewObj;
                 }
 
                 // Пользователь не новый, значит найти участника диалога.
@@ -63,21 +64,19 @@ namespace Rzproekt.Services {
                 int oOldDialogId = await _db.DialogMembers.Where(m => m.UserId.Equals(messageDto.UserCode)).Select(d => d.DialogId).FirstOrDefaultAsync();
 
                  // Записывает сообщение.
-                  bool sStatus = await AddMessage(messageDto.MessageText, oOldDialogId, messageDto.UserCode);
+                  bool sStatus = await AddMessage(messageDto.MessageText, oOldDialogId, messageDto.IsAdmin);
 
                 // Находит сообщения диалога.
                 var dialogMessage = await SearchDialogMessages(mainInfoDialog.DialogId);
 
-                //bool isAdmin = messageDto.UserCode.Contains("admin");
-
-                var resultObj = new {
+                var resultOldObj = new {
                     aDialogs = mainInfoDialog,
                     aMessages = dialogMessage,
                     userCode = messageDto.UserCode,
                     isAdmin = sStatus
                 }; 
 
-                return resultObj;
+                return resultOldObj;
                 //}                            
             }
 
@@ -132,16 +131,26 @@ namespace Rzproekt.Services {
         /// </summary>
         /// <returns></returns>
         async Task<bool> AddMessage(string message, int dialogId, string isAdmin) {
+            bool bAdmin = isAdmin.Contains("admin");
+            bool bStatus = false;
+
+            Debugger.Break();
+            if (bAdmin) {
+                bStatus = true;
+            }
+
             DialogMessage dialogMessage = new DialogMessage() {
                 DialogId = dialogId,
                 Message = message,
-                Created = DateTime.Now
-            };
-            
+                Created = DateTime.Now,
+                isAdmin = bStatus.ToString()
+            };            
+
+
             await _db.DialogMessages.AddAsync(dialogMessage);
             await _db.SaveChangesAsync();
 
-            return Convert.ToBoolean(isAdmin);
+            return bStatus;
         }
 
         /// <summary>

@@ -336,7 +336,7 @@ var appHome = new Vue({
             //let connectionId = "";
             let MessageText = document.getElementById('msgChat').value;
             let sUrl = appHome.$data.urlApi + "/api/message/send";
-            let IsAdmin = false
+            let IsAdmin = false;
             document.getElementById("sendBtn")
                 .addEventListener("click", function (e) {
                     e.preventDefault();
@@ -344,7 +344,7 @@ var appHome = new Vue({
                     let oData = {
                         UserCode,
                         MessageText,
-                        IsAdmin
+                        IsAdmin: IsAdmin.toString()
                     }
                     try {
                         axios.post(sUrl, oData)
