@@ -333,7 +333,7 @@ var appHome = new Vue({
             const hubConnection = new signalR.HubConnectionBuilder()
                 .withUrl("/chat")
                 .build();
-            let connectionId = "";
+            //let connectionId = "";
             let MessageText = document.getElementById('msgChat').value;
             let sUrl = appHome.$data.urlApi + "/api/message/send";
             document.getElementById("sendBtn")
@@ -342,7 +342,8 @@ var appHome = new Vue({
 
                     let oData = {
                         UserCode,
-                        MessageText
+                        MessageText,
+                        IsAdmin = false
                     }
                     try {
                         axios.post(sUrl, oData)
