@@ -34,6 +34,12 @@ namespace Rzproekt.Core.Data {
 
         public DbSet<AwardDto> Awards { get; set; }    // Таблица наград.
 
+        public DbSet<MainInfoDialog> MainInfoDialogs { get; set; }      // Таблица основной информации о диалогах.
+
+        public DbSet<DialogMessage> DialogMessages { get; set; }    // Таблица сообщений.
+
+        public DbSet<DialogMember> DialogMembers { get; set; }      // Таблица участников диалога.
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
@@ -91,6 +97,18 @@ namespace Rzproekt.Core.Data {
             modelBuilder.Entity<MultepleContextTable>()
                 .HasOne(sc => sc.Awards)
                 .WithMany(s => s.MultepleContextTables);
+
+            modelBuilder.Entity<MultepleContextTable>()
+                .HasOne(sc => sc.MainInfoDialogs)
+                .WithMany(s => s.MultepleContextTables);
+
+            modelBuilder.Entity<MultepleContextTable>()
+               .HasOne(sc => sc.DialogMessages)
+               .WithMany(s => s.MultepleContextTables);
+
+            modelBuilder.Entity<MultepleContextTable>()
+               .HasOne(sc => sc.DialogMembers)
+               .WithMany(s => s.MultepleContextTables);
         }
     }
 }

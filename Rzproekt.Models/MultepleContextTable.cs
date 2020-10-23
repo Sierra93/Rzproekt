@@ -45,5 +45,14 @@ namespace Rzproekt.Models {
 
         public int ContactLead { get; set; }
         public ContactLeadDto ContactLeads { get; set; }
+
+        public int DialogId { get; set; }
+        public MainInfoDialog MainInfoDialogs { get; set; }
+
+        public int DMessageId { get; set; }
+        public DialogMessage DialogMessages { get; set; }
+
+        public int DialogMemberId { get; set; }
+        public DialogMember DialogMembers { get; set; }
     }
 }

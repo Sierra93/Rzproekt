@@ -316,5 +316,13 @@ namespace Rzproekt.Services {
                 throw new Exception(ex.Message.ToString());
             }
         }
+
+        /// <summary>
+        /// Метод получает список наград.
+        /// </summary>
+        /// <returns></returns>
+        public async override Task<IEnumerable> GetAwards() {
+            return await _db.Awards.ToListAsync();
+        }
     }
 }

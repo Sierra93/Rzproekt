@@ -76,5 +76,11 @@ namespace Rzproekt.Core {
         /// </summary>
         /// <returns></returns>
         public abstract Task<IEnumerable> SearchAward(string name);
+
+        /// <summary>
+        /// Метод получает список наград.
+        /// </summary>
+        /// <returns></returns>
+        public abstract Task<IEnumerable> GetAwards();
     }
 }
