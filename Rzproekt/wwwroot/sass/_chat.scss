@@ -32,7 +32,7 @@
             flex-direction: column;
             overflow: auto;
 
-            p[data-id="1"] {
+            p [data-id="True"] {
                 margin: .4rem;
                 padding: 1rem;
                 background: #d28484;
@@ -42,7 +42,7 @@
                 width: 50%;
             }
 
-            p[data-id="2"] {
+            p [data-id="False"] {
                 margin: 0.4rem .4rem .4rem 5rem;
                 padding: 1rem;
                 background: #8cd284;
@@ -109,7 +109,7 @@
     flex-direction: column;
     overflow: auto;
 
-    div[data-id="1"] {
+    p [data-id="True"] {
         margin: .4rem;
         padding: 1rem;
         background: #d28484;
@@ -119,7 +119,7 @@
         width: 50%;
     }
 
-    div[data-id="2"] {
+    p [data-id="False"] {
         margin: 0.4rem .4rem .4rem 7.5rem;
         padding: 1rem;
         background: #8cd284;

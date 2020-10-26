@@ -38,7 +38,8 @@ var appHome = new Vue({
         client: [],
         contact: [],
         contactLead: [],
-        footer: []
+        footer: [],
+        arrMsgChat: []
     },
     created() {
         //this.getUserId();
@@ -335,6 +336,7 @@ var appHome = new Vue({
             //    .withUrl("/chat")
             //    .build();
             //let connectionId = "";
+            let self = this;
             let MessageText = document.getElementById('msgChat').value;
             let sUrl = appHome.$data.urlApi + "/api/message/send";
             let IsAdmin = false;
@@ -348,6 +350,9 @@ var appHome = new Vue({
                         axios.post(sUrl, oData)
                             .then((response) => {
                                 console.log("ok");
+                                if (response.data.aMessages) {
+                                    self.$data.arrMsgChat = response.data.aMessages;
+                                }
 
                             })
                             .catch((XMLHttpRequest) => {

@@ -29,16 +29,17 @@
 
 <div id="about" class="block about">
 	<div class="about-left">
-		<div class="about-block-txt">
-			<div class="title-block">
-				<h1>{{ about[0].mainTitle }}</h1>
-			</div>
-			<div class="border-bottom-title"></div>
+        <div class="about-block-txt">
+            <div class="title-block">
+                <h1>{{ about[0].mainTitle }}</h1>
+            </div>
+            <div class="border-bottom-title"></div>
             <div class="about-txt">
                 <textarea class="aboutTxtTextarea" readonly>{{ about[0].text }}</textarea>
             </div>
-			<a class="btn-detail" href="https://localhost:44349/about-details">{{ about[0].buttonText }}</a>
-		</div>
+            @*<a class="btn-detail" href="https://localhost:44349/about-details">{{ about[0].buttonText }}</a>*@
+            <a class="btn-detail" href="https://devmyprojects24.xyz/about-details">{{ about[0].buttonText }}</a>
+        </div>
 	</div>
 	<div class="about-right"></div>
 </div>
@@ -66,15 +67,15 @@
 </div>
 
 <div id="project" class="block project">
-	<div class="title-block">
-		<h1>{{ project[0].mainTitle }}</h1>
-	</div>
-	<div class="border-bottom-title"></div>
+    <div class="title-block">
+        <h1>{{ project[0].mainTitle }}</h1>
+    </div>
+    <div class="border-bottom-title"></div>
     <section class="project-list">
 
         @*/////////*@
         <div class="project-item" v-for="item in project">
-            <img :src="item.url"/>
+            <img :src="item.url" />
             <div class="project-form">
                 <h3>{{ item.projectName }}</h3>
             </div>
@@ -82,7 +83,8 @@
         @*/////////*@
 
     </section>
-	<a class="btn-detail" href="https://localhost:44349/project-details">{{ project[0].buttonText }}</a>
+    @*<a class="btn-detail" href="https://localhost:44349/project-details">{{ project[0].buttonText }}</a>*@
+    <a class="btn-detail" href="https://devmyprojects24.xyz/project-details">{{ project[0].buttonText }}</a>
 </div>
 
 <div id="client" class="block clients">
@@ -111,9 +113,10 @@
 				<h1>{{ contact[0].title }}</h1><br /> 
 				<p>{{ contact[0].addressCompany }} <br /><br /> {{ contact[0].numberCompany }} <br /><br /> {{ contact[0].emailCompany }}</p>
 			</div>
-			<div class="detail-contacts">
-			<a class="btn-detail" href="https://localhost:44349/contact-details">{{ contact[0].buttonText }}</a>
-			</div>
+            <div class="detail-contacts">
+                @*<a class="btn-detail" href="https://localhost:44349/contact-details">{{ contact[0].buttonText }}</a>*@
+                <a class="btn-detail" href="https://devmyprojects24.xyz/contact-details">{{ contact[0].buttonText }}</a>
+            </div>
 		</article>
 	</section>
 </div>
@@ -121,7 +124,7 @@
     <button class="toggle-btn" v-on:click="toggleChat">Toogle Button</button>
     <div class="main-block-chat main-block-chat-hide">
         <div id="notifyBlock" class="block-msg">
-            <p data-id="1">Test</p>
+            <p v-for="item in arrMsgChat" :data-id="item.isAdmin">{{ item.message }}</p>
         </div>
         <div class="block-send-msg">
             <input type="text" id="msgChat" class="input-chat"/>
