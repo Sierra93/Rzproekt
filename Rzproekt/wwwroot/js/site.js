@@ -338,9 +338,6 @@ var appHome = new Vue({
             let MessageText = document.getElementById('msgChat').value;
             let sUrl = appHome.$data.urlApi + "/api/message/send";
             let IsAdmin = false;
-            document.getElementById("sendBtn")
-                .addEventListener("click", function (e) {
-                    e.preventDefault();
 
                     let oData = {
                         UserCode,
@@ -360,7 +357,7 @@ var appHome = new Vue({
                     catch (ex) {
                         throw new Error(ex);
                     }
-                });
+
             // получение сообщения от сервера
             //hubConnection.on("Notify", function (message) {
 
