@@ -60,6 +60,7 @@ var appHome = new Vue({
             }
             setTimeout(Carusel, 100);
             this.onAllProject();
+            this.checedUserId();
             appHome.$data.blocksServices = document.getElementsByClassName("serviceTxt");
             appHome.$data.aboutTxtTextarea = document.getElementsByClassName("aboutTxtTextarea");
             appHome.$data.aboutDetailTxtTextarea = document.getElementsByClassName("aboutDetailTxtTextarea");
@@ -322,7 +323,7 @@ var appHome = new Vue({
             element[0].classList.toggle("main-block-chat-hide")
         },
         checedUserId() {
-            let userId = document.cookie;
+            let userId = sessvars.serId;
             if (userId) {
                 this.setUserId(userId);
                 return;
@@ -385,7 +386,7 @@ var appHome = new Vue({
                 position = Math.floor(Math.random() * max_position);
                 result = result + words.substring(position, position + 1);
             }
-            document.cookie = result;
+            sessvars.userId = result;
             this.setUserId(result);
         }
     }
@@ -395,21 +396,3 @@ window.addEventListener('wheel', event => {
     appHome.getBlocksSevices();
 });
 
-//const hubConnection = new signalR.HubConnectionBuilder()
-//	.withUrl("/chat")
-//	.build();
-
-//hubConnection.on("Send", function (data) {
-//	let elem = document.createElement("p");
-//	elem.appendChild(document.createTextNode(data));
-//	let firstElem = document.getElementById("chatroom").firstChild;
-//	document.getElementById("chatroom").insertBefore(elem, firstElem);
-
-//});
-
-//document.getElementById("sendBtn").addEventListener("click", function (e) {
-//	let message = document.getElementById("message").value;
-//	hubConnection.invoke("Send", message);
-//});
-
-//hubConnection.start();
