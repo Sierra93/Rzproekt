@@ -333,7 +333,7 @@ var appHome = new Vue({
             const hubConnection = new signalR.HubConnectionBuilder()
                 .withUrl("/chat")
                 .build();
-            //let connectionId = "";
+            let connectionId = "";
             let MessageText = document.getElementById('msgChat').value;
             let sUrl = appHome.$data.urlApi + "/api/message/send";
             let IsAdmin = false;
@@ -363,17 +363,17 @@ var appHome = new Vue({
             // получение сообщения от сервера
             hubConnection.on("Notify", function (message) {
 
-                // создает элемент <p> для сообщения пользователя
-                //let elem = document.createElement("p");
-                //elem.appendChild(document.createTextNode(message));
+                 //создает элемент <p> для сообщения пользователя
+                let elem = document.createElement("p");
+                elem.appendChild(document.createTextNode(message));
 
-                //document.getElementById("notify").appendChild(elem);
+                document.getElementById("notifyBlock").appendChild(elem);
 
             });
             hubConnection.start().then(() => {
                 // после соединения получаем id подключения
-                //console.log(hubConnection.connectionId);
-                //connectionId = hubConnection.connectionId;
+                console.log(hubConnection.connectionId);
+                connectionId = hubConnection.connectionId;
             });
         },
         getUserId() {

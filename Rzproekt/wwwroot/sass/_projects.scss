@@ -8,33 +8,20 @@
     flex-wrap: wrap;
     margin: 2rem auto;
 
-    .siema {
-        background: silver;
-        width: 20rem;
-        height: 35rem;
-    }
-
-    .project-block {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: silver;
-        overflow: hidden;
-        width: 23rem;
-        height: 25rem;
-        margin: 2rem;
-        cursor: pointer;
-
-        h1 {
-            padding: 0 2rem;
-        }
-    }
-
     .project-item {
         background: silver;
         margin: 2rem;
         height: 25rem;
         width: 22rem;
-        padding: 1rem;
+        position: relative;
+        overflow: hidden;
+        -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+        -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+        box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+
+        img {
+            width: 100%;
+            height: 25rem;
+        }
     }
 }

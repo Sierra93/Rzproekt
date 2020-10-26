@@ -6,8 +6,8 @@
         margin: 3rem auto 6rem;
         width: 80%;
         display: flex;
+        flex-wrap: wrap;
         justify-content: center;
-        align-items: center;
 
         article {
             background: $liteSilver;
@@ -19,14 +19,18 @@
 
             img {
                 max-width: 25rem !important;
-                margin-left: 1rem;
-                margin-bottom: 1rem;
+                width: 100%;
             }
 
             h1 {
                 padding: 1rem;
                 color: #3d5975;
                 font-size: 2rem;
+            }
+
+            h3 {
+                padding: .5rem;
+                color: #3d5975;
             }
 
             p {

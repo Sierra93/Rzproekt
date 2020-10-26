@@ -42,7 +42,7 @@
                 <section class="projectDetalis-list">
                     <article v-for="item in arrProject">
                         <img :src="item.url" alt="" />
-                        <h1>{{ item.title }}</h1>
+                        <h3>{{ item.projectName }}</h3>
                         <textarea class="aboutDetailTxtTextarea" readonly>{{ item.projectDetail }}</textarea>
                     </article>
                 </section>
