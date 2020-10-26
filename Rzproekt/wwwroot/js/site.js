@@ -323,7 +323,7 @@ var appHome = new Vue({
             element[0].classList.toggle("main-block-chat-hide")
         },
         checedUserId() {
-            let userId = sessvars.serId;
+            let userId = sessvars.userId;
             if (userId) {
                 this.setUserId(userId);
                 return;
