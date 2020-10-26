@@ -134,7 +134,6 @@ namespace Rzproekt.Services {
             bool bAdmin = isAdmin.Contains("admin");
             bool bStatus = false;
 
-            Debugger.Break();
             if (bAdmin) {
                 bStatus = true;
             }
