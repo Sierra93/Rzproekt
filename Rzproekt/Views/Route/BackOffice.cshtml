@@ -54,7 +54,9 @@
                         <fieldset>
                             <legend>Сообщения</legend>
                             <div class="block-user-list">
-                                <div v-for="item in arrDialogChat" class="block-user-item">aasd</div>
+                                <div v-for="item in arrDialogChat" :idCustom="item.dialogId" v-on:click="onOpenMsgDialog" class="block-user-item">
+                                    <div class="del-list-user" v-on:click="onDelDialog"></div>
+                                </div>
                             </div>
                             <div id="chatroom" class="block-chat-back">
                                 <div class="main-block-chat-back">

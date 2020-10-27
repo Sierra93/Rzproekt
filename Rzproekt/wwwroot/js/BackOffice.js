@@ -74,6 +74,7 @@ var back_office = new Vue({
     },
     methods: {
         getAllDialog() {
+            let self = this;
             let sUrl = this.$data.urlApi + '/api/message/dialog-list';
             try {
                 axios.post(sUrl)
@@ -81,7 +82,42 @@ var back_office = new Vue({
                         self.$data.arrDialogChat = response.data;
                     })
                     .catch((XMLHttpRequest) => {
-                        
+                        throw new Error(XMLHttpRequest);
+                    });
+            }
+            catch (ex) {
+                throw new Error(ex);
+            }
+        },
+        onOpenMsgDialog(e) {
+            let self = this;
+            let DialogId = +e.target.getAttribute('idCustom');
+            let sUrl = this.$data.urlApi + '/api/message/dialog-messages';
+            let oData = {
+                DialogId
+            }
+            try {
+                axios.post(sUrl, oData)
+                    .then((response) => {
+                        self.$data.arrMsgChat = response.data;
+                    })
+                    .catch((XMLHttpRequest) => {
+                        throw new Error(XMLHttpRequest);
+                    });
+            }
+            catch (ex) {
+                throw new Error(ex);
+            }
+        },
+        onDelDialog(e) {
+            let DialogId = +e.target.getAttribute('idCustom');
+            let sUrl = this.$data.urlApi + '/api/message/remove-dialog';
+
+            try {
+                axios.put(sUrl + '?id=' + DialogId)
+                    .then((response) => {
+                    })
+                    .catch((XMLHttpRequest) => {
                         throw new Error(XMLHttpRequest);
                     });
             }
@@ -977,7 +1013,6 @@ var back_office = new Vue({
                         console.log("ok");
                         if (response.data.aMessages) {
                             self.$data.arrMsgChat = response.data.aMessages;
-                            self.$data.arrDialogChat = response.data.aDialogs;
                         }
 
                     })

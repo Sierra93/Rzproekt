@@ -838,12 +838,16 @@
 
 .block-user-list {
   background: #ececec;
-  display: flex; }
+  display: flex;
+  max-width: 20rem;
+  overflow: hidden;
+  overflow-x: auto; }
   .block-user-list .block-user-item {
     padding: 1rem;
     margin: .3rem;
     border: 1px solid;
-    cursor: pointer; }
+    cursor: pointer;
+    position: relative; }
 
 .block-msg-back {
   height: 20rem;
@@ -855,7 +859,7 @@
   display: flex;
   flex-direction: column;
   overflow: auto; }
-  .block-msg-back p[data-id="True"] {
+  .block-msg-back p[data-id="False"] {
     margin: .4rem;
     padding: 1rem;
     background: #d28484;
@@ -863,7 +867,7 @@
     border-top-right-radius: 1rem;
     border-bottom-right-radius: 1rem;
     width: 50%; }
-  .block-msg-back p[data-id="False"] {
+  .block-msg-back p[data-id="True"] {
     margin: 0.4rem .4rem .4rem 7.5rem;
     padding: 1rem;
     background: #8cd284;
@@ -873,6 +877,31 @@
     text-align: right;
     width: 50%;
     align-items: flex-end; }
+
+.del-list-user {
+  position: absolute;
+  top: 0;
+  right: 0; }
+  .del-list-user:before {
+    content: '';
+    display: block;
+    width: 1rem;
+    height: .1rem;
+    background: red;
+    transform: rotate(45deg);
+    top: 5px;
+    right: -3px;
+    position: absolute; }
+  .del-list-user:after {
+    content: '';
+    display: block;
+    height: 1rem;
+    width: .1rem;
+    background: red;
+    transform: rotate(45deg);
+    top: -2px;
+    right: 6px;
+    position: absolute; }
 
 body {
   margin: 0 !important;

@@ -88,12 +88,19 @@
 .block-user-list {
     background: #ececec;
     display: flex;
+    max-width: 20rem;
+    overflow: hidden;
+    overflow-x: auto;
 
     .block-user-item {
         padding: 1rem;
         margin: .3rem;
         border: 1px solid;
         cursor: pointer;
+        position: relative;
+        //&:hover del-list-user {
+        //    display: block;
+        //}
     }
 }
 
@@ -109,7 +116,7 @@
     flex-direction: column;
     overflow: auto;
 
-    p[data-id="True"] {
+    p[data-id="False"] {
         margin: .4rem;
         padding: 1rem;
         background: #d28484;
@@ -119,7 +126,7 @@
         width: 50%;
     }
 
-    p[data-id="False"] {
+    p[data-id="True"] {
         margin: 0.4rem .4rem .4rem 7.5rem;
         padding: 1rem;
         background: #8cd284;
@@ -129,5 +136,36 @@
         text-align: right;
         width: 50%;
         align-items: flex-end;
+    }
+}
+
+.del-list-user {
+    position: absolute;
+    //display: none;
+    top: 0;
+    right: 0;
+
+    &:before {
+        content: '';
+        display: block;
+        width: 1rem;
+        height: .1rem;
+        background: red;
+        transform: rotate(45deg);
+        top: 5px;
+        right: -3px;
+        position: absolute;
+    }
+
+    &:after {
+        content: '';
+        display: block;
+        height: 1rem;
+        width: .1rem;
+        background: red;
+        transform: rotate(45deg);
+        top: -2px;
+        right: 6px;
+        position: absolute;
     }
 }
