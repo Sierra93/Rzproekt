@@ -29,6 +29,7 @@ namespace Rzproekt.Services {
                 if (string.IsNullOrEmpty(messageDto.UserCode) || string.IsNullOrEmpty(messageDto.MessageText)) {
                     throw new ArgumentNullException();
                 }
+                bool bAdmin = Convert.ToBoolean(messageDto.IsAdmin);
 
                 // Проверяет есть ли такой хэш.
                 bool isHash = await IdentityAnonymousHash(messageDto.UserCode);
@@ -38,12 +39,12 @@ namespace Rzproekt.Services {
                     MainInfoDialog oNewDialog = await CreateDialog();
 
                     // Записывает сообщение.
-                     bool sStatusAd = await AddMessage(messageDto.MessageText, oNewDialog.DialogId, messageDto.UserCode);
+                    bool sStatusAd = await AddMessage(messageDto.MessageText, oNewDialog.DialogId, messageDto.UserCode);
 
                     var oMessages = await _db.DialogMessages.Where(d => d.DialogId == oNewDialog.DialogId).ToListAsync();
 
                     // Добавляет участника диалога.
-                    await AddDialogMember(messageDto.UserCode);
+                    await AddDialogMember(messageDto.UserCode, oNewDialog.DialogId, messageDto.IsAdmin);
 
                     var resultNewObj = new {
                         aDialogs = oNewDialog,
@@ -55,17 +56,31 @@ namespace Rzproekt.Services {
                     return resultNewObj;
                 }
 
-                // Пользователь не новый, значит найти участника диалога.
-                DialogMember oMember = await SearchMember(messageDto.UserCode);
+                if (bAdmin) {
+                    DialogMember dialog = await _db.DialogMembers.Where(d => d.DialogId == messageDto.AdminDialogId).FirstOrDefaultAsync();
 
-                // if (oMember != null) {
+                    if (dialog == null) {
+                        DialogMember dialogMember = new DialogMember() {
+                            DialogId = messageDto.AdminDialogId,
+                            UserId = messageDto.UserCode,
+                            Joined = DateTime.Now
+                        };
+
+                        await _db.DialogMembers.AddAsync(dialogMember);
+                        await _db.SaveChangesAsync();
+                    }                    
+                }
+
+                // Пользователь не новый, значит найти участника диалога.
+                DialogMember oMember = await SearchMember(messageDto.UserCode, messageDto.IsAdmin, messageDto.AdminDialogId);
+
                 // Находит существующий диалог по его Id.
                 MainInfoDialog mainInfoDialog = await SearchDialog(oMember.DialogId);
 
                 int oOldDialogId = await _db.DialogMembers.Where(m => m.UserId.Equals(messageDto.UserCode)).Select(d => d.DialogId).FirstOrDefaultAsync();
 
-                 // Записывает сообщение.
-                  bool sStatus = await AddMessage(messageDto.MessageText, oOldDialogId, messageDto.UserCode);
+                // Записывает сообщение.
+                bool sStatus = await AddMessage(messageDto.MessageText, oOldDialogId, messageDto.UserCode);
 
                 // Находит сообщения диалога.
                 var dialogMessage = await SearchDialogMessages(mainInfoDialog.DialogId);
@@ -75,10 +90,9 @@ namespace Rzproekt.Services {
                     aMessages = dialogMessage,
                     userCode = messageDto.UserCode,
                     isAdmin = sStatus
-                }; 
+                };
 
                 return resultOldObj;
-                //}                            
             }
 
             catch (ArgumentNullException ex) {
@@ -144,7 +158,7 @@ namespace Rzproekt.Services {
                 Message = message,
                 Created = DateTime.Now,
                 isAdmin = bStatus.ToString()
-            };            
+            };
 
 
             await _db.DialogMessages.AddAsync(dialogMessage);
@@ -158,14 +172,28 @@ namespace Rzproekt.Services {
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        async Task AddDialogMember(string userId) {
+        async Task AddDialogMember(string userId, int dialogId, string isAdmin) {
             DialogMember dialogMember = new DialogMember() {
                 UserId = userId,
                 Joined = DateTime.Now
             };
+            bool bAdmin = Convert.ToBoolean(isAdmin);
 
-            await _db.DialogMembers.AddAsync(dialogMember);
-            await _db.SaveChangesAsync();
+            if (bAdmin) {
+                DialogMember dialogAdminMember = new DialogMember() {
+                    UserId = "admin",
+                    DialogId = dialogId,
+                    Joined = DateTime.Now
+                };
+
+                await _db.DialogMembers.AddAsync(dialogAdminMember);
+                await _db.SaveChangesAsync();
+            }
+
+            if (!bAdmin) {
+                await _db.DialogMembers.AddAsync(dialogMember);
+                await _db.SaveChangesAsync();
+            }
         }
 
         /// <summary>
@@ -173,11 +201,25 @@ namespace Rzproekt.Services {
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        async Task<DialogMember> SearchMember(string userId) {
+        async Task<DialogMember> SearchMember(string userId, string isAdmin, int dialogId) {
             DialogMember oMember = await _db.DialogMembers.Where(m => m.UserId.Equals(userId)).FirstOrDefaultAsync();
+            bool bAdmin = Convert.ToBoolean(isAdmin);
 
-            if (oMember == null) {
+            if (oMember == null && !bAdmin) {
                 throw new ArgumentNullException("Участника диалога не найдено");
+            }
+
+            if (bAdmin) {
+                DialogMember dialogMember = new DialogMember() {
+                    UserId = userId,
+                    DialogId = dialogId,
+                    Joined = DateTime.Now
+                };
+
+                await _db.DialogMembers.AddAsync(dialogMember);
+                await _db.SaveChangesAsync();
+
+                return dialogMember;
             }
 
             return oMember;
@@ -239,8 +281,15 @@ namespace Rzproekt.Services {
                     throw new ArgumentNullException();
                 }
 
+                // Получает диалог, который нужно удалить.
                 MainInfoDialog oDialog = await _db.MainInfoDialogs.Where(d => d.DialogId == id).FirstOrDefaultAsync();
-                _db.Remove(oDialog);
+
+                // Получает сообщения диалога, которые нужно удалить.
+                IList<DialogMessage> ADialogMessages = await _db.DialogMessages.Where(m => m.DialogId == id).ToListAsync();
+
+                IList<DialogMember> oDialogMembers = await _db.DialogMembers.Where(d => d.DialogId == id).ToListAsync();
+
+                _db.RemoveRange(oDialog, ADialogMessages, oDialogMembers);
                 await _db.SaveChangesAsync();
             }
 

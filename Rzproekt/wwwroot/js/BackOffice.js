@@ -1003,7 +1003,7 @@ var back_office = new Vue({
             let self = this;
             let MessageText = document.getElementById('msgChat').value;
             let sUrl = self.$data.urlApi + "/api/message/send";
-            let DialogId = self.$data.dialogActiveId;
+            let AdminDialogId = self.$data.dialogActiveId;
             let IsAdmin = 'true';
             let UserCode = 'admin'
 
@@ -1011,7 +1011,7 @@ var back_office = new Vue({
                 UserCode,
                 MessageText,
                 IsAdmin,
-                DialogId
+                AdminDialogId
             }
             try {
                 axios.post(sUrl, oData)

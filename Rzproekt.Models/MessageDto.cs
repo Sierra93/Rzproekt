@@ -20,7 +20,9 @@ namespace Rzproekt.Models {
         public string UserCode { get; set; }    // Код временного пользователя без регистрации.      
 
         [Column("is_admin")]
-        public string IsAdmin { get; set; }    
+        public string IsAdmin { get; set; }
+
+        public int AdminDialogId { get; set; }   // Id диалога для админа.
 
         public List<MultepleContextTable> MultepleContextTables { get; set; }
 
