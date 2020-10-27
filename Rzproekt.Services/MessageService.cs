@@ -38,7 +38,7 @@ namespace Rzproekt.Services {
                     MainInfoDialog oNewDialog = await CreateDialog();
 
                     // Записывает сообщение.
-                     bool sStatusAd = await AddMessage(messageDto.MessageText, oNewDialog.DialogId, messageDto.IsAdmin);
+                     bool sStatusAd = await AddMessage(messageDto.MessageText, oNewDialog.DialogId, messageDto.UserCode);
 
                     var oMessages = await _db.DialogMessages.Where(d => d.DialogId == oNewDialog.DialogId).ToListAsync();
 
@@ -65,7 +65,7 @@ namespace Rzproekt.Services {
                 int oOldDialogId = await _db.DialogMembers.Where(m => m.UserId.Equals(messageDto.UserCode)).Select(d => d.DialogId).FirstOrDefaultAsync();
 
                  // Записывает сообщение.
-                  bool sStatus = await AddMessage(messageDto.MessageText, oOldDialogId, messageDto.IsAdmin);
+                  bool sStatus = await AddMessage(messageDto.MessageText, oOldDialogId, messageDto.UserCode);
 
                 // Находит сообщения диалога.
                 var dialogMessage = await SearchDialogMessages(mainInfoDialog.DialogId);
