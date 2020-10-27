@@ -38,5 +38,25 @@ namespace Rzproekt.Controllers {
 
             return Ok(aResult);
         }
+
+        /// <summary>
+        /// Метод получает список всех диалогов.
+        /// </summary>
+        [HttpPost, Route("dialog-list")]
+        public async Task<IActionResult> GetDialogs() {
+            MessageBase messageBase = new MessageService(_db);
+
+            return Ok(await messageBase.GetDialogs());
+        }
+
+        /// <summary>
+        /// Метод получает сообщений диалога по его Id.
+        /// </summary>
+        [HttpPost, Route("dialog-messages")]
+        public async Task<IActionResult> GetDialogMessages([FromBody] DialogMessage dialogMessage) {
+            MessageBase messageBase = new MessageService(_db);
+
+            return Ok(await messageBase.GetDialogMessages(dialogMessage.DialogId));
+        }
     }
 }

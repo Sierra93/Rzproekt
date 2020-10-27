@@ -61,7 +61,7 @@ var appHome = new Vue({
             }
             setTimeout(Carusel, 100);
             this.onAllProject();
-            this.checedUserId();
+            //this.checedUserId();
             appHome.$data.blocksServices = document.getElementsByClassName("serviceTxt");
             appHome.$data.aboutTxtTextarea = document.getElementsByClassName("aboutTxtTextarea");
             appHome.$data.aboutDetailTxtTextarea = document.getElementsByClassName("aboutDetailTxtTextarea");
