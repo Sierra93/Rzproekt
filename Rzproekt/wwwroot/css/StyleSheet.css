@@ -796,7 +796,7 @@
       display: flex;
       flex-direction: column;
       overflow: auto; }
-      .block-chat .main-block-chat .block-msg p [data-id="True"] {
+      .block-chat .main-block-chat .block-msg p[data-id="True"] {
         margin: .4rem;
         padding: 1rem;
         background: #d28484;
@@ -804,7 +804,7 @@
         border-top-right-radius: 1rem;
         border-bottom-right-radius: 1rem;
         width: 50%; }
-      .block-chat .main-block-chat .block-msg p [data-id="False"] {
+      .block-chat .main-block-chat .block-msg p[data-id="False"] {
         margin: 0.4rem .4rem .4rem 5rem;
         padding: 1rem;
         background: #8cd284;
@@ -851,11 +851,11 @@
   margin: 1rem 0; }
 
 .block-msg-back {
-  height: 85%;
+  height: 20rem;
   display: flex;
   flex-direction: column;
   overflow: auto; }
-  .block-msg-back p [data-id="True"] {
+  .block-msg-back p[data-id="True"] {
     margin: .4rem;
     padding: 1rem;
     background: #d28484;
@@ -863,7 +863,7 @@
     border-top-right-radius: 1rem;
     border-bottom-right-radius: 1rem;
     width: 50%; }
-  .block-msg-back p [data-id="False"] {
+  .block-msg-back p[data-id="False"] {
     margin: 0.4rem .4rem .4rem 7.5rem;
     padding: 1rem;
     background: #8cd284;

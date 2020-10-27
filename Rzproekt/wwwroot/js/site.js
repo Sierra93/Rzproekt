@@ -61,7 +61,7 @@ var appHome = new Vue({
             }
             setTimeout(Carusel, 100);
             this.onAllProject();
-            this.checedUserId();
+            //this.checedUserId();
             appHome.$data.blocksServices = document.getElementsByClassName("serviceTxt");
             appHome.$data.aboutTxtTextarea = document.getElementsByClassName("aboutTxtTextarea");
             appHome.$data.aboutDetailTxtTextarea = document.getElementsByClassName("aboutDetailTxtTextarea");
@@ -332,19 +332,15 @@ var appHome = new Vue({
             this.getUserId();
         },
         setUserId(UserCode) {
-            //const hubConnection = new signalR.HubConnectionBuilder()
-            //    .withUrl("/chat")
-            //    .build();
-            //let connectionId = "";
             let self = this;
             let MessageText = document.getElementById('msgChat').value;
             let sUrl = appHome.$data.urlApi + "/api/message/send";
-            let IsAdmin = false;
+            let IsAdmin = 'false';
 
                     let oData = {
                         UserCode,
                         MessageText,
-                        IsAdmin: IsAdmin.toString()
+                        IsAdmin
                     }
                     try {
                         axios.post(sUrl, oData)
@@ -362,22 +358,6 @@ var appHome = new Vue({
                     catch (ex) {
                         throw new Error(ex);
                     }
-
-            // получение сообщения от сервера
-            //hubConnection.on("Notify", function (message) {
-
-                 //создает элемент <p> для сообщения пользователя
-                //let elem = document.createElement("p");
-                //elem.appendChild(document.createTextNode(message));
-
-                //document.getElementById("notifyBlock").appendChild(elem);
-
-            //});
-            //hubConnection.start().then(() => {
-                // после соединения получаем id подключения
-                //console.log(hubConnection.connectionId);
-                //connectionId = hubConnection.connectionId;
-            //});
         },
         getUserId() {
             var result = '';

@@ -32,7 +32,7 @@
             flex-direction: column;
             overflow: auto;
 
-            p [data-id="True"] {
+            p[data-id="True"] {
                 margin: .4rem;
                 padding: 1rem;
                 background: #d28484;
@@ -42,7 +42,7 @@
                 width: 50%;
             }
 
-            p [data-id="False"] {
+            p[data-id="False"] {
                 margin: 0.4rem .4rem .4rem 5rem;
                 padding: 1rem;
                 background: #8cd284;
@@ -104,12 +104,12 @@
 }
 
 .block-msg-back {
-    height: 85%;
+    height: 20rem;
     display: flex;
     flex-direction: column;
     overflow: auto;
 
-    p [data-id="True"] {
+    p[data-id="True"] {
         margin: .4rem;
         padding: 1rem;
         background: #d28484;
@@ -119,7 +119,7 @@
         width: 50%;
     }
 
-    p [data-id="False"] {
+    p[data-id="False"] {
         margin: 0.4rem .4rem .4rem 7.5rem;
         padding: 1rem;
         background: #8cd284;

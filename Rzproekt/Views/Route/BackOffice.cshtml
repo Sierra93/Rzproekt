@@ -54,21 +54,16 @@
                         <fieldset>
                             <legend>Сообщения</legend>
                             <div class="block-user-list">
-                                <div class="block-user-item">user</div>
-                                <div class="block-user-item">user</div>
-                                <div class="block-user-item">user</div>
+                                <div v-for="item in arrDialogChat" class="block-user-item">aasd</div>
                             </div>
                             <div id="chatroom" class="block-chat-back">
                                 <div class="main-block-chat-back">
                                     <div class="block-msg-back">
-                                        <div data-id="1"><p>Test</p></div>
-                                        <div data-id="2"><p>Test2</p></div>
-                                        <div data-id="1"><p>Test</p></div>
-                                        <div data-id="2"><p>Test2</p></div>
+                                        <p v-for="item in arrMsgChat" :data-id="item.isAdmin">{{ item.message }}</p>
                                     </div>
                                     <div class="block-send-msg-back">
                                         <input type="text" id="msgChat" class="input-chat-back" />
-                                        <button id="sendBtn" class="send-msg-btn-back" >Отправить</button>
+                                        <button id="sendBtn" class="send-msg-btn-back" v-on:click="sendMsgAdmin">Отправить</button>
                                     </div>
                                 </div>
                             </div>

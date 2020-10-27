@@ -48,7 +48,9 @@ var back_office = new Vue({
             contact: [],
             contactLead: [],
             arrContactSearth: [],
-            footer: []
+            footer: [],
+            arrMsgChat: [],
+            arrDialogChat: []
         }
     },
     update: {
@@ -67,9 +69,26 @@ var back_office = new Vue({
                 self._getData(el);
             });
             self.onAllProject();
+            self.getAllDialog();
         })
     },
     methods: {
+        getAllDialog() {
+            let sUrl = this.$data.urlApi + '/api/message/dialog-list';
+            try {
+                axios.post(sUrl)
+                    .then((response) => {
+                        self.$data.arrDialogChat = response.data;
+                    })
+                    .catch((XMLHttpRequest) => {
+                        
+                        throw new Error(XMLHttpRequest);
+                    });
+            }
+            catch (ex) {
+                throw new Error(ex);
+            }
+        },
         // Функция собирает файлы header.
         handleFilesUpload() {
             let filesLogo = document.getElementById('filesLogo').files[0];
@@ -939,25 +958,36 @@ var back_office = new Vue({
                 }
                 if (tot > 3) { chk_arr[i].checked = false; }
             } 
+        },
+        sendMsgAdmin() {
+            let self = this;
+            let MessageText = document.getElementById('msgChat').value;
+            let sUrl = self.$data.urlApi + "/api/message/send";
+            let IsAdmin = 'true';
+            let UserCode = 'admin'
+
+            let oData = {
+                UserCode,
+                MessageText,
+                IsAdmin
+            }
+            try {
+                axios.post(sUrl, oData)
+                    .then((response) => {
+                        console.log("ok");
+                        if (response.data.aMessages) {
+                            self.$data.arrMsgChat = response.data.aMessages;
+                            self.$data.arrDialogChat = response.data.aDialogs;
+                        }
+
+                    })
+                    .catch((XMLHttpRequest) => {
+                        console.log("error");
+                    });
+            }
+            catch (ex) {
+                throw new Error(ex);
+            }
         }
     }
 });
-
-//const hubConnection = new signalR.HubConnectionBuilder()
-//	.withUrl("/chat")
-//	.build();
-
-//hubConnection.on("Send", function (data) {
-//	let elem = document.createElement("p");
-//	elem.appendChild(document.createTextNode(data));
-//	let firstElem = document.getElementById("chatroom").firstChild;
-//	document.getElementById("chatroom").insertBefore(elem, firstElem);
-
-//});
-
-//document.getElementById("sendBtn").addEventListener("click", function (e) {
-//	let message = document.getElementById("message").value;
-//	hubConnection.invoke("Send", message);
-//});
-
-//hubConnection.start();
