@@ -27,5 +27,12 @@ namespace Rzproekt.Core {
         /// Метод получает сообщений диалога по его Id.
         /// </summary>
         public abstract Task<IList<DialogMessage>> GetDialogMessages(int dialogId);
+
+        /// <summary>
+        /// Метод удаляет диалог по его Id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public abstract Task RemoveDialog(int id);
     }
 }

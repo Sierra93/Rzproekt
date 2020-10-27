@@ -227,5 +227,30 @@ namespace Rzproekt.Services {
                 throw new Exception(ex.Message.ToString());
             }
         }
+
+        /// <summary>
+        /// Метод удаляет диалог по его Id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async override Task RemoveDialog(int id) {
+            try {
+                if (id == 0) {
+                    throw new ArgumentNullException();
+                }
+
+                MainInfoDialog oDialog = await _db.MainInfoDialogs.Where(d => d.DialogId == id).FirstOrDefaultAsync();
+                _db.Remove(oDialog);
+                await _db.SaveChangesAsync();
+            }
+
+            catch (ArgumentNullException ex) {
+                throw new ArgumentNullException("Id диалога не передан", ex.Message.ToString());
+            }
+
+            catch (Exception ex) {
+                throw new Exception(ex.Message.ToString());
+            }
+        }
     }
 }
