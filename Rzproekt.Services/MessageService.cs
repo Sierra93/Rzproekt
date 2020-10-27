@@ -3,6 +3,7 @@ using Rzproekt.Core;
 using Rzproekt.Core.Data;
 using Rzproekt.Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -196,6 +197,35 @@ namespace Rzproekt.Services {
         /// <returns></returns>
         async Task<IList<DialogMessage>> SearchDialogMessages(int dialogId) {
             return await _db.DialogMessages.Where(d => d.DialogId == dialogId).ToListAsync();
+        }
+
+        /// <summary>
+        /// Метод получает список всех диалогов.
+        /// </summary>
+        /// <returns></returns>
+        public async override Task<IList> GetDialogs() {
+            return await _db.MainInfoDialogs.ToListAsync();
+        }
+
+        /// <summary>
+        /// Метод получает сообщений диалога по его Id.
+        /// </summary>
+        public async override Task<IList<DialogMessage>> GetDialogMessages(int dialogId) {
+            try {
+                if (dialogId == 0) {
+                    throw new ArgumentNullException();
+                }
+
+                return await _db.DialogMessages.Where(d => d.DialogId == dialogId).ToListAsync();
+            }
+
+            catch (ArgumentNullException ex) {
+                throw new ArgumentNullException("Id диалога не передан", ex.Message.ToString());
+            }
+
+            catch (Exception ex) {
+                throw new Exception(ex.Message.ToString());
+            }
         }
     }
 }
