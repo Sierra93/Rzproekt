@@ -63,7 +63,7 @@ namespace Rzproekt.Controllers {
         /// Метод удаляет диалог по его Id.
         /// </summary>
         [HttpPut, Route("remove-dialog")]
-        public async Task<IActionResult> RemoveDialog(int id) {
+        public async Task<IActionResult> RemoveDialog([FromQuery] int id) {
             MessageBase messageBase = new MessageService(_db);
             await messageBase.RemoveDialog(id);
 
