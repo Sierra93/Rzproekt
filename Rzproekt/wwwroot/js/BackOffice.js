@@ -50,7 +50,8 @@ var back_office = new Vue({
             arrContactSearth: [],
             footer: [],
             arrMsgChat: [],
-            arrDialogChat: []
+            arrDialogChat: [],
+            dialogActiveId: ''
         }
     },
     update: {
@@ -75,7 +76,7 @@ var back_office = new Vue({
     methods: {
         getAllDialog() {
             let self = this;
-            let sUrl = this.$data.urlApi + '/api/message/dialog-list';
+            let sUrl = self.$data.urlApi + '/api/message/dialog-list';
             try {
                 axios.post(sUrl)
                     .then((response) => {
@@ -100,6 +101,7 @@ var back_office = new Vue({
                 axios.post(sUrl, oData)
                     .then((response) => {
                         self.$data.arrMsgChat = response.data;
+                        self.$data.dialogActiveId = DialogId;
                     })
                     .catch((XMLHttpRequest) => {
                         throw new Error(XMLHttpRequest);
@@ -110,12 +112,14 @@ var back_office = new Vue({
             }
         },
         onDelDialog(e) {
-            let DialogId = +e.target.getAttribute('idCustom');
-            let sUrl = this.$data.urlApi + '/api/message/remove-dialog';
+            let self = this;
+            let DialogId = +e.target.parentNode.getAttribute('idCustom');
+            let sUrl = self.$data.urlApi + '/api/message/remove-dialog';
 
             try {
                 axios.put(sUrl + '?id=' + DialogId)
                     .then((response) => {
+                        self.getAllDialog();
                     })
                     .catch((XMLHttpRequest) => {
                         throw new Error(XMLHttpRequest);
@@ -999,13 +1003,15 @@ var back_office = new Vue({
             let self = this;
             let MessageText = document.getElementById('msgChat').value;
             let sUrl = self.$data.urlApi + "/api/message/send";
+            let DialogId = self.$data.dialogActiveId;
             let IsAdmin = 'true';
             let UserCode = 'admin'
 
             let oData = {
                 UserCode,
                 MessageText,
-                IsAdmin
+                IsAdmin,
+                DialogId
             }
             try {
                 axios.post(sUrl, oData)
