@@ -69,5 +69,16 @@ namespace Rzproekt.Controllers {
 
             return Ok();
         }
+
+        /// <summary>
+        /// Метод получает диалог с сообщениями по UserId.
+        /// </summary>
+        [HttpPost, Route("user-messages")]
+        public async Task<IActionResult> GetUserMessages([FromBody] DialogMember dialogMember) {
+            MessageBase messageBase = new MessageService(_db);
+            var aMessages = await messageBase.GetUserMessages(dialogMember.UserId);
+
+            return Ok(aMessages);
+        }
     }
 }

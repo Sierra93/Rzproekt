@@ -34,5 +34,10 @@ namespace Rzproekt.Core {
         /// <param name="id"></param>
         /// <returns></returns>
         public abstract Task RemoveDialog(int id);
+
+        /// <summary>
+        /// Метод получает диалог с сообщениями по UserId.
+        /// </summary>
+        public abstract Task<object> GetUserMessages(string userId);
     }
 }

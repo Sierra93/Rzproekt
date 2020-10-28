@@ -311,5 +311,40 @@ namespace Rzproekt.Services {
                 await _db.SaveChangesAsync();
             }
         }
+
+        /// <summary>
+        /// Метод получает диалог с сообщениями по UserId.
+        /// </summary>
+        public async override Task<object> GetUserMessages(string userId) {
+            try {
+                if (string.IsNullOrEmpty(userId)) {
+                    throw new ArgumentNullException();
+                }
+
+                // Найти участника диалога.
+                DialogMember oMember = await SearchMember(userId, null, 0);
+
+                // Находит существующий диалог по его Id.
+                MainInfoDialog mainInfoDialog = await SearchDialog(oMember.DialogId);
+
+                // Находит сообщения диалога.
+                var dialogMessage = await SearchDialogMessages(mainInfoDialog.DialogId);
+
+                var oMessages = new {
+                    oDialog = mainInfoDialog,
+                    aMessages = dialogMessage
+                };
+
+                return oMessages;
+            }
+
+            catch (ArgumentNullException ex) {
+                throw new ArgumentNullException("Не передан UserId", ex.Message.ToString());
+            }
+
+            catch (Exception ex) {
+                throw new Exception(ex.Message.ToString());
+            }
+        }
     }
 }
