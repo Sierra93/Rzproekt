@@ -39,7 +39,8 @@ var appHome = new Vue({
         contact: [],
         contactLead: [],
         footer: [],
-        arrMsgChat: []
+        arrMsgChat: [],
+        dialogActiveId: ''
     },
     created() {
         //this.getUserId();
@@ -61,7 +62,7 @@ var appHome = new Vue({
             }
             setTimeout(Carusel, 100);
             this.onAllProject();
-            //this.checedUserId();
+            this.checedUserId();
             appHome.$data.blocksServices = document.getElementsByClassName("serviceTxt");
             appHome.$data.aboutTxtTextarea = document.getElementsByClassName("aboutTxtTextarea");
             appHome.$data.aboutDetailTxtTextarea = document.getElementsByClassName("aboutDetailTxtTextarea");
@@ -326,21 +327,28 @@ var appHome = new Vue({
         checedUserId() {
             let userId = sessvars.userId;
             if (userId) {
-                this.setUserId(userId);
-                return;
+                this.getMsgList(userId); 
+            } else {
+                this.getUserId();
             }
-            this.getUserId();
+            
+        },
+        checedSendMsg() {
+            let userId = sessvars.userId;
+            this.setUserId(userId);
         },
         setUserId(UserCode) {
             let self = this;
             let MessageText = document.getElementById('msgChat').value;
+            let DialogId = self.$data.dialogActiveId;
             let sUrl = appHome.$data.urlApi + "/api/message/send";
             let IsAdmin = 'false';
 
                     let oData = {
                         UserCode,
                         MessageText,
-                        IsAdmin
+                        IsAdmin,
+                        DialogId
                     }
                     try {
                         axios.post(sUrl, oData)
@@ -348,6 +356,7 @@ var appHome = new Vue({
                                 console.log("ok");
                                 if (response.data.aMessages) {
                                     self.$data.arrMsgChat = response.data.aMessages;
+                                    document.getElementById('msgChat').value = '';
                                 }
 
                             })
@@ -359,6 +368,30 @@ var appHome = new Vue({
                         throw new Error(ex);
                     }
         },
+        getMsgList(UserId) {
+            let self = this;
+            let sUrl = appHome.$data.urlApi + "/api/message/user-messages";
+
+            let oData = {
+                UserId
+            }
+            try {
+                axios.post(sUrl, oData)
+                    .then((response) => {
+                        console.log("ok");
+                        if (response.data.aMessages) {
+                            self.$data.arrMsgChat = response.data.aMessages;
+                        }
+
+                    })
+                    .catch((XMLHttpRequest) => {
+                        console.log("error");
+                    });
+            }
+            catch (ex) {
+                throw new Error(ex);
+            }
+        },
         getUserId() {
             var result = '';
             let position = '';
@@ -369,7 +402,7 @@ var appHome = new Vue({
                 result = result + words.substring(position, position + 1);
             }
             sessvars.userId = result;
-            this.setUserId(result);
+            this.getMsgList(result);
         }
     }
 });
