@@ -165,7 +165,8 @@ namespace Rzproekt.Services {
         async Task AddDialogMember(string userId, int dialogId, string isAdmin) {
             DialogMember dialogMember = new DialogMember() {
                 UserId = userId,
-                Joined = DateTime.Now
+                Joined = DateTime.Now,
+                DialogId = dialogId
             };
             bool bAdmin = Convert.ToBoolean(isAdmin);
 
