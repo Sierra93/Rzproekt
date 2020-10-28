@@ -356,6 +356,7 @@ var appHome = new Vue({
                                 console.log("ok");
                                 if (response.data.aMessages) {
                                     self.$data.arrMsgChat = response.data.aMessages;
+                                    self.$data.dialogActiveId = response.data.aDialogs.dialogId;
                                     document.getElementById('msgChat').value = '';
                                 }
 
