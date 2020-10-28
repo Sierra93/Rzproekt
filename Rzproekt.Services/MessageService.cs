@@ -34,7 +34,7 @@ namespace Rzproekt.Services {
                 // Проверяет есть ли такой хэш.
                 bool isHash = await IdentityAnonymousHash(messageDto.UserCode);
 
-                if (!isHash) {
+                if (!isHash && !bAdmin) {
                     // Пользователь новый, значит создать новый диалог вернув его Id.
                     MainInfoDialog oNewDialog = await CreateDialog();
 
@@ -56,19 +56,9 @@ namespace Rzproekt.Services {
                     return resultNewObj;
                 }
 
+                // Если пишет админ, значит добавить его к диалогу, который открыт.
                 if (bAdmin) {
-                    DialogMember dialog = await _db.DialogMembers.Where(d => d.DialogId == messageDto.AdminDialogId).FirstOrDefaultAsync();
-
-                    if (dialog == null) {
-                        DialogMember dialogMember = new DialogMember() {
-                            DialogId = messageDto.AdminDialogId,
-                            UserId = messageDto.UserCode,
-                            Joined = DateTime.Now
-                        };
-
-                        await _db.DialogMembers.AddAsync(dialogMember);
-                        await _db.SaveChangesAsync();
-                    }                    
+                    await AddDialogAdmin(messageDto);                                      
                 }
 
                 // Пользователь не новый, значит найти участника диалога.
@@ -77,10 +67,10 @@ namespace Rzproekt.Services {
                 // Находит существующий диалог по его Id.
                 MainInfoDialog mainInfoDialog = await SearchDialog(oMember.DialogId);
 
-                int oOldDialogId = await _db.DialogMembers.Where(m => m.UserId.Equals(messageDto.UserCode)).Select(d => d.DialogId).FirstOrDefaultAsync();
+                int oldDialogId = !bAdmin ? await _db.DialogMembers.Where(m => m.UserId.Equals(messageDto.UserCode)).Select(d => d.DialogId).FirstOrDefaultAsync() : messageDto.AdminDialogId;
 
                 // Записывает сообщение.
-                bool sStatus = await AddMessage(messageDto.MessageText, oOldDialogId, messageDto.UserCode);
+                bool sStatus = await AddMessage(messageDto.MessageText, oldDialogId, messageDto.UserCode);
 
                 // Находит сообщения диалога.
                 var dialogMessage = await SearchDialogMessages(mainInfoDialog.DialogId);
@@ -299,6 +289,26 @@ namespace Rzproekt.Services {
 
             catch (Exception ex) {
                 throw new Exception(ex.Message.ToString());
+            }
+        }
+
+        /// <summary>
+        /// Метод добавляет админа к диалогу, который открыт в админке.
+        /// </summary>
+        /// <param name="messageDto"></param>
+        /// <returns></returns>
+        async Task AddDialogAdmin(MessageDto messageDto) {
+            DialogMember dialog = await _db.DialogMembers.Where(d => d.DialogId == messageDto.AdminDialogId).FirstOrDefaultAsync();
+
+            if (dialog == null) {
+                DialogMember dialogMember = new DialogMember() {
+                    DialogId = messageDto.AdminDialogId,
+                    UserId = messageDto.UserCode,
+                    Joined = DateTime.Now
+                };
+
+                await _db.DialogMembers.AddAsync(dialogMember);
+                await _db.SaveChangesAsync();
             }
         }
     }
