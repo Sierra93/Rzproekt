@@ -41,5 +41,11 @@ namespace Rzproekt.Core {
         /// </summary>
         /// <returns></returns>
         public abstract Task ChangeProjectInfo(ProjectDto projectDto);
+
+        /// <summary>
+        /// Метод получает список проектов вместе с url.
+        /// </summary>
+        /// <returns></returns>
+        public abstract Task<IList> GetAllProjectsWithUrl();
     }
 }
