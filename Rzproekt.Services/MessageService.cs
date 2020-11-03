@@ -276,11 +276,21 @@ namespace Rzproekt.Services {
                 MainInfoDialog oDialog = await _db.MainInfoDialogs.Where(d => d.DialogId == id).FirstOrDefaultAsync();
 
                 // Получает сообщения диалога, которые нужно удалить.
-                IList<DialogMessage> ADialogMessages = await _db.DialogMessages.Where(m => m.DialogId == id).ToListAsync();
+                IList<DialogMessage> aDialogMessages = await _db.DialogMessages.Where(m => m.DialogId == id).ToListAsync();
 
                 IList<DialogMember> oDialogMembers = await _db.DialogMembers.Where(d => d.DialogId == id).ToListAsync();
 
-                _db.RemoveRange(oDialog, ADialogMessages, oDialogMembers);
+                // Удаляет диалог, сообщения диалога и его участников.
+                _db.Remove(oDialog);
+
+                foreach (var el in aDialogMessages) {
+                    _db.DialogMessages.Remove(el);
+                }
+
+                foreach (var el in oDialogMembers) {
+                    _db.DialogMembers.Remove(el);
+                }
+
                 await _db.SaveChangesAsync();
             }
 
