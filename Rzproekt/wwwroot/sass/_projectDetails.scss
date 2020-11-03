@@ -46,6 +46,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    iframe {
+        width:100%;
+        border: none;
+    }
 }
 .projectDetailTxtTextarea {
     height: auto;

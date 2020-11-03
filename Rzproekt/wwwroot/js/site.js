@@ -60,12 +60,17 @@ var appHome = new Vue({
                 self.certCarusel(true);
                 self.getBlocksSevices();
             }
-            setTimeout(Carusel, 100);
+            setTimeout(Carusel, 200);
             this.onAllProject();
             this.checedUserId();
             appHome.$data.blocksServices = document.getElementsByClassName("serviceTxt");
             appHome.$data.aboutTxtTextarea = document.getElementsByClassName("aboutTxtTextarea");
             appHome.$data.aboutDetailTxtTextarea = document.getElementsByClassName("aboutDetailTxtTextarea");
+            function getMsg() {
+                self.getMsgList(sessvars.userId);
+            }
+            //setInterval(getMsg, 1000);
+            
         })
     },
     methods: {
@@ -124,12 +129,15 @@ var appHome = new Vue({
             try {
                 axios.post(sUrl)
                     .then((response) => {
-                        console.log('_getData', response.data);
+                        if (response.data.length == 0) {
+                            response.data = [{
+                                mainTitle: '',
+                                block: 'project'
+                            }];
+                        }
                         switch (response.data[0].block) {
                             case 'header':
-                                let arrId = ['','#main', '#service', '#about', '#project', '#client', '#contact'];
                                 self.$data.header = response.data;
-                                self.$data.smoothScrollArr = arrId;
                                 console.log('header получен', response.data);
                                 break;
                             case 'service':
@@ -186,7 +194,7 @@ var appHome = new Vue({
         },
         onAllProject(e) {
             let self = this;
-            let sUrl = self.$data.urlApi + '/api/project/all-projects';
+            let sUrl = self.$data.urlApi + '/api/project/projects';
 
             axios.post(sUrl)
                 .then((response) => {
@@ -355,6 +363,7 @@ var appHome = new Vue({
                             .then((response) => {
                                 console.log("ok");
                                 if (response.data.aMessages) {
+                                    response.data.aMessages[0].created = self.formatDateTime(response.data.aMessages[0].created);
                                     self.$data.arrMsgChat = response.data.aMessages;
                                     self.$data.dialogActiveId = response.data.aDialogs.dialogId;
                                     document.getElementById('msgChat').value = '';
@@ -381,6 +390,8 @@ var appHome = new Vue({
                     .then((response) => {
                         console.log("ok");
                         if (response.data.aMessages) {
+                            response.data.aMessages[0].created = self.formatDateTime(response.data.aMessages[0].created);
+                            self.$data.arrMsgChat = response.data.aMessages;
                             self.$data.arrMsgChat = response.data.aMessages;
                         }
 
@@ -404,6 +415,13 @@ var appHome = new Vue({
             }
             sessvars.userId = result;
             this.getMsgList(result);
+        },
+        formatDateTime(par) {
+            let parDate = par.split('T')[0];
+            let parTime = par.split('T')[1];
+            parTime = parTime.split('.')[0];
+            parDate = parDate.split('-').reverse().join('-');
+            return parDate + ' ' + parTime;
         }
     }
 });

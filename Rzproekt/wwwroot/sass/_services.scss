@@ -9,13 +9,14 @@
 
     article {
         background: $liteSilver;
-        width: 18.5rem;
-        margin: 1rem;
+        width: 23.5rem;
+        margin: 2rem;
         overflow: hidden;
 
         img {
-            width: auto;
-            height: 14rem;
+            width: 100%;
+            height: auto;
+            max-height: 15rem;
         }
 
         h1 {

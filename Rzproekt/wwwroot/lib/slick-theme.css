@@ -63,36 +63,33 @@
     opacity: .25;
 }
 
-.slick-prev:before,
-.slick-next:before
-{
-    font-family: 'slick';
-    font-size: 20px;
-    line-height: 1;
-
-    opacity: .75;
-    color: white;
-
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
+    .slick-prev:before,
+    .slick-next:before {
+        font-family: 'slick';
+        font-size: 40px !important;
+        line-height: .5 !important;
+        opacity: .75;
+        color: firebrick !important;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
 
 .slick-prev
 {
-    left: -25px;
+    left: -40px;
 }
 [dir='rtl'] .slick-prev
 {
     right: -25px;
     left: auto;
 }
-.slick-prev:before
-{
-    content: '←';
+.slick-prev:before {
+    /*    content: '←';*/
+    content: '◄';
 }
-[dir='rtl'] .slick-prev:before
-{
-    content: '→';
+[dir='rtl'] .slick-prev:before {
+    /*    content: '→';*/
+    content: '►';
 }
 
 .slick-next
@@ -104,13 +101,13 @@
     right: auto;
     left: -25px;
 }
-.slick-next:before
-{
-    content: '→';
+.slick-next:before {
+/*    content: '→';*/
+    content: '►';
 }
-[dir='rtl'] .slick-next:before
-{
-    content: '←';
+[dir='rtl'] .slick-next:before {
+/*    content: '←';*/
+    content: '◄';
 }
 
 /* Dots */

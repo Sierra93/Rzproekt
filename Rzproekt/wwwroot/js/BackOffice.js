@@ -94,6 +94,11 @@ var back_office = new Vue({
             let self = this;
             let DialogId = +e.target.getAttribute('idCustom');
             let sUrl = this.$data.urlApi + '/api/message/dialog-messages';
+            let arrListClient = document.getElementsByClassName('block-user-item');
+            for (let item of arrListClient) {
+                item.classList.remove('active-msg-user');
+            }
+            e.target.classList.add('active-msg-user');
             let oData = {
                 DialogId
             }
@@ -606,6 +611,7 @@ var back_office = new Vue({
                 axios.put(sUrl + '?id=' + idCert)
                     .then((response) => {
                         self.onSearthCert();
+                        self.notyfi(true);
 
                     })
                     .catch((XMLHttpRequest) => {
@@ -882,6 +888,7 @@ var back_office = new Vue({
             try {
                 axios.post(sUrl)
                     .then((response) => {
+                        if (!response.data) return;
                         switch (response.data[0].block) {
                             case 'header':
                                 self.$data.header = response.data;

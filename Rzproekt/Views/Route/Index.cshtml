@@ -121,10 +121,12 @@
 	</section>
 </div>
 <div id="chatroom" class="block-chat">
-    <button class="toggle-btn" v-on:click="toggleChat">Toogle Button</button>
+    <button class="toggle-btn" v-on:click="toggleChat">Напишите нам!</button>
     <div class="main-block-chat main-block-chat-hide">
         <div id="notifyBlock" class="block-msg">
-            <p v-for="item in arrMsgChat" :data-id="item.isAdmin">{{ item.message }}</p>
+            <div v-for="item in arrMsgChat" :data-id="item.isAdmin">{{ item.message }}
+                <p>{{ item.created }}</p>
+			</div>
         </div>
         <div class="block-send-msg">
             <input type="text" id="msgChat" class="input-chat"/>
