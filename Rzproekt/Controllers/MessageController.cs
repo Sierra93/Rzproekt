@@ -67,7 +67,7 @@ namespace Rzproekt.Controllers {
             MessageBase messageBase = new MessageService(_db);
             await messageBase.RemoveDialog(id);
 
-            return Ok();
+            return Ok("Диалог успешно удален");
         }
 
         /// <summary>

@@ -167,7 +167,7 @@ namespace Rzproekt.Controllers {
             ProjectBase projectBase = new ProjectService(_db);
             await projectBase.RemoveProject(id);
 
-            return Ok("Диалог успешно удален");
+            return Ok();
         }
 
         /// <summary>
