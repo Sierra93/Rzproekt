@@ -192,7 +192,8 @@ namespace Rzproekt.Services {
         }
 
         public async override Task<IList> GetAllProjectsWithUrl() {
-            return await _db.Projects.Join(_db.DetailProjects,
+            try {
+                return await _db.Projects.Join(_db.DetailProjects,
                 t1 => t1.ProjectId,
                 t2 => t2.ProjectId,
                 (t1, t2) => new {
@@ -200,6 +201,11 @@ namespace Rzproekt.Services {
                     projectName = t1.ProjectName,
                     url = new string[] { t1.Url }
                 }).ToListAsync();
+            }
+
+            catch (Exception ex) {
+                throw new Exception(ex.Message.ToString());
+            }
         }
     }
 }
