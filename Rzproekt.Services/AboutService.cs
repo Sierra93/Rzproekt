@@ -48,18 +48,14 @@ namespace Rzproekt.Services {
                 string detailText = jsonObject["detText"].ToString();
                 bool mainImage = false;
 
-                // Сохранять изображение для главной страницы.
-                if (jsonObject["mainImg"] != null) {
-                    mainImage = Convert.ToBoolean(jsonObject["mainImg"].ToString());
-                }
-
                 // Сохранять изображение для дополнительной страницы.
                 if (jsonObject["detImg"] != null) {
                     detailImage = Convert.ToBoolean(jsonObject["detImg"].ToString());
                 }
 
+                // Сохранять изображение для главной страницы.
                 if (jsonObject["mainImg"] != null) {
-                    detailImage = Convert.ToBoolean(jsonObject["mainImg"].ToString());
+                    mainImage = Convert.ToBoolean(jsonObject["mainImg"].ToString());
                 }
 
                 bool isEmpty = isEmptyStringInfo(mainTitle, sText, detailMainTitle, detailTitle, detailText);
