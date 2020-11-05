@@ -46,9 +46,12 @@ namespace Rzproekt.Services {
                 string detailMainTitle = jsonObject["detMainTitle"].ToString();
                 string detailTitle = jsonObject["detTitle"].ToString();
                 string detailText = jsonObject["detText"].ToString();
+                bool mainImage = false;
 
                 // Сохранять изображение для главной страницы.
-                bool mainImage = Convert.ToBoolean(jsonObject["mainImg"].ToString());
+                if (jsonObject["mainImg"] != null) {
+                    mainImage = Convert.ToBoolean(jsonObject["mainImg"].ToString());
+                }
 
                 // Сохранять изображение для дополнительной страницы.
                 if (jsonObject["detImg"] != null) {
@@ -109,14 +112,14 @@ namespace Rzproekt.Services {
             oAbout.DopText = detailText;
 
             // Какое изображение нужно добавить (основное или дополнительное).
-            if (mainImage && filesAbout.Files.Count > 0) {
+            if (filesAbout.Files.Count > 0) {
                 string path = await common.UploadSingleFile(filesAbout);
                 path = path.Replace("wwwroot", "");
                 oAbout.Url = path;
             }
 
             // Добавляет доп.изображение.
-            if (detailImage && filesDopAbout.Files.Count > 0) {
+            if (filesDopAbout.Files.Count > 0) {
                 string path = await common.UploadSingleFile(filesDopAbout);
                 path = path.Replace("wwwroot", "");
                 oAbout.DopUrl = path;
