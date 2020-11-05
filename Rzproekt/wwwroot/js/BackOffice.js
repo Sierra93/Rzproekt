@@ -314,7 +314,7 @@ var back_office = new Vue({
             };
             if (!!this.filesDetAbout || !!this.aboutMainImg) {
                 formData.set('filesAbout', this.aboutMainImg[0].files[0]);
-                formData.set('filesDopAbout', this.filesDetAbout[0].files[0]);
+                formData.set('filesDopAbout', this.filesDetAbout);
             }
             formData.set('jsonString', JSON.stringify(oData));
 
