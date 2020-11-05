@@ -51,9 +51,9 @@ namespace Rzproekt.Controllers {
         /// Метод изменяет полную информацию о нас.
         /// </summary>
         [HttpPost, Route("change-about")]
-        public async Task<IActionResult> ChangeAbout([FromForm] IFormCollection filesAbout, [FromForm] string jsonString) {
+        public async Task<IActionResult> ChangeAbout([FromForm] IFormCollection filesAbout, [FromForm] IFormCollection filesDopAbout, [FromForm] string jsonString) {
             AboutBase aboutBase = new AboutService(_db);
-            await aboutBase.ChangeAboutInfo(filesAbout, jsonString);
+            await aboutBase.ChangeAboutInfo(filesAbout, filesDopAbout, jsonString);
 
             return Ok();
         }

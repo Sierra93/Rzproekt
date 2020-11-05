@@ -37,7 +37,7 @@ namespace Rzproekt.Services {
         /// <param name="filesService"></param>
         /// <param name="jsonString"></param>
         /// <returns></returns>
-        public async override Task ChangeAboutInfo(IFormCollection filesAbout, string jsonString) {
+        public async override Task ChangeAboutInfo(IFormCollection filesAbout, IFormCollection filesDopAbout, string jsonString) {
             try {
                 JObject jsonObject = JObject.Parse(jsonString);
                 bool detailImage = false;
@@ -65,7 +65,7 @@ namespace Rzproekt.Services {
                     throw new ArgumentNullException();
                 }
 
-                await AddAboutInfo(mainTitle, sText, detailMainTitle, detailTitle, detailText, mainImage, detailImage, filesAbout);
+                await AddAboutInfo(mainTitle, sText, detailMainTitle, detailTitle, detailText, mainImage, detailImage, filesAbout, filesDopAbout);
             }
 
             catch (ArgumentNullException ex) {
@@ -98,7 +98,7 @@ namespace Rzproekt.Services {
         /// Метод добавляет информацию о нас в БД.
         /// </summary>
         /// <returns></returns>
-        async Task AddAboutInfo(string mainTitle, string sText, string detailMainTitle, string detailTitle, string detailText, bool detailImage, bool mainImage, IFormCollection filesAbout) {
+        async Task AddAboutInfo(string mainTitle, string sText, string detailMainTitle, string detailTitle, string detailText, bool detailImage, bool mainImage, IFormCollection filesAbout, IFormCollection filesDopAbout) {
             AboutDto oAbout = new AboutDto();
             CommonMethodsService common = new CommonMethodsService(_db);
             oAbout = await _db.Abouts.FirstOrDefaultAsync();
@@ -115,8 +115,9 @@ namespace Rzproekt.Services {
                 oAbout.Url = path;
             }
 
-            if (detailImage && filesAbout.Files.Count > 0) {
-                string path = await common.UploadSingleFile(filesAbout);
+            // Добавляет доп.изображение.
+            if (detailImage && filesDopAbout.Files.Count > 0) {
+                string path = await common.UploadSingleFile(filesDopAbout);
                 path = path.Replace("wwwroot", "");
                 oAbout.DopUrl = path;
             }
