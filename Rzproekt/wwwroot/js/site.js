@@ -10,6 +10,7 @@ var appHome = new Vue({
         aboutTxtTextarea: '',
         aboutDetailTxtTextarea: '',
         ageCompanyTxt: '',
+        returnMain: '',
         smoothScrollArr: [],
         countIdCert: 1,
         urlApi: 'https://localhost:44349',
@@ -78,6 +79,7 @@ var appHome = new Vue({
             autosize(this.blocksServices);
             autosize(this.aboutTxtTextarea);
             autosize(this.aboutDetailTxtTextarea);
+            $(".about-right").css('background-image', "url('../img/about-back.png')");
             $(".fancybox").fancybox({
                 selector: '.imglist a:visible',
                 buttons: [
@@ -363,7 +365,9 @@ var appHome = new Vue({
                             .then((response) => {
                                 console.log("ok");
                                 if (response.data.aMessages) {
-                                    response.data.aMessages[0].created = self.formatDateTime(response.data.aMessages[0].created);
+                                    response.data.aMessages.forEach(function (el) {
+                                        el.created = self.formatDateTime(el.created);
+                                    });
                                     self.$data.arrMsgChat = response.data.aMessages;
                                     self.$data.dialogActiveId = response.data.aDialogs.dialogId;
                                     document.getElementById('msgChat').value = '';
@@ -390,7 +394,9 @@ var appHome = new Vue({
                     .then((response) => {
                         console.log("ok");
                         if (response.data.aMessages) {
-                            response.data.aMessages[0].created = self.formatDateTime(response.data.aMessages[0].created);
+                            response.data.aMessages.forEach(function (el) {
+                                el.created = self.formatDateTime(el.created);
+                            });
                             self.$data.arrMsgChat = response.data.aMessages;
                             self.$data.arrMsgChat = response.data.aMessages;
                         }
@@ -415,6 +421,25 @@ var appHome = new Vue({
             }
             sessvars.userId = result;
             this.getMsgList(result);
+        },
+        returnMain(e) {
+            let target = e.target.getAttribute('idCustom');
+            this.$data.returnMain = true
+            function checkedReturnmain() {
+                this.$data.returnMain = false
+            }
+            setTimeout(checkedReturnmain, 2000);
+            switch (target) {
+                case 'aboutDetalis':
+                    this.smoothScroll(target);
+                    break;
+                case 'projectDetalis':
+                    this.smoothScroll(target);
+                    break;
+                case 'contactsDetalis':
+                    this.smoothScroll(target);
+                    break;
+            }
         },
         formatDateTime(par) {
             let parDate = par.split('T')[0];

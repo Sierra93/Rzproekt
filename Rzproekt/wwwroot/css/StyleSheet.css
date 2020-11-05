@@ -88,7 +88,7 @@
       color: #3d5975; }
     .service-list article .serviceTxt {
       height: auto;
-      width: 16rem;
+      width: 22rem;
       background: transparent;
       border: none;
       padding: 1rem;
@@ -141,7 +141,8 @@
 .aboutDetalis {
   background: #fff;
   padding-top: 10rem !important;
-  width: 60%; }
+  width: 60%;
+  margin: 0 auto; }
   .aboutDetalis .aboutDetalis-list {
     margin: 3rem auto;
     width: 80%; }

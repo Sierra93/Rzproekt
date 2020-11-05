@@ -10,6 +10,8 @@ var back_office = new Vue({
             filesCert: '',
             filesAwards: '',
             filesClient: '',
+            aboutMainImg: '',
+            filesDetAbout: '',
             filesProject: '',
             filesDetProject: '',
             filesContact: '',
@@ -153,7 +155,7 @@ var back_office = new Vue({
         // Функция собирает файлы о нас.
         handleFilesUploadAbout() {
             let arrBlocksImg = document.getElementsByClassName('form-files-about');
-            this.filesAbout = arrBlocksImg;
+            this.aboutMainImg = arrBlocksImg;
         },
         // Функция собирает файлы клиенты.
         handleFilesUploadClient() {
@@ -297,7 +299,7 @@ var back_office = new Vue({
             let detMainTitle = $('.about-Det-Maintitle')[0].value;
             let detTitle = $('.about-DetTitle')[0].value;
             let detText = $('.about-detail-text')[0].value;
-            let mainImg = !!e.target.getAttribute('id');
+            //let mainImg = !!e.target.getAttribute('id');
             let idService = +e.target.getAttribute('idCustom') - 1;
             let Id = idService + 1;
             let formData = new FormData();
@@ -308,10 +310,11 @@ var back_office = new Vue({
                 detMainTitle,
                 detTitle,
                 detText,
-                mainImg
+                //mainImg
             };
-            if (!!this.filesService[idService]) {
-                formData.set('filesAbout', this.filesService[idService].files[0]);
+            if (!!this.filesDetAbout || !!this.aboutMainImg) {
+                formData.set('filesAbout', this.aboutMainImg);
+                formData.set('filesDopAbout', this.filesDetAbout);
             }
             formData.set('jsonString', JSON.stringify(oData));
 
@@ -1036,6 +1039,13 @@ var back_office = new Vue({
             catch (ex) {
                 throw new Error(ex);
             }
+        },
+        formatDateTime(par) {
+            let parDate = par.split('T')[0];
+            let parTime = par.split('T')[1];
+            parTime = parTime.split('.')[0];
+            parDate = parDate.split('-').reverse().join('-');
+            return parDate + ' ' + parTime;
         }
     }
 });
