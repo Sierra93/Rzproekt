@@ -18,8 +18,8 @@ var back_office = new Vue({
             filesContactAdd: '',
             date: new Date().getFullYear(),
             notify: '',
-            urlApi: 'https://localhost:44349',
-            //urlApi: 'https://devmyprojects24.xyz',
+            //urlApi: 'https://localhost:44349',
+            urlApi: 'https://devmyprojects24.xyz',
             listRequests: [
                 '/api/header/get-header',
                 '/api/order/get-orders',
@@ -312,10 +312,9 @@ var back_office = new Vue({
                 detText,
                 //mainImg
             };
-            if (!!this.filesDetAbout || !!this.aboutMainImg) {
-                formData.set('filesAbout', this.aboutMainImg[0].files[0]);
-                formData.set('filesDopAbout', this.filesDetAbout);
-            }
+            if (!!this.aboutMainImg) formData.set('filesAbout', this.aboutMainImg[0].files[0]);
+            if (!!this.filesDetAbout) formData.set('filesDopAbout', this.filesDetAbout);
+
             formData.set('jsonString', JSON.stringify(oData));
 
             try {

@@ -13,8 +13,9 @@ var appHome = new Vue({
         returnMain: '',
         smoothScrollArr: [],
         countIdCert: 1,
-        urlApi: 'https://localhost:44349',
-        //urlApi: 'https://devmyprojects24.xyz',
+        //urlApi: 'https://localhost:44349',
+        urlApi: 'https://devmyprojects24.xyz',
+        urlAboutMain: '',
         listRequests: [
             '/api/header/get-header',
             '/api/order/get-orders',
@@ -79,7 +80,7 @@ var appHome = new Vue({
             autosize(this.blocksServices);
             autosize(this.aboutTxtTextarea);
             autosize(this.aboutDetailTxtTextarea);
-            $(".about-right").css('background-image', "url('../img/about-back.png')");
+            $(".about-right").css('background-image', "url(" + this.urlAboutMain + ")");
             $(".fancybox").fancybox({
                 selector: '.imglist a:visible',
                 buttons: [
@@ -148,6 +149,7 @@ var appHome = new Vue({
                                 break;
                             case 'about':
                                 self.$data.about = response.data;
+                                self.$data.urlAboutMain = response.data[0].url;
                                 console.log('about получен', response.data);
                                 break;
                             case 'cert':
