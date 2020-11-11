@@ -13,8 +13,9 @@ var appHome = new Vue({
         returnMain: '',
         smoothScrollArr: [],
         countIdCert: 1,
-        //urlApi: 'https://localhost:44349',
-        urlApi: 'https://devmyprojects24.xyz',
+        urlApi: 'https://localhost:44349',
+        //urlApi: 'https://devmyprojects24.xyz',
+        //urlApi: 'https://publico-dev.xyz',
         urlAboutMain: '',
         listRequests: [
             '/api/header/get-header',
