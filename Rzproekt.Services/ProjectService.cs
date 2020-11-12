@@ -203,7 +203,7 @@ namespace Rzproekt.Services {
                     (t1, t2) => new {
                         id = t1.ProjectId,
                         projectName = t1.ProjectName,
-                        url = new string[] { t2.Url }
+                        url = t2.Url
                     }).ToListAsync();
 
                 return aProjects;

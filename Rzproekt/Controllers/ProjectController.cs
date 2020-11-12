@@ -34,16 +34,6 @@ namespace Rzproekt.Controllers {
         [HttpPost, Route("all-projects")]
         public async Task<IActionResult> GetAllProjects() {
             ProjectBase projectBase = new ProjectService(_db);
-
-            return Ok(await projectBase.GetAllProjects());
-        }
-
-        /// <summary>
-        /// Метод получает список проектов вместе с фото каждого проекта.
-        /// </summary>
-        [HttpPost, Route("projects")]
-        public async Task<IActionResult> GetAllProjectsWithUrl() {
-            ProjectBase projectBase = new ProjectService(_db);
             var aProjects = await projectBase.GetAllProjectsWithUrl();
 
             return Ok(aProjects);
