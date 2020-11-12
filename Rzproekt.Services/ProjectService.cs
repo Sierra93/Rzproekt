@@ -192,32 +192,19 @@ namespace Rzproekt.Services {
             }
         }
 
+        /// <summary>
+        /// Метод получает список проектов вместе с фото каждого проекта.
+        /// </summary>
         public async override Task<IList> GetAllProjectsWithUrl() {
             try {
-                IList aProjects = await _db.Projects.Join(_db.DetailProjects,
+                var aProjects = await _db.Projects.Join(_db.DetailProjects,
                     t1 => t1.ProjectId,
                     t2 => t2.ProjectId,
                     (t1, t2) => new {
                         id = t1.ProjectId,
                         projectName = t1.ProjectName,
-                        url = t1.Url,
-                        urlDetail = t2.Url
+                        url = new string[] { t2.Url }
                     }).ToListAsync();
-
-                //IList aProjects = await _db.Projects.Join(_db.DetailProjects,
-                //   t1 => t1.ProjectId,
-                //   t2 => t2.ProjectId,
-                //   (t1, t2) => new {
-                //       id = t1.ProjectId,
-                //       projectName = t1.ProjectName,
-                //       url = t1.Url,
-                //       urlDetail = new string[] { t2.Url }
-                //   }).Select(s => new {
-                //       id = s.id,
-                //       projectName = s.projectName,
-                //       url = s.url,
-                //       urlDetail = new string[] { s.url }
-                //   }).Distinct().ToListAsync();
 
                 return aProjects;
             }

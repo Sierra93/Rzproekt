@@ -39,7 +39,7 @@ namespace Rzproekt.Controllers {
         }
 
         /// <summary>
-        /// Метод получает список проектов вместе с фото каждого проекта..
+        /// Метод получает список проектов вместе с фото каждого проекта.
         /// </summary>
         [HttpPost, Route("projects")]
         public async Task<IActionResult> GetAllProjectsWithUrl() {
@@ -48,17 +48,5 @@ namespace Rzproekt.Controllers {
 
             return Ok(aProjects);
         }
-
-        /// <summary>
-        /// Метод получает фото проектов галлереи.
-        /// </summary>
-        /// <returns></returns>
-        //[HttpPost, Route("projects-gallery")]
-        //public async Task<IActionResult> GetGallery() {
-        //    ProjectBase projectBase = new ProjectService(_db);
-        //    var aProjects = await projectBase.GetGallery();
-
-        //    return Ok(aProjects);
-        //}
     }
 }

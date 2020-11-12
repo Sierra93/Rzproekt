@@ -42,6 +42,8 @@ namespace Rzproekt.Core.Data {
 
         public DbSet<AnonymousUserDto> AnonymousUsers { get; set; }     // Таблица временных пользователей.
 
+        public DbSet<OutpootProject> OutpootProjects { get; set; }
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
@@ -114,6 +116,10 @@ namespace Rzproekt.Core.Data {
 
             modelBuilder.Entity<MultepleContextTable>()
                .HasOne(sc => sc.AnonymousUsers)
+               .WithMany(s => s.MultepleContextTables);
+
+            modelBuilder.Entity<MultepleContextTable>()
+               .HasOne(sc => sc.OutpootProject)
                .WithMany(s => s.MultepleContextTables);
         }
     }
