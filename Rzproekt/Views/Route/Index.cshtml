@@ -74,11 +74,13 @@
     <section class="project-list">
 
         @*/////////*@
-        <div class="project-item" v-for="item in project">
-            <img :src="item.url" />
+        <div class="project-item" :projectId="item.projectId" v-for="item in project">
+            <button class="btnL-project-carusel" :customId="false" v-on:click="projectCarusel"></button>
+            <img :src="itemUrl" v-for="itemUrl in item.url" />
             <div class="project-form">
                 <h3>{{ item.projectName }}</h3>
             </div>
+            <button class="btnR-project-carusel" :customId="true" v-on:click="projectCarusel"></button>
         </div>
         @*/////////*@
 
