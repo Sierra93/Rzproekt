@@ -35,15 +35,9 @@ namespace Rzproekt.Services {
         /// Метод добавляет проект.
         /// </summary>
         /// <returns></returns>
-        public async override Task AddProjectInfo(IFormCollection filesProjectMain, IFormCollection filesProject, string jsonString) {
+        public async override Task AddProjectInfo(IFormCollection filesProject, string jsonString) {
             try {
-                // Ждет выполнения главной таблицы проектов.
-                Task taskMainTable = Task.Run(async () => await AddMainProject(filesProjectMain, jsonString));
-                taskMainTable.Wait();
-
-                // Ждет выполнение добавления дополнительных изображений.
-                Task taskDetailTable = Task.Run(async () => await AddDetailProject(filesProject));
-                taskDetailTable.Wait();
+                await AddProject(filesProject, jsonString);
             }
 
             catch (Exception ex) {
@@ -57,19 +51,32 @@ namespace Rzproekt.Services {
         /// <param name="filesProject"></param>
         /// <param name="jsonString"></param>
         /// <returns></returns>
-        async Task AddMainProject(IFormCollection filesProjectMain, string jsonString) {
+        async Task AddProject(IFormCollection filesProject, string jsonString) {
             CommonMethodsService common = new CommonMethodsService(_db);
             ProjectDto projectDto = JsonSerializer.Deserialize<ProjectDto>(jsonString);
 
-            if (filesProjectMain.Files.Count > 0) {
-                string path = await common.UploadSingleFile(filesProjectMain);
+            // Если добавлять один файл.
+            if (filesProject.Files.Count > 0 && filesProject.Files.Count == 1) {
+                string path = await common.UploadSingleFile(filesProject);
                 path = path.Replace("wwwroot", "");
                 projectDto.Url = path;
+            }
+
+            // Если добавлять несколько файлов.
+            if (filesProject.Files.Count > 1) {
+                int i = 0;
+                foreach (var el in filesProject) {
+                    string path = await common.Upload(filesProject, i);
+                    path = path.Replace("wwwroot", "");
+                    projectDto.Url = path;
+                    i++;
+                }
             }
 
             if (Convert.ToBoolean(projectDto.IsMain)) {
                 projectDto.IsMain = "true";
             }
+
             else {
                 projectDto.IsMain = "false";
             }
@@ -86,57 +93,57 @@ namespace Rzproekt.Services {
         /// <param name="filesProject"></param>
         /// <param name="jsonString"></param>
         /// <returns></returns>
-        async Task AddDetailProject(IFormCollection filesProject) {
-            CommonMethodsService common = new CommonMethodsService(_db);
-            ProjectDetailDto projectDetailsDto = new ProjectDetailDto();
+        //async Task AddDetailProject(IFormCollection filesProject) {
+        //    CommonMethodsService common = new CommonMethodsService(_db);
+        //    ProjectDetailDto projectDetailsDto = new ProjectDetailDto();
 
-            if (filesProject.Files.Count > 0) {
-                string path = await common.UploadSingleFile(filesProject);
-                path = path.Replace("wwwroot", "");
-                projectDetailsDto.Url = path;
-            }
+        //    if (filesProject.Files.Count > 0) {
+        //        string path = await common.UploadSingleFile(filesProject);
+        //        path = path.Replace("wwwroot", "");
+        //        projectDetailsDto.Url = path;
+        //    }
 
-            if (Convert.ToBoolean(projectDetailsDto.IsMain)) {
-                projectDetailsDto.IsMain = "true";
-            }
-            else {
-                projectDetailsDto.IsMain = "false";
-            }
+        //    if (Convert.ToBoolean(projectDetailsDto.IsMain)) {
+        //        projectDetailsDto.IsMain = "true";
+        //    }
+        //    else {
+        //        projectDetailsDto.IsMain = "false";
+        //    }
 
-            // Находит Id последнего проекта.
-            int lastId = await GetLastProject();
+        //    // Находит Id последнего проекта.
+        //    int lastId = await GetLastProject();
 
-            // Добавляет в таблицу деталей.
-            await AddProjectDetail(lastId, filesProject, projectDetailsDto.IsMain);
-        }
+        //    // Добавляет в таблицу деталей.
+        //    await AddProjectDetail(lastId, filesProject, projectDetailsDto.IsMain);
+        //}
 
         /// <summary>
         /// Метод находит последний добавленный проект.
         /// </summary>
         /// <returns></returns>
-        async Task<int> GetLastProject() {
-            return await _db.Projects.OrderByDescending(p => p.ProjectId).Select(p => p.ProjectId).FirstOrDefaultAsync();
-        }
+        //async Task<int> GetLastProject() {
+        //    return await _db.Projects.OrderByDescending(p => p.ProjectId).Select(p => p.ProjectId).FirstOrDefaultAsync();
+        //}
 
         /// <summary>
         /// Метод добавляет детальную информацию о проекте.
         /// </summary>
         /// <returns></returns>
-        async Task AddProjectDetail(int id, IFormCollection filesProject, string isMain) {
-            CommonMethodsService common = new CommonMethodsService(_db);
-            ProjectDetailDto projectDetailDto = new ProjectDetailDto();
+        //async Task AddProjectDetail(int id, IFormCollection filesProject, string isMain) {
+        //    CommonMethodsService common = new CommonMethodsService(_db);
+        //    ProjectDetailDto projectDetailDto = new ProjectDetailDto();
 
-            if (filesProject.Files.Count > 0) {
-                string path = await common.UploadSingleFile(filesProject);
-                path = path.Replace("wwwroot", "");
-                projectDetailDto.Url = path;
-            }
-            projectDetailDto.ProjectId = id;
-            projectDetailDto.IsMain = isMain;
+        //    if (filesProject.Files.Count > 0) {
+        //        string path = await common.UploadSingleFile(filesProject);
+        //        path = path.Replace("wwwroot", "");
+        //        projectDetailDto.Url = path;
+        //    }
+        //    projectDetailDto.ProjectId = id;
+        //    projectDetailDto.IsMain = isMain;
 
-            await _db.DetailProjects.AddAsync(projectDetailDto);
-            await _db.SaveChangesAsync();
-        }
+        //    await _db.DetailProjects.AddAsync(projectDetailDto);
+        //    await _db.SaveChangesAsync();
+        //}
 
         /// <summary>
         /// Метод выводит список проектов.
@@ -197,14 +204,20 @@ namespace Rzproekt.Services {
         /// </summary>
         public async override Task<IList> GetAllProjectsWithUrl() {
             try {
-                var aProjects = await _db.Projects.Join(_db.DetailProjects,
-                    t1 => t1.ProjectId,
-                    t2 => t2.ProjectId,
-                    (t1, t2) => new {
-                        id = t1.ProjectId,
-                        projectName = t1.ProjectName,
-                        url = t2.Url
-                    }).ToListAsync();
+                //var aProjects = await _db.Projects.Join(_db.DetailProjects,
+                //    t1 => t1.ProjectId,
+                //    t2 => t2.ProjectId,
+                //    (t1, t2) => new {
+                //        id = t1.ProjectId,
+                //        projectName = t1.ProjectName,
+                //        url = t2.Url
+                //    }).ToListAsync();
+
+                var aProjects = await _db.Projects.Select(p => new {
+                    id = p.ProjectId,
+                    projectName = p.ProjectName,
+                    url = new string[] { p.Url }
+                }).ToListAsync();
 
                 return aProjects;
             }

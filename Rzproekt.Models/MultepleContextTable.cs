@@ -57,8 +57,5 @@ namespace Rzproekt.Models {
 
         public int AnonymousUserId { get; set; }
         public AnonymousUserDto AnonymousUsers { get; set; }
-
-        public int OutpootProjectId { get; set; }
-        public OutpootProject OutpootProject { get; set; }
     }
 }
