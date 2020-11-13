@@ -15,6 +15,7 @@ var appHome = new Vue({
         countIdCert: 1,
         urlApi: 'https://localhost:44349',
         //urlApi: 'https://devmyprojects24.xyz',
+        //urlApi: 'https://publico-dev.xyz',
         urlAboutMain: '',
         listRequests: [
             '/api/header/get-header',
@@ -198,7 +199,7 @@ var appHome = new Vue({
         },
         onAllProject(e) {
             let self = this;
-            let sUrl = self.$data.urlApi + '/api/project/all-projects';
+            let sUrl = self.$data.urlApi + '/api/project/projects';
 
             axios.post(sUrl)
                 .then((response) => {
@@ -330,13 +331,6 @@ var appHome = new Vue({
                     listAwards[i].classList.add("item-cert-hidden");
                 }
 
-            }
-        },
-        projectCarusel(e) {
-            let listProject = this.$data.arrProject[0].url;
-            let directionPrev = e.target.getAttribute('customId');
-            if (directionPrev == 'true') {
-                this.$data.arrProject[0].url = listProject[1];
             }
         },
         toggleChat() {

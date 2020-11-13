@@ -9,6 +9,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -106,7 +107,7 @@ namespace Rzproekt.Services {
             int lastId = await GetLastProject();
 
             // Добавляет в таблицу деталей.
-            await AddProjectDetail(lastId, filesProject, projectDetailsDto.IsMain);       
+            await AddProjectDetail(lastId, filesProject, projectDetailsDto.IsMain);
         }
 
         /// <summary>
@@ -191,16 +192,21 @@ namespace Rzproekt.Services {
             }
         }
 
+        /// <summary>
+        /// Метод получает список проектов вместе с фото каждого проекта.
+        /// </summary>
         public async override Task<IList> GetAllProjectsWithUrl() {
             try {
-                return await _db.Projects.Join(_db.DetailProjects,
-                t1 => t1.ProjectId,
-                t2 => t2.ProjectId,
-                (t1, t2) => new {
-                    id = t1.ProjectId,
-                    projectName = t1.ProjectName,
-                    url = new string[] { t1.Url }
-                }).ToListAsync();
+                var aProjects = await _db.Projects.Join(_db.DetailProjects,
+                    t1 => t1.ProjectId,
+                    t2 => t2.ProjectId,
+                    (t1, t2) => new {
+                        id = t1.ProjectId,
+                        projectName = t1.ProjectName,
+                        url = t2.Url
+                    }).ToListAsync();
+
+                return aProjects;
             }
 
             catch (Exception ex) {

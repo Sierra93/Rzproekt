@@ -20,6 +20,7 @@ var back_office = new Vue({
             notify: '',
             urlApi: 'https://localhost:44349',
             //urlApi: 'https://devmyprojects24.xyz',
+            //urlApi: 'https://publico-dev.xyz',
             listRequests: [
                 '/api/header/get-header',
                 '/api/order/get-orders',
@@ -583,10 +584,9 @@ var back_office = new Vue({
                 ProjectDetail: projectDetail,
                 IsMain: isMain
             }
-            let ins = self.$data.filesDetProject.length;
-            for (var x = 0; x < ins; x++) {
-                formData.append("filesProject", this.filesDetProject[x]);
-            }
+
+            formData.set('filesProjectMain', this.filesProject);
+            formData.set('filesProject', this.filesDetProject);
             formData.set('jsonString', JSON.stringify(oData));
 
             try {
@@ -968,7 +968,7 @@ var back_office = new Vue({
             }
         },
         previewFilesUploadProject(e) {
-            let filesDetProject = document.getElementsByClassName('form-files-project')[0].files;
+            let filesDetProject = document.getElementsByClassName('form-files-project')[0].files[0];
             var input = e.target;
             this.filesDetProject = filesDetProject;
             if (input.files && input.files[0]) {
@@ -976,6 +976,21 @@ var back_office = new Vue({
 
                 reader.onload = function (e) {
                     $('#image').attr('src', e.target.result);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        },
+        previewMainFilesUploadProject(e) {
+            let filesProject = document.getElementsByClassName('form-files-projectMain')[0].files[0];
+            var input = e.target;
+            this.filesProject = filesProject;
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#imageMain').attr('src', e.target.result);
                 };
 
                 reader.readAsDataURL(input.files[0]);
