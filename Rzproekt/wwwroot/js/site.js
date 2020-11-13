@@ -15,7 +15,6 @@ var appHome = new Vue({
         countIdCert: 1,
         urlApi: 'https://localhost:44349',
         //urlApi: 'https://devmyprojects24.xyz',
-        //urlApi: 'https://publico-dev.xyz',
         urlAboutMain: '',
         listRequests: [
             '/api/header/get-header',
@@ -48,7 +47,7 @@ var appHome = new Vue({
     created() {
         //this.getUserId();
     },
-        
+
     // После загрузки страницы вызывает функцию _getData для всех блоков сайта
     mounted: function () {
         this.$nextTick(function () {
@@ -73,7 +72,7 @@ var appHome = new Vue({
                 self.getMsgList(sessvars.userId);
             }
             //setInterval(getMsg, 1000);
-            
+
         })
     },
     methods: {
@@ -129,7 +128,7 @@ var appHome = new Vue({
         _getData(url) {
             let self = this;
             let sUrl = self.$data.urlApi + url;
-            
+
             try {
                 axios.post(sUrl)
                     .then((response) => {
@@ -187,7 +186,7 @@ var appHome = new Vue({
                                 break;
 
                         }
-                        
+
                     })
                     .catch((XMLHttpRequest) => {
                         throw new Error(XMLHttpRequest);
@@ -199,7 +198,7 @@ var appHome = new Vue({
         },
         onAllProject(e) {
             let self = this;
-            let sUrl = self.$data.urlApi + '/api/project/projects';
+            let sUrl = self.$data.urlApi + '/api/project/all-projects';
 
             axios.post(sUrl)
                 .then((response) => {
@@ -220,23 +219,23 @@ var appHome = new Vue({
             this.getBlocksSevices(); //запускает автосайз
         },
         declination(number, one, two, five) {
-                let n = Math.abs(number);
-                n %= 100;
-                if (n >= 5 && n <= 20) {
-                    return five;
-                }
-                n %= 10;
-                if (n === 1) {
-                    return one;
-                }
-                if (n >= 2 && n <= 4) {
-                    return two;
-                }
+            let n = Math.abs(number);
+            n %= 100;
+            if (n >= 5 && n <= 20) {
+                return five;
+            }
+            n %= 10;
+            if (n === 1) {
+                return one;
+            }
+            if (n >= 2 && n <= 4) {
+                return two;
+            }
             return five;
         },
         certCarusel(e) {
             let listCert = document.getElementsByClassName('cert-item');
-            if (!listCert) return; 
+            if (!listCert) return;
             if (e.target) var direction = e.target.parentNode.getAttribute('customId')
             if (direction) {
                 this.countIdCert++;
@@ -244,7 +243,7 @@ var appHome = new Vue({
                 this.countIdCert--;
             }
             let countCert = this.countIdCert;
-            if ( countCert < 0) {
+            if (countCert < 0) {
                 this.countIdCert = listCert.length - 1;
                 countCert = listCert.length - 1;
             } else if (countCert > listCert.length - 1) {
@@ -280,7 +279,7 @@ var appHome = new Vue({
                     listCert[i].classList.remove("item-cert-right");
                     listCert[i].classList.add("item-cert-hidden");
                 }
-                
+
             }
 
         },
@@ -333,6 +332,13 @@ var appHome = new Vue({
 
             }
         },
+        projectCarusel(e) {
+            let listProject = this.$data.arrProject[0].url;
+            let directionPrev = e.target.getAttribute('customId');
+            if (directionPrev == 'true') {
+                this.$data.arrProject[0].url = listProject[1];
+            }
+        },
         toggleChat() {
             var element = document.getElementsByClassName("main-block-chat");
             element[0].classList.toggle("main-block-chat-hide")
@@ -340,11 +346,11 @@ var appHome = new Vue({
         checedUserId() {
             let userId = sessvars.userId;
             if (userId) {
-                this.getMsgList(userId); 
+                this.getMsgList(userId);
             } else {
                 this.getUserId();
             }
-            
+
         },
         checedSendMsg() {
             let userId = sessvars.userId;
@@ -357,33 +363,33 @@ var appHome = new Vue({
             let sUrl = appHome.$data.urlApi + "/api/message/send";
             let IsAdmin = 'false';
 
-                    let oData = {
-                        UserCode,
-                        MessageText,
-                        IsAdmin,
-                        DialogId
-                    }
-                    try {
-                        axios.post(sUrl, oData)
-                            .then((response) => {
-                                console.log("ok");
-                                if (response.data.aMessages) {
-                                    response.data.aMessages.forEach(function (el) {
-                                        el.created = self.formatDateTime(el.created);
-                                    });
-                                    self.$data.arrMsgChat = response.data.aMessages;
-                                    self.$data.dialogActiveId = response.data.aDialogs.dialogId;
-                                    document.getElementById('msgChat').value = '';
-                                }
-
-                            })
-                            .catch((XMLHttpRequest) => {
-                                console.log("error");
+            let oData = {
+                UserCode,
+                MessageText,
+                IsAdmin,
+                DialogId
+            }
+            try {
+                axios.post(sUrl, oData)
+                    .then((response) => {
+                        console.log("ok");
+                        if (response.data.aMessages) {
+                            response.data.aMessages.forEach(function (el) {
+                                el.created = self.formatDateTime(el.created);
                             });
-                    }
-                    catch (ex) {
-                        throw new Error(ex);
-                    }
+                            self.$data.arrMsgChat = response.data.aMessages;
+                            self.$data.dialogActiveId = response.data.aDialogs.dialogId;
+                            document.getElementById('msgChat').value = '';
+                        }
+
+                    })
+                    .catch((XMLHttpRequest) => {
+                        console.log("error");
+                    });
+            }
+            catch (ex) {
+                throw new Error(ex);
+            }
         },
         getMsgList(UserId) {
             let self = this;
@@ -457,4 +463,3 @@ var appHome = new Vue({
 window.addEventListener('wheel', event => {
     appHome.getBlocksSevices();
 });
-

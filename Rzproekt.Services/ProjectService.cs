@@ -52,39 +52,157 @@ namespace Rzproekt.Services {
         /// <param name="jsonString"></param>
         /// <returns></returns>
         async Task AddProject(IFormCollection filesProject, string jsonString) {
-            CommonMethodsService common = new CommonMethodsService(_db);
             ProjectDto projectDto = JsonSerializer.Deserialize<ProjectDto>(jsonString);
 
             // Если добавлять один файл.
             if (filesProject.Files.Count > 0 && filesProject.Files.Count == 1) {
-                string path = await common.UploadSingleFile(filesProject);
-                path = path.Replace("wwwroot", "");
-                projectDto.Url = path;
+                await AddSingleFile(filesProject, projectDto);
             }
 
             // Если добавлять несколько файлов.
             if (filesProject.Files.Count > 1) {
-                int i = 0;
-                foreach (var el in filesProject) {
+                await AddMultiFileProject(filesProject, projectDto);
+            }
+        }
+
+        /// <summary>
+        /// Метод добавляет одно фото проекта в основную таблицу.
+        /// </summary>
+        /// <param name="filesProject"></param>
+        /// <param name="projectDto"></param>
+        /// <returns></returns>
+        async Task AddSingleFile(IFormCollection filesProject, ProjectDto projectDto) {
+            try {
+                CommonMethodsService common = new CommonMethodsService(_db);
+                string path = await common.UploadSingleFile(filesProject);
+                path = path.Replace("wwwroot", "");
+                projectDto.Url = path;
+
+                if (Convert.ToBoolean(projectDto.IsMain)) {
+                    projectDto.IsMain = "true";
+                }
+
+                else {
+                    projectDto.IsMain = "false";
+                }
+
+                projectDto.Block = BlockType.PROJECT;
+                projectDto.ButtonText = ButtonType.BTN_DETAIL;
+                await _db.Projects.AddAsync(projectDto);
+                await _db.SaveChangesAsync();
+            }
+
+            catch (Exception ex) {
+                throw new Exception(ex.Message.ToString());
+            }
+        }
+
+        /// <summary>
+        /// Метод добавляет первое фото в основную таблицу, остальные в дополнительную.
+        /// </summary>
+        /// <param name="filesProject"></param>
+        /// <param name="projectDto"></param>
+        /// <returns></returns>
+        async Task AddMultiFileProject(IFormCollection filesProject, ProjectDto projectDto) {
+            try {
+                CommonMethodsService common = new CommonMethodsService(_db);
+                ProjectDetailDto projectDetailDto = new ProjectDetailDto();
+                int categoryId = 0;
+
+                for (int i = 0; i < filesProject.Files.Count; i++) {
+                    ProjectDto projectDto1 = new ProjectDto();
                     string path = await common.Upload(filesProject, i);
                     path = path.Replace("wwwroot", "");
-                    projectDto.Url = path;
-                    i++;
+                    projectDetailDto.Url = path;
+                    projectDto1.IsMain = projectDto.IsMain;
+
+                    // Добавляет первое фото.
+                    if (i < 1) {
+                        projectDto1.Url = path;
+                        if (Convert.ToBoolean(projectDto1.IsMain)) {
+                            projectDto1.IsMain = "true";
+                        }
+
+                        else {
+                            projectDto1.IsMain = "false";
+                        }
+
+                        projectDto1.Block = BlockType.PROJECT;
+                        projectDto1.ButtonText = ButtonType.BTN_DETAIL;
+                        projectDto1.MainTitle = projectDto.MainTitle;
+                        projectDto1.ProjectDetail = projectDto.ProjectDetail;
+                        projectDto1.ProjectName = projectDto.ProjectName;
+                        categoryId = await GetLastProjectId();
+                        projectDto1.CategoryProject = categoryId;
+                        await _db.Projects.AddAsync(projectDto1);
+                        //await _db.SaveChangesAsync();               
+                        Debugger.Break();
+                    }
+
+                    if (Convert.ToBoolean(projectDto1.IsMain)) {
+                        projectDto1.IsMain = "true";
+                    }
+
+                    else {
+                        projectDto1.IsMain = "false";
+                    }
+
+                    projectDto1.Url = path;
+                    projectDto1.Block = BlockType.PROJECT;
+                    projectDto1.ButtonText = ButtonType.BTN_DETAIL;
+                    //categoryId = await GetLastProjectId();
+                    projectDto1.CategoryProject = categoryId;
+                    await _db.Projects.AddRangeAsync(projectDto1);
+
+                    #region Старая версия.
+                    //int i = 0;
+                    //for (int i = 0; i < filesProject.Files.Count; i++) {
+                    //    if (i < filesProject.Files.Count) {
+                    //        string path = await common.Upload(filesProject, i);
+                    //        path = path.Replace("wwwroot", "");
+                    //        projectDetailDto.Url = path;
+
+                    //        // Берет первое фото.
+                    //        if (i < 1) {
+                    //            projectDto.Url = path;
+                    //            if (Convert.ToBoolean(projectDto.IsMain)) {
+                    //                projectDto.IsMain = "true";
+                    //            }
+
+                    //            else {
+                    //                projectDto.IsMain = "false";
+                    //            }
+
+                    //            projectDto.Block = BlockType.PROJECT;
+                    //            projectDto.ButtonText = ButtonType.BTN_DETAIL;
+                    //            await _db.Projects.AddAsync(projectDto);
+                    //            await _db.SaveChangesAsync();
+
+                    //            lastId = await GetLastProject();
+                    //        }
+
+                    //        projectDetailDto.ProjectId = lastId;
+
+                    //        // Остальные фото.
+                    //        if (Convert.ToBoolean(projectDto.IsMain)) {
+                    //            projectDetailDto.IsMain = "true";
+                    //        }
+
+                    //        else {
+                    //            projectDetailDto.IsMain = "false";
+                    //        }                        
+                    //        //i++;
+                    //    }
+                    //    await _db.DetailProjects.AddAsync(projectDetailDto);
+                    //}  
+                    #endregion
                 }
+                await _db.SaveChangesAsync();
             }
 
-            if (Convert.ToBoolean(projectDto.IsMain)) {
-                projectDto.IsMain = "true";
+            catch (Exception ex) {
+                throw new Exception(ex.Message.ToString());
             }
-
-            else {
-                projectDto.IsMain = "false";
-            }
-
-            projectDto.Block = BlockType.PROJECT;
-            projectDto.ButtonText = ButtonType.BTN_DETAIL;
-            await _db.Projects.AddAsync(projectDto);
-            await _db.SaveChangesAsync();
         }
 
         /// <summary>
@@ -121,9 +239,16 @@ namespace Rzproekt.Services {
         /// Метод находит последний добавленный проект.
         /// </summary>
         /// <returns></returns>
-        //async Task<int> GetLastProject() {
-        //    return await _db.Projects.OrderByDescending(p => p.ProjectId).Select(p => p.ProjectId).FirstOrDefaultAsync();
-        //}
+        async Task<int> GetLastProject() {
+            return await _db.Projects.OrderByDescending(p => p.ProjectId).Select(p => p.ProjectId).FirstOrDefaultAsync();
+        }
+
+        async Task<int> GetLastProjectId() {
+            int id = await _db.Projects.OrderByDescending(p => p.CategoryProject).Select(p => p.CategoryProject).FirstOrDefaultAsync();
+            id++;
+
+            return id;
+        }
 
         /// <summary>
         /// Метод добавляет детальную информацию о проекте.
@@ -216,7 +341,9 @@ namespace Rzproekt.Services {
                 var aProjects = await _db.Projects.Select(p => new {
                     id = p.ProjectId,
                     projectName = p.ProjectName,
-                    url = new string[] { p.Url }
+                    projectDetail = p.ProjectDetail,
+                    url = new string[] { p.Url },
+                    category = p.CategoryProject
                 }).ToListAsync();
 
                 return aProjects;

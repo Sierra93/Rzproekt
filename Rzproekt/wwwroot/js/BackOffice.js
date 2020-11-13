@@ -20,7 +20,6 @@ var back_office = new Vue({
             notify: '',
             urlApi: 'https://localhost:44349',
             //urlApi: 'https://devmyprojects24.xyz',
-            //urlApi: 'https://publico-dev.xyz',
             listRequests: [
                 '/api/header/get-header',
                 '/api/order/get-orders',
@@ -261,10 +260,10 @@ var back_office = new Vue({
             let idService = +e.target.getAttribute('idCustom') - 1;
             let OrderId = idService + 1;
             let MainTitle = $('.service-main-title')[0].value;
-            let Title = $('.service-title')[OrderId-1].value;
-            let Text = $('.service-text')[OrderId-1].value;
-            
-            
+            let Title = $('.service-title')[OrderId - 1].value;
+            let Text = $('.service-text')[OrderId - 1].value;
+
+
             let formData = new FormData();
             let oData = {
                 OrderId,
@@ -276,7 +275,7 @@ var back_office = new Vue({
                 formData.set('filesLogo', this.filesService[idService].files[0]);
             }
             formData.set('jsonString', JSON.stringify(oData));
-    
+
             try {
                 axios.post(sUrl, formData)
                     .then((response) => {
@@ -343,7 +342,7 @@ var back_office = new Vue({
             };
             axios.post(sUrl, oData)
                 .then((response) => {
-                    if (!response.data) { self.$data.arrCertSearth = []; return}
+                    if (!response.data) { self.$data.arrCertSearth = []; return }
                     self.$data.arrCertSearth = response.data;
                     console.log("success / getCert", response);
                 })
@@ -584,9 +583,10 @@ var back_office = new Vue({
                 ProjectDetail: projectDetail,
                 IsMain: isMain
             }
-
-            formData.set('filesProjectMain', this.filesProject);
-            formData.set('filesProject', this.filesDetProject);
+            let ins = self.$data.filesDetProject.length;
+            for (var x = 0; x < ins; x++) {
+                formData.append("filesProject", this.filesDetProject[x]);
+            }
             formData.set('jsonString', JSON.stringify(oData));
 
             try {
@@ -642,7 +642,7 @@ var back_office = new Vue({
             if (!!this.filesService[idService]) {
                 formData.set('filesClient', this.filesService[idService].files[0]);
             }
-            
+
             formData.set('jsonString', JSON.stringify(oData));
 
 
@@ -968,7 +968,7 @@ var back_office = new Vue({
             }
         },
         previewFilesUploadProject(e) {
-            let filesDetProject = document.getElementsByClassName('form-files-project')[0].files[0];
+            let filesDetProject = document.getElementsByClassName('form-files-project')[0].files;
             var input = e.target;
             this.filesDetProject = filesDetProject;
             if (input.files && input.files[0]) {
@@ -976,21 +976,6 @@ var back_office = new Vue({
 
                 reader.onload = function (e) {
                     $('#image').attr('src', e.target.result);
-                };
-
-                reader.readAsDataURL(input.files[0]);
-            }
-        },
-        previewMainFilesUploadProject(e) {
-            let filesProject = document.getElementsByClassName('form-files-projectMain')[0].files[0];
-            var input = e.target;
-            this.filesProject = filesProject;
-
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-
-                reader.onload = function (e) {
-                    $('#imageMain').attr('src', e.target.result);
                 };
 
                 reader.readAsDataURL(input.files[0]);
@@ -1007,7 +992,7 @@ var back_office = new Vue({
                     if (i < 0) i = k;
                 }
                 if (tot > 3) { chk_arr[i].checked = false; }
-            } 
+            }
         },
         sendMsgAdmin() {
             let self = this;
