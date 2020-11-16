@@ -84,6 +84,34 @@ namespace Rzproekt.Services {
         }
 
         /// <summary>
+        /// Метод загружает файлы по одному, исходя из одиночных отправок. Только для модуля О нас.
+        /// </summary>
+        /// <param name="form"></param>
+        /// <returns></returns>
+        public async Task<string> UploadSingleFileAbout(IFormFile form) {
+            try {
+                // Полный локальный путь к файлу включая папку проекта wwwroot.
+                var path = Path.Combine(
+                            Directory.GetCurrentDirectory(), FilePath.STORE_PATH,
+                            form.FileName);
+
+                using (var stream = new FileStream(path, FileMode.Create)) {
+                    await form.CopyToAsync(stream);
+                }
+
+                return FilePath.STORE_PATH + form.FileName;
+            }
+
+            catch (ArgumentNullException ex) {
+                throw new ArgumentNullException("Входные параметры пусты", ex.Message.ToString());
+            }
+
+            catch (Exception ex) {
+                throw new Exception(ex.Message.ToString());
+            }
+        }
+
+        /// <summary>
         /// Проверяет, есть ли файлы.
         /// </summary>
         /// <param name="count"></param>

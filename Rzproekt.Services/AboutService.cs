@@ -109,14 +109,14 @@ namespace Rzproekt.Services {
 
             // Какое изображение нужно добавить (основное или дополнительное).
             if (filesAbout.Files.Count > 0) {
-                string path = await common.UploadSingleFile(filesAbout);
+                string path = await common.UploadSingleFileAbout(filesAbout.Files[0]);
                 path = path.Replace("wwwroot", "");
                 oAbout.Url = path;
             }
 
             // Добавляет доп.изображение.
             if (filesDopAbout.Files.Count > 0) {
-                string path = await common.UploadSingleFile(filesDopAbout);
+                string path = await common.UploadSingleFileAbout(filesDopAbout.Files[1]);
                 path = path.Replace("wwwroot", "");
                 oAbout.DopUrl = path;
             }
