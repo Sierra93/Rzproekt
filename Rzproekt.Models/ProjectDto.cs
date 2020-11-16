@@ -34,8 +34,8 @@ namespace Rzproekt.Models {
         [Column("is_main", TypeName = "nvarchar(10)")]
         public string IsMain { get; set; }     // Тип страницы, на которую добавить изображение проекта.
 
-        [Column("category_project")]
-        public int CategoryProject { get; set; }
+        //[Column("category_project")]
+        //public int CategoryProject { get; set; }
 
         public List<MultepleContextTable> MultepleContextTables { get; set; }
 

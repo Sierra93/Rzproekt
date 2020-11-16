@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Rzproekt.Core;
 using Rzproekt.Core.Data;
+using Rzproekt.Models;
 using Rzproekt.Services;
 
 namespace Rzproekt.Controllers {
@@ -19,7 +20,7 @@ namespace Rzproekt.Controllers {
         public ProjectController(ApplicationDbContext db) => _db = db;
 
         /// <summary>
-        /// Метод получает список проектов.
+        /// Метод получает первые три проекта.
         /// </summary>
         [HttpPost, Route("get-projects")]
         public async Task<IActionResult> GetProjectsInfo() {
@@ -34,7 +35,18 @@ namespace Rzproekt.Controllers {
         [HttpPost, Route("all-projects")]
         public async Task<IActionResult> GetAllProjects() {
             ProjectBase projectBase = new ProjectService(_db);
-            var aProjects = await projectBase.GetAllProjectsWithUrl();
+            var aProjects = await projectBase.GetAllProjects();
+
+            return Ok(aProjects);
+        }
+
+        /// <summary>
+        /// Метод получает проект по Id.
+        /// </summary>
+        [HttpPost, Route("get-project")]
+        public async Task<IActionResult> GetProject([FromBody] ProjectDto projectDto) {
+            ProjectBase projectBase = new ProjectService(_db);
+            var aProjects = await projectBase.GetProject(projectDto.ProjectId);
 
             return Ok(aProjects);
         }

@@ -27,7 +27,7 @@ namespace Rzproekt.Core {
         /// Метод выводит список проектов.
         /// </summary>
         /// <returns></returns>
-        public abstract Task<IEnumerable> GetAllProjects();
+        public abstract Task<IList<ProjectDto>> GetAllProjects();
 
         /// <summary>
         /// Метод удаляет проект.
@@ -43,9 +43,9 @@ namespace Rzproekt.Core {
         public abstract Task ChangeProjectInfo(ProjectDto projectDto);
 
         /// <summary>
-        /// Метод получает список проектов вместе с url.
+        /// Метод получает все фото проекта.
         /// </summary>
         /// <returns></returns>
-        public abstract Task<IList> GetAllProjectsWithUrl();
+        public abstract Task<IList<ProjectDto>> GetProject(int projectId);
     }
 }
