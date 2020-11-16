@@ -74,14 +74,11 @@
     <section class="project-list">
 
         @*/////////*@
-        <div class="project-item" :projectId="item.projectId" v-for="item in project">
-            <button class="btnL-project-carusel" :customId="false" v-on:click="projectCarusel"></button>
-            <img :src="itemUrl" v-for="itemUrl in item.url" />
-            <div class="project-form">
-                <h3>{{ item.projectName }}</h3>
-            </div>
-            <button class="btnR-project-carusel" :customId="true" v-on:click="projectCarusel"></button>
-        </div>
+        <div class="project-item" :projectId="item.projectId" v-for="item in project" v-on:click="onGetAllImgProject">
+            <a class="fancybox" data-fancybox="fancyboxProject" :href="item.url" :id="item.certId">
+				<img :src="item.url" />
+			</a>
+		</div>
         @*/////////*@
 
     </section>
@@ -115,10 +112,10 @@
 				<h1>{{ contact[0].title }}</h1><br /> 
 				<p>{{ contact[0].addressCompany }} <br /><br /> {{ contact[0].numberCompany }} <br /><br /> {{ contact[0].emailCompany }}</p>
 			</div>
-            <div class="detail-contacts">
+            <!--<div class="detail-contacts">-->
                 @*<a class="btn-detail" href="https://localhost:44349/contact-details">{{ contact[0].buttonText }}</a>*@
-                <a class="btn-detail" href="https://devmyprojects24.xyz/contact-details">{{ contact[0].buttonText }}</a>
-            </div>
+                <!--<a class="btn-detail" href="https://devmyprojects24.xyz/contact-details">{{ contact[0].buttonText }}</a>
+            </div>-->
 		</article>
 	</section>
 </div>

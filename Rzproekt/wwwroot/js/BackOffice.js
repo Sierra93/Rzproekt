@@ -312,9 +312,16 @@ var back_office = new Vue({
                 detText,
                 //mainImg
             };
-            if (!!this.aboutMainImg) formData.set('filesAbout', this.aboutMainImg[0].files[0]);
-            if (!!this.filesDetAbout) formData.set('filesDopAbout', this.filesDetAbout);
-
+            if (!!this.aboutMainImg) {
+                formData.set('filesAbout', this.aboutMainImg[0].files[0]);
+            } else {
+                this.aboutMainImg = '';
+            }
+            if (!!this.filesDetAbout) {
+                formData.set('filesDopAbout', this.filesDetAbout);
+            } else {
+                this.filesDetAbout = '';
+            }
             formData.set('jsonString', JSON.stringify(oData));
 
             try {
@@ -713,7 +720,7 @@ var back_office = new Vue({
         // Удаление Клиентов
         onDelClient(e) {
             let self = this;
-            let sUrl = self.$data.urlApi + '/api/back-office/delete-client';
+            let sUrl = self.$data.urlApi + '/api/back-office/remove-client';
             let idService = +e.target.getAttribute('idCustom') - 1;
             let ClientId = idService + 1;
             let oData = {

@@ -90,6 +90,15 @@ var appHome = new Vue({
                     'close'
                 ]
             });
+            $(".fancyboxProject").fancybox({
+                selector: '.imglist a:visible',
+                buttons: [
+                    'slideShow',
+                    'zoom',
+                    'thumbs',
+                    'close'
+                ]
+            });
             $('.multiple-items').slick({
                 dots: true,
                 infinite: false,
@@ -184,7 +193,6 @@ var appHome = new Vue({
                                 self.$data.footer = response.data;
                                 console.log('footer получен', response.data);
                                 break;
-
                         }
 
                     })
@@ -407,7 +415,6 @@ var appHome = new Vue({
                                 el.created = self.formatDateTime(el.created);
                             });
                             self.$data.arrMsgChat = response.data.aMessages;
-                            self.$data.arrMsgChat = response.data.aMessages;
                         }
 
                     })
@@ -430,6 +437,27 @@ var appHome = new Vue({
             }
             sessvars.userId = result;
             this.getMsgList(result);
+        },
+        onGetAllImgProject(e) {
+            let self = this;
+            let sUrl = appHome.$data.urlApi + "/api/project/get-project";
+            let ProjectId = e.target.parentNode.getAttribute('projectId');
+            let oData = {
+                ProjectId
+            }
+            try {
+                axios.post(sUrl, oData)
+                    .then((response) => {
+                        console.log("ok");
+                        self.$data.arrMsgChat = response.data.aMessages;
+                    })
+                    .catch((XMLHttpRequest) => {
+                        console.log("error");
+                    });
+            }
+            catch (ex) {
+                throw new Error(ex);
+            }
         },
         returnMain(e) {
             let target = e.target.getAttribute('idCustom');
