@@ -46,6 +46,6 @@ namespace Rzproekt.Core {
         /// Метод получает все фото проекта.
         /// </summary>
         /// <returns></returns>
-        public abstract Task<IList<ProjectDto>> GetProject(int projectId);
+        public abstract Task<IList<ProjectDetailDto>> GetProject(int projectId);
     }
 }

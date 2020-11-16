@@ -298,8 +298,8 @@ namespace Rzproekt.Services {
         /// Метод получает все фото проекта.
         /// </summary>
         /// <returns></returns>
-        public async override Task<IList<ProjectDto>> GetProject(int projectId) {
-            return await _db.Projects.Where(p => p.ProjectId.Equals(projectId)).ToListAsync();
+        public async override Task<IList<ProjectDetailDto>> GetProject(int projectId) {
+            return await _db.DetailProjects.Where(p => p.ProjectId.Equals(projectId)).ToListAsync();
         }
     }
 }
