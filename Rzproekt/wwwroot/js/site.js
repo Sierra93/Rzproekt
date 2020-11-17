@@ -10,7 +10,6 @@ var appHome = new Vue({
         aboutTxtTextarea: '',
         aboutDetailTxtTextarea: '',
         ageCompanyTxt: '',
-        returnMain: '',
         smoothScrollArr: [],
         countIdCert: 1,
         urlApi: 'https://localhost:44349',
@@ -71,8 +70,8 @@ var appHome = new Vue({
             function getMsg() {
                 self.getMsgList(sessvars.userId);
             }
-            //setInterval(getMsg, 1000);
-
+            setInterval(getMsg, 1000);
+            
         })
     },
     methods: {
@@ -80,6 +79,7 @@ var appHome = new Vue({
             autosize(this.blocksServices);
             autosize(this.aboutTxtTextarea);
             autosize(this.aboutDetailTxtTextarea);
+            this.returnMain();
             $(".about-right").css('background-image', "url(" + this.urlAboutMain + ")");
             $(".fancybox").fancybox({
                 selector: '.imglist a:visible',
@@ -452,29 +452,21 @@ var appHome = new Vue({
                         self.$data.arrMsgChat = response.data.aMessages;
                     })
                     .catch((XMLHttpRequest) => {
-                        console.log("error");
+                        console.log(XMLHttpRequest,"error");
                     });
             }
             catch (ex) {
                 throw new Error(ex);
             }
         },
-        returnMain(e) {
-            let target = e.target.getAttribute('idCustom');
-            this.$data.returnMain = true
-            function checkedReturnmain() {
-                this.$data.returnMain = false
-            }
-            setTimeout(checkedReturnmain, 2000);
+        returnMain() {
+            let target = document.referrer.split('/')[3];
             switch (target) {
-                case 'aboutDetalis':
-                    this.smoothScroll(target);
+                case 'project-details':
+                    window.location.hash = "project"
                     break;
-                case 'projectDetalis':
-                    this.smoothScroll(target);
-                    break;
-                case 'contactsDetalis':
-                    this.smoothScroll(target);
+                case 'about-details':
+                    window.location.hash = "about"
                     break;
             }
         },
