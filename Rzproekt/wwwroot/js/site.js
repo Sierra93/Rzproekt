@@ -12,6 +12,7 @@ var appHome = new Vue({
         ageCompanyTxt: '',
         smoothScrollArr: [],
         countIdCert: 1,
+        animStat: true,
         urlApi: 'https://localhost:44349',
         //urlApi: 'https://devmyprojects24.xyz',
         urlAboutMain: '',
@@ -80,6 +81,7 @@ var appHome = new Vue({
             autosize(this.aboutTxtTextarea);
             autosize(this.aboutDetailTxtTextarea);
             this.returnMain();
+            this.animateCount();
             $(".about-right").css('background-image', "url(" + this.urlAboutMain + ")");
             $(".fancybox").fancybox({
                 selector: '.imglist a:visible',
@@ -476,6 +478,44 @@ var appHome = new Vue({
             parTime = parTime.split('.')[0];
             parDate = parDate.split('-').reverse().join('-');
             return parDate + ' ' + parTime;
+        },
+        animateCount() {
+            let countbox = ".benefits__inner";
+            $(window).on("scroll load resize", function () {
+                //if (!show) return false; // Отменяем показ анимации, если она уже была выполнена
+                let w_top = $(window).scrollTop(); // Количество пикселей на которое была прокручена страница
+                let e_top = $(countbox).offset().top; // Расстояние от блока со счетчиками до верха всего документа
+                let w_height = $(window).height(); // Высота окна браузера
+                let d_height = $(document).height(); // Высота всего документа
+                let e_height = $(countbox).outerHeight(); // Полная высота блока со счетчиками
+                if (w_top + 500 >= e_top || w_height + w_top == d_height || e_height + e_top < w_height) {
+                    if (appHome.$data.animStat) {
+                        appHome.$data.animStat = false;
+                        var numberStart = 0;
+                        var numberFinishOne = appHome.$data.stat[0].number;
+                        var numberFinishTwo = appHome.$data.stat[1].number;
+                        var numberFinishThree = appHome.$data.stat[2].number;
+                        setInterval(function () {
+                            numberStart++;
+                            if (numberStart <= numberFinishOne) {
+                                $('.numbersOne').text(numberStart);
+                            } else { $('.numbersOne').text(numberFinishOne); };
+                        }, 100);
+                        setInterval(function () {
+                            numberStart++;
+                            if (numberStart <= numberFinishTwo) {
+                                $('.numbersTwo').text(numberStart);
+                            } else { $('.numbersTwo').text(numberFinishTwo); };
+                        }, 100);
+                        setInterval(function () {
+                            numberStart++;
+                            if (numberStart <= numberFinishThree) {
+                                $('.numbersThree').text(numberStart);
+                            } else { $('.numbersThree').text(numberFinishThree); };
+                        }, 100);
+                    }
+                }
+            });
         }
     }
 });

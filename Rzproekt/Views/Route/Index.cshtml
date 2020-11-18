@@ -44,94 +44,96 @@
 	<div class="about-right"></div>
 </div>
 
-<div class="block-counter">
-	<div class="counter">
-		<div class="numeral">{{ date - 1938}}</div>
-		<div class="numeral-detal"><h2>{{ ageCompanyTxt }}</h2></div>
-	</div>
-	<div class="block-border-counter"></div>
-	<div class="counter">
-		<div class="numeral">{{ stat[0].number }}</div>
-		<div class="numeral-detal"><h2>{{ stat[0].text }}</h2></div>
-	</div>
-	<div class="block-border-counter"></div>
-	<div class="counter">
-		<div class="numeral">{{ stat[1].number }}</div>
-		<div class="numeral-detal"><h2>{{ stat[1].text }}</h2></div>
-	</div>
-	<div class="block-border-counter"></div>
-	<div class="counter">
-		<div class="numeral">{{ stat[2].number }}</div>
-		<div class="numeral-detal"><h2>{{ stat[2].text }}</h2></div>
-	</div>
-</div>
-
-<div id="project" class="block project">
-    <div class="title-block">
-        <h1>{{ project[0].mainTitle }}</h1>
-    </div>
-    <div class="border-bottom-title"></div>
-    <section class="project-list">
-
-        @*/////////*@
-        <div class="project-item" :projectId="item.projectId" v-for="item in project" v-on:click="onGetAllImgProject">
-            <a class="fancybox" data-fancybox="fancyboxProject" :href="item.url" :id="item.certId">
-				<img :src="item.url" />
-			</a>
-		</div>
-        @*/////////*@
-
-    </section>
-    @*<a class="btn-detail" href="https://localhost:44349/project-details">{{ project[0].buttonText }}</a>*@
-    <a class="btn-detail" href="https://devmyprojects24.xyz/project-details">{{ project[0].buttonText }}</a>
-</div>
-
-<div id="client" class="block clients">
-    <div class="title-block">
-        <h1>{{ client[0].mainTitle }}</h1>
-    </div>
-    <div class="border-bottom-title"></div>
-    <section class="multiple-items clients-list">
-        <div v-for="item in client">
-            <img :src="item.url" />
+<div>
+    <div class="block-counter">
+        <div class="counter">
+            <div class="counter benefits__inner">
+                <div class="numeral-detal"><h2>БОЛЕЕ</h2></div>
+                <div class="numeral benefits__number numbersOne">0</div>
+                <div class="numeral-detal"><h2>{{ stat[0].text }}</h2></div>
+            </div>
         </div>
-    </section>
+        <div class="block-border-counter"></div>
+        <div class="counter">
+            <div class="numeral lines benefits__number numbersTwo">{{ date - 1938}}</div>
+            <div class="numeral-detal"><h2>{{ ageCompanyTxt }}</h2></div>
+        </div>
+        <div class="block-border-counter"></div>
+        <div class="counter">
+            <div class="numeral-detal"><h2>БОЛЕЕ</h2></div>
+            <div class="numeral benefits__number numbersThree">{{ stat[1].number }}</div>
+            <div class="numeral-detal"><h2>{{ stat[1].text }}</h2></div>
+        </div>
+    </div>
 </div>
 
-<div id="contact" class="block contacts">
-	<div class="title-block">
-		<h1>{{ contact[0].mainTitle }}</h1>
-	</div>
-	<div class="border-bottom-title"></div>
-	<div class="map-block">
-		<iframe class="iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2135.476580426758!2d39.87244051610277!3d57.64038515230752!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b2916fd18e267d%3A0x65d18492882ca52!2z0KHQvtCy0LXRgtGB0LrQsNGPINGD0LsuLCA2OSwg0K_RgNC-0YHQu9Cw0LLQu9GMLCDQr9GA0L7RgdC70LDQstGB0LrQsNGPINC-0LHQuy4sIDE1MDAwMw!5e0!3m2!1sru!2sru!4v1602061981456!5m2!1sru!2sru" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-	</div>
-	<section class="contacts-list">
-		<article class="contacts-block">
-			<div class="address">
-				<h1>{{ contact[0].title }}</h1><br /> 
-				<p>{{ contact[0].addressCompany }} <br /><br /> {{ contact[0].numberCompany }} <br /><br /> {{ contact[0].emailCompany }}</p>
-			</div>
-            <!--<div class="detail-contacts">-->
+    <div id="project" class="block project">
+        <div class="title-block">
+            <h1>{{ project[0].mainTitle }}</h1>
+        </div>
+        <div class="border-bottom-title"></div>
+        <section class="project-list">
+
+            @*/////////*@
+            <div class="project-item" :projectId="item.projectId" v-for="item in project" v-on:click="onGetAllImgProject">
+                <a class="fancybox" data-fancybox="fancyboxProject" :href="item.url" :id="item.certId">
+                    <img :src="item.url" />
+                </a>
+            </div>
+            @*/////////*@
+
+        </section>
+        @*<a class="btn-detail" href="https://localhost:44349/project-details">{{ project[0].buttonText }}</a>*@
+        <a class="btn-detail" href="https://devmyprojects24.xyz/project-details">{{ project[0].buttonText }}</a>
+    </div>
+
+    <div id="client" class="block clients">
+        <div class="title-block">
+            <h1>{{ client[0].mainTitle }}</h1>
+        </div>
+        <div class="border-bottom-title"></div>
+        <section class="multiple-items clients-list">
+            <div v-for="item in client">
+                <img :src="item.url" />
+            </div>
+        </section>
+    </div>
+
+    <div id="contact" class="block contacts">
+        <div class="title-block">
+            <h1>{{ contact[0].mainTitle }}</h1>
+        </div>
+        <div class="border-bottom-title"></div>
+        <div class="map-block">
+            <iframe class="iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2135.476580426758!2d39.87244051610277!3d57.64038515230752!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b2916fd18e267d%3A0x65d18492882ca52!2z0KHQvtCy0LXRgtGB0LrQsNGPINGD0LsuLCA2OSwg0K_RgNC-0YHQu9Cw0LLQu9GMLCDQr9GA0L7RgdC70LDQstGB0LrQsNGPINC-0LHQuy4sIDE1MDAwMw!5e0!3m2!1sru!2sru!4v1602061981456!5m2!1sru!2sru" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+        </div>
+        <section class="contacts-list">
+            <article class="contacts-block">
+                <div class="address">
+                    <h1>{{ contact[0].title }}</h1><br />
+                    <p>{{ contact[0].addressCompany }} <br /><br /> {{ contact[0].numberCompany }} <br /><br /> {{ contact[0].emailCompany }}</p>
+                </div>
+                <!--<div class="detail-contacts">-->
                 @*<a class="btn-detail" href="https://localhost:44349/contact-details">{{ contact[0].buttonText }}</a>*@
                 <!--<a class="btn-detail" href="https://devmyprojects24.xyz/contact-details">{{ contact[0].buttonText }}</a>
-            </div>-->
-		</article>
-	</section>
-</div>
-<div id="chatroom" class="block-chat">
-    <button class="toggle-btn" v-on:click="toggleChat">Напишите нам!</button>
-    <div class="main-block-chat main-block-chat-hide">
-        <div id="notifyBlock" class="block-msg">
-            <div v-for="item in arrMsgChat" :data-id="item.isAdmin">{{ item.message }}
-                <p>{{ item.created }}</p>
-			</div>
-        </div>
-        <div class="block-send-msg">
-            <input type="text" id="msgChat" class="input-chat"/>
-            <button id="sendBtn" class="send-msg-btn" v-on:click="checedSendMsg">
-                <img src="~/img/paper-plane.png" />
-			</button>
-		</div>
+                </div>-->
+            </article>
+        </section>
     </div>
-</div>
+    <div id="chatroom" class="block-chat">
+        <button class="toggle-btn" v-on:click="toggleChat">Напишите нам!</button>
+        <div class="main-block-chat main-block-chat-hide">
+            <div id="notifyBlock" class="block-msg">
+                <div v-for="item in arrMsgChat" :data-id="item.isAdmin">
+                    {{ item.message }}
+                    <p>{{ item.created }}</p>
+                </div>
+            </div>
+            <div class="block-send-msg">
+                <input type="text" id="msgChat" class="input-chat" />
+                <button id="sendBtn" class="send-msg-btn" v-on:click="checedSendMsg">
+                    <img src="~/img/paper-plane.png" />
+                </button>
+            </div>
+        </div>
+    </div>
