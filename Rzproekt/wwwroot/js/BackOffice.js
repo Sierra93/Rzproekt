@@ -73,6 +73,10 @@ var back_office = new Vue({
             });
             self.onAllProject();
             self.getAllDialog();
+            function getMsg() {
+                self.getMsgList(sessvars.userId);
+            }
+            //setInterval(getMsg, 1000);
         })
     },
     methods: {
