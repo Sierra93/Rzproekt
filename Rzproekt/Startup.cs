@@ -58,7 +58,7 @@ namespace Rzproekt {
                 options.JsonSerializerOptions.Converters.Add(new IntToStringExtension()));
 
             services.AddCors(options => options.AddPolicy("ApiCorsPolicy", builder => {
-                builder.WithOrigins("https://publico-dev.xyz/", "https://publico-dev.xyz", "https://devmyprojects24.xyz/", "https://devmyprojects24.xyz").AllowAnyMethod().AllowAnyHeader();
+                builder.WithOrigins("https://publico-dev.xyz/", "https://publico-dev.xyz", "https://rzproekt.ru/", "https://rzproekt.ru").AllowAnyMethod().AllowAnyHeader();
             }));
 
             //services.Configure<FormOptions>(o =>  // currently all set to max, configure it to your needs!

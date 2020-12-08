@@ -18,8 +18,8 @@ var back_office = new Vue({
             filesContactAdd: '',
             date: new Date().getFullYear(),
             notify: '',
-            urlApi: 'https://localhost:44349',
-            //urlApi: 'https://devmyprojects24.xyz',
+            //urlApi: 'https://localhost:44349',
+            urlApi: 'https://rzproekt.ru',
             listRequests: [
                 '/api/header/get-header',
                 '/api/order/get-orders',
