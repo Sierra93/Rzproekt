@@ -13,8 +13,8 @@ var appHome = new Vue({
         smoothScrollArr: [],
         countIdCert: 1,
         animStat: true,
-        urlApi: 'https://localhost:44349',
-        //urlApi: 'https://devmyprojects24.xyz',
+        //urlApi: 'https://localhost:44349',
+        urlApi: 'https://rzproekt.ru',
         urlAboutMain: '',
         listRequests: [
             '/api/header/get-header',
