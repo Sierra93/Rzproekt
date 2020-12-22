@@ -128,7 +128,7 @@ var back_office = new Vue({
             let sUrl = self.$data.urlApi + '/api/message/remove-dialog';
 
             try {
-                axios.put(sUrl + '?id=' + DialogId)
+                axios.get(sUrl + '/' + DialogId)
                     .then((response) => {
                         self.getAllDialog();
                     })
@@ -396,7 +396,7 @@ var back_office = new Vue({
             let idCert = +e.target.getAttribute('idCustom');
 
             try {
-                axios.put(sUrl + '?id=' + idCert)
+                axios.get(sUrl + '/' + idCert)
                     .then((response) => {
                         self.onSearthCert();
                         self.notyfi(true);
@@ -462,7 +462,7 @@ var back_office = new Vue({
             let idAwards = +e.target.getAttribute('idCustom');
 
             try {
-                axios.put(sUrl + '?id=' + idAwards)
+                axios.get(sUrl + '/' + idAwards)
                     .then((response) => {
                         self.onSearthAwards();
                         self.notyfi(true);
@@ -650,9 +650,8 @@ var back_office = new Vue({
             let idCert = +e.target.getAttribute('idCustom');
 
             try {
-                axios.put(sUrl + '?id=' + idCert)
+                axios.get(sUrl + '/' + idCert)
                     .then((response) => {
-                        self.onSearthCert();
                         self.notyfi(true);
 
                     })
@@ -755,11 +754,9 @@ var back_office = new Vue({
             let sUrl = self.$data.urlApi + '/api/back-office/remove-client';
             let idService = +e.target.getAttribute('idCustom') - 1;
             let ClientId = idService + 1;
-            let oData = {
-                ClientId
-            };
+
             try {
-                axios.put(sUrl, oData)
+                axios.get(sUrl + '/' + ClientId)
                     .then((response) => {
                         self.notyfi(true);
 
@@ -906,7 +903,7 @@ var back_office = new Vue({
             let idContact = +e.target.getAttribute('idCustom');
 
             try {
-                axios.put(sUrl + '?id=' + idContact)
+                axios.get(sUrl + '/' + idContact)
                     .then((response) => {
                         self.onSearthContacts();
                         self.notyfi(true);
