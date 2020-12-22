@@ -170,8 +170,8 @@ namespace Rzproekt.Controllers {
         /// <summary>
         /// Метод удаляет проект.
         /// </summary>
-        [HttpPut, Route("remove-project")]
-        public async Task<IActionResult> RemoveProject([FromQuery] int id) {
+        [HttpHead, Route("remove-project/{id}")]
+        public async Task<IActionResult> RemoveProject([FromRoute] int id) {
             ProjectBase projectBase = new ProjectService(_db);
             await projectBase.RemoveProject(id);
 
