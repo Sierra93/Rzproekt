@@ -23,7 +23,9 @@ namespace Rzproekt.Core {
         /// <param name="filesService"></param>
         /// <param name="jsonString"></param>
         /// <returns></returns>
-        public abstract Task ChangeAboutInfo(IFormCollection filesAbout, IFormCollection filesDopAbout, string jsonString);
+        public abstract Task ChangeMainAboutInfo(IFormCollection filesAbout, string jsonString);
+
+        public abstract Task ChangeDetailAboutInfo(IFormCollection filesDopAbout, string jsonString);
 
         /// <summary>
         /// Метод добавляет сертификаты.
