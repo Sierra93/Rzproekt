@@ -300,32 +300,60 @@ var back_office = new Vue({
             let sUrl = self.$data.urlApi + '/api/back-office/change-about';
             let MainTitle = $('.about-Maintitle')[0].value;
             let Text = $('.about-text')[0].value;
-            let detMainTitle = $('.about-Det-Maintitle')[0].value;
-            let detTitle = $('.about-DetTitle')[0].value;
-            let detText = $('.about-detail-text')[0].value;
-            //let mainImg = !!e.target.getAttribute('id');
+            
             let idService = +e.target.getAttribute('idCustom') - 1;
             let Id = idService + 1;
             let formData = new FormData();
             let oData = {
                 Id,
                 MainTitle,
-                Text,
-                detMainTitle,
-                detTitle,
-                detText,
-                //mainImg
+                Text
             };
             if (!!this.aboutMainImg) {
                 formData.set('filesAbout', this.aboutMainImg[0].files[0]);
             } else {
                 this.aboutMainImg = '';
             }
+            
+            formData.set('jsonString', JSON.stringify(oData));
+
+            try {
+                axios.post(sUrl, formData)
+                    .then((response) => {
+                        self.notyfi(true);
+
+                    })
+                    .catch((XMLHttpRequest) => {
+                        self.notyfi(false);
+                    });
+            }
+            catch (ex) {
+                throw new Error(ex);
+            }
+        },
+        onChangeDetAbout(e) {
+            let self = this;
+            let sUrl = self.$data.urlApi + '/api/back-office/change-detail-about';
+            let detMainTitle = $('.about-Det-Maintitle')[0].value;
+            let detTitle = $('.about-DetTitle')[0].value;
+            let detText = $('.about-detail-text')[0].value;
+            let idService = +e.target.getAttribute('idCustom') - 1;
+            let Id = idService + 1;
+            let formData = new FormData();
+
+            let oData = {
+                Id,
+                detMainTitle,
+                detTitle,
+                detText
+            };
+
             if (!!this.filesDetAbout) {
                 formData.set('filesDopAbout', this.filesDetAbout);
             } else {
                 this.filesDetAbout = '';
             }
+
             formData.set('jsonString', JSON.stringify(oData));
 
             try {

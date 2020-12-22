@@ -140,10 +140,7 @@
                         </fieldset>
                         <button v-bind:idCustom="about.Id" id="mainImg" v-on:click="onChangeAbout">Сохранить</button>
 
-                        <fieldset>
-                            <legend>Кнопка подробной информации</legend>
-                            <input type="text" id="name" v-bind:value="about[0].buttonText">
-                        </fieldset>
+                       
                         <button v-bind:idCustom="about.Id" v-on:click="onChangeAbout">Сохранить</button>
                     </form>
 
@@ -165,7 +162,7 @@
                                 <textarea class="about-detail-text" draggable="false" v-bind:value="about[0].dopText"></textarea>@* ДОП ТЕКСТ *@
                             </label>
                         </fieldset>
-                        <button v-bind:idCustom="about.Id" v-on:click="onChangeAbout">Сохранить</button>
+                        <button v-bind:idCustom="about.Id" v-on:click="onChangeDetAbout">Сохранить</button>
                     </form>
 
                     <form v-on:submit.prevent class="form-back_office">
