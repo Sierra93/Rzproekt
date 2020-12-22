@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Rzproekt.Core;
+using Rzproekt.Core.Consts;
 using Rzproekt.Core.Data;
 using Rzproekt.Models;
 using System;
@@ -329,7 +330,7 @@ namespace Rzproekt.Services {
         public async override Task<object> GetUserMessages(string userId) {
             try {
                 if (string.IsNullOrEmpty(userId)) {
-                    throw new ArgumentNullException();
+                    return Text.EMPTY_USER_ID;
                 }
 
                 // Найти участника диалога.

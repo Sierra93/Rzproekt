@@ -37,6 +37,45 @@ namespace Rzproekt.Services {
         /// <param name="filesService"></param>
         /// <param name="jsonString"></param>
         /// <returns></returns>
+        //public async override Task ChangeAboutInfo(IFormCollection filesAbout, IFormCollection filesDopAbout, string jsonString) {
+        //    try {
+        //        JObject jsonObject = JObject.Parse(jsonString);
+        //        bool detailImage = false;
+        //        string mainTitle = jsonObject["MainTitle"].ToString();
+        //        string sText = jsonObject["Text"].ToString();
+        //        string detailMainTitle = jsonObject["detMainTitle"].ToString();
+        //        string detailTitle = jsonObject["detTitle"].ToString();
+        //        string detailText = jsonObject["detText"].ToString();
+        //        bool mainImage = false;
+
+        //        // Сохранять изображение для дополнительной страницы.
+        //        if (jsonObject["detImg"] != null) {
+        //            detailImage = Convert.ToBoolean(jsonObject["detImg"].ToString());
+        //        }
+
+        //        // Сохранять изображение для главной страницы.
+        //        if (jsonObject["mainImg"] != null) {
+        //            mainImage = Convert.ToBoolean(jsonObject["mainImg"].ToString());
+        //        }
+
+        //        bool isEmpty = isEmptyStringInfo(mainTitle, sText, detailMainTitle, detailTitle, detailText);
+
+        //        if (!isEmpty) {
+        //            throw new ArgumentNullException();
+        //        }
+
+        //        await AddAboutInfo(mainTitle, sText, detailMainTitle, detailTitle, detailText, mainImage, detailImage, filesAbout, filesDopAbout);
+        //    }
+
+        //    catch (ArgumentNullException ex) {
+        //        throw new ArgumentNullException("Не все поля заполнены", ex.Message.ToString());
+        //    }
+
+        //    catch (Exception ex) {
+        //        throw new Exception(ex.Message.ToString());
+        //    }
+        //}
+
         public async override Task ChangeAboutInfo(IFormCollection filesAbout, IFormCollection filesDopAbout, string jsonString) {
             try {
                 JObject jsonObject = JObject.Parse(jsonString);

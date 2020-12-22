@@ -13,8 +13,8 @@ var appHome = new Vue({
         smoothScrollArr: [],
         countIdCert: 1,
         animStat: true,
-        //urlApi: 'https://localhost:44349',
-        urlApi: 'https://rzproekt.ru',
+        urlApi: 'https://localhost:44349',
+        //urlApi: 'https://rzproekt.ru',
         urlAboutMain: '',
         listRequests: [
             '/api/header/get-header',
@@ -41,8 +41,9 @@ var appHome = new Vue({
         contact: [],
         contactLead: [],
         footer: [],
-        arrMsgChat: [],
-        dialogActiveId: ''
+        arrMsgChat: [{message: 'Оставьте сообщение здесь или отправьте на mail@rzproekt.ru' }],
+        dialogActiveId: '',
+        userId: ""
     },
     created() {
         //this.getUserId();
@@ -354,7 +355,7 @@ var appHome = new Vue({
             element[0].classList.toggle("main-block-chat-hide")
         },
         checedUserId() {
-            let userId = sessvars.userId;
+            let userId = appHome.$data.userId;
             if (userId) {
                 this.getMsgList(userId);
             } else {
@@ -363,7 +364,7 @@ var appHome = new Vue({
 
         },
         checedSendMsg() {
-            let userId = sessvars.userId;
+            let userId = appHome.$data.userId;
             this.setUserId(userId);
         },
         setUserId(UserCode) {
@@ -418,6 +419,9 @@ var appHome = new Vue({
                             });
                             self.$data.arrMsgChat = response.data.aMessages;
                         }
+                        else {
+                            self.$data.arrMsgChat.message = response.data;
+                        }
 
                     })
                     .catch((XMLHttpRequest) => {
@@ -429,16 +433,20 @@ var appHome = new Vue({
             }
         },
         getUserId() {
-            var result = '';
+            let result = '';
             let position = '';
-            var words = '0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM';
-            var max_position = words.length - 1;
+            let words = '0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM';
+            let max_position = words.length - 1;
+
             for (let i = 0; i < 50; ++i) {
                 position = Math.floor(Math.random() * max_position);
                 result = result + words.substring(position, position + 1);
             }
-            sessvars.userId = result;
-            this.getMsgList(result);
+            //sessvars.userId = result; aa[aa.length - 1].substr(1) document.cookie.split(';')
+            let cookie = document.cookie.split(';');
+            cookie = cookie[cookie.length - 1].substr(1);
+            appHome.$data.userId = cookie;
+            this.getMsgList(cookie);
         },
         onGetAllImgProject(e) {
             let self = this;

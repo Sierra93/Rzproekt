@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using Rzproekt.Core;
+using Rzproekt.Core.Consts;
 using Rzproekt.Core.Data;
 using Rzproekt.Models;
 using Rzproekt.Services;
@@ -74,7 +75,7 @@ namespace Rzproekt.Controllers {
         /// Метод получает диалог с сообщениями по UserId.
         /// </summary>
         [HttpPost, Route("user-messages")]
-        public async Task<IActionResult> GetUserMessages([FromBody] DialogMember dialogMember) {
+        public async Task<IActionResult> GetUserMessages([FromBody] DialogMember dialogMember) {           
             MessageBase messageBase = new MessageService(_db);
             var aMessages = await messageBase.GetUserMessages(dialogMember.UserId);
 
