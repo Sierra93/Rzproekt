@@ -92,7 +92,7 @@ namespace Rzproekt.Controllers {
         /// Метод удаляет клиента.
         /// </summary>
         [HttpGet, Route("remove-client/{id}")]
-        public async Task<IActionResult> DeleteClient([FromQuery] int id) {
+        public async Task<IActionResult> DeleteClient([FromRoute] int id) {
             ClientBase clientBase = new ClientService(_db);
             await clientBase.DeleteClient(id);
 
@@ -138,7 +138,7 @@ namespace Rzproekt.Controllers {
         /// </summary>
         /// <returns></returns>
         [HttpGet, Route("remove-cert/{id}")]
-        public async Task<IActionResult> RemoveCert([FromQuery] int id) {
+        public async Task<IActionResult> RemoveCert([FromRoute] int id) {
             AboutBase cert = new AboutService(_db);
             await cert.RemoveCert(id);
 
@@ -193,7 +193,7 @@ namespace Rzproekt.Controllers {
         /// Метод удаляет награды.
         /// </summary>
         [HttpGet, Route("remove-award/{id}")]
-        public async Task<IActionResult> RemoveAward([FromQuery] int id) {
+        public async Task<IActionResult> RemoveAward([FromRoute] int id) {
             AboutBase award = new AboutService(_db);
             await award.RemoveAward(id);
 
@@ -237,7 +237,7 @@ namespace Rzproekt.Controllers {
         /// Метод удаляет награды.
         /// </summary>
         [HttpGet, Route("remove-lead/{id}")]
-        public async Task<IActionResult> RemoveLead([FromQuery] int id) {
+        public async Task<IActionResult> RemoveLead([FromRoute] int id) {
             ContactBase contact = new ContactService(_db);
             await contact.RemoveLead(id);
 
