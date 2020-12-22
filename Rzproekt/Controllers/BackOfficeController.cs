@@ -91,7 +91,7 @@ namespace Rzproekt.Controllers {
         /// <summary>
         /// Метод удаляет клиента.
         /// </summary>
-        [HttpPut, Route("remove-client")]
+        [HttpGet, Route("remove-client/{id}")]
         public async Task<IActionResult> DeleteClient([FromQuery] int id) {
             ClientBase clientBase = new ClientService(_db);
             await clientBase.DeleteClient(id);
@@ -125,7 +125,7 @@ namespace Rzproekt.Controllers {
         /// Метод удаляет все сертификаты.
         /// </summary>
         /// <returns></returns>
-        [HttpPut, Route("remove-certs")]
+        [HttpGet, Route("remove-certs")]
         public async Task<IActionResult> RemoveAllCerts() {
             AboutBase cert = new AboutService(_db);
             await cert.RemoveAllCerts();
@@ -137,7 +137,7 @@ namespace Rzproekt.Controllers {
         /// Метод удаляет сертификат.
         /// </summary>
         /// <returns></returns>
-        [HttpPut, Route("remove-cert")]
+        [HttpGet, Route("remove-cert/{id}")]
         public async Task<IActionResult> RemoveCert([FromQuery] int id) {
             AboutBase cert = new AboutService(_db);
             await cert.RemoveCert(id);
@@ -192,7 +192,7 @@ namespace Rzproekt.Controllers {
         /// <summary>
         /// Метод удаляет награды.
         /// </summary>
-        [HttpPut, Route("remove-award")]
+        [HttpGet, Route("remove-award/{id}")]
         public async Task<IActionResult> RemoveAward([FromQuery] int id) {
             AboutBase award = new AboutService(_db);
             await award.RemoveAward(id);
@@ -236,7 +236,7 @@ namespace Rzproekt.Controllers {
         /// <summary>
         /// Метод удаляет награды.
         /// </summary>
-        [HttpPut, Route("remove-lead")]
+        [HttpGet, Route("remove-lead/{id}")]
         public async Task<IActionResult> RemoveLead([FromQuery] int id) {
             ContactBase contact = new ContactService(_db);
             await contact.RemoveLead(id);
