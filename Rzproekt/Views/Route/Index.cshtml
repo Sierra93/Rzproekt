@@ -75,11 +75,13 @@
         <section class="project-list">
 
             @*/////////*@
-            <div class="project-item" :projectId="item.projectId" v-for="item in project" v-on:click="onGetAllImgProject">
-                <a v-for="el in collectionimgProject" class="fancybox" data-fancybox="fancyboxProject" :href="el.url">
-                    <img :src="el.url" />
-                </a>
-            </div>
+			<div class="project-item" :projectId="item.projectId" v-for="item in project" v-on:click="onGetAllImgProject">
+				<a v-for="el in collectionimgProject" class="fancybox" data-fancybox="fancyboxProject" :href="el.url">
+
+				</a>
+
+				<img :src="item.url" />
+			</div>
             @*/////////*@
 
         </section>

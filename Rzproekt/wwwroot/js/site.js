@@ -91,9 +91,7 @@ var appHome = new Vue({
                     'slideShow',
                     'zoom',
                     'close'
-                ],
-                smallBtn: false,
-                toolbar: false
+                ]
             });
             $(".fancyboxProject").fancybox({
                 selector: '.imglist a:visible',
@@ -452,13 +450,14 @@ var appHome = new Vue({
         onGetAllImgProject(e) {
             let self = this;
             let sUrl = appHome.$data.urlApi + "/api/project/collection";
-            let ProjectId = +e.target.parentNode.parentNode.getAttribute('projectId');
-            $("button[data-fancybox-thumbs]").hide();
+            //let ProjectId = +e.target.parentNode.parentNode.getAttribute('projectId');
+            let ProjectId = +e.currentTarget.getAttribute('projectId');            
 
             try {
                 axios.get(sUrl + '/' + ProjectId)
                     .then((response) => {
                         console.log("ok");
+                        $("button[data-fancybox-thumbs]").hide();
                         self.$data.collectionimgProject = response.data;
                     })
                     .catch((XMLHttpRequest) => {
