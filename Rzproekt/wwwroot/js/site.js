@@ -442,7 +442,7 @@ var appHome = new Vue({
                 position = Math.floor(Math.random() * max_position);
                 result = result + words.substring(position, position + 1);
             }
-            //sessvars.userId = result; aa[aa.length - 1].substr(1) document.cookie.split(';')
+            document.cookie = result;
             let cookie = document.cookie.split(';');
             cookie = cookie[cookie.length - 1].substr(1);
             appHome.$data.userId = cookie;

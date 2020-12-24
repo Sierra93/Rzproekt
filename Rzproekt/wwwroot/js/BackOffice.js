@@ -86,6 +86,9 @@ var back_office = new Vue({
             try {
                 axios.post(sUrl)
                     .then((response) => {
+                        response.data.forEach(function (el) {
+                            el.created = self.formatDateTime(el.created);
+                        });
                         self.$data.arrDialogChat = response.data;
                     })
                     .catch((XMLHttpRequest) => {
@@ -111,6 +114,9 @@ var back_office = new Vue({
             try {
                 axios.post(sUrl, oData)
                     .then((response) => {
+                        response.data.forEach(function (el) {
+                            el.created = self.formatDateTime(el.created);
+                        });
                         self.$data.arrMsgChat = response.data;
                         self.$data.dialogActiveId = DialogId;
                     })
