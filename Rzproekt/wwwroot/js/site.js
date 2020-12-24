@@ -11,6 +11,7 @@ var appHome = new Vue({
         aboutDetailTxtTextarea: '',
         ageCompanyTxt: '',
         smoothScrollArr: [],
+        collectionimgProject: [],
         countIdCert: 1,
         animStat: true,
         urlApi: 'https://localhost:44349',
@@ -457,7 +458,7 @@ var appHome = new Vue({
                 axios.get(sUrl + '/' + ProjectId)
                     .then((response) => {
                         console.log("ok");
-                        self.$data.arrMsgChat = response.data.aMessages;
+                        self.$data.collectionimgProject = response.data;
                     })
                     .catch((XMLHttpRequest) => {
                         console.log(XMLHttpRequest,"error");
