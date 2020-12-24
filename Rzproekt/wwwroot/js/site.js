@@ -450,13 +450,11 @@ var appHome = new Vue({
         },
         onGetAllImgProject(e) {
             let self = this;
-            let sUrl = appHome.$data.urlApi + "/api/project/get-project";
-            let ProjectId = e.target.parentNode.getAttribute('projectId');
-            let oData = {
-                ProjectId
-            }
+            let sUrl = appHome.$data.urlApi + "/api/project/collection";
+            let ProjectId = +e.target.parentNode.parentNode.getAttribute('projectId');
+
             try {
-                axios.post(sUrl, oData)
+                axios.get(sUrl + '/' + ProjectId)
                     .then((response) => {
                         console.log("ok");
                         self.$data.arrMsgChat = response.data.aMessages;
