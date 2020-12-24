@@ -76,8 +76,8 @@
 
             @*/////////*@
             <div class="project-item" :projectId="item.projectId" v-for="item in project" v-on:click="onGetAllImgProject">
-                <a class="fancybox" data-fancybox="fancyboxProject" :href="item.url" :id="item.certId">
-                    <img :src="item.url" />
+                <a v-for="el in collectionimgProject" class="fancybox" data-fancybox="fancyboxProject" :href="el.url">
+                    <img :src="el.url" />
                 </a>
             </div>
             @*/////////*@
