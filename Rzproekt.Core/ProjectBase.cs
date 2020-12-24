@@ -47,5 +47,12 @@ namespace Rzproekt.Core {
         /// </summary>
         /// <returns></returns>
         public abstract Task<IList<ProjectDetailDto>> GetProject(int projectId);
+
+        /// <summary>
+        /// Метод выводит фото проекта.
+        /// </summary>
+        /// <param name="projectId"></param>
+        /// <returns></returns>
+        public abstract Task<IEnumerable> GetProjectPhotos(int projectId);
     }
 }

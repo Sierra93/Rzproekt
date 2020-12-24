@@ -50,5 +50,15 @@ namespace Rzproekt.Controllers {
 
             return Ok(aProjects);
         }
+
+        /// <summary>
+        /// Метод выводит фото проекта.
+        /// </summary>
+        [HttpGet, Route("collection/{id}")]
+        public async Task<IActionResult> GetProjectPhotos([FromRoute] int id) {
+            ProjectBase projectBase = new ProjectService(_db);
+
+            return Ok(await projectBase.GetProjectPhotos(id));
+        }
     }
 }
