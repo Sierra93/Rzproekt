@@ -90,7 +90,6 @@ var appHome = new Vue({
                 buttons: [
                     'slideShow',
                     'zoom',
-                    'thumbs',
                     'close'
                 ],
                 smallBtn: false,
@@ -101,11 +100,8 @@ var appHome = new Vue({
                 buttons: [
                     'slideShow',
                     'zoom',
-                    'thumbs',
-                    'close'                    
-                ],
-                smallBtn: false,
-                toolbar: false
+                    'close'
+                ]
             });
             $('.multiple-items').slick({
                 dots: true,
@@ -456,8 +452,8 @@ var appHome = new Vue({
         onGetAllImgProject(e) {
             let self = this;
             let sUrl = appHome.$data.urlApi + "/api/project/collection";
-            //let ProjectId = +e.target.parentNode.parentNode.getAttribute('projectId');
-            let ProjectId = +e.target.getAttribute("projectId");
+            let ProjectId = +e.target.parentNode.parentNode.getAttribute('projectId');
+            $("button[data-fancybox-thumbs]").hide();
 
             try {
                 axios.get(sUrl + '/' + ProjectId)
