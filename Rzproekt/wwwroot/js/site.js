@@ -74,7 +74,7 @@ var appHome = new Vue({
                 self.getMsgList(sessvars.userId);
             }
             setInterval(getMsg, 1000);
-            
+
         })
     },
     methods: {
@@ -93,7 +93,23 @@ var appHome = new Vue({
                     'close'
                 ]
             });
-            $(".fancyboxProject").fancybox({
+            $("[data-fancybox='fancyboxProject1']").fancybox({
+                selector: '.imglist a:visible',
+                buttons: [
+                    'slideShow',
+                    'zoom',
+                    'close'
+                ]
+            });
+            $("[data-fancybox='fancyboxProject2']").fancybox({
+                selector: '.imglist a:visible',
+                buttons: [
+                    'slideShow',
+                    'zoom',
+                    'close'
+                ]
+            });
+            $("[data-fancybox='fancyboxProject3']").fancybox({
                 selector: '.imglist a:visible',
                 buttons: [
                     'slideShow',
@@ -450,14 +466,14 @@ var appHome = new Vue({
         onGetAllImgProject(e) {
             let self = this;
             let sUrl = appHome.$data.urlApi + "/api/project/collection";
-            //let ProjectId = +e.target.parentNode.parentNode.getAttribute('projectId');
             let ProjectId = +e.currentTarget.getAttribute('projectId');            
 
             try {
                 axios.get(sUrl + '/' + ProjectId)
                     .then((response) => {
                         console.log("ok");
-                        $("button[data-fancybox-thumbs]").hide();
+                        //$("button[data-fancybox-thumbs]").hide();
+                        //self.uniteDatePrj(response.data);
                         self.$data.collectionimgProject = response.data;
                     })
                     .catch((XMLHttpRequest) => {
@@ -468,6 +484,18 @@ var appHome = new Vue({
                 throw new Error(ex);
             }
         },
+        //uniteDatePrj(arrImgPrj) {
+        //    let self = this;
+        //    let arrPrj = self.$data.project;
+        //    let collId = arrImgPrj[0].projectId;
+
+        //    for (let el of arrPrj) {
+        //        if (el.projectId === collId) {
+        //            el.arrImgProject = arrImgPrj.url;
+        //            console.log('arrPrj', arrPrj)
+        //        }
+        //    }
+        //},
         returnMain() {
             let target = document.referrer.split('/')[3];
             switch (target) {

@@ -75,13 +75,30 @@
         <section class="project-list">
 
             @*/////////*@
-			<div class="project-item" :projectId="item.projectId" v-for="item in project" v-on:click="onGetAllImgProject">
-				<a v-for="el in collectionimgProject" class="fancybox" data-fancybox="fancyboxProject" :href="el.url">
+            <div class="project-item" :projectId="project[0].projectId" v-on:click="onGetAllImgProject">
 
-				</a>
+                <a v-for="item in collectionimgProject" class="fancybox" data-fancybox="fancyboxProject1" data-caption="Caption #1" :href="item.url">
 
-				<img :src="item.url" />
-			</div>
+                </a>
+                <img :src="project[0].url" />
+
+            </div>
+            <div class="project-item" :projectId="project[1].projectId" v-on:click="onGetAllImgProject">
+
+                <a v-for="item in collectionimgProject" class="fancybox" data-fancybox="fancyboxProject2" data-caption="Caption #2" :href="item.url">
+
+                </a>
+                <img :src="project[1].url" />
+            </div>
+            <div class="project-item" :projectId="project[2].projectId" >
+
+                @*<a v-for="item in collectionimgProject" class="fancybox" data-fancybox="fancyboxProject3" data-caption="Caption #3" :href="item.url">
+
+        </a>*@
+                <button v-on:click="onGetAllImgProject"><</button>
+                <img :src="project[2].url" />
+                <button >></button>
+            </div>
             @*/////////*@
 
         </section>
@@ -96,7 +113,7 @@
         <div class="border-bottom-title"></div>
         <section class="multiple-items clients-list">
             <div v-for="item in client">
-                <img :src="item.url" />
+                <img :src="item.url" style="width: 307px;"/>
             </div>
         </section>
     </div>
