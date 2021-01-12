@@ -71,6 +71,9 @@ var appHome = new Vue({
             appHome.$data.aboutTxtTextarea = document.getElementsByClassName("aboutTxtTextarea");
             appHome.$data.aboutDetailTxtTextarea = document.getElementsByClassName("aboutDetailTxtTextarea");
             function getMsg() {
+                let cookie = document.cookie.split(';');
+                cookie = cookie[cookie.length - 1].substr(1);
+                appHome.$data.userId = cookie;
                 self.getMsgList(document.cookie);
             }
             setInterval(getMsg, 1000);
