@@ -373,9 +373,10 @@ var appHome = new Vue({
             element[0].classList.toggle("main-block-chat-hide")
         },
         checedUserId() {
-            let userId = appHome.$data.userId;
-            if (userId) {
-                this.getMsgList(userId);
+            let cookie = document.cookie.split(';');
+            cookie = cookie[cookie.length - 1].substr(1);
+            if (cookie) {
+                this.getMsgList(cookie);
             } else {
                 this.getUserId();
             }
