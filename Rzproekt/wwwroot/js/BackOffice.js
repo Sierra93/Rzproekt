@@ -582,7 +582,7 @@ var back_office = new Vue({
         onChangeProject(e) {
             let self = this;
             let sUrl = self.$data.urlApi + '/api/back-office/change-project';
-            let targetProject = e.target.parentNode;
+            let targetProject = e.currentTarget.parentNode;
             let MainTitle = $('.project-menu-title')[0].value;
             let buttonText = $('.project-menu-buttonText')[0].value;
             let projectName = targetProject.getElementsByClassName('project-menu-title')[0].value;
