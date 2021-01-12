@@ -293,7 +293,7 @@
                                 <button :idCustom="item.projectId" v-on:click="onChangeProject">Сохранить</button>
                                 <button :idCustom="item.projectId" v-on:click="onDelProject" class="btm-back-del-client">Удалить</button>
                                 <label>На главную страницу
-                                    <input type="checkbox" name="chk" :value="item.isMain" :checked="" v-on:change="checkOnlyThreeProject" class="checkOnlyThreeProject" />
+                                    <input type="checkbox" name="chk" :value="item.isMain" checked v-on:change="checkOnlyThreeProject" class="checkOnlyThreeProject" />
                                 </label>
                             </fieldset>
                         </form>
