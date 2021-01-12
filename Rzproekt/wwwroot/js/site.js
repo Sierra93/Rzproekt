@@ -42,7 +42,7 @@ var appHome = new Vue({
         contact: [],
         contactLead: [],
         footer: [],
-        arrMsgChat: [{message: 'Оставьте сообщение здесь или отправьте на mail@rzproekt.ru' }],
+        arrMsgChat: [],
         dialogActiveId: '',
         userId: ""
     },
@@ -434,8 +434,10 @@ var appHome = new Vue({
                             });
                             self.$data.arrMsgChat = response.data.aMessages;
                         }
-                        else {
-                            self.$data.arrMsgChat.message = response.data;
+                        if (!!self.$data.arrMsgChat.length) {
+                            document.getElementById('helloMsg').style.display = 'none';
+                        } else {
+                            document.getElementById('helloMsg').style.display = 'block';
                         }
 
                     })

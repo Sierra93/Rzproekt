@@ -113,7 +113,7 @@
         <div class="border-bottom-title"></div>
         <section class="multiple-items clients-list">
             <div v-for="item in client">
-                <img :src="item.url" style="width: 307px;"/>
+                <img :src="item.url" style="width: 215px;"/>
             </div>
         </section>
     </div>
@@ -143,6 +143,9 @@
         <button class="toggle-btn" v-on:click="toggleChat">Напишите нам!</button>
         <div class="main-block-chat main-block-chat-hide">
             <div id="notifyBlock" class="block-msg">
+                <div id="helloMsg" data-id="False">
+                    Оставьте сообщение здесь или отправьте на <a href="mailto:mail@rzproekt.ru">mail@rzproekt.ru</a>
+                </div>
 				<div v-for="item in arrMsgChat" :data-id="item.isAdmin">
 					{{ item.message }}
 					<p>{{ item.created }}</p>
