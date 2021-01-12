@@ -653,7 +653,7 @@ var back_office = new Vue({
         onDelProject(e) {
             let self = this;
             let sUrl = self.$data.urlApi + '/api/back-office/remove-project';
-            let idCert = +e.target.getAttribute('idCustom');
+            let idCert = +e.currentTarget.getAttribute('idCustom');
 
             try {
                 axios.get(sUrl + '/' + idCert)
