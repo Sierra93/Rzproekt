@@ -74,7 +74,7 @@ var appHome = new Vue({
                 let cookie = document.cookie.split(';');
                 cookie = cookie[cookie.length - 1].substr(1);
                 appHome.$data.userId = cookie;
-                self.getMsgList(document.cookie);
+                self.getMsgList(cookie);
             }
             setInterval(getMsg, 1000);
 
