@@ -71,7 +71,7 @@ var appHome = new Vue({
             appHome.$data.aboutTxtTextarea = document.getElementsByClassName("aboutTxtTextarea");
             appHome.$data.aboutDetailTxtTextarea = document.getElementsByClassName("aboutDetailTxtTextarea");
             function getMsg() {
-                self.getMsgList(sessvars.userId);
+                self.getMsgList(document.cookie);
             }
             setInterval(getMsg, 1000);
 
