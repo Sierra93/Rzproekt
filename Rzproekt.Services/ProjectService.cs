@@ -28,7 +28,7 @@ namespace Rzproekt.Services {
         /// </summary>
         /// <returns></returns>
         public async override Task<IEnumerable> GetProjectsInfo() {
-            return await _db.Projects.Take(3).ToListAsync();
+            return await _db.Projects.Take(3).Where(p => p.IsMain.Equals("true")).ToListAsync();
         }
 
         /// <summary>
