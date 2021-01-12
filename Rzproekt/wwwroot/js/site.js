@@ -470,34 +470,30 @@ var appHome = new Vue({
             let sUrl = appHome.$data.urlApi + "/api/project/collection";
             let ProjectId = +e.currentTarget.getAttribute('projectId');            
 
+            //if (!self.$data.collectionimgProject.length) {
+            
             try {
                 axios.get(sUrl + '/' + ProjectId)
                     .then((response) => {
                         console.log("ok");
-                        //$("button[data-fancybox-thumbs]").hide();
-                        //self.uniteDatePrj(response.data);
+                        self.uniteDatePrj(response.data);
                         self.$data.collectionimgProject = response.data;
                     })
                     .catch((XMLHttpRequest) => {
-                        console.log(XMLHttpRequest,"error");
+                        console.log(XMLHttpRequest, "error");
                     });
             }
             catch (ex) {
                 throw new Error(ex);
             }
         },
-        //uniteDatePrj(arrImgPrj) {
-        //    let self = this;
-        //    let arrPrj = self.$data.project;
-        //    let collId = arrImgPrj[0].projectId;
-
-        //    for (let el of arrPrj) {
-        //        if (el.projectId === collId) {
-        //            el.arrImgProject = arrImgPrj.url;
-        //            console.log('arrPrj', arrPrj)
-        //        }
-        //    }
-        //},
+        uniteDatePrj(arrImgPrj) {
+            let obj = [ 
+                { url: "/img/CITROEN.jpg" },
+                { url: "/img/project-vimpel.jpg" },
+                { url: "/img/arhiv.jpg" }
+            ]
+         },
         returnMain() {
             let target = document.referrer.split('/')[3];
             switch (target) {
