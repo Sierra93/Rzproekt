@@ -617,7 +617,7 @@ var back_office = new Vue({
         // Добавление проектов
         onAddProject(e) {
             let self = this;
-            let targetProject = e.target.parentNode;
+            let targetProject = e.currentTarget.parentNode;
             let sUrl = self.$data.urlApi + '/api/back-office/add-project';
             let projectName = document.getElementById("nameProject").value;
             let projectDetail = document.getElementById("detailProject").value;
