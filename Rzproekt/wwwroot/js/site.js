@@ -406,6 +406,7 @@ var appHome = new Vue({
                             self.$data.arrMsgChat = response.data.aMessages;
                             self.$data.dialogActiveId = response.data.aDialogs.dialogId;
                             document.getElementById('msgChat').value = '';
+                            document.getElementById('helloMsg').style.display = 'none';
                         }
 
                     })
