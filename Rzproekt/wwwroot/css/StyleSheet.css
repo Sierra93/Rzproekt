@@ -210,15 +210,16 @@
   cursor: pointer; }
 
 .btnR-cert-carusel {
-  width: 28px;
-  position: absolute;
-  right: 0px;
-  background: transparent;
-  border: none;
-  height: 100%;
-  z-index: 5;
-  outline: none;
-  cursor: pointer; }
+    width: 37px;
+    position: absolute;
+    right: 0px;
+    background: transparent;
+    border: none;
+    height: 100%;
+    z-index: 5;
+    outline: none;
+    cursor: pointer;
+}
 
 .item-cert-hidden {
   visibility: hidden; }
