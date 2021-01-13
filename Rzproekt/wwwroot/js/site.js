@@ -520,7 +520,7 @@ var appHome = new Vue({
             if (!collImgPrj.length) {
                 self.onGetAllImgProject(idPrj);
                 return;
-            } else if (!(collImgPrj[0].id == idPrj)) {
+            } else if (!(collImgPrj[0].projectId == idPrj)) {
                 self.onGetAllImgProject(idPrj);
                 return;
             }
@@ -586,7 +586,7 @@ var appHome = new Vue({
                             if (numberStart <= numberFinishOne) {
                                 $('.numbersOne').text(numberStart);
                             } else { $('.numbersOne').text(numberFinishOne); };
-                        }, 100);
+                        }, 20);
                         setInterval(function () {
                             numberStart++;
                             if (numberStart <= numberFinishTwo) {
@@ -594,11 +594,11 @@ var appHome = new Vue({
                             } else { $('.numbersTwo').text(numberFinishTwo); };
                         }, 100);
                         setInterval(function () {
-                            numberStart++;
+                            numberStart+1000;
                             if (numberStart <= numberFinishThree) {
                                 $('.numbersThree').text(numberStart);
                             } else { $('.numbersThree').text(numberFinishThree); };
-                        }, 100);
+                        }, 20);
                     }
                 }
             });
