@@ -13,6 +13,7 @@ var appHome = new Vue({
         smoothScrollArr: [],
         collectionimgProject: [],
         countIdCert: 1,
+        countIdPrjImg: 0,
         animStat: true,
         urlApi: 'https://localhost:44349',
         //urlApi: 'https://rzproekt.ru',
@@ -47,7 +48,7 @@ var appHome = new Vue({
         userId: ""
     },
     created() {
-        //this.getUserId();
+
     },
 
     // После загрузки страницы вызывает функцию _getData для всех блоков сайта
@@ -473,16 +474,26 @@ var appHome = new Vue({
         onGetAllImgProject(e) {
             let self = this;
             let sUrl = appHome.$data.urlApi + "/api/project/collection";
-            let ProjectId = +e.currentTarget.getAttribute('projectId');            
-
-            //if (!self.$data.collectionimgProject.length) {
+            let ProjectId = e;
             
             try {
                 axios.get(sUrl + '/' + ProjectId)
                     .then((response) => {
                         console.log("ok");
-                        self.uniteDatePrj(response.data);
+                        //let obj = [
+                        //    {
+                        //        url: "/img/CITROEN.jpg",
+                        //        id: '21'
+                        //    },
+                        //    {
+                        //        url: "/img/project-vimpel.jpg",
+                        //        id: '21' },
+                        //    {
+                        //        url: "/img/arhiv.jpg",
+                        //        id: '21' }
+                        //]
                         self.$data.collectionimgProject = response.data;
+                        self.uniteDatePrj(e);
                     })
                     .catch((XMLHttpRequest) => {
                         console.log(XMLHttpRequest, "error");
@@ -492,12 +503,49 @@ var appHome = new Vue({
                 throw new Error(ex);
             }
         },
-        uniteDatePrj(arrImgPrj) {
-            let obj = [ 
-                { url: "/img/CITROEN.jpg" },
-                { url: "/img/project-vimpel.jpg" },
-                { url: "/img/arhiv.jpg" }
-            ]
+        uniteDatePrj(e) {
+            let self = this;
+            let idPrj, collPrj, collImgPrj, nav, count = self.$data.countIdPrjImg;
+            collImgPrj = self.$data.collectionimgProject;
+            collPrj = self.$data.project;
+
+            if (!!e.currentTarget) {
+                idPrj = +e.currentTarget.getAttribute('projectId');
+                nav = e.currentTarget.getAttribute('nav');
+            } else {
+                idPrj = e;
+                nav = "next"
+            }
+
+            if (!collImgPrj.length) {
+                self.onGetAllImgProject(idPrj);
+                return;
+            } else if (!(collImgPrj[0].id == idPrj)) {
+                self.onGetAllImgProject(idPrj);
+                return;
+            }
+
+            for (let i of collPrj) {
+                if (i.projectId == idPrj) {
+
+                    if (nav === 'next') {
+                        count++;
+                        if (count >= collImgPrj.length) {
+                            count = 0;
+                        }
+                        self.$data.countIdPrjImg = count;
+                    } else {
+                        count--;
+                        if (count < 0) {
+                            count = collImgPrj.length - 1;
+                        }
+                        self.$data.countIdPrjImg = count;
+                    }
+                    i.url = collImgPrj[count].url;
+                }
+            }
+
+
          },
         returnMain() {
             let target = document.referrer.split('/')[3];

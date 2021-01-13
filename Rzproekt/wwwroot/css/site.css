@@ -69,3 +69,27 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+
+.btn-left-slider-prj {
+    position: absolute;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    outline: none;
+    width: 3rem;
+    height: 100%;
+}
+
+.btn-right-slider-prj {
+    position: absolute;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    outline: none;
+    width: 3rem;
+    height: 100%;
+    right: 0;
+}
+.aboutDetalis-img {
+    max-width: 886px;
+}

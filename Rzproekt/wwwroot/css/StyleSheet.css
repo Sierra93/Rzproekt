@@ -786,7 +786,7 @@
     outline: none;
     color: white;
     background: firebrick;
-    padding: .5rem 5rem;
+    padding: .5rem 8rem;
     border-top-left-radius: 1rem;
     border-top-right-radius: 1rem;
     cursor: pointer; }
@@ -796,12 +796,13 @@
     background: white;
     transition: .5s; }
     .block-chat .main-block-chat .block-msg {
-      height: 85%;
-      width: 15rem;
-      display: flex;
-      flex-direction: column;
-      overflow: auto;
-      overflow-x: hidden; }
+        height: 85%;
+        width: 21.5rem;
+        display: flex;
+        flex-direction: column;
+        overflow: auto;
+        overflow-x: hidden;
+    }
       .block-chat .main-block-chat .block-msg div[data-id="True"] {
         margin: .4rem;
         padding: 1rem;
@@ -817,17 +818,18 @@
           color: #757575;
           bottom: 2px;
           left: 4px; }
-      .block-chat .main-block-chat .block-msg div[data-id="False"] {
-        margin: 0.4rem .4rem .4rem 5rem;
-        padding: 1rem;
-        background: #8cd284;
-        border-top-left-radius: 1rem;
-        border-top-right-radius: 1rem;
-        border-bottom-left-radius: 1rem;
-        text-align: right;
-        width: 50%;
-        align-items: flex-end;
-        position: relative; }
+        .block-chat .main-block-chat .block-msg div[data-id="False"] {
+            margin: 0.4rem .4rem .4rem 3.5rem;
+            padding: 1rem;
+            background: #8cd284;
+            border-top-left-radius: 1rem;
+            border-top-right-radius: 1rem;
+            border-bottom-left-radius: 1rem;
+            text-align: right;
+            width: 73%;
+            align-items: flex-end;
+            position: relative;
+        }
         .block-chat .main-block-chat .block-msg div[data-id="False"] p {
           position: absolute;
           font-size: 10px;
@@ -841,12 +843,14 @@
       display: flex;
       align-items: center;
       justify-content: center; }
-      .block-chat .main-block-chat .block-send-msg .input-chat {
-        border: none;
-        outline: none;
-        font-size: .9rem;
-        padding: .5rem .5rem 0 .5rem;
-        border-bottom: 1px solid #c7c7c7; }
+        .block-chat .main-block-chat .block-send-msg .input-chat {
+            border: none;
+            width: 15rem;
+            outline: none;
+            font-size: .9rem;
+            padding: .5rem .5rem 0 .5rem;
+            border-bottom: 1px solid #c7c7c7;
+        }
       .block-chat .main-block-chat .block-send-msg .send-msg-btn {
         border: none;
         background: white;
