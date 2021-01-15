@@ -577,26 +577,28 @@ var appHome = new Vue({
                 if (w_top + 500 >= e_top || w_height + w_top == d_height || e_height + e_top < w_height) {
                     if (appHome.$data.animStat) {
                         appHome.$data.animStat = false;
-                        var numberStart = 0;
+                        var numberStartTwo = 0;
+                        var numberStart = 470;
+                        var numberStartThree = 6920;
                         var numberFinishOne = appHome.$data.stat[0].number;
                         var numberFinishTwo = appHome.$data.stat[1].number;
                         var numberFinishThree = appHome.$data.stat[2].number;
                         setInterval(function () {
-                            numberStart++;
+                            ++numberStart;
                             if (numberStart <= numberFinishOne) {
                                 $('.numbersOne').text(numberStart);
                             } else { $('.numbersOne').text(numberFinishOne); };
                         }, 20);
                         setInterval(function () {
-                            numberStart++;
-                            if (numberStart <= numberFinishTwo) {
-                                $('.numbersTwo').text(numberStart);
+                            ++numberStartTwo;
+                            if (numberStartTwo <= numberFinishTwo) {
+                                $('.numbersTwo').text(numberStartTwo);
                             } else { $('.numbersTwo').text(numberFinishTwo); };
-                        }, 100);
+                        }, 20);
                         setInterval(function () {
-                            numberStart+1000;
-                            if (numberStart <= numberFinishThree) {
-                                $('.numbersThree').text(numberStart);
+                            ++numberStartThree;
+                            if (numberStartThree <= numberFinishThree) {
+                                $('.numbersThree').text(numberStartThree);
                             } else { $('.numbersThree').text(numberFinishThree); };
                         }, 20);
                     }
