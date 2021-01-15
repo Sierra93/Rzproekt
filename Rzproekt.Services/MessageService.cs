@@ -199,6 +199,20 @@ namespace Rzproekt.Services {
 
             if (oMember == null && !bAdmin) {
                 throw new ArgumentNullException("Участника диалога не найдено");
+                //MainInfoDialog dialog = new MainInfoDialog() {
+                //    Created = DateTime.Now
+                //};
+                //DialogMember member = new DialogMember() {
+                //    Joined = DateTime.Now,
+                //    UserId = userId
+                //};
+
+                //await _db.MainInfoDialogs.AddAsync(dialog);
+
+                //int newDialogId = await GetLastDialog();
+                //member.DialogId = newDialogId;
+                //await _db.DialogMembers.AddAsync(member);
+                //await _db.SaveChangesAsync();
             }
 
             if (bAdmin) {

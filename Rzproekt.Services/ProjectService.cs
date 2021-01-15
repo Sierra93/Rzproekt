@@ -28,7 +28,7 @@ namespace Rzproekt.Services {
         /// </summary>
         /// <returns></returns>
         public async override Task<IEnumerable> GetProjectsInfo() {
-            return await _db.Projects.Take(3).Where(p => p.IsMain.Equals("true")).ToListAsync();
+            return await _db.Projects.Where(p => p.IsMain.Equals("true")).Take(3).ToListAsync();
         }
 
         /// <summary>
@@ -246,7 +246,13 @@ namespace Rzproekt.Services {
 
                 ProjectDto oProject = await _db.Projects.Where(p => p.ProjectId == id).FirstOrDefaultAsync();
 
-                _db.Remove(oProject);
+                _db.Projects.Remove(oProject);
+
+                IList<ProjectDetailDto> aProjectsDetails = await _db.DetailProjects
+                    .Where(d => d.ProjectId == oProject.ProjectId)
+                    .ToListAsync();
+
+                _db.DetailProjects.RemoveRange(aProjectsDetails);
                 await _db.SaveChangesAsync();
             }
 
