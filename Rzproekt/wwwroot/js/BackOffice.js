@@ -998,7 +998,7 @@ var back_office = new Vue({
             try {
                 axios.post(sUrl, oData)
                     .then((response) => {
-                        if (response.data.access_token) window.location.href = self.$data.urlApi + '/back-office';
+                        if (response.data.access_token) window.location.href = self.$data.urlApi + response.data.url;
 
                     })
                     .catch((XMLHttpRequest) => {
