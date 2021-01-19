@@ -98,7 +98,8 @@ namespace Rzproekt.Controllers {
 
                 var response = new {
                     access_token = encodedJwt,
-                    username = isUser.Name
+                    username = isUser.Name,
+                    url = "/back-office"
                 };
 
                 return Ok(response);
