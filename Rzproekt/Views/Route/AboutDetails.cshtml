@@ -42,7 +42,19 @@
                         <article>
                             <h1>{{ about[0].dopTitle }}</h1>
                             <textarea class="aboutDetailTxtTextarea" readonly>{{ about[0].dopText }}</textarea>
-                            <div><img class="aboutDetalis-img" :src="about[0].dopUrl" alt="about" /></div>
+                            <div class="about-wrapper-img">
+                                <div>
+                                    <img class="aboutDetalis-img" :src="about[0].dopUrl" alt="about" />
+                                </div>
+                                <div class="wrapper-coll-min-img">
+                                    <div>
+                                        <img src="~/img/about-min.jpeg" />
+                                    </div>
+                                    <div>
+                                        <img src="~/img/about-min2.jpeg" />
+                                    </div>
+                                </div>
+                            </div>
                         </article>
                     </section>
                 </div>
