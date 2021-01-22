@@ -1057,6 +1057,7 @@ var back_office = new Vue({
                         if (response.data.aMessages) {
                             self.$data.arrMsgChat = response.data.aMessages;
                         }
+                        document.getElementById('msgChat').value = '';
 
                     })
                     .catch((XMLHttpRequest) => {

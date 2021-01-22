@@ -90,6 +90,6 @@ body {
     height: 100%;
     right: 0;
 }
-.aboutDetalis-img {
-    max-width: 886px;
+.about-wrapper-img img {
+    max-width: 890px;
 }

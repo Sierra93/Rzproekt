@@ -121,6 +121,13 @@ var appHome = new Vue({
                     'close'
                 ]
             });
+            $('.about-wrapper-img').slick({
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                arrows: false,
+                autoplay: true,
+                autoplaySpeed: 2000,
+            });
             $('.multiple-items').slick({
                 dots: true,
                 infinite: false,
