@@ -44,6 +44,7 @@ var appHome = new Vue({
         contactLead: [],
         footer: [],
         arrMsgChat: [],
+        ArrImgDetAbout: [],
         dialogActiveId: '',
         userId: ""
     },
@@ -67,6 +68,7 @@ var appHome = new Vue({
             }
             setTimeout(Carusel, 200);
             this.onAllProject();
+            self.getArrImgDetAbout();
             this.checedUserId();
             appHome.$data.blocksServices = document.getElementsByClassName("serviceTxt");
             appHome.$data.aboutTxtTextarea = document.getElementsByClassName("aboutTxtTextarea");
@@ -232,6 +234,19 @@ var appHome = new Vue({
             catch (ex) {
                 throw new Error(ex);
             }
+        },
+        getArrImgDetAbout() {
+            let self = this;
+            let sUrl = self.$data.urlApi + '/api/about/about-details';
+
+            axios.post(sUrl)
+                .then((response) => {
+                    self.$data.ArrImgDetAbout = response.data;
+                    console.log("success / getArrImgDetAbout", response);
+                })
+                .catch((XMLHttpRequest) => {
+                    self.notyfi(false);
+                });
         },
         onAllProject(e) {
             let self = this;
