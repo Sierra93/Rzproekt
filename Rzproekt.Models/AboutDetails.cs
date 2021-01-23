@@ -19,6 +19,9 @@ namespace Rzproekt.Models {
         [Column("about_id")]
         public int AboutId { get; set; }
 
+        [Column("block")]
+        public string Block { get; set; }
+
         public List<MultepleContextTable> MultepleContextTables { get; set; }
 
         public AboutDetails() {

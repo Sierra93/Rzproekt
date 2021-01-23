@@ -29,6 +29,13 @@ namespace Rzproekt.Controllers {
             return Ok(await aboutBase.GetAboutInfo());
         }
 
+        [HttpPost, Route("about-details")]
+        public async Task<IActionResult> GetAboutDetailsInfo() {
+            AboutBase aboutBase = new AboutService(_db);
+
+            return Ok(await aboutBase.GetAboutDetailsInfo());
+        }
+
         /// <summary>
         /// Метод ищет сертификат по тексту.
         /// </summary>

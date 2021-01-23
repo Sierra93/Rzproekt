@@ -27,27 +27,8 @@ namespace Rzproekt.Services {
         /// Метод получает все данные о нас.
         /// </summary>
         /// <returns></returns>
-        public async override Task<object> GetAboutInfo() {
-            try {
-                int aboudId = 4;
-
-                IEnumerable aUrlAbouts = await _db.AboutDetails
-                    .Where(a1 => a1.AboutId == aboudId)
-                    .ToListAsync();
-
-                IEnumerable aAbouts = await _db.Abouts.ToListAsync();
-
-                var resultObj = new {
-                    aAbouts,
-                    aUrls = aUrlAbouts
-                };
-
-                return resultObj;
-            }
-
-            catch (Exception ex) {
-                throw new Exception(ex.Message.ToString());
-            }
+        public async override Task<IEnumerable> GetAboutInfo() {
+            return await _db.Abouts.ToListAsync();
         }
 
         /// <summary>
@@ -461,6 +442,15 @@ namespace Rzproekt.Services {
         /// <returns></returns>
         public async override Task<IEnumerable> GetAwards() {
             return await _db.Awards.ToListAsync();
+        }
+
+        public async override Task<IEnumerable> GetAboutDetailsInfo() {
+            int aboutId = 4;
+
+            return await _db.AboutDetails
+                .Where(a => a.AboutId == aboutId)
+                .Select(a => a.DopUrl)
+                .ToListAsync();
         }
     }
 }
