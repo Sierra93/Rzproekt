@@ -46,6 +46,8 @@
 
                 <section class="projectDetalis-list">
                     <article v-for="item in arrProject">
+                        <button class="btn-left-slider-prj" :projectId="item.projectId" nav="prev" v-on:click="uniteDatePrj"></button>
+                        <button class="btn-right-slider-prj" :projectId="item.projectId" nav="next" v-on:click="uniteDatePrj"></button>
                         <img :src="item.url" alt="" />
                         <h3>{{ item.projectName }}</h3>
                         <textarea class="aboutDetailTxtTextarea" readonly>{{ item.projectDetail }}</textarea>

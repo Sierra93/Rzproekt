@@ -304,12 +304,14 @@
     flex-wrap: wrap;
     justify-content: center; }
     .projectDetalis .projectDetalis-list article {
-      background: #f7f5f5;
-      margin: 1rem;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      width: 25rem; }
+        background: #f7f5f5;
+        margin: 1rem;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        width: 25rem;
+    }
       .projectDetalis .projectDetalis-list article img {
         max-width: 25rem !important;
         width: 100%; }

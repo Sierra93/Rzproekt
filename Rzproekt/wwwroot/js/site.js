@@ -487,18 +487,6 @@ var appHome = new Vue({
                 axios.get(sUrl + '/' + ProjectId)
                     .then((response) => {
                         console.log("ok");
-                        //let obj = [
-                        //    {
-                        //        url: "/img/CITROEN.jpg",
-                        //        id: '21'
-                        //    },
-                        //    {
-                        //        url: "/img/project-vimpel.jpg",
-                        //        id: '21' },
-                        //    {
-                        //        url: "/img/arhiv.jpg",
-                        //        id: '21' }
-                        //]
                         self.$data.collectionimgProject = response.data;
                         self.uniteDatePrj(e);
                     })
@@ -515,6 +503,11 @@ var appHome = new Vue({
             let idPrj, collPrj, collImgPrj, nav, count = self.$data.countIdPrjImg;
             collImgPrj = self.$data.collectionimgProject;
             collPrj = self.$data.project;
+            let thisPage = document.URL.split('/')[3];
+
+            if (thisPage === "project-details") {
+                collPrj = self.$data.arrProject;
+            }
 
             if (!!e.currentTarget) {
                 idPrj = +e.currentTarget.getAttribute('projectId');
