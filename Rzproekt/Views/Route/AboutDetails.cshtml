@@ -42,13 +42,13 @@
                         <article>
                             <h1>{{ about[0].dopTitle }}</h1>
                             <textarea class="aboutDetailTxtTextarea" readonly>{{ about[0].dopText }}</textarea>
-                            <div class="about-wrapper-img">
+                            <div class="about-wrapper-img" v-for="item in about">
 
-                                    @*<img class="aboutDetalis-img" :src="about[0].dopUrl" alt="about" />  $('.single-item').slick();  *@
+                                   <img :src="item.dopUrl" alt="about" />
 
-                                    <img src="~/img/Фото 1_изм.jpg" />
+                                    @*<img src="~/img/Фото 1_изм.jpg" />
                                     <img src="~/img/about-min.jpeg" />
-                                    <img src="~/img/about-min2.jpeg" />
+                                    <img src="~/img/about-min2.jpeg" />*@
                                 
                             </div>
                         </article>
