@@ -243,6 +243,14 @@ var appHome = new Vue({
                 .then((response) => {
                     self.$data.ArrImgDetAbout = response.data;
                     console.log("success / getArrImgDetAbout", response);
+                    var pc = document.getElementById("pic_cntr");
+                    
+                    for (let i of response.data) {
+                        var pic = document.createElement("IMG");
+                        pic.src = i;
+                        pc.appendChild(pic);
+                    }
+                    
                 })
                 .catch((XMLHttpRequest) => {
                     self.notyfi(false);
