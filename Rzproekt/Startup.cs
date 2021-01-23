@@ -32,7 +32,7 @@ namespace Rzproekt {
 
             services.AddDbContext<ApplicationDbContext>(options =>
           options.UseSqlServer(
-              Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("Rzproekt")));
+              Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("Rzproekt").EnableRetryOnFailure()));
 
             services.AddCors();
             services.AddSignalR();

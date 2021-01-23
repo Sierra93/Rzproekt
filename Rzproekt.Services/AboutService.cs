@@ -27,8 +27,27 @@ namespace Rzproekt.Services {
         /// Метод получает все данные о нас.
         /// </summary>
         /// <returns></returns>
-        public async override Task<IEnumerable> GetAboutInfo() {
-            return await _db.Abouts.ToListAsync();
+        public async override Task<object> GetAboutInfo() {
+            try {
+                int aboudId = 4;
+
+                IEnumerable aUrlAbouts = await _db.AboutDetails
+                    .Where(a1 => a1.AboutId == aboudId)
+                    .ToListAsync();
+
+                IEnumerable aAbouts = await _db.Abouts.ToListAsync();
+
+                var resultObj = new {
+                    aAbouts,
+                    aUrls = aUrlAbouts
+                };
+
+                return resultObj;
+            }
+
+            catch (Exception ex) {
+                throw new Exception(ex.Message.ToString());
+            }
         }
 
         /// <summary>

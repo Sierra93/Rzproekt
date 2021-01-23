@@ -15,7 +15,7 @@ namespace Rzproekt.Core {
         /// Метод получает все данные о нас.
         /// </summary>
         /// <returns></returns>
-        public abstract Task<IEnumerable> GetAboutInfo();
+        public abstract Task<object> GetAboutInfo();
 
         /// <summary>
         /// Метод изменяет информацию о нас.
