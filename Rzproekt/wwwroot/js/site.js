@@ -271,7 +271,7 @@ var appHome = new Vue({
                         pc.appendChild(pic);
                         countImg++;
                     } else {
-                        pic.src = data[0];
+                        pic.src = data[2];
                         pc.appendChild(pic);
                         countImg++;
                     }
