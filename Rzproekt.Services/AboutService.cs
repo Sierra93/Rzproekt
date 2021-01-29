@@ -78,24 +78,35 @@ namespace Rzproekt.Services {
 
         public async override Task ChangeDetailAboutInfo(IFormCollection filesDopAbout, string jsonString) {
             try {
-                JObject jsonObject = JObject.Parse(jsonString);
-                bool detailImage = false;
-                string detailMainTitle = jsonObject["detMainTitle"].ToString();
-                string detailTitle = jsonObject["detTitle"].ToString();
-                string detailText = jsonObject["detText"].ToString();
+                CommonMethodsService common = new CommonMethodsService(_db);
+                int aboutId = 4;
+                int i = 0;
 
-                // Сохранять изображение для дополнительной страницы.
-                if (jsonObject["detImg"] != null) {
-                    detailImage = Convert.ToBoolean(jsonObject["detImg"].ToString());
+                // Получить все записи для удаления.
+                IList aRows = await _db.AboutDetails.ToListAsync();
+
+                // Чистит старые доп.фото перед добавление новых.
+                int iRow = 0;
+                foreach (AboutDetails el in aRows) {
+                    _db.AboutDetails.RemoveRange(el);
+                    iRow++;
                 }
 
-                bool isEmpty = isEmptyStringDetailInfo(detailMainTitle, detailTitle, detailText);
-
-                if (!isEmpty) {
-                    throw new ArgumentNullException();
+                // Добавляет новые фото.
+                if (filesDopAbout.Files.Count > 0) {
+                    foreach (var el in filesDopAbout.Files) {
+                        AboutDetails oAbout = new AboutDetails();
+                        string path = await common.Upload(filesDopAbout, i);
+                        path = path.Replace("wwwroot", "");
+                        oAbout.AboutId = aboutId;
+                        oAbout.DopUrl = path;
+                        oAbout.Block = "about";
+                        await _db.AboutDetails.AddRangeAsync(oAbout);
+                        i++;
+                    }
                 }
 
-                await AddAboutDetailInfo(detailMainTitle, detailTitle, detailText, filesDopAbout);
+                await _db.SaveChangesAsync();
             }
 
             catch (ArgumentNullException ex) {
@@ -137,23 +148,6 @@ namespace Rzproekt.Services {
             }
         }
 
-        /// <summary>
-        /// Метод валидирует поля с информацией о нас.
-        /// </summary>
-        /// <returns></returns>
-        //bool isEmptyStringInfo(string mainTitle, string sText, string detailMainTitle, string detailTitle, string detailText) {
-        //    if (!string.IsNullOrEmpty(mainTitle) &&
-        //        !string.IsNullOrEmpty(sText) &&
-        //        !string.IsNullOrEmpty(detailMainTitle) &&
-        //        !string.IsNullOrEmpty(detailTitle) &&
-        //        !string.IsNullOrEmpty(detailText)) {
-
-        //        return true;
-        //    }
-
-        //    return false;
-        //}
-
         bool isEmptyStringMainInfo(string mainTitle, string sText) {
             if (!string.IsNullOrEmpty(mainTitle) &&
                 !string.IsNullOrEmpty(sText)) {
@@ -173,39 +167,7 @@ namespace Rzproekt.Services {
             }
 
             return false;
-        }
-
-        /// <summary>
-        /// Метод добавляет информацию о нас в БД.
-        /// </summary>
-        /// <returns></returns>
-        //async Task AddAboutInfo(string mainTitle, string sText, string detailMainTitle, string detailTitle, string detailText, bool detailImage, bool mainImage, IFormCollection filesAbout, IFormCollection filesDopAbout) {
-        //    AboutDto oAbout = new AboutDto();
-        //    CommonMethodsService common = new CommonMethodsService(_db);
-        //    oAbout = await _db.Abouts.FirstOrDefaultAsync();
-        //    oAbout.MainTitle = mainTitle;
-        //    oAbout.Text = sText;
-        //    oAbout.DopMainTitle = detailMainTitle;
-        //    oAbout.DopTitle = detailTitle;
-        //    oAbout.DopText = detailText;
-
-        //    // Какое изображение нужно добавить (основное или дополнительное).
-        //    if (filesAbout.Files.Count > 0) {
-        //        string path = await common.UploadSingleFileAbout(filesAbout.Files[0]);
-        //        path = path.Replace("wwwroot", "");
-        //        oAbout.Url = path;
-        //    }
-
-        //    // Добавляет доп.изображение.
-        //    if (filesDopAbout.Files.Count > 0) {
-        //        string path = await common.UploadSingleFileAbout(filesDopAbout.Files[1]);
-        //        path = path.Replace("wwwroot", "");
-        //        oAbout.DopUrl = path;
-        //    }
-
-        //    _db.Abouts.Update(oAbout);
-        //    await _db.SaveChangesAsync();
-        //}
+        }      
 
         async Task AddAboutMainInfo(string mainTitle, string sText, IFormCollection filesAbout) {
             AboutDto oAbout = new AboutDto();
@@ -219,25 +181,6 @@ namespace Rzproekt.Services {
                 string path = await common.UploadSingleFileAbout(filesAbout.Files[0]);
                 path = path.Replace("wwwroot", "");
                 oAbout.Url = path;
-            }
-
-            _db.Abouts.Update(oAbout);
-            await _db.SaveChangesAsync();
-        }
-
-        async Task AddAboutDetailInfo(string detailMainTitle, string detailTitle, string detailText, IFormCollection filesDopAbout) {
-            AboutDto oAbout = new AboutDto();
-            CommonMethodsService common = new CommonMethodsService(_db);
-            oAbout = await _db.Abouts.FirstOrDefaultAsync();
-            oAbout.DopMainTitle = detailMainTitle;
-            oAbout.DopTitle = detailTitle;
-            oAbout.DopText = detailText;
-
-            // Добавляет доп.изображение.
-            if (filesDopAbout.Files.Count > 0) {
-                string path = await common.UploadSingleFileAbout(filesDopAbout.Files[0]);
-                path = path.Replace("wwwroot", "");
-                oAbout.DopUrl = path;
             }
 
             _db.Abouts.Update(oAbout);
