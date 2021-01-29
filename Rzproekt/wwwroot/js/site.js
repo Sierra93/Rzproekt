@@ -49,7 +49,6 @@ var appHome = new Vue({
         userId: ""
     },
     created() {
-
     },
 
     // После загрузки страницы вызывает функцию _getData для всех блоков сайта
@@ -64,11 +63,12 @@ var appHome = new Vue({
             });
             function Carusel() {
                 self.certCarusel(true);
+                self.getArrImgDetAbout();
                 self.getBlocksSevices();
             }
-            setTimeout(Carusel, 200);
+            setTimeout(Carusel, 300);
+
             this.onAllProject();
-            self.getArrImgDetAbout();
             this.checedUserId();
             appHome.$data.blocksServices = document.getElementsByClassName("serviceTxt");
             appHome.$data.aboutTxtTextarea = document.getElementsByClassName("aboutTxtTextarea");
@@ -243,18 +243,37 @@ var appHome = new Vue({
                 .then((response) => {
                     self.$data.ArrImgDetAbout = response.data;
                     console.log("success / getArrImgDetAbout", response);
-                    var pc = document.getElementById("pic_cntr");
+                    //var pc = document.getElementById("pic_cntr");
                     
                     //for (let i of response.data) {
                     //    var pic = document.createElement("IMG");
                     //    pic.src = i;
                     //    pc.appendChild(pic);
                     //}
+                    self.createSliderAbout(response.data);
                     
                 })
                 .catch((XMLHttpRequest) => {
                     self.notyfi(false);
                 });
+        },
+        createSliderAbout(data) {
+            var countImg = data.length - 1;
+            var pc = document.getElementById("pic_cntr");
+            var pic = document.createElement("IMG");
+            pic.src = data[countImg];
+            pc.appendChild(pic);
+            
+            function Carusel() {
+                if (countImg <= data.length - 1) {
+                    pic.src = data[countImg-1];
+                    pc.appendChild(pic);
+                    countImg++;
+                } else {
+                    countImg = 0;
+                }
+            }
+            setInterval(Carusel, 3000);
         },
         onAllProject(e) {
             let self = this;
