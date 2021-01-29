@@ -174,7 +174,7 @@ var back_office = new Vue({
         },
         // Функция собирает файлы о нас (детальная информания).
         handleFilesUploadDetAbout() {
-            let filesDetAbout = document.getElementsByClassName('form-files-det-about')[0].files[0];
+            let filesDetAbout = document.getElementsByClassName('form-files-det-about')[0].files;
             this.filesDetAbout = filesDetAbout;
         },
         // Функция собирает файлы сертификатов.
@@ -354,8 +354,13 @@ var back_office = new Vue({
                 detText
             };
 
+            let ins = self.$data.filesDetAbout.length;
+
             if (!!this.filesDetAbout) {
-                formData.set('filesDopAbout', this.filesDetAbout);
+                //formData.set('filesDopAbout', this.filesDetAbout);
+                for (var x = 0; x < ins; x++) {
+                    formData.append("filesDopAbout", this.filesDetAbout[x]);
+                }
             } else {
                 this.filesDetAbout = '';
             }
