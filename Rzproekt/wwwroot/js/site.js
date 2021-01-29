@@ -266,9 +266,11 @@ var appHome = new Vue({
             
             function Carusel() {
                 if (countImg <= data.length - 1) {
-                    pic.src = data[countImg-1];
-                    pc.appendChild(pic);
-                    countImg++;
+                    if (data[countImg - 1]) {
+                        pic.src = data[countImg - 1];
+                        pc.appendChild(pic);
+                        countImg++;
+                    }
                 } else {
                     countImg = 0;
                 }
