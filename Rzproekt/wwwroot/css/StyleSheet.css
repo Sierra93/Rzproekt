@@ -74,28 +74,31 @@
   margin: 3rem;
   justify-content: center;
   flex-wrap: wrap; }
-  .service-list article {
-    background: #f7f5f5;
-    width: 23.5rem;
-    margin: 2rem;
-    overflow: hidden; }
-    .service-list article img {
-      width: 100%;
-      height: auto;
-      max-height: 15rem; }
+    .service-list article {
+        background: #f7f5f5;
+        width: 18.5rem;
+        margin: 2rem;
+        overflow: hidden;
+    }
+        .service-list article img {
+            /*width: 100%;*/
+            height: auto;
+            max-height: 15rem;
+        }
     .service-list article h1 {
       padding: 1rem;
       color: #3d5975; }
-    .service-list article .serviceTxt {
-      height: auto;
-      width: 22rem;
-      background: transparent;
-      border: none;
-      padding: 1rem;
-      min-height: 21rem;
-      resize: none;
-      outline: none;
-      font-size: 1rem; }
+        .service-list article .serviceTxt {
+            height: auto;
+            width: 17rem;
+            background: transparent;
+            border: none;
+            padding: 1rem;
+            min-height: 21rem;
+            resize: none;
+            outline: none;
+            font-size: 1rem;
+        }
     .service-list article p {
       padding: 1rem; }
 
