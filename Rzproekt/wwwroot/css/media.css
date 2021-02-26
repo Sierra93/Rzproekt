@@ -73,7 +73,7 @@
         height: 200px;
     }
     .block-nav {
-        display: none;
+        display: none!important;
     }
     .hamburger-menu {
         display: block!important;
@@ -122,6 +122,9 @@
     }
     .block-nav {
         display: block;
+    }
+    .about-wrapper-img img {
+        max-width: 335px;
     }
 }
 
