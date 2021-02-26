@@ -110,6 +110,19 @@
     .contacts .contacts-block {
         flex-direction: column;
     }
+    .block .title-block {
+        font-size: 1.4rem;
+    }
+    .aboutDetalis .aboutDetalis-list {
+        margin: 1rem auto;
+        width: 100%;
+    }
+    .aboutDetalis {
+        width: 85%;
+    }
+    .block-nav {
+        display: block;
+    }
 }
 
 

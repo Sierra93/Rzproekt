@@ -15,8 +15,8 @@ var appHome = new Vue({
         countIdCert: 1,
         countIdPrjImg: 0,
         animStat: true,
-        //urlApi: 'https://localhost:44349',
-        urlApi: 'https://rzproekt.ru',
+        urlApi: 'https://localhost:44349',
+        //urlApi: 'https://rzproekt.ru',
         urlAboutMain: '',
         listRequests: [
             '/api/header/get-header',
@@ -99,6 +99,14 @@ var appHome = new Vue({
                     'close'
                 ]
             });
+            $(".fancyboxAwards").fancybox({
+                selector: '.imglist a:visible',
+                buttons: [
+                    'slideShow',
+                    'zoom',
+                    'close'
+                ]
+            });
             $("[data-fancybox='fancyboxProject1']").fancybox({
                 selector: '.imglist a:visible',
                 buttons: [
@@ -162,6 +170,7 @@ var appHome = new Vue({
                     }
                 ]
             });
+            $('.btnR-cert-carusel').trigger('click');
 
         },
         //  Функция выгружает все данные

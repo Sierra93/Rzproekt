@@ -86,7 +86,7 @@
                                     <img src="~/img/back.png" />
                                 </button>
                                 <div v-for="item in awards" class="awards-item">
-                                    <a class="fancybox" data-fancybox="gallery2" :href="item.url" :id="item.certId"><img :src="item.url" /></a>
+                                    <a class="fancyboxAwards" data-fancybox="gallery2" :href="item.url" :id="item.certId"><img :src="item.url" /></a>
                                 </div>
                                 <button class="btnR-cert-carusel" :customId="true" v-on:click="awardsCarusel">
                                     <img src="~/img/next.png" />
