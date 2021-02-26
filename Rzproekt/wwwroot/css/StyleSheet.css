@@ -190,11 +190,13 @@
   font-size: 1rem; }
 
 .block-carusel-cert {
-  display: flex;
-  position: relative;
-  width: 20rem;
-  height: 16rem;
-  overflow: hidden; }
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 20rem;
+    height: 16rem;
+    overflow: hidden;
+}
 
 .cert-item {
   -webkit-box-shadow: 0px 10px 14px 1px rgba(0, 0, 0, 0.39);
