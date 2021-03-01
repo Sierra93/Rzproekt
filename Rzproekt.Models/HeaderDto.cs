@@ -16,6 +16,21 @@ namespace Rzproekt.Models {
         [Column("logo", TypeName = "nvarchar(max)")]
         public string Url { get; set; }     // Путь к логотипу.
 
+        [Column("manu_item", TypeName = "nvarchar(1000)")]
+        public string MainItem { get; set; }    // Пункт меню хидера.
+
+        [Column("main_title", TypeName = "nvarchar(1000)")]
+        public string MainTitle { get; set; }   // Главный заголовок.
+
+        [Column("background", TypeName = "nvarchar(1000)")]
+        public string Background { get; set; }  // Фоновое изображение хидера или видео.
+
+        [Column("block")]
+        public string Block { get; set; }   // Тип блока, в который нужно вставлять контент.
+
+        [Column("main_text", TypeName = "nvarchar(1000)")]
+        public string MainText { get; set; }    // Заголовок хидера.
+
         public List<MultepleContextTable> MultepleContextTables { get; set; }
 
         public HeaderDto() {

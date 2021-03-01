@@ -1,0 +1,74 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="~/css/StyleSheet.css" rel="stylesheet" />
+    <link href="~/css/media.css" rel="stylesheet" />
+    <link href="~/lib/slick.css" rel="stylesheet" />
+    <link href="~/lib/slick-theme.css" rel="stylesheet" />
+    <link href="~/css/jquery.fancybox.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="appHome">
+        <header class="header">
+            <div>
+                <div class="block-logo">
+                    <a v-bind:href="urlApi" v-on:click="smoothScroll">
+                        <img :src="header[0].url" alt="logo" />
+                    </a>
+                </div>
+                <h1>{{ header[0].mainText }}</h1>
+            </div>
+            <nav class="block-nav btn-return">
+                <ul class="block-nav">
+                    <li>
+                        <a v-bind:href="urlApi" idCustom="projectDetalis">Вернуться</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <div class="block projectDetalis">
+                <div class="title-block">
+                    @*<h1>{{ project[0].dopMainTitle }}</h1>*@
+                    <h1>Наши проекты</h1>
+                </div>
+                <div class="border-bottom-title"></div>
+                <div class="block-map-list">
+                    <iframe src="https://yandex.ru/map-widget/v1/-/CCUAA2vBsB" height="400" frameborder="1" allowfullscreen="true" style="position:relative;"></iframe>
+                </div>
+
+                <section class="projectDetalis-list">
+                    <article v-for="item in arrProject">
+                        <button class="btn-left-slider-prj" :projectId="item.projectId" nav="prev" v-on:click="uniteDatePrj"></button>
+                        <button class="btn-right-slider-prj" :projectId="item.projectId" nav="next" v-on:click="uniteDatePrj"></button>
+                        <img :src="item.url" alt="" />
+                        <h3>{{ item.projectName }}</h3>
+                        <textarea class="aboutDetailTxtTextarea" readonly>{{ item.projectDetail }}</textarea>
+                    </article>
+                </section>
+            </div>
+    </main>
+
+    <footer>
+        <small>
+            &copy; {{ date }} {{ footer[0].copyStr }}
+        </small>
+    </footer>
+    </div>
+    <script src="~/lib/autosize.min.js"></script>
+    <script src="~/lib/vue/vue.min.js"></script>
+    <script src="~/lib/vue/axios/axios.js"></script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery/jquery.fancybox.js"></script>
+    <script src="~/lib/slick.min.js"></script>
+    <script src="~/lib/sessions.js"></script>
+    <script src="~/js/site.js"></script>
+</body>
+</html>

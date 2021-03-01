@@ -1,0 +1,43 @@
+.service {
+    background: #fff;
+}
+.service-list {
+    display: flex;
+    margin: 3rem;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    article {
+        background: $liteSilver;
+        width: 23.5rem;
+        margin: 2rem;
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            height: auto;
+            max-height: 15rem;
+        }
+
+        h1 {
+            padding: 1rem;
+            color: #3d5975;
+        }
+
+        .serviceTxt {
+            height: auto;
+            width: 22rem;
+            background: transparent;
+            border: none;
+            padding: 1rem;
+            min-height: 21rem;
+            resize: none;
+            outline: none;
+            font-size: 1rem;
+        }
+
+        p {
+            padding: 1rem;
+        }
+    }
+}

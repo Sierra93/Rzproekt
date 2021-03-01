@@ -26,9 +26,36 @@ namespace Rzproekt.Models {
         public ClientDto Clients { get; set; }
 
         public int ContactId { get; set; }
-        public ContactDto Contacts { get; set; }
+        public ContactCompanyDto Contacts { get; set; }
 
         public int FooterId { get; set; }
         public FooterDto Footers { get; set; }
+
+        public int MessageId { get; set; }
+        public MessageDto Messages { get; set; }
+
+        public int CertId { get; set; }
+        public CertDto Certs { get; set; }
+
+        public int DetailId { get; set; }
+        public ProjectDetailDto DetailProjects { get; set; }
+
+        public int AwardId { get; set; }
+        public AwardDto Awards { get; set; }
+
+        public int ContactLead { get; set; }
+        public ContactLeadDto ContactLeads { get; set; }
+
+        public int DialogId { get; set; }
+        public MainInfoDialog MainInfoDialogs { get; set; }
+
+        public int DMessageId { get; set; }
+        public DialogMessage DialogMessages { get; set; }
+
+        public int DialogMemberId { get; set; }
+        public DialogMember DialogMembers { get; set; }
+
+        public int AnonymousUserId { get; set; }
+        public AnonymousUserDto AnonymousUsers { get; set; }
     }
 }

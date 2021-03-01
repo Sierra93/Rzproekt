@@ -19,13 +19,13 @@ namespace Rzproekt.Controllers {
         public OrderController(ApplicationDbContext db) => _db = db;
 
         /// <summary>
-        /// Метод получает все услуги.
+        /// Метод получает первые 3 услуги.
         /// </summary>
         [HttpPost, Route("get-orders")]
-        public async Task<IActionResult> GetHeaderInfo() {
+        public async Task<IActionResult> GetOrderInfo() { 
             OrderBase headerBase = new OrderService(_db);
 
-            return Ok(await headerBase.GetOrders());
+            return Ok(await headerBase.GetPartialOrderInfo());
         }
     }
 }

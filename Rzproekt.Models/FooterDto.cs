@@ -10,14 +10,20 @@ namespace Rzproekt.Models {
     /// </summary>
     [Table("Footers")]
     public class FooterDto {
-        [Key, Column("id")]
+        [Key, Column("footer_id")]
         public int Id { get; set; }
 
-        [Column("copy_str", TypeName = "nvarchar(500)")]
+        [Column("copy_str", TypeName = "nvarchar(1000)")]
         public string CopyStr { get; set; }     // Строка копирайта.
 
         [Column("url", TypeName = "nvarchar(max)")]
         public string Url { get; set; }     // Путь к иконке.
+
+        [Column("block")]
+        public string Block { get; set; }   // Тип блока, в который нужно вставлять контент.
+
+        [Column("button_text", TypeName = "nvarchar(500)")]
+        public string ButtonText { get; set; }  // Текст кнопки.
 
         public List<MultepleContextTable> MultepleContextTables { get; set; }
 

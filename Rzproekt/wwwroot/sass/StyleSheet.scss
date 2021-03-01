@@ -1,20 +1,75 @@
 ﻿$bgHeader: #1e2d3b;
 $linkHvr: #ff9393;
 $white: #fff;
+$black: #000;
+$silverTitle: #c6c6c6;
+$redMain: #da0f27;
+$liteSilver: #f7f5f5;
 
-*{
+
+@import '_block1';
+@import '_services';
+@import '_about';
+@import '_aboutDetails';
+@import '_numbers';
+@import '_projects';
+@import '_projectDetails';
+@import '_clients';
+@import '_contacts';
+@import '_logonPage';
+@import '_adminPage';
+@import '_burger';
+@import '_chat';
+
+@mixin block-title-txt {
+    display: flex;
+    justify-content: center;
+    color: $silverTitle;
+    font-size: 2rem;
+}
+@mixin border-bottom {
+    width: 5rem;
+    padding-bottom: 1rem;
+    border-bottom: 0.8rem solid $redMain;
+    margin: 0 auto;
+}
+
+body {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+* {
     margin: 0;
     padding: 0;
+    font-family: sans-serif;
 }
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background: $bgHeader;
+    position: fixed;
+    width: 100%;
+    z-index: 5;
+    h1 {
+        font-size: 1.5rem;
+    }
+    div {
+        display: flex;
+        align-items: center;
+        color: $WhiteColor;
+    }
 
     .block-logo {
         background: $white;
-        padding: 1rem;
+        padding: 1rem 4rem;
+        margin-right: 1rem;
+        height: 5rem;
+        width: 12.8rem;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .block-nav {
@@ -24,22 +79,122 @@ $white: #fff;
             display: flex;
             list-style-type: none;
 
-            li {
+            a {
+                color: $white;
+                text-decoration: none;
+                font-size: 1.2rem;
+                transition: .3s;
                 padding: 1rem;
                 margin: 0 1rem;
                 cursor: pointer;
 
-                &:hover a {
+                &:hover {
                     color: $linkHvr;
-                }
-
-                a {
-                    color: $white;
-                    text-decoration: none;
-                    font-size: 1.2rem;
-                    transition: .3s;
                 }
             }
         }
     }
+}
+
+.block {
+    height: auto;
+    padding-top: 3rem;
+    display: flex;
+    flex-direction: column;
+
+    .title-block {
+        @include block-title-txt;
+    }
+
+    .border-bottom-title {
+        @include border-bottom;
+    }
+}
+.btn-detail {
+    margin: 1rem auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid $redMain;
+    padding: 1rem 2.5rem;
+    transition: .3s;
+    cursor: pointer;
+    text-decoration: none;
+    color: $redMain;
+    transition: .3s;
+
+    &:hover {
+        background: $redMain;
+        color: $white;
+    }
+
+}
+
+.map-block .iframe {
+    width: 800px;
+    height: 300px;
+}
+footer {
+    position: absolute;
+    bottom: 0px;
+    height: 4rem;
+    width: 100%;
+    background: $liteSilver;
+
+    small {
+        display: flex;
+        justify-content: center;
+        margin-top: 1.5rem;
+        color: silver;
+    }
+}
+.hamburger-menu {
+    display: none!important;
+}
+.btn-return {
+    display: block!important;
+}
+
+////////////////////
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+::-webkit-scrollbar-button {
+    width: 0px;
+    height: 0px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #e1e1e1;
+    border: 0px none #ffffff;
+    border-radius: 50px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #ffffff;
+}
+
+::-webkit-scrollbar-thumb:active {
+    background: #000000;
+}
+
+::-webkit-scrollbar-track {
+    background: #666666;
+    border: 0px none #ffffff;
+    border-radius: 55px;
+}
+
+::-webkit-scrollbar-track:hover {
+    background: #666666;
+}
+
+::-webkit-scrollbar-track:active {
+    background: #333333;
+}
+
+::-webkit-scrollbar-corner {
+    background: transparent;
 }

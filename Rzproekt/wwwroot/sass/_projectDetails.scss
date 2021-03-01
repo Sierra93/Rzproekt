@@ -1,0 +1,65 @@
+.projectDetalis {
+    background: #fff;
+    padding-top: 10rem !important;
+
+    .projectDetalis-list {
+        margin: 3rem auto 6rem;
+        width: 80%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        article {
+            background: $liteSilver;
+            margin: 1rem;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            width: 25rem;
+
+            img {
+                max-width: 25rem !important;
+                width: 100%;
+            }
+
+            h1 {
+                padding: 1rem;
+                color: #3d5975;
+                font-size: 2rem;
+            }
+
+            h3 {
+                padding: .5rem;
+                color: #3d5975;
+            }
+
+            p {
+                padding: 1rem;
+            }
+        }
+    }
+}
+.block-map-list {
+    margin: 3rem 0;
+    padding: 1rem;
+    background: #ececec;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    iframe {
+        width:100%;
+        border: none;
+    }
+}
+.projectDetailTxtTextarea {
+    height: auto;
+    width: 100%;
+    max-width: 53rem;
+    background: transparent;
+    border: none;
+    padding: 1rem;
+    min-height: 15rem;
+    resize: none;
+    outline: none;
+    font-size: 1rem;
+}

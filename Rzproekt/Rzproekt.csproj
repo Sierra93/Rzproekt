@@ -2,7 +2,16 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>2496572c-06a6-4a38-b890-700fcd8d2b21</UserSecretsId>
+    <ApplicationIcon></ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="wwwroot\lib\slick-1.8.1\**" />
+    <Content Remove="wwwroot\lib\slick-1.8.1\**" />
+    <EmbeddedResource Remove="wwwroot\lib\slick-1.8.1\**" />
+    <None Remove="wwwroot\lib\slick-1.8.1\**" />
+  </ItemGroup>
 
   <ItemGroup>
     <Content Remove="compilerconfig.json" />

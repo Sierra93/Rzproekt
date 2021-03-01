@@ -15,5 +15,12 @@ namespace Rzproekt.Core {
         /// </summary>
         /// <returns></returns>
         public abstract Task<IEnumerable> GetStatisticInfo();
+
+        /// <summary>
+        /// Метод изменяет статистику.
+        /// </summary>
+        /// <param name="stat"></param>
+        /// <returns></returns>
+        public abstract Task ChangeStatistic(object stat);
     }
 }

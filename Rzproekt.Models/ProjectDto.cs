@@ -16,14 +16,26 @@ namespace Rzproekt.Models {
         [Column("main_title", TypeName = "nvarchar(1000)")]
         public string MainTitle { get; set; }   // Основной заголовок.
 
-        [Column("title", TypeName = "nvarchar(1000)")]
-        public string Title { get; set; }
+        [Column("project_name", TypeName = "nvarchar(1000)")]
+        public string ProjectName { get; set; }     // Название проекта.
 
-        [Column("detail", TypeName = "nvarchar(max)")]
-        public string Detail { get; set; }  // Детальное описание проекта.
+        [Column("project_detail", TypeName = "nvarchar(max)")]
+        public string ProjectDetail { get; set; }  // Детальное описание проекта.
 
         [Column("url", TypeName = "nvarchar(max)")]
         public string Url { get; set; }     // Путь к изображению.
+
+        [Column("block")]
+        public string Block { get; set; }   // Тип блока, в который нужно вставлять контент.
+
+        [Column("button_text", TypeName = "nvarchar(500)")]
+        public string ButtonText { get; set; }  // Текст кнопки - Подробнее.
+
+        [Column("is_main", TypeName = "nvarchar(10)")]
+        public string IsMain { get; set; }     // Тип страницы, на которую добавить изображение проекта.
+
+        //[Column("category_project")]
+        //public int CategoryProject { get; set; }
 
         public List<MultepleContextTable> MultepleContextTables { get; set; }
 

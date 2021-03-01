@@ -1,0 +1,132 @@
+@media screen and (max-width: 1600px) {
+    .header .block-nav {
+        margin-right: 1rem;
+    }
+    .header .block-nav ul li {
+        padding: .1rem;
+        margin: 0 .5rem;
+    }
+    .header .block-logo {
+        padding: 1rem 2rem;
+    }
+    .header div h1 {
+        font-size: 1.3rem;
+    }
+}
+
+@media screen and (max-width: 1500px) {
+    .header .block-logo {
+        padding: 1rem 2rem;
+    }
+    .header .block-nav {
+        margin-right: 1rem;
+    }
+
+    .header .block-nav ul li {
+        padding: .1rem;
+        margin: 0 .5rem;
+    }
+    .header div h1{
+         font-size: 1.3rem; 
+    }
+    .about .about-right {
+        display: none;
+    }
+    .about .about-left {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .block-counter {
+        flex-direction: column;
+    }
+    .block-counter .counter {
+        margin: 1rem 1rem;
+    }
+    .block-counter .block-border-counter {
+        height: 0.2rem !important;
+        width: 10rem;
+    }
+    .header .block-nav ul li a {
+        font-size: 1rem;
+        padding: .1rem;
+    }
+}
+
+@media screen and (max-width: 1300px) {
+    .header div h1 {
+        display: none;
+    }
+    .header .block-nav ul li a {
+        font-size: 1rem;
+        padding: .1rem;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .header div h1 {
+        display: block;
+    }
+    .map-block .iframe {
+        width: 500px;
+        height: 200px;
+    }
+    .block-nav {
+        display: none!important;
+    }
+    .hamburger-menu {
+        display: block!important;
+    }
+
+}
+
+@media screen and (max-width: 600px) {
+    .header div h1 {
+        display: none;
+    }
+    .main-block .main-block-title {
+        width: auto;
+    }
+    .main-block .main-block-title h1 {
+        font-size: 1.4rem;
+        line-height: 3rem;
+        margin: 2rem;
+    }
+    .map-block .iframe {
+        width: 310px;
+        height: 200px;
+    }
+    .contacts-block {
+        display: block;
+
+    }
+    .btn-detail {
+        margin: 1rem 3rem;
+    }
+    .aboutTxtTextarea {
+        width: 23rem;
+    }
+    .contacts .contacts-block {
+        flex-direction: column;
+    }
+    .block .title-block {
+        font-size: 1.4rem;
+    }
+    .aboutDetalis .aboutDetalis-list {
+        margin: 1rem auto;
+        width: 100%;
+    }
+    .aboutDetalis {
+        width: 85%;
+    }
+    .block-nav {
+        display: block;
+    }
+    .about-wrapper-img img {
+        max-width: 335px;
+    }
+}
+
+
+

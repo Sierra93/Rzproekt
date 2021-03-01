@@ -5,32 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link href="~/css/StyleSheet.css" rel="stylesheet" />
+    <link href="~/css/media.css" rel="stylesheet" />
+    <link href="~/css/jquery.fancybox.css" rel="stylesheet" />
+    <link href="~/lib/slick.css" rel="stylesheet" />
+    <link href="~/lib/slick-theme.css" rel="stylesheet" />
+    
 </head>
 <body>
+    @*<div class="loader"></div>*@
     <div id="appHome">
         <header class="header">
-            <div class="block-logo"><img src="~/img/logo.png" alt="logo" /></div>
+            <div>
+                <div class="block-logo">
+                    <a v-bind:href="urlApi" v-on:click="smoothScroll">
+                        <img :src="header[0].url" alt="logo" />
+                    </a>
+                </div>
+                <h1>{{ header[0].mainText }}</h1>
+            </div>
             <nav class="block-nav">
-                <ul>
-                    <li><a href="#">{{ header.nav.main }}</a></li>
-                    <li><a href="#">{{ header.nav.service }}</a></li>
-                    <li><a href="#">{{ header.nav.project }}</a></li>
-                    <li><a href="#">{{ header.nav.about }}</a></li>
-                    <li><a href="#">{{ header.nav.contacts }}</a></li>
+                <ul class="block-nav">
+                    <li><a href="#main" class="scrollto" v-on:click="smoothScroll">{{ header[0].mainItem }}</a></li>
+                    <li><a href="#service" class="scrollto" v-on:click="smoothScroll">{{ header[1].mainItem }}</a></li>
+                    <li><a href="#about" class="scrollto" v-on:click="smoothScroll">О&nbspнас</a></li>
+                    <li><a href="#project" class="scrollto" v-on:click="smoothScroll">{{ header[3].mainItem }}</a></li>
+                    <li><a href="#client" class="scrollto" v-on:click="smoothScroll">{{ header[4].mainItem }}</a></li>
+                    <li><a href="#contact" class="scrollto" v-on:click="smoothScroll">{{ header[5].mainItem }}</a></li>
                 </ul>
             </nav>
+            <div class="hamburger-menu">
+                <input id="menu__toggle" type="checkbox" />
+                <label class="menu__btn" for="menu__toggle">
+                    <span></span>
+                </label>
+
+                <ul class="menu__box">
+                    <li v-for="item in header">
+                        <a v-bind:href="smoothScrollArr[item.id]" class="menu__item scrollto" v-on:click="smoothScroll">{{ item.mainItem }}</a>
+                    </li>
+                </ul>
+            </div>
         </header>
 
         @RenderBody()
 
         <footer>
-            <h1>TEST</h1>
+            <small>
+                &copy; {{ date }} {{ footer[0].copyStr }}
+            </small>
         </footer>
     </div>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/autosize.min.js"></script>
     <script src="~/lib/vue/vue.min.js"></script>
+    <script src="~/lib/vue/axios/axios.js"></script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery/jquery.fancybox.js"></script>
+    <script src="~/lib/jquery.spincrement.min.js"></script>
+    <script src="~/lib/slick.min.js"></script>
+    <script src="~/js/aspnet-signalr/signalr.min.js"></script>
+    <script src="~/lib/sessions.js"></script>
     <script src="~/js/site.js"></script>
-    @RenderSection("Scripts", required: false)
 
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

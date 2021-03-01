@@ -14,7 +14,7 @@ namespace Rzproekt.Services {
     public class FooterService : FooterBase {
         ApplicationDbContext _db;
 
-        public FooterService(ApplicationDbContext db) => db = _db;
+        public FooterService(ApplicationDbContext db) => _db = db;
 
         /// <summary>
         /// Метод получает данные футера.

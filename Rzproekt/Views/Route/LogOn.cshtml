@@ -1,0 +1,32 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="~/css/StyleSheet.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="back_office">
+        <div class="back_office-block">
+            <div class="header-form">
+                <h1>Добро пожаловать!</h1>
+            </div>
+            <form v-on:submit.prevent>
+                <input type="text" id="login" name="login" placeholder="Логин" required=""><br>
+                <input type="password" id="password" name="Password" placeholder="Пароль" required="">
+                <button  v-on:click="onSignIn">Войти</button>
+            </form>
+        </div>
+
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/vue/vue.min.js"></script>
+    <script src="~/lib/vue/axios/axios.js"></script>
+    <script src="~/js/BackOffice.js"></script>
+</body>
+</html>

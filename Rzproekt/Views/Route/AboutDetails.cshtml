@@ -1,0 +1,117 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="~/css/StyleSheet.css" rel="stylesheet" />
+    <link href="~/css/media.css" rel="stylesheet" />
+    <link href="~/css/jquery.fancybox.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="appHome">
+        <header class="header">
+            <div>
+                <div class="block-logo">
+                    <a v-bind:href="urlApi" v-on:click="smoothScroll">
+                        <img :src="header[0].url" alt="logo" />
+                    </a>
+                </div>
+                <h1>{{ header[0].mainText }}</h1>
+            </div>
+            <nav class="block-nav">
+                <ul class="block-nav">
+                    <li>
+                        <a v-bind:href="urlApi" idCustom="aboutDetalis" v-on:click="returnMain">Вернуться</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <div class="about-wrapper">
+                <div class="block aboutDetalis">
+                    <div class="title-block">
+                        <h1>{{ about[0].dopMainTitle }}</h1>
+                    </div>
+                    <div class="border-bottom-title"></div>
+                    <section class="aboutDetalis-list">
+                        <article>
+                            <h1>{{ about[0].dopTitle }}</h1>
+                            <textarea class="aboutDetailTxtTextarea" readonly>{{ about[0].dopText }}</textarea>
+                            @*v-for="item in ArrImgDetAbout"*@
+
+                            <div class="about-wrapper-img" id="pic_cntr">
+
+                                
+                                @*<img src="~/img/about-min.jpeg" />*@
+                                @*<img src="~/img/about-min2.jpeg" />*@
+
+                            </div>
+                        </article>
+                    </section>
+                </div>
+                <div class="wrapper-cert">
+                    <div class="block aboutSert">
+                        <div class="title-block">
+                            <h3>Сертификаты и лицензии</h3>
+                        </div>
+                        <div class="border-bottom-title"></div>
+                        <section class="cert-list">
+                            <div class="block-carusel-cert">
+                                <button class="btnL-cert-carusel" :customId="false" v-on:click="certCarusel">
+                                    <img src="~/img/back.png" />
+                                </button>
+                                <div v-for="item in cert" class="cert-item">
+                                    <a class="fancybox" data-fancybox="gallery" :href="item.url" :id="item.certId"><img :src="item.url" /></a>
+                                </div>
+                                <button class="btnR-cert-carusel" :customId="true" v-on:click="certCarusel">
+                                    <img src="~/img/next.png" />
+                                </button>
+                            </div>
+
+                        </section>
+                    </div>
+                    <div class="block aboutSert">
+                        <div class="title-block">
+                            <h3>Награды</h3>
+                        </div>
+                        <div class="border-bottom-title"></div>
+                        <section class="cert-list">
+                            <div class="block-carusel-cert">
+                                <button class="btnL-cert-carusel" :customId="false" v-on:click="awardsCarusel">
+                                    <img src="~/img/back.png" />
+                                </button>
+                                <div v-for="item in awards" class="awards-item">
+                                    <a class="fancyboxAwards" data-fancybox="gallery2" :href="item.url" :id="item.certId"><img :src="item.url" /></a>
+                                </div>
+                                <button class="btnR-cert-carusel" :customId="true" v-on:click="awardsCarusel">
+                                    <img src="~/img/next.png" />
+                                </button>
+                            </div>
+
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <small>
+                &copy; {{ date }} {{ footer[0].copyStr }}
+            </small>
+        </footer>
+    </div>
+    <script src="~/lib/autosize.min.js"></script>
+    <script src="~/lib/vue/vue.min.js"></script>
+    <script src="~/lib/vue/axios/axios.js"></script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery/jquery.fancybox.js"></script>
+    <script src="~/lib/slick.min.js"></script>
+    <script src="~/lib/sessions.js"></script>
+    <script src="~/js/site.js"></script>
+</body>
+</html>

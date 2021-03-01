@@ -1,0 +1,66 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="~/css/StyleSheet.css" rel="stylesheet" />
+    <link href="~/css/media.css" rel="stylesheet" />
+    <link href="~/css/jquery.fancybox.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="appHome">
+        <header class="header">
+            <div>
+                <div class="block-logo"><img :src="header[0].url" alt="logo" /></div>
+                <h1>{{ header[0].mainText }}</h1>
+            </div>
+            <nav class="block-nav btn-return">
+                <ul class="block-nav">
+                    <li>
+                        <a v-bind:href="urlApi"  idCustom="contactsDetalis" v-on:click="returnMain">Вернуться</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <div class="block contactsDetalis">
+                <div class="title-block">
+                    <h1>{{ contactLead[0].mainTitle }}</h1>
+                </div>
+                <div class="border-bottom-title"></div>
+                <section class="contactsDetalis-list">
+                    <article v-for="item in contactLead">
+                        <div>
+                            <img :src="item.url" />
+                        </div>
+                        <h1>{{ item.leadName }}</h1>
+                        <h2><em>{{ item.leadPosition }}</em></h2>
+                        <p>{{ item.leadNumber }}</p>
+                        <p>{{ item.leadFax }}</p>
+                        <p>{{ item.leadEmail }}</p>
+                    </article>
+                </section>
+            </div>
+        </main>
+
+        <footer>
+            <small>
+                &copy; {{ date }} {{ footer[0].copyStr }}
+            </small>
+        </footer>
+    </div>
+    <script src="~/lib/autosize.min.js"></script>
+    <script src="~/lib/vue/vue.min.js"></script>
+    <script src="~/lib/vue/axios/axios.js"></script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery/jquery.fancybox.js"></script>
+    <script src="~/lib/slick.min.js"></script>
+    <script src="~/lib/sessions.js"></script>
+    <script src="~/js/site.js"></script>
+</body>
+</html>

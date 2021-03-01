@@ -5,14 +5,18 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Rzproekt.Core.Data;
+using Rzproekt.Core.Extensions;
 using Rzproekt.Models;
+using Rzproekt.Services;
 
 namespace Rzproekt {
     public class Startup {
@@ -28,9 +32,10 @@ namespace Rzproekt {
 
             services.AddDbContext<ApplicationDbContext>(options =>
           options.UseSqlServer(
-              Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("Rzproekt")));
+              Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("Rzproekt").EnableRetryOnFailure()));
 
             services.AddCors();
+            services.AddSignalR();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options => {
@@ -47,6 +52,40 @@ namespace Rzproekt {
                         ValidateIssuerSigningKey = true,
                     };
                 });
+
+            services.AddControllers()
+        .AddJsonOptions(options =>
+                options.JsonSerializerOptions.Converters.Add(new IntToStringExtension()));
+
+            services.AddCors(options => options.AddPolicy("ApiCorsPolicy", builder => {
+                builder.WithOrigins("https://publico-dev.xyz/", "https://publico-dev.xyz", "https://rzproekt.ru/", "https://rzproekt.ru").AllowAnyMethod().AllowAnyHeader();
+            }));
+
+            //services.Configure<FormOptions>(o =>  // currently all set to max, configure it to your needs!
+            //{
+            //    o.ValueLengthLimit = int.MaxValue;
+            //    o.MultipartBodyLengthLimit = long.MaxValue; // <-- !!! long.MaxValue
+            //    o.MultipartBoundaryLengthLimit = int.MaxValue;
+            //    o.MultipartHeadersCountLimit = int.MaxValue;
+            //    o.MultipartHeadersLengthLimit = int.MaxValue;
+            //});
+
+            //services.Configure<IISServerOptions>(options =>
+            //{
+            //    options.MaxRequestBodySize = int.MaxValue;
+            //});
+
+            //services.Configure<KestrelServerOptions>(options =>
+            //{
+            //    options.Limits.MaxRequestBodySize = int.MaxValue; // if don't set default value is: 30 MB
+            //});
+
+            //services.Configure<FormOptions>(options =>
+            //{
+            //    options.ValueLengthLimit = int.MaxValue;
+            //    options.MultipartBodyLengthLimit = int.MaxValue; // if don't set default value is: 128 MB
+            //    options.MultipartHeadersLengthLimit = int.MaxValue;
+            //});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -66,10 +105,19 @@ namespace Rzproekt {
 
             app.UseAuthorization();
 
+            //app.Use(async (context, next) => {
+            //    context.Features.Get<IHttpMaxRequestBodySizeFeature>().MaxRequestBodySize = 60000000; // unlimited I guess
+            //    await next.Invoke();
+            //});
+
             app.UseEndpoints(endpoints => {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Route}/{action=Index}/{id?}");
+            });
+
+            app.UseEndpoints(endpoints => {
+                endpoints.MapHub<ChatHub>("/chat");
             });
         }
     }

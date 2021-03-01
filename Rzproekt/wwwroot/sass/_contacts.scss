@@ -1,0 +1,53 @@
+.contacts {
+    margin-bottom: 4rem;
+    background: $white;
+
+    .map-block {
+        margin: 2rem auto;
+    }
+
+    .contacts-block {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .address {
+            margin: 1rem 2rem;
+        }
+    }
+}
+
+// contactDetailse
+.contactsDetalis {
+    padding-top: 10rem!important;
+}
+.contactsDetalis-list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-bottom: 7rem;
+    padding-top: 4rem;
+
+    article {
+        max-width: 25rem;
+        margin: 1rem;
+
+        img {
+            width: 25rem;
+        }
+
+        h1 {
+            font-size: 1.3rem;
+        }
+
+        h2 {
+            margin-bottom: 1rem;
+        }
+
+        em {
+            font-size: 1rem;
+            color: $redMain;
+        }
+    }
+}

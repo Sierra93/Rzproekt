@@ -1,0 +1,301 @@
+$WhiteColor: #fff;
+$SilverColor: #c9c9c9;
+$SilverDarkColor: #c0c0c0;
+$HeaderBg: #009688;
+$BtnColor: #7c4dff;
+$BtnHvrColor: #6d39ff;
+$bg: #484848;
+$blueMenuHvr: #0074a8;
+
+
+.tab-container {
+    background-color: #009688;
+    overflow: hidden;
+}
+
+.tab-title {
+    font-family: sans-serif;
+    color: #fff;
+    margin: 10px;
+    font-weight: normal;
+    font-size: 18px;
+}
+
+.tab-wrapper {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+    font-family: sans-serif;
+}
+
+.tab-wrapper .tab-item,
+.tab-wrapper input {
+    display: none;
+}
+
+.tab-wrapper .tab-item {
+    background-color: $WhiteColor;
+    width: calc(100% - 40px);
+    max-width: 100%;
+    padding: 20px;
+    order: 1;
+}
+
+.tab-wrapper label {
+    height: 35px;
+    line-height: 35px;
+    min-width: 50px;
+    padding: 0px 20px;
+    text-align: center;
+    color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    border-top: 3px solid transparent;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+}
+
+.no-select {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.tab-wrapper input:checked + label {
+    border-bottom: 3px solid #caeafb;
+
+}
+
+.tab-wrapper input:checked + label + .tab-item {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+
+////////
+
+
+.tab-content-back_office {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.body-back_office {
+    background: $bg;
+}
+.tab-left-back_office, .tab-right-back_office {
+    background: $WhiteColor;
+    padding: 2rem;
+    border-radius: 1rem;
+}
+.block-change-menu_back_office {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.form-back_office {
+    margin: 1rem;
+    width: 390px;
+    position: relative;
+
+    fieldset {
+        padding: 1rem;
+        margin: 1rem 0;
+        width: 20rem;
+        position: relative;
+
+        legend {
+        }
+
+        label {
+            height: 35px;
+            line-height: 35px;
+            min-width: 50px;
+            padding: 0 0;
+            text-align: center;
+            color: #000;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            justify-content: center;
+            flex-grow: 1;
+            border-top: 3px solid transparent;
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+        }
+
+        input {
+            display: block;
+            border: 1px solid silver;
+            padding: .3rem;
+            margin: .2rem;
+            width: 18rem;
+        }
+
+        textarea {
+            width: 97%;
+            height: 12rem;
+            resize: vertical;
+            text-align: justify;
+            padding: 5px;
+        }
+    }
+
+    .btm-back-del-client {
+        width: 100px;
+        margin: 15px auto 0;
+        cursor: pointer;
+        padding: 10px 20px;
+        border: none;
+        background: $WhiteColor;
+        color: $redMain;
+        border-radius: 5px;
+        transition: .3s;
+
+        &:hover {
+            background: #bf1024;
+            color: $WhiteColor;
+        }
+    }
+
+
+    button {
+        width: 100px;
+        margin: 15px auto 0;
+        cursor: pointer;
+        padding: 10px 20px;
+        border: none;
+        background: $BtnColor;
+        color: $WhiteColor;
+        border-radius: 5px;
+        transition: .3s;
+
+        &:hover {
+            background: $BtnHvrColor;
+        }
+    }
+}
+.blockListCert {
+    border: 1px solid silver;
+    background: #ececec;
+    max-height: 20rem;
+    overflow: hidden;
+    overflow-y: scroll;
+
+    .blockCert {
+        margin: 0.5rem;
+        background: white;
+    }
+}
+.blockListClient {
+    border: 1px solid silver;
+    background: #ececec;
+    max-height: 20rem;
+    overflow: hidden;
+    overflow-y: scroll;
+
+    .blockClient {
+        margin: 0.5rem;
+        background: white;
+    }
+}
+.blockListClient {
+    border: 1px solid silver;
+    background: #ececec;
+    max-height: 20rem;
+    overflow: hidden;
+    overflow-y: scroll;
+
+    .blockClient {
+        margin: 0.5rem;
+        background: white;
+    }
+}
+
+.block-contact-lead {
+    border: 1px solid #ececec;
+    padding: 5px;
+    margin: 5px;
+}
+.contact-lead-btn {
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#notifications {
+    cursor: pointer;
+    position: fixed;
+    top: 7rem;
+    right: -30rem;
+    z-index: 9999;
+    margin-bottom: 22px;
+    margin-right: 15px;
+    max-width: 300px;
+    transition: .5s;
+    padding: 1rem 3rem;
+    border-radius: 1rem;
+    color: white;
+}
+.notifications-active {
+    right: -2rem!important;
+}
+.normalize-project {
+    justify-content: flex-start!important;
+}
+//////// preview
+.main-img-project {
+    border-bottom: 1px solid;
+}
+.block-subImg-list {
+    border-bottom: 1px solid;
+}
+.block-list-project{
+    display: flex;
+}
+.form-back_office-project {
+    width: auto;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+
+    fieldset {
+        margin: 0;
+        display: flex;
+        align-items: center;
+
+        button {
+            margin: 0;
+        }
+    }
+}
+.checkOnlyThreeProject {
+    position: absolute;
+    right: -135px;
+    bottom: 20px;
+}
+.block-list-project {
+    display: flex;
+    flex-wrap: wrap;
+}
+#imageMain {
+    width: 6rem;
+    float: right;
+}
+#image {
+    width: 4rem;
+    float: right;
+}
+.fieldset-chat-back {
+    display: flex;
+    align-items: end;
+}

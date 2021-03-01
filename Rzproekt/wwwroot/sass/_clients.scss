@@ -1,0 +1,43 @@
+.clients {
+    background: $liteSilver;
+    padding: 3rem 0;
+
+    .clients-list {
+        width: 80%;
+        margin: 4rem auto;
+    }
+
+    .slick-track {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .slick-slide img {
+        display: block;
+        margin: 0 auto;
+        filter: grayscale(1);
+
+        &:hover {
+            filter: grayscale(0);
+        }
+    }
+
+    .slick-initialized .slick-slide {
+        outline: none;
+    }
+
+    .slick-prev:before, .slick-next:before {
+        font-family: 'slick';
+        font-size: 20px;
+        line-height: 1;
+        opacity: .75;
+        color: black;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    .slick-list {
+        background: white;
+    }
+}

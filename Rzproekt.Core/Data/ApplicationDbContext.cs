@@ -14,15 +14,35 @@ namespace Rzproekt.Core.Data {
 
         public DbSet<AboutDto> Abouts { get; set; }     // Таблица о нас.
 
-        public DbSet<StatisticDto> Statistics { get; set; }    // Таблица статистики.
+        public DbSet<StatisticDto> Statistic { get; set; }    // Таблица статистики.
 
         public DbSet<ProjectDto> Projects { get; set; }     // Таблица проектов.
 
         public DbSet<ClientDto> Clients { get; set; }     // Таблица клиентов.
 
-        public DbSet<ContactDto> Contacts { get; set; }     // Таблица контактов.
+        public DbSet<ContactCompanyDto> ContactsCompany { get; set; }     // Таблица контактов.
+
+        public DbSet<ContactLeadDto> ContactLeads { get; set; }    // Табилца контактов руководства.
 
         public DbSet<FooterDto> Footers { get; set; }   // Таблица футера.
+
+        public DbSet<MessageDto> Messages { get; set; }     // Таблица сообщений.
+
+        public DbSet<CertDto> Certs { get; set; }   // Таблица сертификатов.
+
+        public DbSet<ProjectDetailDto> DetailProjects { get; set; }    // Таблица с дополнительными изображениями проектов.
+
+        public DbSet<AwardDto> Awards { get; set; }    // Таблица наград.
+
+        public DbSet<MainInfoDialog> MainInfoDialogs { get; set; }      // Таблица основной информации о диалогах.
+
+        public DbSet<DialogMessage> DialogMessages { get; set; }    // Таблица сообщений.
+
+        public DbSet<DialogMember> DialogMembers { get; set; }      // Таблица участников диалога.
+
+        public DbSet<AnonymousUserDto> AnonymousUsers { get; set; }     // Таблица временных пользователей.
+
+        public DbSet<AboutDetails> AboutDetails { get; set; }   // Таблица О НАС.
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
@@ -65,6 +85,42 @@ namespace Rzproekt.Core.Data {
                 modelBuilder.Entity<MultepleContextTable>()
                 .HasOne(sc => sc.Footers)
                 .WithMany(s => s.MultepleContextTables);
+
+            modelBuilder.Entity<MultepleContextTable>()
+                .HasOne(sc => sc.Messages)
+                .WithMany(s => s.MultepleContextTables);
+
+            modelBuilder.Entity<MultepleContextTable>()
+                .HasOne(sc => sc.Certs)
+                .WithMany(s => s.MultepleContextTables);
+
+            modelBuilder.Entity<MultepleContextTable>()
+                .HasOne(sc => sc.DetailProjects)
+                .WithMany(s => s.MultepleContextTables);
+
+            modelBuilder.Entity<MultepleContextTable>()
+                .HasOne(sc => sc.Awards)
+                .WithMany(s => s.MultepleContextTables);
+
+            modelBuilder.Entity<MultepleContextTable>()
+                .HasOne(sc => sc.MainInfoDialogs)
+                .WithMany(s => s.MultepleContextTables);
+
+            modelBuilder.Entity<MultepleContextTable>()
+               .HasOne(sc => sc.DialogMessages)
+               .WithMany(s => s.MultepleContextTables);
+
+            modelBuilder.Entity<MultepleContextTable>()
+               .HasOne(sc => sc.DialogMembers)
+               .WithMany(s => s.MultepleContextTables);
+
+            modelBuilder.Entity<MultepleContextTable>()
+               .HasOne(sc => sc.AnonymousUsers)
+               .WithMany(s => s.MultepleContextTables);
+
+            modelBuilder.Entity<MultepleContextTable>()
+              .HasOne(sc => sc.Abouts)
+              .WithMany(s => s.MultepleContextTables);
         }
     }
 }

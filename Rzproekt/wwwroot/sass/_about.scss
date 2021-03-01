@@ -1,0 +1,42 @@
+.about {
+    display: flex;
+    padding: 0 !important;
+    flex-direction: row !important;
+    background: $liteSilver;
+
+    .about-left {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        text-align: left;
+
+        .about-block-txt {
+            width: 340px;
+            margin: 8rem;
+        }
+    }
+
+    .about-txt {
+        margin-top: 2rem;
+    }
+
+    .about-right {
+        width: 50%;
+        background-image: url('../img/about-back.png');
+        background-size: cover;
+        background-position: center;
+        height: auto;
+    }
+}
+.aboutTxtTextarea {
+    height: auto;
+    width: 28rem;
+    background: transparent;
+    border: none;
+    padding: 0rem;
+    min-height: 15rem;
+    resize: none;
+    outline: none;
+    font-size: 1.2rem;
+}

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Rzproekt.Core;
 using Rzproekt.Core.Data;
+using Rzproekt.Models;
 using Rzproekt.Services;
 
 namespace Rzproekt.Controllers {
@@ -16,7 +17,7 @@ namespace Rzproekt.Controllers {
     public class AboutController : ControllerBase {
         ApplicationDbContext _db;
 
-        public AboutController(ApplicationDbContext db) => db = _db;
+        public AboutController(ApplicationDbContext db) => _db = db;
 
         /// <summary>
         /// Метод описывает данные о нас.
@@ -27,5 +28,32 @@ namespace Rzproekt.Controllers {
 
             return Ok(await aboutBase.GetAboutInfo());
         }
+
+        [HttpPost, Route("about-details")]
+        public async Task<IActionResult> GetAboutDetailsInfo() {
+            AboutBase aboutBase = new AboutService(_db);
+
+            return Ok(await aboutBase.GetAboutDetailsInfo());
+        }
+
+        /// <summary>
+        /// Метод ищет сертификат по тексту.
+        /// </summary>
+        [HttpPost, Route("search")]
+        public async Task<IActionResult> SearchCert([FromBody] CertDto certDto) {
+            AboutBase aboutBase = new AboutService(_db);
+
+            return Ok(await aboutBase.SearchCert(certDto.CertName));
+        }
+
+        /// <summary>
+        /// Метод ищет награду по тексту.
+        /// </summary>
+        [HttpPost, Route("search-award")]
+        public async Task<IActionResult> SearchAward([FromBody] AwardDto awardDto) {
+            AboutBase aboutBase = new AboutService(_db);
+
+            return Ok(await aboutBase.SearchAward(awardDto.AwardName));
+        }       
     }
 }

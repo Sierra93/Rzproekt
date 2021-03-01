@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using Rzproekt.Models;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
@@ -14,5 +16,12 @@ namespace Rzproekt.Core {
         /// </summary>
         /// <returns></returns>
         public abstract Task<IEnumerable> GetHeaderInfo();
+
+        /// <summary>
+        /// Метод изменяет хидер.
+        /// </summary>
+        /// <param name="headerDto"></param>
+        /// <returns></returns>
+        public abstract Task ChangeHeader(IFormCollection filesLogo, string jsonString);
     }
 }

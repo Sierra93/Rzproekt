@@ -50,8 +50,8 @@ namespace Rzproekt.Services {
         /// </summary>
         /// <param name="password"></param>
         /// <returns></returns>
-        public async override Task<bool> GetUserPassword(string password) {
-            var oUser = await _db.Users.Where(u => u.Password.Equals(password)).FirstOrDefaultAsync();
+        public async override Task<bool> GetUserPassword(string login, string password) {
+            var oUser = await _db.Users.Where(u => u.Password.Equals(password)).Where(u => u.Login.Equals(login)).FirstOrDefaultAsync();
 
             if (oUser == null) {
                 return false;
