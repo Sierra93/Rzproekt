@@ -18,8 +18,8 @@ var back_office = new Vue({
             filesContactAdd: '',
             date: new Date().getFullYear(),
             notify: '',
-            //urlApi: 'https://localhost:44349',
-            urlApi: 'https://rzproekt.ru',
+            urlApi: 'https://localhost:44349',
+            //urlApi: 'https://rzproekt.ru',
             listRequests: [
                 '/api/header/get-header',
                 '/api/order/get-orders',
@@ -77,6 +77,11 @@ var back_office = new Vue({
                 self.getMsgList(sessvars.userId);
             }
             //setInterval(getMsg, 1000);
+            
+            function getPrjListCheked() {
+                self.addCheckedIsMainPrj()
+            }
+            setTimeout(getPrjListCheked, 1000);
         })
     },
     methods: {
@@ -203,6 +208,7 @@ var back_office = new Vue({
         // Функция оповещений результатов запросов.
         notyfi(e) {
             let blockNotify = document.getElementById('notifications');
+            if (!blockNotify) return;
             if (e) {
                 this.notify = "Данные успешно изменены"
                 blockNotify.style.backgroundColor = 'green';
@@ -549,6 +555,23 @@ var back_office = new Vue({
                 throw new Error(ex);
             }
         },
+        addCheckedIsMainPrj() {
+            let self = this;
+            let arrPrj = $(".checkOnlyThreeProject");
+            for (let i of arrPrj) {
+                i.checked = false;
+            }
+            let ListPrjData = self.$data.arrProject;
+            for (let i of arrPrj) {
+                if (i.getAttribute("idCustom")) {
+                    ListPrjData.forEach(function (el) {
+                        if (el.projectId == i.getAttribute("idCustom") && el.isMain == 'true') {
+                            i.checked = true
+                        }
+                    })
+                }
+            }
+        },
 
         // Все проекты
         onAllProject(e) {
@@ -560,6 +583,7 @@ var back_office = new Vue({
                     if (!response.data) { self.$data.AllProject = []; return }
                     self.$data.arrProject = response.data;
                     console.log("success / getAllProject", response);
+                    return response.data;
                 })
                 .catch((XMLHttpRequest) => {
                     self.notyfi(false);

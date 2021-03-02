@@ -15,8 +15,8 @@ var appHome = new Vue({
         countIdCert: 1,
         countIdPrjImg: 0,
         animStat: true,
-        //urlApi: 'https://localhost:44349',
-        urlApi: 'https://rzproekt.ru',
+        urlApi: 'https://localhost:44349',
+        //urlApi: 'https://rzproekt.ru',
         urlAboutMain: '',
         listRequests: [
             '/api/header/get-header',
