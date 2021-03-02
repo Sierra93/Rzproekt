@@ -7,10 +7,7 @@ using Rzproekt.Models;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Runtime.InteropServices.ComTypes;
-using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
@@ -24,11 +21,34 @@ namespace Rzproekt.Services {
         public ProjectService(ApplicationDbContext db) => _db = db;
 
         /// <summary>
-        /// Метод получает список проектов.
+        /// Метод получает список всех проектов либо 3-х.
         /// </summary>
         /// <returns></returns>
         public async override Task<IEnumerable> GetProjectsInfo() {
+            try
+            {
+                return await GetCountProjects() >= 3 ? await GetThreeProjects() :
+                       await GetProjects();
+            }
+
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message.ToString());
+            }
+        }
+
+        private async Task<IEnumerable> GetThreeProjects()
+        {
             return await _db.Projects.Where(p => p.IsMain.Equals("true")).Take(3).ToListAsync();
+        }
+
+        /// <summary>
+        /// Метод получит кол-во проектов с true.
+        /// </summary>
+        /// <returns></returns>
+        private async Task<int> GetCountProjects()
+        {
+            return await _db.Projects.Where(p => p.IsMain.Equals("true")).CountAsync();
         }
 
         /// <summary>
@@ -226,12 +246,13 @@ namespace Rzproekt.Services {
         //}
 
         /// <summary>
-        /// Метод выводит список проектов.
+        /// Метод выводит список проектов, если их больше 3 с галочками.
         /// </summary>
         /// <returns></returns>
-        //public async override Task<IEnumerable> GetAllProjects() {
-        //    return await _db.Projects.ToListAsync();
-        //}
+        private async Task<IEnumerable> GetProjects()
+        {
+            return await _db.Projects.Where(p => p.IsMain.Equals("true")).ToListAsync();
+        }
 
         /// <summary>
         /// Метод удаляет проект.
@@ -245,6 +266,13 @@ namespace Rzproekt.Services {
                 }
 
                 ProjectDto oProject = await _db.Projects.Where(p => p.ProjectId == id).FirstOrDefaultAsync();
+
+                bool bLastProject = await ChecLastProject();
+
+                if (bLastProject)
+                {
+                    throw new ArgumentException();
+                }
 
                 _db.Projects.Remove(oProject);
 
@@ -260,6 +288,11 @@ namespace Rzproekt.Services {
                 throw new ArgumentNullException("Id не передан", ex.Message.ToString());
             }
 
+            catch (ArgumentException ex)
+            {
+                throw new ArgumentException($"Нельзя удалить последний проект {ex.Message}");
+            }
+
             catch (Exception ex) {
                 throw new Exception(ex.Message.ToString());
             }
@@ -271,6 +304,13 @@ namespace Rzproekt.Services {
         /// <returns></returns>
         public async override Task ChangeProjectInfo(ProjectDto projectDto) {
             try {
+                bool bMainFlag = await GetCountProjects() <= 3;
+
+                if (bMainFlag)
+                {
+                    throw new ArgumentException();
+                }
+
                 // Берет старый путь к изображению.
                 string oldProject = await _db.Projects.Where(p => p.ProjectId == projectDto.ProjectId).Select(p => p.Url).FirstOrDefaultAsync();
 
@@ -278,6 +318,11 @@ namespace Rzproekt.Services {
                 projectDto.Url = oldProject;
                 _db.Projects.Update(projectDto);
                 await _db.SaveChangesAsync();
+            }
+
+            catch (ArgumentException ex)
+            {
+                throw new ArgumentException($"недопустимо наличие менее 3 главных проектов {ex.Message}");
             }
 
             catch (Exception ex) {
@@ -314,6 +359,23 @@ namespace Rzproekt.Services {
             }
 
             catch (Exception ex) {
+                throw new Exception(ex.Message.ToString());
+            }
+        }
+
+        /// <summary>
+        /// Метод проверяет, последний ли проект в БД. Если да, то не даст удалить.
+        /// </summary>
+        /// <returns></returns>
+        private async Task<bool> ChecLastProject()
+        {
+            try
+            {
+                return await _db.Projects.CountAsync() <= 3;
+            }
+
+            catch (Exception ex)
+            {
                 throw new Exception(ex.Message.ToString());
             }
         }
