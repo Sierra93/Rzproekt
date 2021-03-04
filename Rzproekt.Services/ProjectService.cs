@@ -306,7 +306,7 @@ namespace Rzproekt.Services {
             try {
                 bool bMainFlag = await GetCountProjects() >= 3;
 
-                if (bMainFlag)
+                if (!bMainFlag)
                 {
                     throw new ArgumentException();
                 }
