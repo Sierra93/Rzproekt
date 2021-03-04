@@ -1,17 +1,17 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>РЕЗИНОАСБОПРОЕКТ</title>
-    <meta name="description" content="АО «ЯПИ «Резиноасбопроект» уже как 82 года осуществляет комплексное проектирование объектов производственного и жилищно-гражданского назначения и является одним из ведущих проектных институтов России."/>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="~/css/site.css" />
-    <link href="~/css/StyleSheet.css" rel="stylesheet" />
-    <link href="~/css/media.css" rel="stylesheet" />
-    <link href="~/css/jquery.fancybox.css" rel="stylesheet" />
-    <link href="~/lib/slick.css" rel="stylesheet" />
-    <link href="~/lib/slick-theme.css" rel="stylesheet" />
-    
+	<title>РЕЗИНОАСБОПРОЕКТ</title>
+	<meta name="description" content="АО «ЯПИ «Резиноасбопроект» уже как 82 года осуществляет комплексное проектирование объектов производственного и жилищно-гражданского назначения и является одним из ведущих проектных институтов России." />
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="~/css/site.css" />
+	<link href="~/css/StyleSheet.css" rel="stylesheet" />
+	<link href="~/css/media.css" rel="stylesheet" />
+	<link href="~/css/jquery.fancybox.css" rel="stylesheet" />
+	<link href="~/lib/slick.css" rel="stylesheet" />
+	<link href="~/lib/slick-theme.css" rel="stylesheet" />
+
 </head>
 <body>
     @*<div class="loader"></div>*@
@@ -41,33 +41,33 @@
                     <span></span>
                 </label>
 
-                <ul class="menu__box">
-                    <li v-for="item in header">
-                        <a v-bind:href="smoothScrollArr[item.id]" class="menu__item scrollto" v-on:click="smoothScroll">{{ item.mainItem }}</a>
-                    </li>
-                </ul>
-            </div>
-        </header>
+				<ul class="menu__box">
+					<li v-for="item in header">
+						<a v-bind:href="smoothScrollArr[item.id]" class="menu__item scrollto" v-on:click="smoothScroll">{{ item.mainItem }}</a>
+					</li>
+				</ul>
+			</div>
+		</header>
 
-        @RenderBody()
+		@RenderBody()
 
-        <footer>
-            <small>
-                &copy; {{ date }} {{ footer[0].copyStr }}
-            </small>
-        </footer>
-    </div>
-    <script src="~/lib/autosize.min.js"></script>
-    <script src="~/lib/vue/vue.min.js"></script>
-    <script src="~/lib/vue/axios/axios.js"></script>
-    <script src="~/lib/jquery/dist/jquery.js"></script>
-    <script src="~/lib/jquery/jquery.fancybox.js"></script>
-    <script src="~/lib/jquery.spincrement.min.js"></script>
-    <script src="~/lib/slick.min.js"></script>
-    <script src="~/js/aspnet-signalr/signalr.min.js"></script>
-    <script src="~/lib/sessions.js"></script>
-    <script src="~/js/site.js"></script>
+		<footer>
+			<small>
+				&copy; {{ date }} {{ footer[0].copyStr }}
+			</small>
+		</footer>
+	</div>
+	<script src="~/lib/autosize.min.js"></script>
+	<script src="~/lib/vue/vue.min.js"></script>
+	<script src="~/lib/vue/axios/axios.js"></script>
+	<script src="~/lib/jquery/dist/jquery.js"></script>
+	<script src="~/lib/jquery/jquery.fancybox.js"></script>
+	<script src="~/lib/jquery.spincrement.min.js"></script>
+	<script src="~/lib/slick.min.js"></script>
+	<script src="~/js/aspnet-signalr/signalr.min.js"></script>
+	<script src="~/lib/sessions.js"></script>
+	<script src="~/js/site.js"></script>
 
-    @RenderSection("Scripts", required: false)
+	@RenderSection("Scripts", required: false)
 </body>
 </html>
