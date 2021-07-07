@@ -74,25 +74,28 @@
         <div class="border-bottom-title"></div>
         <section class="project-list">
 
-            @*/////////*@
-            <div class="project-item" :projectId="project[0].projectId">
-                <button class="btn-left-slider-prj" :projectId="project[0].projectId" nav="prev" v-on:click="uniteDatePrj"><</button>
-                <button class="btn-right-slider-prj" :projectId="project[0].projectId" nav="next" v-on:click="uniteDatePrj">></button>
-                <img :src="project[0].url" />
+            <div v-if="project.length >= 1">
+                <div v-if="project[0].projectId" class="project-item" :projectId="project[0].projectId">
+                    <button class="btn-left-slider-prj" :projectId="project[0].projectId" nav="prev" v-on:click="uniteDatePrj"><</button>
+                    <button class="btn-right-slider-prj" :projectId="project[0].projectId" nav="next" v-on:click="uniteDatePrj">></button>
+                    <img :src="project[0].url" />
 
+                </div>
             </div>
-            <div class="project-item" :projectId="project[1].projectId" v-on:click="onGetAllImgProject">
-                <button class="btn-left-slider-prj" :projectId="project[1].projectId" nav="prev" v-on:click="uniteDatePrj"><</button>
-                <button class="btn-right-slider-prj" :projectId="project[1].projectId" nav="next" v-on:click="uniteDatePrj">></button>
-                <img :src="project[1].url" />
+            <div v-if="project.length >= 2">
+                <div v-if="project[1].projectId" class="project-item" :projectId="project[1].projectId" v-on:click="onGetAllImgProject">
+                    <button class="btn-left-slider-prj" :projectId="project[1].projectId" nav="prev" v-on:click="uniteDatePrj"><</button>
+                    <button class="btn-right-slider-prj" :projectId="project[1].projectId" nav="next" v-on:click="uniteDatePrj">></button>
+                    <img :src="project[1].url" />
+                </div>
             </div>
-            <div class="project-item" :projectId="project[2].projectId">
-                <button class="btn-left-slider-prj" :projectId="project[2].projectId" nav="prev" v-on:click="uniteDatePrj"><</button>
-                <button class="btn-right-slider-prj" :projectId="project[2].projectId" nav="next" v-on:click="uniteDatePrj">></button>
-                <img :src="project[2].url" />
-
+            <div v-if="project.length >= 3">
+                <div v-if="project[2].projectId" class="project-item" :projectId="project[2].projectId">
+                    <button class="btn-left-slider-prj" :projectId="project[2].projectId" nav="prev" v-on:click="uniteDatePrj"><</button>
+                    <button class="btn-right-slider-prj" :projectId="project[2].projectId" nav="next" v-on:click="uniteDatePrj">></button>
+                    <img :src="project[2].url" />
+                </div>
             </div>
-            @*/////////*@
 
         </section>
         @*<a class="btn-detail" href="https://localhost:44349/project-details">{{ project[0].buttonText }}</a>*@

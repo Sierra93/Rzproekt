@@ -304,12 +304,12 @@ namespace Rzproekt.Services {
         /// <returns></returns>
         public async override Task ChangeProjectInfo(ProjectDto projectDto) {
             try {
-                bool bMainFlag = await GetCountProjects() <= 3;
+                //bool bMainFlag = await GetCountProjects() >= 3;
 
-                if (bMainFlag)
-                {
-                    throw new ArgumentException();
-                }
+                //if (!bMainFlag)
+                //{
+                //    throw new ArgumentException();
+                //}
 
                 // Берет старый путь к изображению.
                 string oldProject = await _db.Projects.Where(p => p.ProjectId == projectDto.ProjectId).Select(p => p.Url).FirstOrDefaultAsync();
@@ -322,7 +322,7 @@ namespace Rzproekt.Services {
 
             catch (ArgumentException ex)
             {
-                throw new ArgumentException($"недопустимо наличие менее 3 главных проектов {ex.Message}");
+                throw new ArgumentException($"недопустимо наличие более 3 и менее 3 главных проектов {ex.Message}");
             }
 
             catch (Exception ex) {

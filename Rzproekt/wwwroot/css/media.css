@@ -126,6 +126,10 @@
     .about-wrapper-img img {
         max-width: 335px;
     }
+    .service-list article .serviceTxt {
+        width: 14rem;
+        min-height: 26rem;
+    }
 }
 
 
